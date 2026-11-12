@@ -70,8 +70,9 @@ The updater never falls back to an upstream binary under a Muxary label.
 The initial target is one developer on one machine, not a hosted IDE or team
 service. Native approval capabilities stay provider-specific. Provider stubs,
 real model checks, browser checks and untested platforms are reported separately
-in the [initial validation](docs/research/muxary-validation.md) and
+in the [initial validation](docs/research/muxary-validation.md),
 [workspace/canvas validation](docs/research/muxary-expansion-validation.md),
+and [UI refinement / independent-history validation](docs/research/muxary-ui-refinement-validation.md),
 not combined into a claim of universal compatibility.
 
 ## Retained upstream documentation

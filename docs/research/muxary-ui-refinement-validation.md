@@ -76,8 +76,24 @@ Python 范围为 `test_muxary_{cli,distribution,release_web,ui_provenance,canvas
 
 ## 6. 独立历史与交付
 
-用户明确确认后，已准备本机完整旧历史 bundle（验证完整），旧远端 `main` 的可达提交计数为 2027（含 tip）。仅本仓库 Git 身份已切换 `Atingaii` 与核验账号 ID 对应的 GitHub 隐私邮箱。重建/远端 lease 推送结果待最终 UI 验证完成后填写；不提前宣称远端历史已替换。
+用户明确确认后，先保存完整旧 refs/历史 bundle 并验证完整。旧远端 `main` 有 2027 个可达提交（含 tip），不是 2027 个严格祖先。备份位于 `~/.local/share/muxary-dev/history-before-independent-20261112/muxary-before-independent.bundle`，SHA-256 为 `92ce5e978c45d292742ba2c471ef54cfe353a31b3c661bc86122f880b2a636fd`。本机另保留 `refs/archive/muxary-main-before-independent-20261112` 与官方 `upstream`，不推到新默认分支。
+
+仅本仓库 Git 身份设为 `Atingaii` 与核验账号 ID 对应的 GitHub 隐私邮箱。新 commit 的作者和提交者均是该账号；日期为实际重建时间，不伪装为原作者日期。新 root 表示导入/二开提交，不表示独自创作全部上游源码。
+
+| 独立链 | 新 commit | 保留的树 / 对应旧证据 |
+|---|---|---|
+| 无父 root | `3abab542e9d73f9b57ddcab6d3db1b44ce996b56` | 原 Muxary 功能 `c6b7e812…` 的完整树 `e00d9525d313f6cf20541a3cd696efd1ac9e1edb` |
+| 原文档交付 | `7c00f5022295bf77e34fdda6cd96a3dd9c5edb82` | 原 `0cd8bfea…` 完整树 `f43d1b522db4a6c3f027b5e304280b7ad69a84e4` |
+| 本轮 UI 与验证 | `51ffe6e588f9b418c39fb2bf86df074d73590bb5` | 显式纳入全部 9 个变更/新增文件，运行源码哈希与第 2 节冻结值一致 |
+
+2026-11-12 02:38:40 UTC 的首次发布核验：精确旧 SHA lease（新 UI 分支要求不存在）、三个完整 refspec、`--atomic --no-follow-tags` 推送成功；实际 origin 只有 main、旧功能分支、新 UI 分支三个 heads，无 tags。GitHub API 返回 main 恰好上述 3 个提交，父链为 1/1/0，作者与提交者 login 均为 `Atingaii`。原两个树逐对象相等，新链与固定 CCB 上游无共同祖先；原 LICENSE、vendor MIT、来源声明均保持。旧历史对象/链接及 GitHub 贡献缓存不属于可擦除承诺。
+
+本文的发布/清理补记在上述首次远端核验**之后**作为普通文档提交追加，不 amend 已核验对象或再次 force。最终 tip、提交总数与后续正常 fast-forward 推送回执另存本机 `history-before-independent-20261112/final-delivery-verification.json`，避免在提交内预写其自身未知 SHA/未执行的推送结果。原冻结证据不改写为新 commit 身份。
 
 ## 7. 清理
 
-参考研究的两份一次性公开 clone 已按 remote/path 核对后删除；固定所选原图/源码证据、所有失败记录、运行资产、可复用依赖、旧历史 bundle 与已有安装备份保留。浏览器 fixture/本轮后台进程的最终清理结果待结束后填写，不触碰原用户项目与 Agent。
+先逐项盘点本轮拥有的 PID/start_ticks、fixture HOME/cwd/roots 与 IPC，再正常 SIGTERM 两个 BFF。原 finally 使 48 个任务进程降到 0，5 个 live ccbd socket 降到 0；不需要额外 kill/SIGKILL 或手动 socket unlink。性能与补充浏览器也都关闭。
+
+10 个遗留 FIFO 均处于本任务 0700 私有树。首次全宿主 fd 检查因 522 条权限不可读而停止，原失败保持 stopped，不改写为通过。随后依据精确创建归属、私有祖先与任务 runtime 已退出，逐项授权并复核 dev/inode/uid/类型，才仅 unlink 这 10 个 FIFO。最终 task-owned 进程、socket/FIFO 节点、匹配 `/proc/net/unix` 均为 0。`cleanup-final-result.json` SHA-256：`80b5abfc8fc733f68d58b70276f3e62e0063c2c51ed1a213e3598f3fe7f7d90d`；最终 inventory 与 23 项 cleanup SHA 清单独立保留，不以原 inventory 的固定待清理文案混淆实际顺序。
+
+参考研究的两份一次性公开 clone 已按 remote/path 核对后删除；没有递归删除 fixture 或用户缓存。固定原图/源码证据、全部失败记录、截图、native 日志、运行资产、可复用依赖、旧历史 bundle 与已有安装备份保留，它们仍用于复核/运行/交付。原用户项目、HOME 配置与 Agent 未触碰。最终只读对抗审查无有证据的新增 P1/P2 阻断，但这不是竞态穷尽或已消除第 5 节既有边界的证明。
