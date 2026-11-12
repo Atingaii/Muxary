@@ -142,7 +142,7 @@ CCB 已有 [`WorkspacePlanner`](../../lib/workspace/planner.py)、[`WorkspaceMat
 | 工作目录/diff/项目打开与并发反例 | 最终 affected **176 passed**；全量旧快照8579P/82S/1F单列 | 不由定向通过推导全量全绿 |
 | 新前端组件/键盘/IME/构建 | **86 passed / 6 files**；tsc/Vite成功，原生notices与附录已校验 | synthetic composition不是全部OS实际输入法验收 |
 | 独立 Chrome 新双视图端到端 | 最终工作台 **8/8**；最终项目打开 **7/7**；均0 page errors | CLI stubs不是模型群运行；旧Browser503仍保留未归因 |
-| 1/20/100 × ordinary/fit-all，5 reps | **pending** | 不宣称不卡顿或达到门槛 |
-| culling / hydration / visibility 分离消融 | culling旧版84rep、最终补测进行中；hydration旧版保留13P/13F；visibility/慢poll独立回归见报告 | 不拼冻结版本、不把同机时序外推全平台、不以早拒绝推导下游收益 |
+| 1/20/100 × ordinary/fit-all，5 reps | 最终release4完整84次（24warm+60formal）：默认off六cell各5/5P；on的100 ordinary为0/5（rAF p95 33.3ms>32），其余on五cell各5/5P；预检1F另留 | 不能宣称两构建全过、100真实CLI、所有设备不卡顿；[逐cell/hash/host/原始材料](../research/muxary-expansion-validation.md#5-性能与消融证据) |
+| culling / hydration / visibility 分离消融 | culling最终同快照双build全部样本已留，负面结果支持保持default off；重内容为独立旧build，含失败；visibility/轮询见专项，不由画布结果继承 | 不凭上游限流推导下游收益，不声称全部消融或长日志已通过；[分层边界](../research/muxary-expansion-validation.md#5-性能与消融证据) |
 
 结果补充时记录命令、build/fixture、环境、每 rep 与失败样本，不改写本轮冻结的请求、模型回复和改造前截图。

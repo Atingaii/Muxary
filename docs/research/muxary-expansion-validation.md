@@ -54,7 +54,7 @@
 - `q9-browser-acceptance-04`：重启BFF加载 fresh-candidate 修复（service `47dab3be…`）后，最终静态构建 **7/7 场景通过、0 page errors**，包含实际CCB打开→新Job完成→终端、重复打开epoch不变、原配置页和390pxmodal。它不抹除03的503。
 - `q9-browser-acceptance-05`：再次重启BFF加载最终service `a6ae5de244df2099ad91cf7abd52d48aa884bb2485663b924e3f3f6195d43ebe`，同协议 **7/7通过、0 page errors**。未通过反复尝试覆盖03；04/05是代码版本变更后的独立记录。
 
-上述 Q9 screenshots（dialog、无效路径保留、真实新项目、原配置页、窄屏dialog）已由主审查看。只进入原worktree设置，不在浏览器验收中保存/激活worktree，不宣称本次新建工作树的整套视觉操作已走通；服务端身份/managed worktree/外部合法目录/别名/伪造反例另有Python tests。
+上述 Q9 screenshots（dialog、无效路径保留、真实新项目、原配置页、窄屏dialog）已由主审查看，包含最终05的全部5张。只进入原worktree设置，不在浏览器验收中保存/激活worktree，不宣称本次新建工作树的整套视觉操作已走通；服务端身份/managed worktree/外部合法目录/别名/伪造反例另有Python tests。
 
 ## 4. 独立对抗审查
 
@@ -64,7 +64,7 @@
 2. 旧 discovery 迟到把已ready项目覆盖回404：短锁提交 generation，不把启动、discovery、RPC放进锁。
 3. scope不明拒绝，不静默fallback项目根；完整目录同名仅在碰撞时显示全路径。
 
-脚本/源码SHA、独立复核及未测性质见[首次独立审查](muxary-expansion-adversarial-review.md)、[Q9独立审查](muxary-q9-adversarial-review.md)。后续 fresh-read 窗口不能由第2项green推导已解决；它另有两分支red→green，且确认发布只合并目标以保留无关新项目。其后preflight又暴露“own old candidate不含目标、current已ready仍调用starter”反例，先红后修：pre-start优先current确认，再查own candidate，独立脚本由starter_calls=1变为0。post-start仍基于自己的完成candidate确认，二者不可混用。最终176项及独立复核见后端报告。
+脚本/源码SHA、独立复核及未测性质另见[提交前补充审查](muxary-release-review-supplement.md)，以及[首次独立审查](muxary-expansion-adversarial-review.md)、[Q9独立审查](muxary-q9-adversarial-review.md)。后续 fresh-read 窗口不能由第2项green推导已解决；它另有两分支red→green，且确认发布只合并目标以保留无关新项目。其后preflight又暴露“own old candidate不含目标、current已ready仍调用starter”反例，先红后修：pre-start优先current确认，再查own candidate，独立脚本由starter_calls=1变为0。post-start仍基于自己的完成candidate确认，二者不可混用。最终176项及独立复核见后端报告。
 
 ## 5. 性能与消融证据
 
@@ -78,7 +78,30 @@
 - release2：84次完整记录（24warm+60formal），12个cell各5次正式rep均达预定交互与正确性门槛。普通100项culling使起始DOM3461→1221、挂载卡100→20，却使选择p95约28.1–28.5→44.6–45.1ms，未观察到可稳健外推的heap下降；fit-all两组在轨迹中均100卡全可见、起始DOM3461，没有裁剪收益。**因此保持生产默认关闭culling**，不是测后才首次设为false，也不因“减少DOM”就强启额外机制。该中间源码快照已被后续修复及Q9扩展替代，不能认证最终生产源码；5对rep仅作描述比较，不作显著性或无限规模承诺。
 - release2同机活动：root独立Chrome、npm test/build、后端全量测试并行；另有本代理一次约10–15秒Python bundle比对CPU活动，约1节点fit-all的22–25号样本可能重叠。事件、所有热身/正式结果均保留，不据此删样本、调门槛或补跑。heap未强制GC，不宣称无泄漏。
 - release3：用户Q9改变范围后外部中止。保留66条raw：6次完整（4warm+2formal）、60条中断/随后browser-closed失败记录；余18项未启动，冻结schedule仍保留。不与release2/4拼接，不当最终通过证据。中止后71项冻结输入hash均未变化，自有runner、Chrome与静态服务精确关闭。
-- release4最终构建补测：结果待其独立冻结记录，不从旧版继承。
+- release4最终构建：按同一冻结协议完整84次，24warm中22P/2F、60formal中55P/5F；没有排样、补采或修改门槛。唯一失败cell为**100 ordinary culling-on**：5次formal的rAF gap p95均33.3ms，超过32ms；其2次warm同因失败。预检该cell另有1次同因失败，独立保留，不混入formal。其他11cell均各5/5P，**当前生产默认off的6cell共30/30formal通过**；不能把这说成两种构建全通过。全部formal的选择/身份/草稿/无mutation/无WS/无xterm正确性门槛通过，同路径最大在途为1，稳定窗口仅2个longtask、最大53ms；它们不证明慢网/hidden/长期负载已由本试验覆盖。
+
+release4各cell的5个formal结果如下；数值为每rep p95的范围，全部逐rep p50/p95/p99/max仍保留在原始报告，不池化替代失败：
+
+| UI Agents | 视口 | culling | 通过 | rAF gap p95(ms) | 选择p95(ms) |
+| ---: | --- | --- | ---: | ---: | ---: |
+| 1 | ordinary | off | 5/5 | 16.7–16.8 | 30.6–31.0 |
+| 1 | ordinary | on | 5/5 | 16.7–16.8 | 30.5–30.9 |
+| 1 | fit-all | off | 5/5 | 16.7–16.8 | 29.7–30.6 |
+| 1 | fit-all | on | 5/5 | 16.7–16.8 | 29.7–30.8 |
+| 20 | ordinary | off | 5/5 | 16.7–16.8 | 28.3–29.2 |
+| 20 | ordinary | on | 5/5 | 16.7–16.8 | 28.5–29.0 |
+| 20 | fit-all | off | 5/5 | 16.7–16.8 | 28.9–29.5 |
+| 20 | fit-all | on | 5/5 | 16.7–16.8 | 28.9–29.3 |
+| 100 | ordinary | off | 5/5 | 16.7–16.8 | 27.1–27.9 |
+| 100 | ordinary | on | **0/5** | **33.3–33.3** | 43.7–60.0 |
+| 100 | fit-all | off | 5/5 | 16.7–16.8 | 26.9–27.7 |
+| 100 | fit-all | on | 5/5 | 16.7–16.8 | 27.0–27.6 |
+
+普通100中，off/on起始DOM为4588/2348、挂载卡100/20；fit-all两组均100卡、起始DOM4588。保持default off，不为通过而减少100条导航、改32ms门槛或删除on失败。最终版与release2有多处源码/布局差异，不能把跨版本差异归因给单一功能；单因素结论只比较本次固定快照的off/on。
+
+release4包含43个源码/配置/许可输入；私有production-off的全部14项产物与root最终`assets/workbench`逐字节相同。测后89个冻结输入hash及当前43个源输入均0变化。source manifest SHA256为`338475388fe7deb28a5e3576544c22e69d3a4f9111ea9fa246b1b3ae9502b85b`，build manifest为`b429c37387fe69b8b318075b8656300335a6d146d8db9e360259eba78e8f6483`，lock为`fecfa34dc4726c0c56fa8f39ce80e8e240f7b07505b0fd0ffeffd329c14b1035`，freeze为`7a36a8c583f101bd627e21a3817aa6d3d69f1c9869250eb4f16d470a4d8eca5b`。协议/fixture/instrument与此前相同；生产构建不是沿用旧release2/3。
+
+host活动保留：root报告约19:25:28(+0800)开始commit及首次失败push；freeze为19:25:48.596737、浏览器启动为19:25:49.090，git结束时点不精确，不能断言它影响了某个frame。后续root承诺仅轻量文档操作、未启动浏览器/测试/构建；共享VM外部活动仍不可控，未据此排样。本代理分析在84次全部完成并关闭Chrome后开始。自有Chrome PID703641、静态服务于19:33:00精确关闭，未停止他人进程。相关材料为`canvas-performance/results-4/{report.md,index.json,summary.json,shared-host-concurrency.json,closure.json,post-run-freeze-check.json,current-source-identity-check.json}`，另保留5次预检及两个未进入计时的setup命令错误。
 
 本机材料位于`~/.local/share/muxary-dev/expansion-review/canvas-performance/`：`protocol-1.md`的SHA256为`f136a22e20d1c63fea2df7cc6943a259b7b6b54a7138b39d1a55bb18bc29cc59`；`results-2/{report.md,index.json,summary.json}`含全部逐rep p50/p95/p99/max，`freeze-2.json`及`release-2/{source-manifest.json,build-manifest.json}`固定源码、lock、构建、fixture和脚本身份。`freeze-2.json`的`formalSamples:84`是保留未改的元数据标签错误，冻结schedule实际是84总/60正式/24热身。`preflight-1/FINDING.md`与`results-3/{ABORTED.md,abort-summary.json,external-closure-after-abort.json}`记录负面结果与中止；不覆盖旧冻结文件或已有结果。
 
@@ -95,10 +118,15 @@
 - stdout/stderr临时文件避免descendant持有PIPE拖死timeout，显示读有上限，但临时文件磁盘大小未设上限。
 - 目录绑定不是文件访问沙箱或永久cwd；共享目录无写锁。Git禁用ext-diff/textconv仍可能触发仓库filter.clean（已复现）；未单测filter.process，不能称无插件副作用。
 - synthetic composition不是实际各OS中文输入法验收；没有完整屏幕阅读器、全部浏览器、Windows/macOS、npm/二进制/签名移动端发布验收。源码安装复用既有官方helper ELF，不冒称全新Rust release构建。
+- 终端展开/拖动改变对话高度时，当前自动跟随effect不保证始终贴底；截图显示较早对话，但本轮未采实时几何和滚动事件来证实具体成因。不能用jsdom无布局假通过代替真实回归，见补充审查。
 - 不能宣称所有测试通过、10MiB显式展开/极端终端无长任务、100个真实CLI负载通过或跨平台“完美适配”。
 
 ## 7. 本机入口、提交与清理
 
-原本已完成可逆入口切换，`~/.local/bin/{muxary,ccb,ask,autonew,ctx-transfer,codex-reconnect}` 指向源码安装；官方npm8.7.22、原HOME配置/Agent仍保留，未重启或派活。备份路径、回滚及source/venv依赖见[安装文档](../muxary-install.md)。最终fresh login shell复核 `muxary --no-open`：静态200、未认证API401、HttpOnly/SameSite Strict、bootstrap重用401；只读发现原HOME两Agent，没有派活，原配置SHA前后相同，SIGINT服务退出0（`installed-smoke-q9.json`）。最终远端提交结果按实际完成后补录，不预写成功。
+已完成可逆入口切换，`~/.local/bin/{muxary,ccb,ask,autonew,ctx-transfer,codex-reconnect}` 指向源码安装；官方npm8.7.22、原HOME配置/Agent仍保留，未重启或派活。备份路径、回滚及source/venv依赖见[安装文档](../muxary-install.md)。最终fresh login shell复核 `muxary --no-open`：静态200、未认证API401、HttpOnly/SameSite Strict、bootstrap重用401；只读发现原HOME两Agent，没有派活，原配置SHA前后相同，SIGINT服务退出0（`installed-smoke-q9.json`）。
 
-清理只允许逐项识别的本任务浏览器、服务和临时项目；保留全部原始失败/成功日志、SHA清单、截图、源码、可复用依赖、当前运行所需Web资产、备份和用户数据。后端代理已清理18个专属测试运行时及7个basetemp，收据见其报告；不广泛删除/tmp或既有缓存。
+源码实现提交为 [`c6b7e81217ab401651389a5ab558f3f431eecdd9`](https://github.com/Atingaii/Muxary/commit/c6b7e81217ab401651389a5ab558f3f431eecdd9)。首次push被remote index-pack拒绝（缺expected object），本地为shallow仓库且对应对象不存在，失败原文保留 `git-push-first-failure.json`。最终性能Chrome关闭后，`git fetch --unshallow upstream main` 补齐原历史，`git fsck --connectivity-only` exit0（仅报告一个dangling blob，未删除）。随后非force推送 **main和feat/muxary-workbench均成功**，`git ls-remote`确认两分支均为该实现提交；日志为 `git-fetch-complete-history.log`、`git-connectivity-final.log`、`git-push-milestone.log`。没有重写上游历史或改测试源码来制造通过。收尾时再次只读核对upstream/main仍为 `df98e61e91b4be57873029b01667135e6265f371`，无待合入的新上游提交。本报告与最终性能记录作为后续独立文档提交，不冒称已发布npm包、二进制或跨平台release。
+
+清理只针对逐项识别的本任务浏览器、服务和临时项目；保留全部原始失败/成功日志、SHA清单、截图、源码、可复用依赖、当前运行所需Web资产、备份和用户数据。后端代理已清理18个专属测试运行时及7个basetemp，后续受控race/preflight目录、许可临时目录也另有逐项收据。功能浏览器/BFF、性能Chrome/静态服务及安装smoke均已结束。最终检查另发现本任务早期 `muxary-prototype-review` 命名浏览器仍在运行；核对独占socket及session环境后，以原CLI精准close，daemon394470/Chrome394537均已退出，收据为 `final-prototype-browser-closure.json`。不属于本任务的 `mcn-completion` 浏览器和原HOME Agent保留，未广泛停止浏览器或用户进程。
+
+最后清理157个本任务重新生成的ignored Python/pytest缓存目录（1116文件、10510321 bytes），确认无tracked文件、无symlink、目录均晚于前次已确认清理后才删除；源码树此类缓存余0。首次删除保护比较浮点时间戳与微秒ISO反序列化值时中止，仅已删 `.pytest_cache`；保留中止记录，以相同ISO序列化核对全部剩余目录未变后继续，不跳过变化检查。收据为 `final-cache-cleanup-{inventory,result,guard-abort}.json`。保留完整 `web/node_modules`、安装所需 `assets/workbench`、全部验证材料和回滚备份；未广泛删除/tmp或既有缓存。

@@ -20,7 +20,7 @@
 
 因此反例是“已确认可用项目仍触发额外启动调用”，**不是证明底层 CCB 已强制重启或重复创建了进程**；底层 `--safe` 可能自行复用。不能用最终 `200` 掩盖多余副作用。
 
-实现者只调整 preflight 选择：先检查当前已发布 registry；无匹配才检查本次候选。匹配但不可用仍 fail closed。原有 post-start 自有候选就绪确认、短锁 merge、generation fence 保持不变，没有增加调度器或等待慢读取。
+实现者只调整 preflight 选择：先检查当前已发布 registry；无匹配才检查本次候选。身份/RPC错误仍 fail closed；真实 view 返回未 mounted 时才沿原显式打开流程尝试启动，不把该状态假称ready。原有 post-start 自有候选就绪确认、短锁 merge、generation fence 保持不变，没有增加调度器或等待慢读取。
 
 ### 同一脚本复核
 
