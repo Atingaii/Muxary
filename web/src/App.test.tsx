@@ -52,6 +52,61 @@ beforeEach(() => {
 afterEach(() => {cleanup(); vi.restoreAllMocks();});
 async function ready() {render(<StrictMode><App /></StrictMode>); await waitFor(() => expect(screen.getByRole('textbox', {name: /给 buddy/}).hasAttribute('disabled')).toBe(false)); return screen.getByRole('textbox', {name: /给 buddy/});}
 describe('real controlled composer and mutation evidence', () => {
+  it('distinguishes initial connection from an offline failure without enabling submission', async () => {
+    readOverride = path => path === '/api/projects' ? new Promise<Response>(() => {}) : undefined;
+    render(<StrictMode><App /></StrictMode>);
+    await screen.findByRole('button', {name: '查看代码变更'});
+    expect(screen.getByText('正在连接本机工作台…')).toBeTruthy();
+    expect(screen.getByRole('textbox', {name: /给 Agent/}).hasAttribute('disabled')).toBe(true);
+    expect(sends).toHaveLength(0);
+  });
+  it('explains an unavailable Agent instead of presenting a ready-to-send empty state', async () => {
+    agents = [];
+    render(<StrictMode><App /></StrictMode>);
+    await screen.findByText('当前项目没有运行中的 Agent');
+    expect(screen.getByRole('heading', {name: '先选择项目与 Agent'})).toBeTruthy();
+    expect(screen.getByText('选择项目与 Agent 后即可派活')).toBeTruthy();
+    expect(screen.getByRole('textbox', {name: /给 Agent/}).hasAttribute('disabled')).toBe(true);
+    expect(sends).toHaveLength(0);
+  });
+  it('keeps view navigation in the app header and opens scoped changes in one action without a mutation', async () => {
+    await ready();
+    const header = screen.getByRole('banner');
+    expect(header.querySelector('[aria-label="工作视图"]')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', {name: '查看代码变更'}));
+    await screen.findByText('目录的未暂存差异 · 非 Agent 产出归因');
+    expect(screen.getByRole('button', {name: '代码变更'}).getAttribute('aria-pressed')).toBe('true');
+    expect(fetcher.mock.calls.some(([path]) => path.includes('/diff?agent=buddy'))).toBe(true);
+    expect(fetcher.mock.calls.some(([, options]) => options?.method === 'POST')).toBe(false);
+  });
+  it('filters authoritative project tasks without hiding failed evidence in the default view or sending anything', async () => {
+    jobs.push(
+      {job_id: 'active', agent_name: 'buddy', status: 'running', request: {body: 'active fixture task'}},
+      {job_id: 'failed', agent_name: 'buddy', status: 'failed', request: {body: 'failed fixture task'}},
+    );
+    await ready(); fireEvent.click(screen.getByRole('button', {name: '任务与上下文'}));
+    const taskBodies = () => Array.from(document.querySelectorAll('.task-card .task-body')).map(item => item.textContent);
+    expect(taskBodies()).toEqual(['failed fixture task', 'active fixture task']);
+    fireEvent.click(screen.getByRole('button', {name: '仅看进行中任务'}));
+    expect(taskBodies()).toEqual(['active fixture task']);
+    fireEvent.click(screen.getByRole('button', {name: '查看全部任务'}));
+    expect(taskBodies()).toContain('failed fixture task');
+    expect(sends).toHaveLength(0);
+  });
+  it('makes an empty project search recoverable without changing project identity', async () => {
+    await ready(); fireEvent.change(screen.getByRole('textbox', {name: '搜索项目'}), {target: {value: 'not-a-project'}});
+    expect(screen.getByText('没有匹配的项目')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', {name: '清除项目搜索'}));
+    expect(screen.getByRole('button', {name: 'Fixture project'})).toBeTruthy();
+    expect(screen.getByRole('textbox', {name: /给 buddy/})).toBeTruthy();
+    expect(sends).toHaveLength(0);
+  });
+  it('makes sending semantics explicit while reading the separate native transcript', async () => {
+    await ready(); fireEvent.click(screen.getByRole('button', {name: /原生会话/}));
+    expect(screen.getByText('当前发送仍创建 CCB 任务，不写入原生会话')).toBeTruthy();
+    expect(screen.getByText('CCB 任务', {selector: '.composer-mode'})).toBeTruthy();
+    expect(sends).toHaveLength(0);
+  });
   it('opens a project dialog without starting anything and does not stack Command over it', async () => {
     await ready(); fireEvent.click(screen.getByRole('button', {name: '打开项目'}));
     expect(screen.getByRole('dialog', {name: '打开项目'})).toBeTruthy();

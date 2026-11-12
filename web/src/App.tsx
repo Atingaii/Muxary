@@ -6,6 +6,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './vendor/shadcn/resizable';
 import { MessageContent } from './MessageContent';
 import { useSerialPoll } from './polling';
+import { useConversationScroll } from './useConversationScroll';
 import { api, ApiError, initializeSession, conversationMessages, jobReply, projectPath, rememberSelection, row, rows, statusLabel, terminalStates, text, workspaceGroups, type Row } from './model';
 
 const AgentCanvas = lazy(() => import('./AgentCanvas').then(module => ({default: module.AgentCanvas})));
@@ -50,20 +51,17 @@ export function App() {
   const [workspaceOpen, setWorkspaceOpen] = useState(false);
   const [workspace, setWorkspace] = useState<Row>({});
   const [visibleCount, setVisibleCount] = useState(20);
-  const [following, setFollowing] = useState(true);
   const [terminalIdentity, setTerminalIdentity] = useState<{project: string; agent: string; epoch: number} | null>(null);
   const [tab, setTab] = useState<'tasks' | 'changes'>('tasks');
+  const [taskFilter, setTaskFilter] = useState<'all' | 'active'>('all');
   const [diff, setDiff] = useState<Row>({});
   const [filter, setFilter] = useState('');
   const [dark, setDark] = useState(readStorage(localStorage, 'muxary.theme') === 'dark');
   const [help, setHelp] = useState(false);
   const [copied, setCopied] = useState('');
-  const messagesEnd = useRef<HTMLDivElement>(null);
-  const conversationElement = useRef<HTMLElement>(null);
   const sidebarElement = useRef<HTMLElement>(null), contextElement = useRef<HTMLElement>(null);
   const sidebarOpener = useRef<HTMLButtonElement>(null);
   const diffRequest = useRef<AbortController | null>(null), diffSequence = useRef(0);
-  const follow = useRef(true);
   const sending = useRef(false);
   const actionLocks = useRef(new Set<string>());
   const [actionBusy, setActionBusy] = useState<Record<string, boolean>>({});
@@ -80,12 +78,15 @@ export function App() {
   const agents = viewProject === project ? rows(view.agents) : [];
   const agentRecord = agents.find(item => item.name === agent);
   const epoch = viewProject === project ? row(view.namespace).epoch : undefined;
+  const {viewportRef, contentRef, following, pause, jumpToLatest} = useConversationScroll({scopeKey: JSON.stringify([project, agent, epoch, conversationSource]), enabled: presentation === 'focus'});
   const targetReady = Boolean(project && agentRecord && typeof epoch === 'number');
   const terminal = targetReady && terminalIdentity?.project === project && terminalIdentity.agent === agent && terminalIdentity.epoch === epoch;
   function setTerminal(open: boolean) {setTerminalIdentity(open && targetReady ? {project, agent, epoch: epoch as number} : null);}
   const draftKey = `${project}/${agent}`, draft = drafts[draftKey] || '';
   const activeJobs = jobs.filter(item => !terminalStates.has(text(item.status)));
   const selectedJobs = jobs.filter(item => item.agent_name === agent);
+  const contextJobs = taskFilter === 'active' ? activeJobs : jobs;
+  const matchingProjects = projects.filter(item => `${text(item.display_name)} ${text(item.root)}`.toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
   const nativeMessages = conversationMessages(conversation);
   const workspacePath = text(agentRecord?.workspace_path) || text(row(agentRecord?.runtime).workspace_path);
   const currentDiffScope = `${project}/${agent}/${epoch}/${workspacePath}`;
@@ -98,6 +99,7 @@ export function App() {
   const terminalAgent = useCallback((name: string) => {const target = terminalCandidates.current; if (typeof target.epoch !== 'number' || !target.agents.some(item => item.name === name)) return; setAgent(name); setTerminalIdentity({project: target.project, agent: name, epoch: target.epoch});}, []);
   function toggleSidebar() {setSidebar(value => !value); if (matchMedia('(max-width: 680px)').matches) setContext(false);}
   function toggleContext() {setContext(value => !value); if (matchMedia('(max-width: 680px)').matches) setSidebar(false);}
+  function showChanges() {setTab('changes'); setContext(true); if (matchMedia('(max-width: 680px)').matches) setSidebar(false);}
 
   useEffect(() => {document.documentElement.classList.toggle('dark', dark); try {localStorage.setItem('muxary.theme', dark ? 'dark' : 'light');} catch { /* Preferences are optional. */ }}, [dark]);
   useEffect(() => {
@@ -207,7 +209,7 @@ export function App() {
     if (auth !== 'ready' || !project || !agent || typeof epoch !== 'number') return;
     rememberSelection(project, agent); setConversation({}); setConversationError(''); setError('');
     setUncertain(Boolean(readStorage(sessionStorage, pendingKey(project, agent))));
-    setWorkspace({}); setWorkspaceOpen(false); setVisibleCount(20); follow.current = true; setFollowing(true);
+    setWorkspace({}); setWorkspaceOpen(false); setVisibleCount(20);
   }, [auth, project, agent, epoch]);
   const refreshConversation = useCallback(async (signal: AbortSignal) => {
       try {
@@ -216,9 +218,7 @@ export function App() {
       } catch (err) {if (!signal.aborted) setConversationError(`原生会话暂不可用：${errorText(err)}。CCB 任务与原生终端仍可单独查看。`);}
   }, [project, agent, epoch]);
   useSerialPoll(refreshConversation, 2200, auth === 'ready' && targetReady && presentation === 'focus' && conversationSource === 'native');
-  useEffect(() => {setVisibleCount(20); follow.current = true; setFollowing(true);}, [conversationSource]);
-  const lastContent = conversationSource === 'native' ? text(nativeMessages.at(-1)?.body) : jobReply(selectedJobs.at(-1) || {});
-  useEffect(() => {if (follow.current) messagesEnd.current?.scrollIntoView({behavior: 'instant', block: 'end'});}, [selectedJobs.length, nativeMessages.length, lastContent, conversationSource, presentation]);
+  useEffect(() => {setVisibleCount(20);}, [conversationSource]);
   useEffect(() => {
     if (!workspaceOpen || !targetReady) return;
     const controller = new AbortController(); setWorkspace({});
@@ -323,28 +323,41 @@ export function App() {
       <button className="new-task" onClick={() => {setPresentation('focus'); if (matchMedia('(max-width: 680px)').matches) setSidebar(false); requestAnimationFrame(() => document.querySelector<HTMLTextAreaElement>('.composer textarea')?.focus());}}><IconMessage size={17}/>给当前 Agent 派活</button>
       <div className="search-box"><IconSearch size={15}/><input id="project-search" aria-label="搜索项目" placeholder="搜索项目…" value={filter} onChange={event => setFilter(event.target.value)}/><button className="palette-trigger" aria-label="打开快速切换" onClick={() => setPalette(true)}><kbd>⌘ K</kbd></button></div>
       <div className="section-label">项目<span>{projects.length}<button className="open-project-trigger" aria-label="打开项目" title="打开本机项目目录" onClick={() => setProjectDialog(true)}>{openingProject ? <IconLoader2 size={14} className="spin"/> : <IconFolder size={14}/>}</button></span></div>
-      <nav className="projects">{projects.filter(item => `${text(item.display_name)} ${text(item.root)}`.toLowerCase().includes(filter.toLowerCase())).map(item => <div className="project-group" key={text(item.id)}>
-        <button className={`project-button ${project === item.id ? 'selected' : ''}`} onClick={() => {setProject(text(item.id)); setFilter(''); if (matchMedia('(max-width: 680px)').matches) setSidebar(false);}} title={text(item.root)}><IconChevronDown size={13}/><IconFolder size={17}/><span>{text(item.display_name) || text(item.id)}</span></button>
+      <nav className="projects">{matchingProjects.map(item => <div className="project-group" key={text(item.id)}>
+        <button className={`project-button ${project === item.id ? 'selected' : ''}`} onClick={() => {setProject(text(item.id)); setFilter(''); if (matchMedia('(max-width: 680px)').matches) setSidebar(false);}} title={text(item.root)}><IconChevronRight className={project === item.id ? 'project-expanded' : ''} size={13}/><IconFolder size={16}/><span>{text(item.display_name) || text(item.id)}</span></button>
         {project === item.id && <>{workspaceGroups(agents).map(group => <div className="workspace-group" role="group" aria-label={`工作目录 ${group.path || '待确认'}`} key={group.path}>
           <div className="workspace-group-label" title={group.path || 'CCB 尚未报告工作目录'}><IconGitBranch size={12}/><span>{group.label || '目录待确认'}</span>{group.path && group.agents.length > 1 && <small>共享</small>}</div>
           <div className="agents">{group.agents.map(member => <button key={text(member.name)} className={`agent-button ${agent === member.name ? 'selected' : ''}`} onClick={() => chooseAgent(text(member.name))}><span className={`agent-dot ${jobs.some(job => job.agent_name === member.name && !terminalStates.has(text(job.status))) ? 'running' : ''}`} aria-hidden="true"/><span>{text(member.name)}</span><small>{text(member.provider)}</small></button>)}</div>
         </div>)}{!agents.length && <p className="sidebar-empty">当前项目没有运行中的 Agent</p>}</>}
 
-      </div>)}{!projects.length && <div className="sidebar-empty">暂无已挂载项目<br/><small>使用“打开项目”，或在项目目录运行 muxary tui 启动 CCB。</small></div>}</nav>
-      <div className="sidebar-footer"><button onClick={openSettings} disabled={!project}><IconSettings size={17}/>项目设置<IconArrowUpRight size={14}/></button><button onClick={() => setHelp(true)}><IconCommand size={17}/>快捷键与使用说明</button><div className="runtime-badge"><i className={network === 'ok' ? 'connected' : ''}/><span>{network === 'ok' ? '本机工作台已连接' : '连接中断 · 正在重连'}</span><Button label={dark ? '切换浅色模式' : '切换深色模式'} onClick={() => setDark(!dark)}>{dark ? <IconSun size={15}/> : <IconMoon size={15}/>}</Button></div></div>
+      </div>)}{Boolean(projects.length && !matchingProjects.length) && <div className="sidebar-empty search-empty"><IconSearch size={20}/><p>没有匹配的项目</p><button onClick={() => setFilter('')} aria-label="清除项目搜索">清除搜索</button></div>}{!projects.length && <div className="sidebar-empty">暂无已挂载项目<br/><small>使用“打开项目”，或在项目目录运行 muxary tui 启动 CCB。</small></div>}</nav>
+      <div className="sidebar-footer"><button onClick={openSettings} disabled={!project}><IconSettings size={17}/>项目设置<IconArrowUpRight size={14}/></button><button onClick={() => setHelp(true)}><IconCommand size={17}/>快捷键与使用说明</button><div className="runtime-badge"><i className={network === 'ok' ? 'connected' : ''}/><span>{network === 'ok' ? '本机工作台已连接' : network === 'loading' ? '正在连接本机工作台…' : '连接中断 · 正在重连'}</span><Button label={dark ? '切换浅色模式' : '切换深色模式'} onClick={() => setDark(!dark)}>{dark ? <IconSun size={15}/> : <IconMoon size={15}/>}</Button></div></div>
     </aside>
     <main className="main-panel" inert={Boolean(drawer)}>
-      <header className="topbar"><div className="breadcrumbs">{!sidebar && <Button label="展开项目栏" buttonRef={sidebarOpener} onClick={toggleSidebar}><IconLayoutSidebar size={18}/></Button>}<IconFolder size={15}/><span>{text(projectRecord?.display_name) || '工作空间'}</span><IconChevronRight size={13}/><strong>{agent || '选择 Agent'}</strong></div><div className="header-actions"><span className="provider-pill">{text(agentRecord?.provider) || 'CCB'}</span><Button label="刷新状态" onClick={() => {void refreshView().catch(err => {if (selected.current.project === project && !(err instanceof DOMException && err.name === 'AbortError')) setError(errorText(err));});}}><IconRefresh size={17}/></Button><Button label="原生终端" active={terminal} onClick={() => setTerminal(!terminal)}><IconTerminal2 size={18}/></Button><Button label="任务与上下文" active={context} onClick={toggleContext}><IconLayoutSidebarRight size={18}/></Button></div></header>
-      <ResizablePanelGroup orientation="vertical" id="agent-surface" className="agent-surface"><ResizablePanel id="work" minSize="25%"><div className="work-content"><div className="workspace-heading"><div><div className="eyebrow">{presentation === 'focus' ? 'BUILD WITH INTENT' : 'PARALLEL, IN PERSPECTIVE'}</div><h1>{presentation === 'canvas' ? '你的并行工作现场' : agent ? `与 ${agent} 一起构建` : '把想法，变成下一步。'}</h1></div><div className="view-switch" aria-label="工作视图"><button aria-pressed={presentation === 'focus'} onClick={() => setPresentation('focus')}>专注</button><button aria-pressed={presentation === 'canvas'} onClick={() => setPresentation('canvas')}>画布 <small>{agents.length}</small></button></div></div>
-      <div className="workspace-strip"><button className={workspaceOpen ? 'selected' : ''} onClick={() => setWorkspaceOpen(value => !value)} disabled={!targetReady} title={workspacePath || 'CCB 尚未报告工作目录'}><IconGitBranch size={14}/><span>{workspaceName}</span><IconChevronDown size={12}/></button><span className="workspace-scope">Agent 绑定目录</span><span className="heading-status"><span className={`health-dot ${network === 'ok' ? 'connected' : ''}`}/>{network === 'ok' ? '已连接 CCB' : '等待状态'}</span></div>
+      <header className="topbar">
+        <div className="breadcrumbs">{!sidebar && <Button label="展开项目栏" buttonRef={sidebarOpener} onClick={toggleSidebar}><IconLayoutSidebar size={18}/></Button>}<IconFolder size={15}/><span>{text(projectRecord?.display_name) || '工作空间'}</span><IconChevronRight size={13}/><strong>{agent || '选择 Agent'}</strong></div>
+        <div className="header-actions">
+          <div className="view-switch" aria-label="工作视图"><button aria-pressed={presentation === 'focus'} onClick={() => setPresentation('focus')}>专注</button><button aria-pressed={presentation === 'canvas'} onClick={() => setPresentation('canvas')}>画布 <small>{agents.length}</small></button></div>
+          <span className="toolbar-divider"/>
+          <button className="toolbar-action changes-trigger" aria-label="查看代码变更" aria-expanded={context && tab === 'changes'} aria-controls="context-panel" onClick={showChanges}><IconCode size={16}/><span>变更</span></button>
+          <Button label="原生终端" active={terminal} onClick={() => setTerminal(!terminal)}><IconTerminal2 size={18}/></Button>
+          <Button label="任务与上下文" active={context} onClick={toggleContext}><IconLayoutSidebarRight size={18}/></Button>
+          <span className="refresh-action"><Button label="刷新状态" onClick={() => {void refreshView().catch(err => {if (selected.current.project === project && !(err instanceof DOMException && err.name === 'AbortError')) setError(errorText(err));});}}><IconRefresh size={16}/></Button></span>
+        </div>
+      </header>
+      <ResizablePanelGroup orientation="vertical" id="agent-surface" className="agent-surface"><ResizablePanel id="work" minSize="25%"><div className="work-content">
+      <h1 className="sr-only">{presentation === 'canvas' ? '你的并行工作现场' : agent ? `与 ${agent} 一起构建` : '选择项目与 Agent'}</h1>
+      <div className="surface-bar">
+        <div className="workspace-strip"><button className={workspaceOpen ? 'selected' : ''} aria-expanded={workspaceOpen} onClick={() => setWorkspaceOpen(value => !value)} disabled={!targetReady} title={workspacePath || 'CCB 尚未报告工作目录'}><IconGitBranch size={14}/><span>{workspaceName}</span><IconChevronDown size={12}/></button><span className="workspace-scope">Agent 绑定目录</span></div>
+        {presentation === 'focus' ? <div className="conversation-sources" aria-label="对话来源"><button aria-pressed={conversationSource === 'tasks'} onClick={() => setConversationSource('tasks')}>工作台任务 <small>{selectedJobs.length}</small></button><button aria-pressed={conversationSource === 'native'} onClick={() => setConversationSource('native')}>原生会话{Boolean(nativeMessages.length) && <small>{nativeMessages.length}</small>}</button></div> : <span className="canvas-caption">{agents.length} 个 Agent · 同一 CCB 现场</span>}
+      </div>
       {workspaceOpen && <section className="workspace-details" aria-label="当前 Agent 工作目录">{text(workspace.error) ? <p role="alert">{text(workspace.error)}</p> : <><code>{text(row(workspace.workspace).path) || '正在核对运行目录…'}</code><p>{text(row(workspace.workspace).branch) || (row(workspace.workspace).git_state === 'detached' ? 'Detached HEAD' : row(workspace.workspace).git_state === 'not_git' ? '非 Git 工作目录' : '分支待确认')}{Array.isArray(row(workspace.workspace).shared_agents) && (row(workspace.workspace).shared_agents as unknown[]).length > 1 ? ' · 多个 Agent 共享此目录，无写锁保证' : ''}</p><small>CCB 声明/启动绑定目录，不是写入隔离保证。变更属于目录，不等同某个 Agent 的产出。</small></>}<button onClick={openSettings}>在原 CCB 设置中配置 worktree <IconArrowUpRight size={13}/></button></section>}
       {error && <div className="error-banner" role="alert"><span>{error}</span><button aria-label="关闭提示" onClick={() => setError('')}><IconX size={16}/></button></div>}
       {presentation === 'canvas' ? <Suspense fallback={<div className="surface-loading" role="status">正在载入画布…</div>}><AgentCanvas key={project} projectId={project} agents={agents} selectedAgent={agent} onSelect={chooseAgent} onFocus={focusAgent} onTerminal={terminalAgent}/></Suspense> : <>
-      <div className="conversation-sources" aria-label="对话来源"><button aria-pressed={conversationSource === 'tasks'} onClick={() => setConversationSource('tasks')}>工作台任务 <small>{selectedJobs.length}</small></button><button aria-pressed={conversationSource === 'native'} onClick={() => setConversationSource('native')}>原生会话 <small>{nativeMessages.length}</small></button><span>任务结果与 CLI 对话分开查看</span></div>
-      <section ref={conversationElement} className="conversation" aria-label="Agent 对话" onScroll={event => {const element = event.currentTarget; follow.current = element.scrollHeight - element.scrollTop - element.clientHeight < 100; setFollowing(follow.current);}}>
-        {(conversationSource === 'native' ? nativeMessages.length : selectedJobs.length) > visibleCount && <button className="load-earlier" onClick={() => {follow.current = false; setFollowing(false); setVisibleCount(value => value + 20);}}>显示更早的记录（当前显示最近 {visibleCount} 条）</button>}
+      <section ref={viewportRef} className="conversation" aria-label="Agent 对话" tabIndex={0}><div ref={contentRef} className="conversation-content">
+        {(conversationSource === 'native' ? nativeMessages.length : selectedJobs.length) > visibleCount && <button className="load-earlier" onClick={() => {pause(); setVisibleCount(value => value + 20);}}>显示更早的记录（当前显示最近 {visibleCount} 条）</button>}
         {conversationSource === 'native' && conversationError && <p className="muted small" role="status">{conversationError}</p>}
-        {!(conversationSource === 'native' ? nativeMessages.length : selectedJobs.length) && <div className="welcome"><span className="welcome-icon"><IconBolt size={25} stroke={1.6}/></span><h2>一个工作空间，多种可能。</h2><p>连接现有 CLI Agent，让计划、执行和结果<br/>在同一个地方自然衔接。</p><Suggestions className="suggestion-grid" items={[
+        {!(conversationSource === 'native' ? nativeMessages.length : selectedJobs.length) && <div className="welcome"><span className="welcome-icon"><IconBolt size={25} stroke={1.6}/></span><span className="welcome-kicker">{text(projectRecord?.display_name) || 'MUXARY WORKSPACE'}</span><h2>{targetReady ? '下一步，想构建什么？' : '先选择项目与 Agent'}</h2><p>{targetReady ? `和 ${agent} 从一个清晰的任务开始。` : project ? '从左侧选择运行中的 Agent，开始工作。' : '打开本机项目，连接你的 Agent 工作现场。'}<br/>计划、执行、检查，在这里接续。</p><Suggestions className="suggestion-grid" items={[
           {id: 'understand', icon: <IconCode size={18}/>, label: '理解这个项目', value: '请分析这个项目的结构和核心模块，先总结，不修改文件。'},
           {id: 'review', icon: <IconGitBranch size={18}/>, label: '检查当前变更', value: '请审查当前代码变更，指出潜在问题，暂不修改文件。'},
           {id: 'plan', icon: <IconMessage size={18}/>, label: '一起制定计划', value: '先了解当前项目，再和我一起制定下一步开发计划。'},
@@ -355,19 +368,20 @@ export function App() {
           return <div key={text(job.job_id)} className="job-turn">{body && <article className="message user"><div className="message-label">你<span>CCB 任务</span></div><MessageContent id={text(job.job_id)} content={body} user/></article>}
             <article className="message assistant"><div className="message-label"><span className="mini-agent"><IconCommand size={12}/></span>{agent}<Status status={job.status}/><span className="job-id">{text(job.job_id).slice(-10)}</span></div>{reply && <MessageContent id={text(job.job_id)} content={reply}/>}{!reply && !terminalStates.has(text(job.status)) && <div className="working"><IconLoader2 size={15} className="spin"/>等待原生 Agent 的完成证据…<button onClick={() => setTerminal(true)}>查看终端</button></div>}{!reply && terminalStates.has(text(job.status)) && <p className="muted">{text(row(job.terminal_decision).reason) || '此任务没有可展示的文本结果。'}</p>}{reply && <button className="copy-reply" onClick={() => copy(reply)}>{copied === reply ? <IconCheck size={14}/> : <IconCopy size={14}/>}复制结果</button>}</article>
           </div>;
-        })}<div ref={messagesEnd}/>
+        })}</div>
       </section>
-      {!following && <button className="follow-latest" onClick={() => {follow.current = true; setFollowing(true); messagesEnd.current?.scrollIntoView({behavior: 'instant', block: 'end'});}}><IconArrowDown size={13}/>回到最新</button>}
-      <div className="composer"><div className="composer-meta"><span><span className="agent-dot"/>发送给 {agent || '未选择 Agent'}<span className="muted">/</span>{text(agentRecord?.provider) || 'CCB'}</span><span title={workspacePath}><IconGitBranch size={13}/>{workspaceName}</span></div>
-        <InputBar key={draftKey} value={draft} onChange={value => setDrafts(previous => ({...previous, [draftKey]: value}))} onSend={message => {void submit(message.content);}} status="ready" onStop={() => {}} disabled={!targetReady || network !== 'ok' || uncertain || busy} placeholder={uncertain ? '请先核对上一条请求是否已接收' : `给 ${agent || 'Agent'} 一个任务，或一起讨论…`}/>
-        <div className="composer-footnote"><span>{busy ? '正在确认任务接收，请勿重复发送…' : 'Enter 发送 · Shift + Enter 换行 · 中文输入法确认不发送'}</span><span>由 CCB 执行与判定结果</span></div>
+      {!following && <button className="follow-latest" onClick={jumpToLatest}><IconArrowDown size={13}/>回到最新</button>}
+      <div className="composer">
+        <InputBar key={draftKey} value={draft} onChange={value => setDrafts(previous => ({...previous, [draftKey]: value}))} onSend={message => {void submit(message.content);}} status="ready" onStop={() => {}} disabled={!targetReady || network !== 'ok' || uncertain || busy} placeholder={uncertain ? '请先核对上一条请求是否已接收' : `给 ${agent || 'Agent'} 一个任务，或一起讨论…`}
+          leftActions={<div className="composer-target"><span className="agent-dot"/><strong>{agent ? `发送给 ${agent}` : '未选择 Agent'}</strong><span>{text(agentRecord?.provider) || 'CCB'}</span><span className="composer-mode">CCB 任务</span></div>}/>
+        <div className="composer-footnote"><span>{busy ? '正在确认任务接收，请勿重复发送…' : !targetReady ? '选择项目与 Agent 后即可派活' : conversationSource === 'native' ? '当前发送仍创建 CCB 任务，不写入原生会话' : 'Enter 发送 · Shift + Enter 换行 · 中文输入法确认不发送'}</span><span><span className={`health-dot ${network === 'ok' ? 'connected' : ''}`}/>{network === 'ok' ? 'CCB 已连接' : network === 'loading' ? '正在连接' : '连接中断'}</span></div>
         {uncertain && <div className="uncertain"><span>上一条请求状态未知，未自动重发。先核对任务与终端。</span><button onClick={() => {if (confirm('确认已在任务列表或原生终端核对，且理解新发送会创建新任务？')) {sessionStorage.removeItem(pendingKey(project, agent)); setUncertain(false);}}}>已核对，恢复编辑</button></div>}
       </div>
       </>}</div></ResizablePanel>{terminal && agent && <><ResizableHandle aria-label="调整终端高度" withHandle/><ResizablePanel id="terminal" defaultSize="32%" minSize={140} maxSize="65%"><Suspense fallback={<div className="surface-loading" role="status">正在载入终端…</div>}><AgentTerminal project={project} agent={agent} epoch={epoch}/></Suspense></ResizablePanel></>}</ResizablePanelGroup>
       <footer className="statusbar"><span><IconCircle size={10}/>CCB 原生运行时</span><span>{presentation === 'canvas' && !context ? `${agents.length} 个 Agent · 概览视图` : activeJobs.length ? `${activeJobs.length} 个任务进行中` : '没有进行中的任务'}<span className="status-divider"/>Muxary 0.1</span></footer>
     </main>
-    <aside ref={contextElement} className="context-panel" aria-label="任务与上下文" tabIndex={-1} role={drawer === 'context' ? 'dialog' : undefined} aria-modal={drawer === 'context' || undefined} inert={!context || drawer === 'sidebar'}><div className="context-tabs"><button className={tab === 'tasks' ? 'selected' : ''} onClick={() => setTab('tasks')}>任务<span>{jobs.length}</span></button><button className={tab === 'changes' ? 'selected' : ''} onClick={() => setTab('changes')}>代码变更</button><Button label="收起上下文" onClick={() => setContext(false)}><IconX size={15}/></Button></div>
-      {tab === 'tasks' ? <div className="context-content"><div className="section-label">当前项目<span>CCBD</span></div>{!jobs.length && <div className="tasks-empty"><IconHistory size={24} stroke={1.3}/><h3>给灵感一个起点</h3><p>提交任务后，进度和结果会出现在这里。切换 Agent 不会中断执行。</p></div>}{[...jobs].reverse().map(job => <article className={`task-card ${job.agent_name === agent ? '' : 'other-agent'}`} key={text(job.job_id)}><div><span>{text(job.agent_name)}</span><Status status={job.status}/></div><button className="task-body" title={`切换至 ${text(job.agent_name)}，不会发送消息`} onClick={() => focusAgent(text(job.agent_name))}>{text(row(job.request).body).slice(0, 130) || text(job.job_id)}</button><div className="task-footer"><button className="job-copy" title="复制完整任务 ID" onClick={() => copy(text(job.job_id))}><code>{text(job.job_id).slice(-10)}</code></button>{!terminalStates.has(text(job.status)) ? <button disabled={actionBusy[text(job.job_id)]} onClick={() => {void jobAction(job, 'cancel');}}><IconPlayerStop size={12}/>取消</button> : ['failed', 'incomplete', 'cancelled'].includes(text(job.status)) && <button disabled={actionBusy[text(job.job_id)]} onClick={() => {void jobAction(job, 'retry');}}><IconRefresh size={12}/>重试</button>}</div></article>)}<div className="context-note"><IconTerminal2 size={17}/><div><strong>需要接管？</strong><p>原生 CLI 的确认、审批和交互可在终端完成。不同 Agent 能力保持原样。</p><button onClick={() => setTerminal(true)}>打开原生终端<IconArrowUpRight size={13}/></button></div></div><div className="project-info"><div className="section-label">项目上下文</div><label>路径</label><code>{text(projectRecord?.root) || '未选择项目'}</code><label>当前 Provider</label><span>{text(agentRecord?.provider) || '—'}</span><label>运行边界</label><span>单机 · 原 CCB 编排</span></div></div> : <div className="diff-panel"><div className="diff-caption">目录的未暂存差异 · 非 Agent 产出归因<button onClick={() => {void refreshDiff();}} aria-label="刷新代码变更"><IconRefresh size={14}/></button></div>{text(diff.error) ? <p className="muted">{text(diff.error)}</p> : <><p className="diff-scope">{text(diff.workspace_path) || workspacePath}<br/>不含暂存或未跟踪文件</p><pre className="diff-stat">{text(diff.stat) || '暂无已跟踪文件变更'}</pre><pre className="diff-code">{text(diff.patch) || text(diff.diff)}</pre>{Boolean(diff.patch_truncated || diff.stat_truncated) && <p>差异过大，已截断；请在本机 Git 中查看完整内容。</p>}</>}</div>}
+    <aside id="context-panel" ref={contextElement} className="context-panel" aria-label="任务与上下文" tabIndex={-1} role={drawer === 'context' ? 'dialog' : undefined} aria-modal={drawer === 'context' || undefined} inert={!context || drawer === 'sidebar'}><div className="context-tabs"><button className={tab === 'tasks' ? 'selected' : ''} aria-pressed={tab === 'tasks'} onClick={() => setTab('tasks')}>任务<span>{jobs.length}</span></button><button className={tab === 'changes' ? 'selected' : ''} aria-pressed={tab === 'changes'} onClick={() => setTab('changes')}>代码变更</button><Button label="收起上下文" onClick={() => setContext(false)}><IconX size={15}/></Button></div>
+      {tab === 'tasks' ? <div className="context-content"><div className="activity-heading"><div><h2>任务动态</h2><p>当前项目 · {activeJobs.length} 个进行中</p></div><IconHistory size={19}/></div><div className="task-filters" role="group" aria-label="项目任务筛选"><button aria-label="查看全部任务" aria-pressed={taskFilter === 'all'} onClick={() => setTaskFilter('all')}>全部 <span>{jobs.length}</span></button><button aria-label="仅看进行中任务" aria-pressed={taskFilter === 'active'} onClick={() => setTaskFilter('active')}>进行中 <span>{activeJobs.length}</span></button></div>{!contextJobs.length && <div className="tasks-empty"><IconHistory size={24} stroke={1.3}/><h3>{taskFilter === 'active' ? '暂无进行中的任务' : '任务会在这里接续'}</h3><p>{taskFilter === 'active' ? '切回“全部”查看已结束和失败的记录。' : '向当前 Agent 派活，进度和结果随时可见。切换 Agent 不会中断执行。'}</p></div>}{[...contextJobs].reverse().map(job => <article className={`task-card ${job.agent_name === agent ? '' : 'other-agent'}`} key={text(job.job_id)}><div><span>{text(job.agent_name)}</span><Status status={job.status}/></div><button className="task-body" title={`切换至 ${text(job.agent_name)}，不会发送消息`} onClick={() => focusAgent(text(job.agent_name))}>{text(row(job.request).body).slice(0, 130) || text(job.job_id)}</button><div className="task-footer"><button className="job-copy" title="复制完整任务 ID" onClick={() => copy(text(job.job_id))}><code>{text(job.job_id).slice(-10)}</code></button>{!terminalStates.has(text(job.status)) ? <button disabled={actionBusy[text(job.job_id)]} onClick={() => {void jobAction(job, 'cancel');}}><IconPlayerStop size={12}/>取消</button> : ['failed', 'incomplete', 'cancelled'].includes(text(job.status)) && <button disabled={actionBusy[text(job.job_id)]} onClick={() => {void jobAction(job, 'retry');}}><IconRefresh size={12}/>重试</button>}</div></article>)}<div className="context-note"><IconTerminal2 size={17}/><div><strong>需要接管？</strong><p>原生 CLI 的确认、审批和交互可在终端完成。不同 Agent 能力保持原样。</p><button onClick={() => setTerminal(true)}>打开原生终端<IconArrowUpRight size={13}/></button></div></div><div className="project-info"><div className="section-label">项目上下文</div><label>路径</label><code>{text(projectRecord?.root) || '未选择项目'}</code><label>当前 Provider</label><span>{text(agentRecord?.provider) || '—'}</span><label>运行边界</label><span>单机 · 原 CCB 编排</span></div></div> : <div className="diff-panel"><div className="diff-caption">目录的未暂存差异 · 非 Agent 产出归因<button onClick={() => {void refreshDiff();}} aria-label="刷新代码变更"><IconRefresh size={14}/></button></div>{text(diff.error) ? <p className="muted">{text(diff.error)}</p> : <><p className="diff-scope">{text(diff.workspace_path) || workspacePath}<br/>不含暂存或未跟踪文件</p><pre className="diff-stat">{text(diff.stat) || '暂无已跟踪文件变更'}</pre><pre className="diff-code">{text(diff.patch) || text(diff.diff)}</pre>{Boolean(diff.patch_truncated || diff.stat_truncated) && <p>差异过大，已截断；请在本机 Git 中查看完整内容。</p>}</>}</div>}
     </aside>
     <button className={`drawer-scrim ${sidebar ? 'for-sidebar' : ''} ${context ? 'for-context' : ''}`} tabIndex={-1} aria-label="关闭侧栏" onClick={() => {setSidebar(false); setContext(false);}}/>
     <dialog ref={openProjectDialog} className="project-dialog" aria-labelledby="open-project-title" aria-describedby="open-project-description" onCancel={() => setProjectDialog(false)} onClose={() => setProjectDialog(false)}>
