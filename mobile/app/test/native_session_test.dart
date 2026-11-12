@@ -1,0 +1,399 @@
+import 'dart:convert';
+
+import 'package:ccb_mobile/native_session/native_session.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+NativeSessionBlock text(String value) =>
+    NativeSessionBlock(type: NativeSessionBlockType.text, text: value);
+
+NativeSessionEntry entry(
+  String id,
+  List<NativeSessionBlock> blocks, {
+  NativeSessionRole role = NativeSessionRole.assistant,
+  String? stopReason,
+}) => NativeSessionEntry(
+  id: id,
+  role: role,
+  blocks: blocks,
+  stopReason: stopReason,
+);
+
+NativeSessionTurn turn(
+  List<NativeSessionEntry> entries, {
+  NativeSessionStatus status = NativeSessionStatus.completed,
+}) => NativeSessionTurn(
+  sessionId: 'session',
+  turnId: 'user-entry',
+  status: status,
+  entries: entries,
+);
+
+Widget host(
+  NativeSessionTurn value, {
+  Widget Function(BuildContext, String)? textBuilder,
+  NativeTurnLabels labels = const NativeTurnLabels(),
+}) => MaterialApp(
+  home: Scaffold(
+    body: SingleChildScrollView(
+      child: NativeTurnBody(
+        turn: value,
+        labels: labels,
+        textBuilder: textBuilder ?? (_, value) => Text(value),
+      ),
+    ),
+  ),
+);
+
+void main() {
+  testWidgets('running tool-only turn does not claim missing answer or show execution placeholders', (tester) async {
+    final pending = entry('pending', [const NativeSessionBlock(
+      type: NativeSessionBlockType.toolCall, callId: 'call', name: 'read')]);
+    await tester.pumpWidget(host(turn([pending], status: NativeSessionStatus.running)));
+    expect(find.text('Running'), findsOneWidget);
+    expect(find.text('No assistant answer'), findsNothing);
+    expect(find.text('Tool execution unfinished'), findsNothing);
+    await tester.pumpWidget(host(turn([pending, entry('reply', [text('Live answer')])],
+      status: NativeSessionStatus.running)));
+    expect(find.text('Live answer'), findsOneWidget);
+    expect(find.text('No assistant answer'), findsNothing);
+  });
+  testWidgets('normal conversation omits raw tools and reasoning but keeps prose', (tester) async {
+    await tester.pumpWidget(host(turn([
+      entry('a', [text('First explanation'), const NativeSessionBlock(
+        type: NativeSessionBlockType.toolCall, intent: 'Inspect private tools',
+        input: {'path': 'private.txt'})]),
+      entry('b', [const NativeSessionBlock(type: NativeSessionBlockType.reasoning,
+        text: 'Private reasoning'), text('Final answer')]),
+    ])));
+    expect(find.text('First explanation\n\nFinal answer'), findsOneWidget);
+    expect(find.textContaining('Inspect private tools'), findsNothing);
+    expect(find.textContaining('private.txt'), findsNothing);
+    expect(find.text('Private reasoning'), findsNothing);
+    expect(find.text('Tool call'), findsNothing);
+  });
+  testWidgets('all assistant prose stays visible across later assistant updates', (tester) async {
+    final first = entry('a', [
+      text('First explanation'),
+      const NativeSessionBlock(type: NativeSessionBlockType.reasoning, text: 'detail'),
+    ]);
+    await tester.pumpWidget(host(turn([first])));
+    await tester.pumpWidget(host(turn([first, entry('b', [text('Later explanation')])])));
+    expect(find.text('First explanation\n\nLater explanation'), findsOneWidget);
+    expect(find.text('detail'), findsNothing);
+  });
+
+  testWidgets('bounded latest answer stays readable beside original', (tester) async {
+    final window = NativeSessionTurn(
+      sessionId: 'session', turnId: 'user-entry', status: NativeSessionStatus.completed,
+      entries: [entry('a', [
+        text('Latest explanation'),
+        const NativeSessionBlock(type: NativeSessionBlockType.toolCall,
+          name: 'read', callId: 'c', input: 'path: recent.txt'),
+      ], stopReason: 'tool_use')],
+      readCursor: 'current-original', inlineWindow: true,
+    );
+    await tester.pumpWidget(host(window));
+    expect(find.text('Complete content'), findsOneWidget);
+    expect(find.text('Latest explanation'), findsOneWidget);
+    expect(find.text('Completed'), findsOneWidget);
+    expect(find.text('Tool execution unfinished'), findsNothing);
+    expect(find.text(const NativeTurnLabels().latestWindow), findsOneWidget);
+    expect(find.textContaining('previously loaded snapshot'), findsNothing);
+    expect(find.text('path: recent.txt'), findsNothing);
+    await tester.pumpWidget(host(NativeSessionTurn(
+      sessionId: 'session', turnId: 'user-entry', status: NativeSessionStatus.running,
+      entries: [entry('b', [text('Newer explanation')])],
+      readCursor: 'new-original', inlineWindow: true,
+    )));
+    expect(find.text('Latest explanation'), findsNothing);
+    expect(find.text('Newer explanation'), findsOneWidget);
+    expect(find.text('Running'), findsOneWidget);
+    expect(find.text(const NativeTurnLabels().latestWindow), findsOneWidget);
+  });
+
+  testWidgets('window notice is localizable and original link is optional', (tester) async {
+    await tester.pumpWidget(host(NativeSessionTurn(
+      sessionId: 'session', turnId: 'user-entry', status: NativeSessionStatus.running,
+      entries: [entry('a', [text('Recent answer')])], inlineWindow: true,
+    ), labels: const NativeTurnLabels(latestWindow: '仅显示近期内容')));
+    expect(find.text('仅显示近期内容'), findsOneWidget);
+    expect(find.text('Recent answer'), findsOneWidget);
+    expect(find.byKey(const ValueKey('native-read-original')), findsNothing);
+  });
+
+  test('inline window flag is optional and round trips with its cursor', () {
+    final json = turn([entry('a', [text('answer')])]).toJson();
+    expect(NativeSessionTurn.fromJson(json).inlineWindow, isFalse);
+    json['inline_window'] = true;
+    json['read_cursor'] = 'original';
+    final value = NativeSessionTurn.fromJson(json);
+    expect(value.inlineWindow, isTrue);
+    expect(value.toJson()['inline_window'], isTrue);
+    expect(NativeSessionTurn.fromJson(value.toJson()).readCursor, 'original');
+  });
+
+  test('entry identity, not identical text, controls deduplication', () {
+    final value = turn([
+      entry('a', [text('old snapshot')]),
+      entry('b', [text('same text')]),
+      entry('a', [text('same text')]),
+      entry('c', [text('same text')]),
+    ]);
+    expect(value.entries.map((item) => item.id), ['a', 'b', 'c']);
+    expect(value.entries.first.blocks.single.text, 'same text');
+    expect(value.answerEntry?.id, 'c');
+    expect(value.answerText, 'same text\n\nsame text\n\nsame text');
+  });
+
+  test('assistant prose and native tool outcome survive final answer selection', () {
+    final value = turn([
+      entry('user', [text('request')], role: NativeSessionRole.user),
+      entry('thinking', [
+        const NativeSessionBlock(
+          type: NativeSessionBlockType.reasoning,
+          text: 'visible reasoning',
+        ),
+        text('I will inspect'),
+        const NativeSessionBlock(
+          type: NativeSessionBlockType.toolCall,
+          callId: 'call-1',
+          name: 'read',
+          input: {'path': 'file'},
+        ),
+      ], stopReason: 'tool_use'),
+      entry('result', [
+        const NativeSessionBlock(
+          type: NativeSessionBlockType.toolResult,
+          callId: 'call-1',
+          text: 'output, not the answer',
+        ),
+      ], role: NativeSessionRole.tool),
+      entry('answer', [
+        text('Final answer'),
+        text('More detail'),
+      ], stopReason: 'end_turn'),
+    ]);
+    expect(value.answerText, 'I will inspect\n\nFinal answer\n\nMore detail');
+    expect(value.hasPendingTools, isFalse);
+    expect(value.effectiveStatus, NativeSessionStatus.completed);
+  });
+
+  test(
+    'v1 JSON round trip retains public content without provider metadata',
+    () {
+      final json = <String, Object?>{
+        'schema_version': 1,
+        'session_id': 's',
+        'turn_id': 'u',
+        'status': 'failed',
+        'entries': [
+          {
+            'id': 'a',
+            'role': 'assistant',
+            'stop_reason': 'tool_use',
+            'blocks': [
+              {'type': 'reasoning', 'text': 'visible', 'signature': 'secret'},
+              {
+                'type': 'tool_call',
+                'call_id': 'c',
+                'name': 'read',
+                'input': {
+                  'path': 'file',
+                  'lines': [1, 2],
+                },
+              },
+            ],
+            'provider_metadata': {'private': true},
+          },
+          {
+            'id': 't',
+            'role': 'tool',
+            'blocks': [
+              {
+                'type': 'tool_result',
+                'call_id': 'c',
+                'text': 'oops',
+                'is_error': true,
+              },
+            ],
+          },
+        ],
+      };
+      final value = NativeSessionTurn.fromJson(json);
+      final encoded = value.toJson();
+      expect(NativeSessionTurn.fromJson(encoded).toJson(), encoded);
+      expect(jsonEncode(encoded), isNot(contains('secret')));
+      expect(jsonEncode(encoded), isNot(contains('provider_metadata')));
+      expect(value.status, NativeSessionStatus.failed);
+      expect(value.entries.last.blocks.single.isError, isTrue);
+      expect(value.entries.first.blocks.last.input, {
+        'path': 'file',
+        'lines': [1, 2],
+      });
+    },
+  );
+
+  test(
+    'only preceding matching tool IDs resolve calls; never infer success',
+    () {
+      const call = NativeSessionBlock(
+        type: NativeSessionBlockType.toolCall,
+        callId: 'c',
+      );
+      const result = NativeSessionBlock(
+        type: NativeSessionBlockType.toolResult,
+        callId: 'c',
+        text: 'ok',
+      );
+      final unfinished = turn([
+        entry('a', [call], stopReason: 'tool_use'),
+      ]);
+      expect(unfinished.hasPendingTools, isTrue);
+      expect(unfinished.effectiveStatus, NativeSessionStatus.unknown);
+      final wrongId = turn([
+        entry('a', [call]),
+        entry('b', [
+          const NativeSessionBlock(
+            type: NativeSessionBlockType.toolResult,
+            callId: 'other',
+          ),
+        ], role: NativeSessionRole.tool),
+      ]);
+      expect(wrongId.hasPendingTools, isTrue);
+      final reversed = turn([
+        entry('b', [result], role: NativeSessionRole.tool),
+        entry('a', [call]),
+      ]);
+      expect(reversed.hasPendingTools, isTrue);
+      final handoff = turn([
+        entry('a', [call], stopReason: 'tool_use'),
+        entry('b', [result], role: NativeSessionRole.tool),
+      ]);
+      expect(handoff.hasPendingTools, isFalse);
+      expect(handoff.effectiveStatus, NativeSessionStatus.unknown);
+      final running = turn([
+        entry('a', [text('persisted message')], stopReason: 'end_turn'),
+      ], status: NativeSessionStatus.running);
+      expect(running.effectiveStatus, NativeSessionStatus.running);
+    },
+  );
+
+  test('unknown status is explicit and unsupported schema is rejected', () {
+    final json = turn([]).toJson();
+    json['status'] = 'future-status';
+    expect(
+      NativeSessionTurn.fromJson(json).status,
+      NativeSessionStatus.unknown,
+    );
+    json['schema_version'] = 2;
+    expect(() => NativeSessionTurn.fromJson(json), throwsFormatException);
+  });
+
+  testWidgets(
+    'host prose builder is used without rendering reasoning',
+    (tester) async {
+      final built = <String>[];
+      await tester.pumpWidget(
+        host(
+          turn([
+            entry('a', [
+              const NativeSessionBlock(
+                type: NativeSessionBlockType.reasoning,
+                text: 'private visible thought',
+              ),
+              text('Final prose'),
+            ]),
+          ]),
+          textBuilder: (_, value) {
+            built.add(value);
+            return Text(value);
+          },
+        ),
+      );
+      expect(built, ['Final prose']);
+      expect(find.text('private visible thought'), findsNothing);
+      expect(find.text('Reasoning'), findsNothing);
+      expect(find.text('Final prose'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'raw tool input and long output stay absent from normal chat',
+    (tester) async {
+      final output =
+          '${List.filled(400, 'a long output line').join('\n')}\nEND';
+      await tester.pumpWidget(
+        host(
+          turn([
+            entry('a', [
+              const NativeSessionBlock(
+                type: NativeSessionBlockType.toolCall,
+                callId: 'call-42',
+                name: 'read',
+                input: {'path': 'file'},
+              ),
+            ]),
+            entry('b', [
+              NativeSessionBlock(
+                type: NativeSessionBlockType.toolResult,
+                callId: 'call-42',
+                text: output,
+              ),
+            ], role: NativeSessionRole.tool),
+            entry('c', [text('Done')]),
+          ]),
+        ),
+      );
+      expect(find.byType(SelectableText), findsNothing);
+      expect(find.text('Done'), findsOneWidget);
+      expect(find.textContaining('call-42'), findsNothing);
+      expect(find.textContaining('"path"'), findsNothing);
+      expect(find.text(output), findsNothing);
+    },
+  );
+
+  testWidgets('tool-only unfinished and failed or aborted turns show status', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      host(
+        turn([
+          entry('a', [
+            const NativeSessionBlock(
+              type: NativeSessionBlockType.toolCall,
+              callId: 'pending',
+            ),
+          ]),
+        ]),
+      ),
+    );
+    expect(find.text('Status unknown'), findsOneWidget);
+    expect(find.text('No assistant answer'), findsOneWidget);
+    expect(find.text('Completed'), findsNothing);
+    for (final status in [
+      NativeSessionStatus.failed,
+      NativeSessionStatus.aborted,
+    ]) {
+      await tester.pumpWidget(host(turn([], status: status)));
+      expect(
+        find.text(status == NativeSessionStatus.failed ? 'Failed' : 'Aborted'),
+        findsOneWidget,
+      );
+      expect(find.text('No assistant answer'), findsOneWidget);
+    }
+  });
+
+  testWidgets('hosts can localize neutral status strings', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      host(
+        turn([], status: NativeSessionStatus.failed),
+        labels: const NativeTurnLabels(failed: '失败', noAnswer: '无回答'),
+      ),
+    );
+    expect(find.text('失败'), findsOneWidget);
+    expect(find.text('无回答'), findsOneWidget);
+  });
+}

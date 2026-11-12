@@ -1,0 +1,1438 @@
+{
+  "adb_reverse": {
+    "device_id": "emulator-5554",
+    "mapping": "tcp:19318 tcp:19318"
+  },
+  "adb_reverse_cleanup": {
+    "removed": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  "app_dirty": true,
+  "app_head": "d540c66",
+  "claimed_device_id": "avd_20260629085045",
+  "cleanup": {
+    "gateway_returncode": -15,
+    "keep_running": false,
+    "kills": [
+      {
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629085045/test_ccb2_alpha",
+        "returncode": 0,
+        "stderr": "",
+        "summary": {
+          "forced": "true",
+          "kill_status": "ok",
+          "project_id": "19e2343f257c13c7f284bb100006913fb0fe9bde947d438db803bda246f7681e",
+          "socket_path": "/run/user/1000/ccb-runtime/ccbd-19e2343f257c.sock",
+          "state": "unmounted"
+        }
+      },
+      {
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629085045/test_ccb2_beta",
+        "returncode": 0,
+        "stderr": "",
+        "summary": {
+          "forced": "true",
+          "kill_status": "ok",
+          "project_id": "3451f21ace4931ad2f912bb906526e8c89a5f40f411864a57c1652b690b16cbf",
+          "socket_path": "/run/user/1000/ccb-runtime/ccbd-3451f21ace49.sock",
+          "state": "unmounted"
+        }
+      }
+    ]
+  },
+  "device": {
+    "boot_completed": true,
+    "device_id": "emulator-5554",
+    "devices": [
+      "List of devices attached",
+      "emulator-5554          device product:sdk_gphone64_x86_64 model:sdk_gphone64_x86_64 device:emu64xa transport_id:3"
+    ]
+  },
+  "device_id": "emulator-5554",
+  "gateway": {
+    "gateway_url": "http://127.0.0.1:19318",
+    "listen": "127.0.0.1:19318",
+    "local_gateway_url": "http://127.0.0.1:19318",
+    "pairing_claim_endpoint": "http://127.0.0.1:19318/v1/pairing/claim",
+    "pairing_code_seen": true,
+    "project_id": "host-73ee65076a9488eb",
+    "project_root": "",
+    "requested_public_url": null,
+    "route_provider": "lan",
+    "stderr": ""
+  },
+  "gateway_listen": "127.0.0.1:19318",
+  "integration_smoke": {
+    "agent": "mobile_probe",
+    "app_data_clear_returncode": 1,
+    "command": "Please print exactly 200 short plain-text lines. Each line must start with CCB_MOBILE_HV_20260629165045_LINE_ followed by a zero-padded index from 0001 through 0200. After those 200 lines print one final line by concatenating these two fragments: CCB_MOBILE_HV_DONE_ and 20260629165045. Do not use markdown fences and do not include any other text.",
+    "device_metrics": {
+      "batterystats_excerpt": [
+        "Unknown package: io.ccb.mobile.ccb_mobile",
+        "--wakeups: dump CPU wakeup history and attribution.",
+        "wake_lock_in, alarms and proc events"
+      ],
+      "errors": [],
+      "gfxinfo": {},
+      "logcat": {
+        "fatal_anr_oom": false,
+        "skipped_frames_count": 0,
+        "tail": [
+          "06-29 16:52:40.816   592   648 W WindowManager: removeAppToken: Attempted to remove non-existing token: Token{ebc8fd1 ActivityRecord{1e8265b u0 io.ccb.mobile.ccb_mobile/.MainActivity t335 f} isExiting}}",
+          "06-29 16:52:40.821   592   708 V StorageManagerService: Package io.ccb.mobile.ccb_mobile does not have legacy storage",
+          "06-29 16:52:40.835   979   979 D CarrierSvcBindHelper: onPackageRemoved: io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.850   592   731 W WifiService: Couldn't get PackageInfo for package:io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.850   592   731 D WifiService: Remove settings for package:io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.850   592   731 D WifiConfigManager: Remove all networks for app ApplicationInfo{6006d90 io.ccb.mobile.ccb_mobile}",
+          "06-29 16:52:40.850   592   731 I PasspointManager: No app ops listener found for io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.851   592   731 W WifiService: Couldn't get PackageInfo for package:io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.854   592   731 D WifiService: Remove settings for package:io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.854   592   731 D WifiConfigManager: Remove all networks for app ApplicationInfo{111a68e io.ccb.mobile.ccb_mobile}",
+          "06-29 16:52:40.854   592   731 I PasspointManager: No app ops listener found for io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.861   592   786 D ShortcutService: removing package: io.ccb.mobile.ccb_mobile userId0",
+          "06-29 16:52:40.861   592   786 D ShortcutService: handlePackageRemoved: io.ccb.mobile.ccb_mobile user=0",
+          "06-29 16:52:40.862   592   678 I RollbackManager: broadcast=ACTION_PACKAGE_FULLY_REMOVED pkg=io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.863   592   768 I AppWidgetServiceImpl: removeHostsAndProvidersForPackageLocked() pkg=io.ccb.mobile.ccb_mobile userId=0",
+          "06-29 16:52:40.884   592   592 I Telecom : CarModeTracker: Package io.ccb.mobile.ccb_mobile is not tracked.: SSH.oR@AVM\ud83d\udd12",
+          "06-29 16:52:40.939   592   592 I ConditionProviders: Disallowing condition provider io.ccb.mobile.ccb_mobile (userSet: true)",
+          "06-29 16:52:40.991  1437  1437 I AiAiEcho: AppFetcherImplV2 onPackageRemoved io.ccb.mobile.ccb_mobile.",
+          "06-29 16:52:41.025  1284  1284 D LauncherAppsCallbackImpl: package removed received io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:41.028  1284  1317 D PackageUpdatedTask: Package updated: mOp=REMOVE packages=[io.ccb.mobile.ccb_mobile]"
+        ]
+      },
+      "memory": {
+        "pss_growth_ratio": 0.0326,
+        "pss_kb_delta": 11060,
+        "pss_kb_max": 371940,
+        "pss_kb_min": 339296,
+        "samples": 34
+      },
+      "monitor_samples": [
+        {
+          "elapsed_s": 0.0,
+          "label": "start",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  84G 416M 201M S 57.6  16.8   0:06.89 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 339296,
+          "total_rss_kb": 27724
+        },
+        {
+          "elapsed_s": 2.531,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 447M 202M S 36.0  18.0   0:08.93 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 347114,
+          "total_rss_kb": 30180
+        },
+        {
+          "elapsed_s": 4.884,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 202M R 57.6  17.8   0:10.44 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 359594,
+          "total_rss_kb": 34662
+        },
+        {
+          "elapsed_s": 7.269,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 425M 193M R 42.3  17.1   0:11.76 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 351722,
+          "total_rss_kb": 34661
+        },
+        {
+          "elapsed_s": 9.659,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 438M 193M R 38.4  17.7   0:12.96 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 347582,
+          "total_rss_kb": 34585
+        },
+        {
+          "elapsed_s": 12.06,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 448M 202M R 42.3  18.1   0:14.20 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 351724,
+          "total_rss_kb": 34659
+        },
+        {
+          "elapsed_s": 14.425,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 440M 193M S 40.0  17.7   0:15.38 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 346472,
+          "total_rss_kb": 34662
+        },
+        {
+          "elapsed_s": 16.81,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 436M 193M S 50.0  17.6   0:16.46 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 341987,
+          "total_rss_kb": 34544
+        },
+        {
+          "elapsed_s": 19.219,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 435M 193M S 53.8  17.5   0:17.71 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 342795,
+          "total_rss_kb": 34386
+        },
+        {
+          "elapsed_s": 21.595,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 429M 193M S 50.0  17.3   0:18.81 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 350051,
+          "total_rss_kb": 34416
+        },
+        {
+          "elapsed_s": 24.003,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 438M 193M S 69.2  17.7   0:19.91 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 346912,
+          "total_rss_kb": 34364
+        },
+        {
+          "elapsed_s": 26.376,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 437M 193M S 42.3  17.6   0:21.02 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 341860,
+          "total_rss_kb": 34456
+        },
+        {
+          "elapsed_s": 28.761,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 432M 193M R 48.2  17.4   0:22.04 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 353190,
+          "total_rss_kb": 34232
+        },
+        {
+          "elapsed_s": 31.161,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 444M 193M R 26.9  17.9   0:23.06 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 352602,
+          "total_rss_kb": 34172
+        },
+        {
+          "elapsed_s": 33.547,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 443M 193M R 42.3  17.9   0:24.08 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 349190,
+          "total_rss_kb": 34304
+        },
+        {
+          "elapsed_s": 35.937,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 193M S 46.1  17.8   0:24.97 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 351796,
+          "total_rss_kb": 34154
+        },
+        {
+          "elapsed_s": 38.322,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 442M 193M S 46.1  17.8   0:25.97 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 349424,
+          "total_rss_kb": 34206
+        },
+        {
+          "elapsed_s": 40.709,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 454M 202M R 35.7  18.3   0:27.12 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 355141,
+          "total_rss_kb": 34265
+        },
+        {
+          "elapsed_s": 43.099,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 193M S 42.3  17.8   0:28.10 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 348108,
+          "total_rss_kb": 34196
+        },
+        {
+          "elapsed_s": 45.479,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 444M 193M R 38.4  17.9   0:29.05 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 354996,
+          "total_rss_kb": 34202
+        },
+        {
+          "elapsed_s": 47.884,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 439M 193M S 48.0  17.7   0:30.02 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 350560,
+          "total_rss_kb": 34094
+        },
+        {
+          "elapsed_s": 50.26,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 193M S 37.0  17.8   0:31.00 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 347892,
+          "total_rss_kb": 34033
+        },
+        {
+          "elapsed_s": 52.655,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 193M S 42.3  17.8   0:31.90 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 348484,
+          "total_rss_kb": 34049
+        },
+        {
+          "elapsed_s": 55.025,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 448M 193M R 36.0  18.1   0:32.83 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 351088,
+          "total_rss_kb": 33976
+        },
+        {
+          "elapsed_s": 57.389,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 193M S 36.0  17.8   0:33.66 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 362448,
+          "total_rss_kb": 33859
+        },
+        {
+          "elapsed_s": 59.765,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 442M 193M S 36.0  17.8   0:34.55 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 363076,
+          "total_rss_kb": 33864
+        },
+        {
+          "elapsed_s": 62.166,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 453M 193M R 59.2  18.3   0:35.55 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 371940,
+          "total_rss_kb": 33810
+        },
+        {
+          "elapsed_s": 64.586,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 452M 193M R 42.3  18.2   0:36.54 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 359776,
+          "total_rss_kb": 33604
+        },
+        {
+          "elapsed_s": 67.025,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 446M 193M S 23.0  18.0   0:37.08 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 358100,
+          "total_rss_kb": 33628
+        },
+        {
+          "elapsed_s": 69.422,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 459M 193M S 11.5  18.5   0:37.44 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 358076,
+          "total_rss_kb": 33678
+        },
+        {
+          "elapsed_s": 71.781,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 446M 193M S  8.0  18.0   0:37.69 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 358524,
+          "total_rss_kb": 33707
+        },
+        {
+          "elapsed_s": 74.154,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 452M 193M S 19.2  18.2   0:37.93 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 351264,
+          "total_rss_kb": 33727
+        },
+        {
+          "elapsed_s": 76.538,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 444M 193M S 16.0  17.9   0:38.26 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 356796,
+          "total_rss_kb": 33745
+        },
+        {
+          "elapsed_s": 78.938,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 451M 193M S 20.0  18.2   0:38.52 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 350356,
+          "total_rss_kb": 33788
+        },
+        {
+          "elapsed_s": 80.568,
+          "label": "end",
+          "meminfo_returncode": 0,
+          "top_line": "",
+          "top_returncode": 0,
+          "total_pss_kb": null,
+          "total_rss_kb": null
+        }
+      ],
+      "power": {
+        "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+        "wake_lock_summary": "mWakeLockSummary=0x0",
+        "wake_locks": "Wake Locks: size=0",
+        "wakefulness": "mWakefulness=Awake"
+      },
+      "sample_count": 35,
+      "sample_labels": [
+        "start",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "end"
+      ],
+      "schema_version": 1,
+      "warnings": []
+    },
+    "expected_marker": "CCB_MOBILE_HV_DONE_20260629165045",
+    "line_prefix": "CCB_MOBILE_HV_20260629165045_LINE_",
+    "line_prefix_count": 200,
+    "max_non_local_items": 8,
+    "min_line_prefix_count": 200,
+    "project_id": "19e2343f257c13c7f284bb100006913fb0fe9bde947d438db803bda246f7681e",
+    "project_name": "test_ccb2_alpha",
+    "returncode": 0,
+    "screenshot_bytes": 1378045,
+    "screenshot_path": "/tmp/ccb-mobile-native-command-1782723162.png",
+    "stderr_tail": [],
+    "stdout_tail": [
+      "00:00 +0: loading /home/bfly/yunwei/ccb_mobile/app/integration_test/native_pane_gateway_smoke_test.dart",
+      "Running Gradle task 'assembleDebug'...",
+      "WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): file_picker, mobile_scanner",
+      "Future versions of Flutter will fail to build if your app uses plugins that apply KGP.",
+      "",
+      "Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.",
+      "If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing",
+      "an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors",
+      "",
+      "If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors",
+      "Running Gradle task 'assembleDebug'...                             14.0s",
+      "\u2713 Built build/app/outputs/flutter-apk/app-debug.apk",
+      "Installing build/app/outputs/flutter-apk/app-debug.apk...          623ms",
+      "00:00 +0: paired mobile chat sends native pane input",
+      "CCB_MOBILE_NATIVE_READY_TO_SEND",
+      "CCB_MOBILE_NATIVE_TIMING_JSON {\"schema_version\":1,\"project_id\":\"19e2343f257c13c7f284bb100006913fb0fe9bde947d438db803bda246f7681e\",\"project_name\":\"test_ccb2_alpha\",\"agent\":\"mobile_probe\",\"send_to_local_bubble_ms\":162,\"send_to_working_ms\":167,\"send_to_first_feedback_ms\":167,\"first_feedback_kind\":\"working\",\"send_to_expected_reply_ms\":80313,\"non_local_item_count\":3,\"expected_reply_item_count\":0,\"live_terminal_output_item_count\":0,\"live_terminal_output_expected_item_count\":0,\"line_prefix\":\"CCB_MOBILE_HV_20260629165045_LINE_\",\"line_prefix_count\":200,\"min_line_prefix_count\":200,\"max_non_local_items\":8,\"expected_mode\":\"any_non_local\"}",
+      "01:26 +1: (tearDownAll)",
+      "01:26 +1: All tests passed!"
+    ],
+    "timing": {
+      "agent": "mobile_probe",
+      "expected_mode": "any_non_local",
+      "expected_reply_item_count": 0,
+      "first_feedback_kind": "working",
+      "line_prefix": "CCB_MOBILE_HV_20260629165045_LINE_",
+      "line_prefix_count": 200,
+      "live_terminal_output_expected_item_count": 0,
+      "live_terminal_output_item_count": 0,
+      "max_non_local_items": 8,
+      "min_line_prefix_count": 200,
+      "non_local_item_count": 3,
+      "project_id": "19e2343f257c13c7f284bb100006913fb0fe9bde947d438db803bda246f7681e",
+      "project_name": "test_ccb2_alpha",
+      "schema_version": 1,
+      "send_to_expected_reply_ms": 80313,
+      "send_to_first_feedback_ms": 167,
+      "send_to_local_bubble_ms": 162,
+      "send_to_working_ms": 167
+    },
+    "timings": [
+      {
+        "agent": "mobile_probe",
+        "expected_mode": "any_non_local",
+        "expected_reply_item_count": 0,
+        "first_feedback_kind": "working",
+        "line_prefix": "CCB_MOBILE_HV_20260629165045_LINE_",
+        "line_prefix_count": 200,
+        "live_terminal_output_expected_item_count": 0,
+        "live_terminal_output_item_count": 0,
+        "max_non_local_items": 8,
+        "min_line_prefix_count": 200,
+        "non_local_item_count": 3,
+        "project_id": "19e2343f257c13c7f284bb100006913fb0fe9bde947d438db803bda246f7681e",
+        "project_name": "test_ccb2_alpha",
+        "schema_version": 1,
+        "send_to_expected_reply_ms": 80313,
+        "send_to_first_feedback_ms": 167,
+        "send_to_local_bubble_ms": 162,
+        "send_to_working_ms": 167
+      }
+    ],
+    "ui_dump_path": "/tmp/ccb-mobile-native-command-1782723165.xml"
+  },
+  "long_history_backfill": null,
+  "native_artifact": {
+    "image_file_id": "mobile-file-native-image-20260629085045-930377",
+    "image_file_name": "native-image-20260629085045-930377.png",
+    "image_sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378",
+    "image_size_bytes": 67,
+    "marker": "Native artifact bundle 20260629085045-930377",
+    "text_file_id": "mobile-file-native-text-20260629085045-930377",
+    "text_file_name": "native-artifact-20260629085045-930377.txt",
+    "text_sha256": "86cd3872d6da1bf0432847e434dcfb5bf57cfc30b3323ec544ed92675981c982",
+    "text_size_bytes": 57
+  },
+  "native_pane_evidence": {
+    "agent": "mobile_probe",
+    "command": "Please print exactly 200 short plain-text lines. Each line must start with CCB_MOBILE_HV_20260629165045_LINE_ followed by a zero-padded index from 0001 through 0200. After those 200 lines print one final line by concatenating these two fragments: CCB_MOBILE_HV_DONE_ and 20260629165045. Do not use markdown fences and do not include any other text.",
+    "device_metrics": {
+      "batterystats_excerpt": [
+        "Unknown package: io.ccb.mobile.ccb_mobile",
+        "--wakeups: dump CPU wakeup history and attribution.",
+        "wake_lock_in, alarms and proc events"
+      ],
+      "errors": [],
+      "gfxinfo": {},
+      "logcat": {
+        "fatal_anr_oom": false,
+        "skipped_frames_count": 0,
+        "tail": [
+          "06-29 16:52:40.816   592   648 W WindowManager: removeAppToken: Attempted to remove non-existing token: Token{ebc8fd1 ActivityRecord{1e8265b u0 io.ccb.mobile.ccb_mobile/.MainActivity t335 f} isExiting}}",
+          "06-29 16:52:40.821   592   708 V StorageManagerService: Package io.ccb.mobile.ccb_mobile does not have legacy storage",
+          "06-29 16:52:40.835   979   979 D CarrierSvcBindHelper: onPackageRemoved: io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.850   592   731 W WifiService: Couldn't get PackageInfo for package:io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.850   592   731 D WifiService: Remove settings for package:io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.850   592   731 D WifiConfigManager: Remove all networks for app ApplicationInfo{6006d90 io.ccb.mobile.ccb_mobile}",
+          "06-29 16:52:40.850   592   731 I PasspointManager: No app ops listener found for io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.851   592   731 W WifiService: Couldn't get PackageInfo for package:io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.854   592   731 D WifiService: Remove settings for package:io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.854   592   731 D WifiConfigManager: Remove all networks for app ApplicationInfo{111a68e io.ccb.mobile.ccb_mobile}",
+          "06-29 16:52:40.854   592   731 I PasspointManager: No app ops listener found for io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.861   592   786 D ShortcutService: removing package: io.ccb.mobile.ccb_mobile userId0",
+          "06-29 16:52:40.861   592   786 D ShortcutService: handlePackageRemoved: io.ccb.mobile.ccb_mobile user=0",
+          "06-29 16:52:40.862   592   678 I RollbackManager: broadcast=ACTION_PACKAGE_FULLY_REMOVED pkg=io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:40.863   592   768 I AppWidgetServiceImpl: removeHostsAndProvidersForPackageLocked() pkg=io.ccb.mobile.ccb_mobile userId=0",
+          "06-29 16:52:40.884   592   592 I Telecom : CarModeTracker: Package io.ccb.mobile.ccb_mobile is not tracked.: SSH.oR@AVM\ud83d\udd12",
+          "06-29 16:52:40.939   592   592 I ConditionProviders: Disallowing condition provider io.ccb.mobile.ccb_mobile (userSet: true)",
+          "06-29 16:52:40.991  1437  1437 I AiAiEcho: AppFetcherImplV2 onPackageRemoved io.ccb.mobile.ccb_mobile.",
+          "06-29 16:52:41.025  1284  1284 D LauncherAppsCallbackImpl: package removed received io.ccb.mobile.ccb_mobile",
+          "06-29 16:52:41.028  1284  1317 D PackageUpdatedTask: Package updated: mOp=REMOVE packages=[io.ccb.mobile.ccb_mobile]"
+        ]
+      },
+      "memory": {
+        "pss_growth_ratio": 0.0326,
+        "pss_kb_delta": 11060,
+        "pss_kb_max": 371940,
+        "pss_kb_min": 339296,
+        "samples": 34
+      },
+      "monitor_samples": [
+        {
+          "elapsed_s": 0.0,
+          "label": "start",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  84G 416M 201M S 57.6  16.8   0:06.89 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 339296,
+          "total_rss_kb": 27724
+        },
+        {
+          "elapsed_s": 2.531,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 447M 202M S 36.0  18.0   0:08.93 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 347114,
+          "total_rss_kb": 30180
+        },
+        {
+          "elapsed_s": 4.884,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 202M R 57.6  17.8   0:10.44 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 359594,
+          "total_rss_kb": 34662
+        },
+        {
+          "elapsed_s": 7.269,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 425M 193M R 42.3  17.1   0:11.76 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 351722,
+          "total_rss_kb": 34661
+        },
+        {
+          "elapsed_s": 9.659,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 438M 193M R 38.4  17.7   0:12.96 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 347582,
+          "total_rss_kb": 34585
+        },
+        {
+          "elapsed_s": 12.06,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 448M 202M R 42.3  18.1   0:14.20 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 351724,
+          "total_rss_kb": 34659
+        },
+        {
+          "elapsed_s": 14.425,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 440M 193M S 40.0  17.7   0:15.38 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 346472,
+          "total_rss_kb": 34662
+        },
+        {
+          "elapsed_s": 16.81,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 436M 193M S 50.0  17.6   0:16.46 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 341987,
+          "total_rss_kb": 34544
+        },
+        {
+          "elapsed_s": 19.219,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 435M 193M S 53.8  17.5   0:17.71 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 342795,
+          "total_rss_kb": 34386
+        },
+        {
+          "elapsed_s": 21.595,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 429M 193M S 50.0  17.3   0:18.81 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 350051,
+          "total_rss_kb": 34416
+        },
+        {
+          "elapsed_s": 24.003,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 438M 193M S 69.2  17.7   0:19.91 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 346912,
+          "total_rss_kb": 34364
+        },
+        {
+          "elapsed_s": 26.376,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 437M 193M S 42.3  17.6   0:21.02 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 341860,
+          "total_rss_kb": 34456
+        },
+        {
+          "elapsed_s": 28.761,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 432M 193M R 48.2  17.4   0:22.04 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 353190,
+          "total_rss_kb": 34232
+        },
+        {
+          "elapsed_s": 31.161,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 444M 193M R 26.9  17.9   0:23.06 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 352602,
+          "total_rss_kb": 34172
+        },
+        {
+          "elapsed_s": 33.547,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 443M 193M R 42.3  17.9   0:24.08 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 349190,
+          "total_rss_kb": 34304
+        },
+        {
+          "elapsed_s": 35.937,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 193M S 46.1  17.8   0:24.97 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 351796,
+          "total_rss_kb": 34154
+        },
+        {
+          "elapsed_s": 38.322,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 442M 193M S 46.1  17.8   0:25.97 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 349424,
+          "total_rss_kb": 34206
+        },
+        {
+          "elapsed_s": 40.709,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 454M 202M R 35.7  18.3   0:27.12 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 355141,
+          "total_rss_kb": 34265
+        },
+        {
+          "elapsed_s": 43.099,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 193M S 42.3  17.8   0:28.10 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 348108,
+          "total_rss_kb": 34196
+        },
+        {
+          "elapsed_s": 45.479,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 444M 193M R 38.4  17.9   0:29.05 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 354996,
+          "total_rss_kb": 34202
+        },
+        {
+          "elapsed_s": 47.884,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 439M 193M S 48.0  17.7   0:30.02 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 350560,
+          "total_rss_kb": 34094
+        },
+        {
+          "elapsed_s": 50.26,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 193M S 37.0  17.8   0:31.00 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 347892,
+          "total_rss_kb": 34033
+        },
+        {
+          "elapsed_s": 52.655,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 193M S 42.3  17.8   0:31.90 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 348484,
+          "total_rss_kb": 34049
+        },
+        {
+          "elapsed_s": 55.025,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 448M 193M R 36.0  18.1   0:32.83 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 351088,
+          "total_rss_kb": 33976
+        },
+        {
+          "elapsed_s": 57.389,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 441M 193M S 36.0  17.8   0:33.66 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 362448,
+          "total_rss_kb": 33859
+        },
+        {
+          "elapsed_s": 59.765,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 442M 193M S 36.0  17.8   0:34.55 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 363076,
+          "total_rss_kb": 33864
+        },
+        {
+          "elapsed_s": 62.166,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 453M 193M R 59.2  18.3   0:35.55 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 371940,
+          "total_rss_kb": 33810
+        },
+        {
+          "elapsed_s": 64.586,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 452M 193M R 42.3  18.2   0:36.54 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 359776,
+          "total_rss_kb": 33604
+        },
+        {
+          "elapsed_s": 67.025,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 446M 193M S 23.0  18.0   0:37.08 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 358100,
+          "total_rss_kb": 33628
+        },
+        {
+          "elapsed_s": 69.422,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 459M 193M S 11.5  18.5   0:37.44 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 358076,
+          "total_rss_kb": 33678
+        },
+        {
+          "elapsed_s": 71.781,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 446M 193M S  8.0  18.0   0:37.69 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 358524,
+          "total_rss_kb": 33707
+        },
+        {
+          "elapsed_s": 74.154,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 452M 193M S 19.2  18.2   0:37.93 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 351264,
+          "total_rss_kb": 33727
+        },
+        {
+          "elapsed_s": 76.538,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 444M 193M S 16.0  17.9   0:38.26 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 356796,
+          "total_rss_kb": 33745
+        },
+        {
+          "elapsed_s": 78.938,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "19295 u0_a379      10 -10  83G 451M 193M S 20.0  18.2   0:38.52 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 350356,
+          "total_rss_kb": 33788
+        },
+        {
+          "elapsed_s": 80.568,
+          "label": "end",
+          "meminfo_returncode": 0,
+          "top_line": "",
+          "top_returncode": 0,
+          "total_pss_kb": null,
+          "total_rss_kb": null
+        }
+      ],
+      "power": {
+        "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+        "wake_lock_summary": "mWakeLockSummary=0x0",
+        "wake_locks": "Wake Locks: size=0",
+        "wakefulness": "mWakefulness=Awake"
+      },
+      "sample_count": 35,
+      "sample_labels": [
+        "start",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "end"
+      ],
+      "schema_version": 1,
+      "warnings": []
+    },
+    "expected_marker": "CCB_MOBILE_HV_DONE_20260629165045",
+    "line_prefix": "CCB_MOBILE_HV_20260629165045_LINE_",
+    "line_prefix_count": 200,
+    "max_non_local_items": 8,
+    "min_line_prefix_count": 200,
+    "mode": "native_pane_command",
+    "project_id": "19e2343f257c13c7f284bb100006913fb0fe9bde947d438db803bda246f7681e",
+    "project_name": "test_ccb2_alpha",
+    "screenshot_bytes": 1378045,
+    "screenshot_path": "/tmp/ccb-mobile-native-command-1782723162.png",
+    "timing": {
+      "agent": "mobile_probe",
+      "expected_mode": "any_non_local",
+      "expected_reply_item_count": 0,
+      "first_feedback_kind": "working",
+      "line_prefix": "CCB_MOBILE_HV_20260629165045_LINE_",
+      "line_prefix_count": 200,
+      "live_terminal_output_expected_item_count": 0,
+      "live_terminal_output_item_count": 0,
+      "max_non_local_items": 8,
+      "min_line_prefix_count": 200,
+      "non_local_item_count": 3,
+      "project_id": "19e2343f257c13c7f284bb100006913fb0fe9bde947d438db803bda246f7681e",
+      "project_name": "test_ccb2_alpha",
+      "schema_version": 1,
+      "send_to_expected_reply_ms": 80313,
+      "send_to_first_feedback_ms": 167,
+      "send_to_local_bubble_ms": 162,
+      "send_to_working_ms": 167
+    },
+    "timings": [
+      {
+        "agent": "mobile_probe",
+        "expected_mode": "any_non_local",
+        "expected_reply_item_count": 0,
+        "first_feedback_kind": "working",
+        "line_prefix": "CCB_MOBILE_HV_20260629165045_LINE_",
+        "line_prefix_count": 200,
+        "live_terminal_output_expected_item_count": 0,
+        "live_terminal_output_item_count": 0,
+        "max_non_local_items": 8,
+        "min_line_prefix_count": 200,
+        "non_local_item_count": 3,
+        "project_id": "19e2343f257c13c7f284bb100006913fb0fe9bde947d438db803bda246f7681e",
+        "project_name": "test_ccb2_alpha",
+        "schema_version": 1,
+        "send_to_expected_reply_ms": 80313,
+        "send_to_first_feedback_ms": 167,
+        "send_to_local_bubble_ms": 162,
+        "send_to_working_ms": 167
+      }
+    ],
+    "ui_dump_path": "/tmp/ccb-mobile-native-command-1782723165.xml"
+  },
+  "projects": [
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "19e2343f257c13c7f284bb100006913fb0fe9bde947d438db803bda246f7681e",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629085045/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "3451f21ace4931ad2f912bb906526e8c89a5f40f411864a57c1652b690b16cbf",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629085045/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_mobile",
+      "health": "healthy",
+      "id": "1b12981c7405fedcdc19d0fb37da5025f6089e22312f261b26293db25a0a76aa",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_mobile"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "Liuhuaiyu",
+      "health": "healthy",
+      "id": "d71ce204e5054a8cf244a717999c4be729f09d3dc408d39916103a3fce96ea87",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/Liuhuaiyu"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "question-followthrough-e2e-smoke-1782532468",
+      "health": "healthy",
+      "id": "b6ab590d462b18a02c57c7f5a002bfe60d102184345f06b9aa78145607bce99a",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/question-followthrough-e2e-smoke-1782532468"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "question-e2e-capacity-probe-1782532575",
+      "health": "healthy",
+      "id": "5ff6ec62cd8e8614ab1ecfdc1568cd3f24c78bb813aa4554fb36eea8e9214d37",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/question-e2e-capacity-probe-1782532575"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u57fa\u672c\u95ee\u9898",
+      "health": "healthy",
+      "id": "6759b921654b26d55b40c7ca3d9e0b424368d5b0617cb290aa42c377c189ba28",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/\u57fa\u672c\u95ee\u9898"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "system_optimal",
+      "health": "healthy",
+      "id": "a3872a3027328db9eddc13dccd94e8378f199ef852b8060967a6e9f10aaa760a",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/system_optimal"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "plan-tree",
+      "health": "healthy",
+      "id": "8a8dccfbbb0f2a32f7c4809bcbceddea2c15ad6b0c2e35e067ed14dd4ee5cafe",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/plan-tree"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "f80bf5acdd5d1c388125a225ba7d2b2008848d48d075d24f4901579955d1d94c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/mobile-manual-real-20260627171823/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "7f1de911ac40f73168799a98e0eb66baef4ed3e77b9137b562528fbe7b6f8fd8",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/mobile-manual-real-20260627171823/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "agent-roles-spec",
+      "health": "healthy",
+      "id": "9fd0d20038d0346c1835fa358d320dde16cc2b415579ea2f29af963f7a25d7f7",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/agent-roles-spec"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "architec",
+      "health": "healthy",
+      "id": "4dfe1cded48690eccd7a2e626d3ccf69e5312d339483852b883b528f74c1066c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/architec"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "DeePoly_git",
+      "health": "healthy",
+      "id": "bf729d5621393d89991f5923b4d1770e8b9808411c9ac522d6df755db826e03c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/computeforcfd/\u6df7\u5408\u7f51\u7edc/DeePoly_git"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u670d\u52a1\u5668",
+      "health": "healthy",
+      "id": "3b5430a43921eb5c90cfe36cfed6b148eb36198806c600eceb9bc7e7b5932b23",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/\u5de5\u4f5c\u5ba4/\u670d\u52a1\u5668"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_source",
+      "health": "healthy",
+      "id": "dc1e9324ab3fb8155100f3e002689f793cdad8df6e97370ea4f16054815d890c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_source"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "eos_multimat",
+      "health": "healthy",
+      "id": "8749098108301cdc76a1ff1bf22da4af6639ab3020f2ea9a91553d7e25d8f761",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/ML/eos_multimat"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_visual",
+      "health": "healthy",
+      "id": "d3b67a788dd31349098908ddf81440f323afdd0d25c9a02c50e7f7f4ad276bae",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_visual"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u4f1a\u8bae\u6574\u7406",
+      "health": "healthy",
+      "id": "cf4e533b622589b1499f46bfe16e6d10ebe4f15025d6d677f503fb7672c2650c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/\u4f1a\u8bae\u6574\u7406"
+    }
+  ],
+  "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629085045",
+  "source_ccb": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb",
+  "source_dirty": false,
+  "source_head": "7e436f7e",
+  "started_projects": [
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629085045/test_ccb2_alpha",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629085045/test_ccb2_alpha",
+        "project_id": "19e2343f257c13c7f284bb100006913fb0fe9bde947d438db803bda246f7681e",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-19e2343f257c.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-19e2343f257c.sock owned=%1,%2,%3 active=%1,%2,%3 orphaned=- killed=-"
+      }
+    },
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629085045/test_ccb2_beta",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629085045/test_ccb2_beta",
+        "project_id": "3451f21ace4931ad2f912bb906526e8c89a5f40f411864a57c1652b690b16cbf",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-3451f21ace49.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-3451f21ace49.sock owned=%1,%2,%3 active=%1,%2,%3 orphaned=- killed=-"
+      }
+    }
+  ],
+  "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260629085045",
+  "status": "ok"
+}

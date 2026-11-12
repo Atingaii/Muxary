@@ -1,0 +1,26 @@
+{
+  "schema": "ccb.detailer.replan_request.v1",
+  "request_identity": "sha256:<task-id-revision-detail-digest identity>",
+  "task_id": "<task-id>",
+  "task_revision": 1,
+  "source_detailer_job_id": "<current Detailer job id from activation evidence>",
+  "source_role": "task_detailer",
+  "target_role": "planner",
+  "silence": true,
+  "detail": {
+    "summary": "<source-backed detail finding>",
+    "artifact_refs": [],
+    "clarification_refs": []
+  },
+  "detail_digest": "sha256:<canonical detail object digest>",
+  "macro_impact": {
+    "categories": ["scope"],
+    "summary": "<why Planner-owned authority must change>",
+    "preserved_facts": [],
+    "proposed_changes": [],
+    "acceptance_impacts": [],
+    "dependency_impacts": [],
+    "roadmap_impacts": []
+  },
+  "macro_impact_digest": "sha256:<canonical macro_impact object digest>"
+}

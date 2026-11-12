@@ -1,0 +1,129 @@
+{
+  "date": "2026-06-26",
+  "status": "ok",
+  "case_ids": ["C6.1-smoke", "C6.2-smoke", "C7.1-smoke", "C8.1-smoke"],
+  "scope": "Android Emulator server-wide gateway native selected-agent file and backend artifact smoke with on-device SHA256 verification",
+  "raw_log": "/tmp/ccb-mobile-file-artifact-hash-server-wide-smoke-20260626193500.log",
+  "app": {
+    "head": "16e621e",
+    "commit": "16e621e test: verify mobile downloaded file hashes",
+    "dirty_status_at_run_start": "clean"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "7fece763",
+    "commit": "7fece763 fix: expose native artifact links to mobile",
+    "dirty_status_at_run_start": "clean"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "adb_reverse": "tcp:19042 tcp:19042"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19042",
+    "listen": "127.0.0.1:19042",
+    "route_provider": "lan",
+    "host_id": "host-315ddce5113cdd71"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626112747",
+    "server_wide_count": 43,
+    "alpha_project_id": "80d1bb3151657d807063e0abf76e40faa0484e7127a78c587ab9bea4ee4ccf8a",
+    "alpha_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626112747/test_ccb2_alpha",
+    "beta_project_id": "3471310fd8a91808b008710e0c687f0fa01c443b086834f4053e0c644b3d76c4",
+    "beta_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626112747/test_ccb2_beta",
+    "agents": ["mobile_probe", "mobile_peer"]
+  },
+  "native_artifact_dataset": {
+    "seed_mode": "codex_native_rollout_fixture_with_mobile_file_store",
+    "marker": "Native artifact bundle 20260626112747-2768766",
+    "text_file_id": "mobile-file-native-text-20260626112747-2768766",
+    "text_file_name": "native-artifact-20260626112747-2768766.txt",
+    "text_sha256": "1a1a66f0508bc8bb30797a72e92ef6091ffeba13b60a0cb10afaf920f3af54a5",
+    "image_file_id": "mobile-file-native-image-20260626112747-2768766",
+    "image_file_name": "native-image-20260626112747-2768766.png",
+    "image_sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378"
+  },
+  "validated_paths": [
+    "Server-wide gateway listed 43 mounted projects and opened fresh disposable test_ccb2 projects.",
+    "The integration test downloaded seeded Codex native artifact text and image attachments from provider-native transcript links.",
+    "The test sent text-file turns through the selected-agent composer and downloaded the resulting conversation attachment chips.",
+    "The test sent image-only turns for mobile_probe and mobile_peer and verified image attachment visibility.",
+    "The integration test read each saved file from the Android app documents directory and asserted SHA256 equality with the source fixture.",
+    "The same test crossed alpha and beta projects to exercise project-scoped routing and file isolation smoke coverage."
+  ],
+  "flutter_integration": {
+    "test": "app/integration_test/server_wide_gateway_smoke_test.dart",
+    "tests_passed": 2,
+    "returncode": 0,
+    "stdout_tail": [
+      "00:00 +0: server-wide local gateway lists projects and exercises chat files artifacts",
+      "CCB_DOWNLOAD_SHA256 {\"file_name\":\"native-artifact-20260626112747-2768766.txt\",\"path\":\"/data/user/0/io.ccb.mobile.ccb_mobile/app_flutter/native-artifact-20260626112747-2768766.txt\",\"size_bytes\":58,\"sha256\":\"1a1a66f0508bc8bb30797a72e92ef6091ffeba13b60a0cb10afaf920f3af54a5\"}",
+      "CCB_DOWNLOAD_SHA256 {\"file_name\":\"native-image-20260626112747-2768766.png\",\"path\":\"/data/user/0/io.ccb.mobile.ccb_mobile/app_flutter/native-image-20260626112747-2768766.png\",\"size_bytes\":67,\"sha256\":\"b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378\"}",
+      "01:35 +1: server-wide gateway dynamically backfills older chat on upward scroll",
+      "01:36 +2: All tests passed!"
+    ],
+    "download_hash_count": 9,
+    "download_hashes": [
+      {
+        "file_name": "native-artifact-20260626112747-2768766.txt",
+        "size_bytes": 58,
+        "sha256": "1a1a66f0508bc8bb30797a72e92ef6091ffeba13b60a0cb10afaf920f3af54a5"
+      },
+      {
+        "file_name": "native-image-20260626112747-2768766.png",
+        "size_bytes": 67,
+        "sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378"
+      },
+      {
+        "file_name": "alpha-mobile_probe-turn-1-1782473294922.txt",
+        "size_bytes": 78,
+        "sha256": "255fb672cda352239fc89379c369a3bedf557cff6c4dc91c91e2b41515edb3ad"
+      },
+      {
+        "file_name": "alpha-mobile_probe-turn-2-1782473294922.txt",
+        "size_bytes": 78,
+        "sha256": "7009a4a081521c46bc7893a982eef1d326df00a1f43af0fa4690f36b378a7899"
+      },
+      {
+        "file_name": "alpha-mobile_probe-image-1782473294922.png",
+        "size_bytes": 67,
+        "sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378"
+      },
+      {
+        "file_name": "alpha-mobile_peer-turn-1-1782473294922.txt",
+        "size_bytes": 77,
+        "sha256": "3d895bd2de7743244f2e60a6a0092549588e070947ff68fc3727aeb6af6c1164"
+      },
+      {
+        "file_name": "alpha-mobile_peer-image-1782473294922.png",
+        "size_bytes": 67,
+        "sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378"
+      },
+      {
+        "file_name": "beta-mobile_probe-turn-1-1782473294922.txt",
+        "size_bytes": 77,
+        "sha256": "1989121a8d6cc61fe6cfa3aa964008ddbb424ea2f2ed115d5697917bc9e5025d"
+      },
+      {
+        "file_name": "beta-mobile_probe-doc-1782473294922.txt",
+        "size_bytes": 74,
+        "sha256": "2624cf5242e2d0b2a4d59fd9c4077d2c9a76309101bb3476147bb9a3cd57bc10"
+      }
+    ],
+    "stderr_notes": [
+      "Flutter reported the known file_picker/mobile_scanner Kotlin Gradle Plugin deprecation warning only."
+    ]
+  },
+  "source_validation": {
+    "focused_pytest": "PYTHONPATH=lib python3 -m pytest test/test_mobile_gateway_service.py -k \"codex_native_artifact or prefers_codex_native or maps_artifact_links\"",
+    "focused_pytest_result": "4 passed",
+    "py_compile": "python3 -m py_compile lib/mobile_gateway/service.py"
+  },
+  "limitations": [
+    "This is C6/C7 smoke evidence, not the full file-transfer acceptance package.",
+    "The backend artifact dataset is a deterministic Codex native rollout fixture, not a live provider-generated file during the test run.",
+    "Oversized/unsupported retry paths, app restart download persistence, and profile/release file performance remain open.",
+    "Long-history pressure in the same run remains the existing 56-turn smoke path, not the full 200+ mixed-media profile/release case."
+  ]
+}

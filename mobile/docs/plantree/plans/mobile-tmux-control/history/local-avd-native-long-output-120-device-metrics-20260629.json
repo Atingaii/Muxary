@@ -1,0 +1,760 @@
+{
+  "adb_reverse": {
+    "device_id": "emulator-5554",
+    "mapping": "tcp:19313 tcp:19313"
+  },
+  "adb_reverse_cleanup": {
+    "removed": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  "app_dirty": true,
+  "app_head": "d540c66",
+  "claimed_device_id": "avd_20260629072842",
+  "cleanup": {
+    "gateway_returncode": -15,
+    "keep_running": false,
+    "kills": [
+      {
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629072842/test_ccb2_alpha",
+        "returncode": 0,
+        "stderr": "",
+        "summary": {
+          "forced": "true",
+          "kill_status": "ok",
+          "project_id": "d4a87fcdc2924b39c4af87311b8a26459dc4d907eae419f7255235ccdf4497b4",
+          "socket_path": "/run/user/1000/ccb-runtime/ccbd-d4a87fcdc292.sock",
+          "state": "unmounted"
+        }
+      },
+      {
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629072842/test_ccb2_beta",
+        "returncode": 0,
+        "stderr": "",
+        "summary": {
+          "forced": "true",
+          "kill_status": "ok",
+          "project_id": "d85e367c1f6223cb3cc15e2be26ce593aecbc8906e2a412d5e8b8a19cafcb510",
+          "socket_path": "/run/user/1000/ccb-runtime/ccbd-d85e367c1f62.sock",
+          "state": "unmounted"
+        }
+      }
+    ]
+  },
+  "device": {
+    "boot_completed": true,
+    "device_id": "emulator-5554",
+    "devices": [
+      "List of devices attached",
+      "emulator-5554          device product:sdk_gphone64_x86_64 model:sdk_gphone64_x86_64 device:emu64xa transport_id:3"
+    ]
+  },
+  "device_id": "emulator-5554",
+  "gateway": {
+    "gateway_url": "http://127.0.0.1:19313",
+    "listen": "127.0.0.1:19313",
+    "local_gateway_url": "http://127.0.0.1:19313",
+    "pairing_claim_endpoint": "http://127.0.0.1:19313/v1/pairing/claim",
+    "pairing_code_seen": true,
+    "project_id": "host-aaf4800acbbe623d",
+    "project_root": "",
+    "requested_public_url": null,
+    "route_provider": "lan",
+    "stderr": ""
+  },
+  "gateway_listen": "127.0.0.1:19313",
+  "integration_smoke": {
+    "agent": "mobile_probe",
+    "app_data_clear_returncode": 1,
+    "command": "Please print exactly 120 short plain-text lines. Lines 1 through 119 should be CCB_MOBILE_STREAM_001 through CCB_MOBILE_STREAM_119. The final line must be CCB_MOBILE_LONG_OUTPUT_120_DONE_20260629152842. Do not use markdown fences and do not include any other text.",
+    "device_metrics": {
+      "batterystats_excerpt": [
+        "Unknown package: io.ccb.mobile.ccb_mobile",
+        "--wakeups: dump CPU wakeup history and attribution.",
+        "wake_lock_in, alarms and proc events"
+      ],
+      "errors": [],
+      "gfxinfo": {},
+      "logcat": {
+        "fatal_anr_oom": false,
+        "skipped_frames_count": 0,
+        "tail": [
+          "06-29 15:29:20.827   829   836 W ndroid.systemui: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~Eo3ZaQTXV0f__Icwb6paRw==/io.ccb.mobile.ccb_mobile-dmyH2WnpaTd2DcfFDBhL-g==/base.apk' with 1 weak references",
+          "06-29 15:29:20.837  1437  1437 I AiAiEcho: AppFetcherImplV2 onPackageRemoved io.ccb.mobile.ccb_mobile.",
+          "06-29 15:29:20.856  1284  1284 D LauncherAppsCallbackImpl: package removed received io.ccb.mobile.ccb_mobile",
+          "06-29 15:29:20.861  1284  1317 D PackageUpdatedTask: Package updated: mOp=REMOVE packages=[io.ccb.mobile.ccb_mobile]",
+          "06-29 15:29:20.868  1427  1696 D MediaProvider: Deleted 0 Android/media items belonging to io.ccb.mobile.ccb_mobile on /data/user/0/com.google.android.providers.media.module/databases/external.db",
+          "06-29 15:29:20.884  1427  1696 D MediaGrants: Removed 0 media_grants for 0 user for [io.ccb.mobile.ccb_mobile]. Reason: Package orphaned",
+          "06-29 15:29:20.884  1284  1317 D PackageUpdatedTask: REMOVE: removing package=io.ccb.mobile.ccb_mobile",
+          "06-29 15:29:20.884  1284  1317 D PackageUpdatedTask: OP_REMOVE: removing packages=[io.ccb.mobile.ccb_mobile]",
+          "06-29 15:29:20.884  1284  1317 D ModelWriter: removing items from db . Reason: [removed because the corresponding package or component is removed. mOp=3 removedPackages=[io.ccb.mobile.ccb_mobile] removedComponents=[]]",
+          "06-29 15:29:20.891   592   604 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~Eo3ZaQTXV0f__Icwb6paRw==/io.ccb.mobile.ccb_mobile-dmyH2WnpaTd2DcfFDBhL-g==/base.apk' with 1 weak references",
+          "06-29 15:29:20.898  1437  1764 W PackageManager: android.content.res.Resources$NotFoundException: String resource ID #0x7f130786",
+          "06-29 15:29:20.921   592  1644 W WindowManager: Exception thrown during dispatchAppVisibility Window{9706fb u0 io.ccb.mobile.ccb_mobile/io.ccb.mobile.ccb_mobile.MainActivity EXITING}",
+          "06-29 15:29:20.921   592  1644 W WindowManager: android.os.DeadObjectException",
+          "06-29 15:29:20.941  1077 14239 I ProximityAuth: [RecentAppsMediator] Package removed: (user=UserHandle{0}) io.ccb.mobile.ccb_mobile",
+          "06-29 15:29:20.950  1173  1173 D PersistedStoragePackageUninstalledReceiver: Received android.intent.action.PACKAGE_FULLY_REMOVED for io.ccb.mobile.ccb_mobile for u0",
+          "06-29 15:29:20.979  1758 14241 I Blockstore: [PackageIntentOperation] Deleted restore credential for package io.ccb.mobile.ccb_mobile is successful: true [CONTEXT service_id=258 ]",
+          "06-29 15:29:20.992  1758 14241 I Blockstore: [DataStoreImpl] Clearing all the Blockstore Data for package io.ccb.mobile.ccb_mobile [CONTEXT service_id=258 ]",
+          "06-29 15:29:20.993  1758 14241 I Blockstore: [DataStoreImpl] Removing Blockstore data for packages [io.ccb.mobile.ccb_mobile] [CONTEXT service_id=258 ]",
+          "06-29 15:29:21.002  1758 14248 W SQLiteLog: (28) double-quoted string literal: \"io.ccb.mobile.ccb_mobile\"",
+          "06-29 15:29:21.014  1758 14251 I Icing   : doRemovePackageData io.ccb.mobile.ccb_mobile"
+        ]
+      },
+      "memory": {
+        "pss_growth_ratio": 0.0,
+        "pss_kb_delta": 0,
+        "pss_kb_max": 344860,
+        "pss_kb_min": 344860,
+        "samples": 1
+      },
+      "monitor_samples": [
+        {
+          "elapsed_s": 0.0,
+          "label": "start",
+          "meminfo_returncode": 0,
+          "top_line": "14087 u0_a375      10 -10  84G 428M 201M S 53.8  17.3   0:07.56 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 344860,
+          "total_rss_kb": 28037
+        },
+        {
+          "elapsed_s": 2.38,
+          "label": "end",
+          "meminfo_returncode": 0,
+          "top_line": "",
+          "top_returncode": 0,
+          "total_pss_kb": null,
+          "total_rss_kb": null
+        }
+      ],
+      "power": {
+        "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=true",
+        "wake_lock_summary": "mWakeLockSummary=0x1",
+        "wake_locks": "Wake Locks: size=1",
+        "wakefulness": "mWakefulness=Awake"
+      },
+      "sample_count": 2,
+      "sample_labels": [
+        "start",
+        "end"
+      ],
+      "schema_version": 1,
+      "warnings": [
+        "device-global wake locks are nonzero; verify app-held wake locks in profile soak: Wake Locks: size=1",
+        "device-global wake lock summary is nonzero; verify app-held wake locks in profile soak: mWakeLockSummary=0x1"
+      ]
+    },
+    "expected_marker": "CCB_MOBILE_LONG_OUTPUT_120_DONE_20260629152842",
+    "project_id": "d4a87fcdc2924b39c4af87311b8a26459dc4d907eae419f7255235ccdf4497b4",
+    "project_name": "test_ccb2_alpha",
+    "returncode": 0,
+    "screenshot_bytes": 1377542,
+    "screenshot_path": "/tmp/ccb-mobile-native-command-1782718162.png",
+    "stderr_tail": [],
+    "stdout_tail": [
+      "00:00 +0: loading /home/bfly/yunwei/ccb_mobile/app/integration_test/native_pane_gateway_smoke_test.dart",
+      "Running Gradle task 'assembleDebug'...",
+      "WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): file_picker, mobile_scanner",
+      "Future versions of Flutter will fail to build if your app uses plugins that apply KGP.",
+      "",
+      "Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.",
+      "If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing",
+      "an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors",
+      "",
+      "If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors",
+      "Running Gradle task 'assembleDebug'...                             14.7s",
+      "\u2713 Built build/app/outputs/flutter-apk/app-debug.apk",
+      "Installing build/app/outputs/flutter-apk/app-debug.apk...          687ms",
+      "00:00 +0: paired mobile chat sends native pane input",
+      "CCB_MOBILE_NATIVE_READY_TO_SEND",
+      "CCB_MOBILE_NATIVE_TIMING_JSON {\"schema_version\":1,\"project_id\":\"d4a87fcdc2924b39c4af87311b8a26459dc4d907eae419f7255235ccdf4497b4\",\"project_name\":\"test_ccb2_alpha\",\"agent\":\"mobile_probe\",\"send_to_local_bubble_ms\":273,\"send_to_working_ms\":281,\"send_to_first_feedback_ms\":281,\"first_feedback_kind\":\"working\",\"send_to_expected_reply_ms\":1056,\"non_local_item_count\":3,\"expected_reply_item_count\":1,\"live_terminal_output_item_count\":1,\"live_terminal_output_expected_item_count\":0,\"expected_mode\":\"any_non_local\"}",
+      "00:07 +1: (tearDownAll)",
+      "00:07 +1: All tests passed!"
+    ],
+    "timing": {
+      "agent": "mobile_probe",
+      "expected_mode": "any_non_local",
+      "expected_reply_item_count": 1,
+      "first_feedback_kind": "working",
+      "live_terminal_output_expected_item_count": 0,
+      "live_terminal_output_item_count": 1,
+      "non_local_item_count": 3,
+      "project_id": "d4a87fcdc2924b39c4af87311b8a26459dc4d907eae419f7255235ccdf4497b4",
+      "project_name": "test_ccb2_alpha",
+      "schema_version": 1,
+      "send_to_expected_reply_ms": 1056,
+      "send_to_first_feedback_ms": 281,
+      "send_to_local_bubble_ms": 273,
+      "send_to_working_ms": 281
+    },
+    "timings": [
+      {
+        "agent": "mobile_probe",
+        "expected_mode": "any_non_local",
+        "expected_reply_item_count": 1,
+        "first_feedback_kind": "working",
+        "live_terminal_output_expected_item_count": 0,
+        "live_terminal_output_item_count": 1,
+        "non_local_item_count": 3,
+        "project_id": "d4a87fcdc2924b39c4af87311b8a26459dc4d907eae419f7255235ccdf4497b4",
+        "project_name": "test_ccb2_alpha",
+        "schema_version": 1,
+        "send_to_expected_reply_ms": 1056,
+        "send_to_first_feedback_ms": 281,
+        "send_to_local_bubble_ms": 273,
+        "send_to_working_ms": 281
+      }
+    ],
+    "ui_dump_path": "/tmp/ccb-mobile-native-command-1782718165.xml"
+  },
+  "long_history_backfill": null,
+  "native_artifact": {
+    "image_file_id": "mobile-file-native-image-20260629072842-1898962",
+    "image_file_name": "native-image-20260629072842-1898962.png",
+    "image_sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378",
+    "image_size_bytes": 67,
+    "marker": "Native artifact bundle 20260629072842-1898962",
+    "text_file_id": "mobile-file-native-text-20260629072842-1898962",
+    "text_file_name": "native-artifact-20260629072842-1898962.txt",
+    "text_sha256": "cd17a9b7716751e1c2434b69e4d5d9dc680aab3f9cb9c5f58ef5500d534d8382",
+    "text_size_bytes": 58
+  },
+  "native_pane_evidence": {
+    "agent": "mobile_probe",
+    "command": "Please print exactly 120 short plain-text lines. Lines 1 through 119 should be CCB_MOBILE_STREAM_001 through CCB_MOBILE_STREAM_119. The final line must be CCB_MOBILE_LONG_OUTPUT_120_DONE_20260629152842. Do not use markdown fences and do not include any other text.",
+    "device_metrics": {
+      "batterystats_excerpt": [
+        "Unknown package: io.ccb.mobile.ccb_mobile",
+        "--wakeups: dump CPU wakeup history and attribution.",
+        "wake_lock_in, alarms and proc events"
+      ],
+      "errors": [],
+      "gfxinfo": {},
+      "logcat": {
+        "fatal_anr_oom": false,
+        "skipped_frames_count": 0,
+        "tail": [
+          "06-29 15:29:20.827   829   836 W ndroid.systemui: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~Eo3ZaQTXV0f__Icwb6paRw==/io.ccb.mobile.ccb_mobile-dmyH2WnpaTd2DcfFDBhL-g==/base.apk' with 1 weak references",
+          "06-29 15:29:20.837  1437  1437 I AiAiEcho: AppFetcherImplV2 onPackageRemoved io.ccb.mobile.ccb_mobile.",
+          "06-29 15:29:20.856  1284  1284 D LauncherAppsCallbackImpl: package removed received io.ccb.mobile.ccb_mobile",
+          "06-29 15:29:20.861  1284  1317 D PackageUpdatedTask: Package updated: mOp=REMOVE packages=[io.ccb.mobile.ccb_mobile]",
+          "06-29 15:29:20.868  1427  1696 D MediaProvider: Deleted 0 Android/media items belonging to io.ccb.mobile.ccb_mobile on /data/user/0/com.google.android.providers.media.module/databases/external.db",
+          "06-29 15:29:20.884  1427  1696 D MediaGrants: Removed 0 media_grants for 0 user for [io.ccb.mobile.ccb_mobile]. Reason: Package orphaned",
+          "06-29 15:29:20.884  1284  1317 D PackageUpdatedTask: REMOVE: removing package=io.ccb.mobile.ccb_mobile",
+          "06-29 15:29:20.884  1284  1317 D PackageUpdatedTask: OP_REMOVE: removing packages=[io.ccb.mobile.ccb_mobile]",
+          "06-29 15:29:20.884  1284  1317 D ModelWriter: removing items from db . Reason: [removed because the corresponding package or component is removed. mOp=3 removedPackages=[io.ccb.mobile.ccb_mobile] removedComponents=[]]",
+          "06-29 15:29:20.891   592   604 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~Eo3ZaQTXV0f__Icwb6paRw==/io.ccb.mobile.ccb_mobile-dmyH2WnpaTd2DcfFDBhL-g==/base.apk' with 1 weak references",
+          "06-29 15:29:20.898  1437  1764 W PackageManager: android.content.res.Resources$NotFoundException: String resource ID #0x7f130786",
+          "06-29 15:29:20.921   592  1644 W WindowManager: Exception thrown during dispatchAppVisibility Window{9706fb u0 io.ccb.mobile.ccb_mobile/io.ccb.mobile.ccb_mobile.MainActivity EXITING}",
+          "06-29 15:29:20.921   592  1644 W WindowManager: android.os.DeadObjectException",
+          "06-29 15:29:20.941  1077 14239 I ProximityAuth: [RecentAppsMediator] Package removed: (user=UserHandle{0}) io.ccb.mobile.ccb_mobile",
+          "06-29 15:29:20.950  1173  1173 D PersistedStoragePackageUninstalledReceiver: Received android.intent.action.PACKAGE_FULLY_REMOVED for io.ccb.mobile.ccb_mobile for u0",
+          "06-29 15:29:20.979  1758 14241 I Blockstore: [PackageIntentOperation] Deleted restore credential for package io.ccb.mobile.ccb_mobile is successful: true [CONTEXT service_id=258 ]",
+          "06-29 15:29:20.992  1758 14241 I Blockstore: [DataStoreImpl] Clearing all the Blockstore Data for package io.ccb.mobile.ccb_mobile [CONTEXT service_id=258 ]",
+          "06-29 15:29:20.993  1758 14241 I Blockstore: [DataStoreImpl] Removing Blockstore data for packages [io.ccb.mobile.ccb_mobile] [CONTEXT service_id=258 ]",
+          "06-29 15:29:21.002  1758 14248 W SQLiteLog: (28) double-quoted string literal: \"io.ccb.mobile.ccb_mobile\"",
+          "06-29 15:29:21.014  1758 14251 I Icing   : doRemovePackageData io.ccb.mobile.ccb_mobile"
+        ]
+      },
+      "memory": {
+        "pss_growth_ratio": 0.0,
+        "pss_kb_delta": 0,
+        "pss_kb_max": 344860,
+        "pss_kb_min": 344860,
+        "samples": 1
+      },
+      "monitor_samples": [
+        {
+          "elapsed_s": 0.0,
+          "label": "start",
+          "meminfo_returncode": 0,
+          "top_line": "14087 u0_a375      10 -10  84G 428M 201M S 53.8  17.3   0:07.56 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 344860,
+          "total_rss_kb": 28037
+        },
+        {
+          "elapsed_s": 2.38,
+          "label": "end",
+          "meminfo_returncode": 0,
+          "top_line": "",
+          "top_returncode": 0,
+          "total_pss_kb": null,
+          "total_rss_kb": null
+        }
+      ],
+      "power": {
+        "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=true",
+        "wake_lock_summary": "mWakeLockSummary=0x1",
+        "wake_locks": "Wake Locks: size=1",
+        "wakefulness": "mWakefulness=Awake"
+      },
+      "sample_count": 2,
+      "sample_labels": [
+        "start",
+        "end"
+      ],
+      "schema_version": 1,
+      "warnings": [
+        "device-global wake locks are nonzero; verify app-held wake locks in profile soak: Wake Locks: size=1",
+        "device-global wake lock summary is nonzero; verify app-held wake locks in profile soak: mWakeLockSummary=0x1"
+      ]
+    },
+    "expected_marker": "CCB_MOBILE_LONG_OUTPUT_120_DONE_20260629152842",
+    "mode": "native_pane_command",
+    "project_id": "d4a87fcdc2924b39c4af87311b8a26459dc4d907eae419f7255235ccdf4497b4",
+    "project_name": "test_ccb2_alpha",
+    "screenshot_bytes": 1377542,
+    "screenshot_path": "/tmp/ccb-mobile-native-command-1782718162.png",
+    "timing": {
+      "agent": "mobile_probe",
+      "expected_mode": "any_non_local",
+      "expected_reply_item_count": 1,
+      "first_feedback_kind": "working",
+      "live_terminal_output_expected_item_count": 0,
+      "live_terminal_output_item_count": 1,
+      "non_local_item_count": 3,
+      "project_id": "d4a87fcdc2924b39c4af87311b8a26459dc4d907eae419f7255235ccdf4497b4",
+      "project_name": "test_ccb2_alpha",
+      "schema_version": 1,
+      "send_to_expected_reply_ms": 1056,
+      "send_to_first_feedback_ms": 281,
+      "send_to_local_bubble_ms": 273,
+      "send_to_working_ms": 281
+    },
+    "timings": [
+      {
+        "agent": "mobile_probe",
+        "expected_mode": "any_non_local",
+        "expected_reply_item_count": 1,
+        "first_feedback_kind": "working",
+        "live_terminal_output_expected_item_count": 0,
+        "live_terminal_output_item_count": 1,
+        "non_local_item_count": 3,
+        "project_id": "d4a87fcdc2924b39c4af87311b8a26459dc4d907eae419f7255235ccdf4497b4",
+        "project_name": "test_ccb2_alpha",
+        "schema_version": 1,
+        "send_to_expected_reply_ms": 1056,
+        "send_to_first_feedback_ms": 281,
+        "send_to_local_bubble_ms": 273,
+        "send_to_working_ms": 281
+      }
+    ],
+    "ui_dump_path": "/tmp/ccb-mobile-native-command-1782718165.xml"
+  },
+  "projects": [
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "d4a87fcdc2924b39c4af87311b8a26459dc4d907eae419f7255235ccdf4497b4",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629072842/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "d85e367c1f6223cb3cc15e2be26ce593aecbc8906e2a412d5e8b8a19cafcb510",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629072842/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "Liuhuaiyu",
+      "health": "healthy",
+      "id": "d71ce204e5054a8cf244a717999c4be729f09d3dc408d39916103a3fce96ea87",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/Liuhuaiyu"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "question-followthrough-e2e-smoke-1782532468",
+      "health": "healthy",
+      "id": "b6ab590d462b18a02c57c7f5a002bfe60d102184345f06b9aa78145607bce99a",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/question-followthrough-e2e-smoke-1782532468"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "question-e2e-capacity-probe-1782532575",
+      "health": "healthy",
+      "id": "5ff6ec62cd8e8614ab1ecfdc1568cd3f24c78bb813aa4554fb36eea8e9214d37",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/question-e2e-capacity-probe-1782532575"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u57fa\u672c\u95ee\u9898",
+      "health": "healthy",
+      "id": "6759b921654b26d55b40c7ca3d9e0b424368d5b0617cb290aa42c377c189ba28",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/\u57fa\u672c\u95ee\u9898"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "system_optimal",
+      "health": "healthy",
+      "id": "a3872a3027328db9eddc13dccd94e8378f199ef852b8060967a6e9f10aaa760a",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/system_optimal"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "plan-tree",
+      "health": "healthy",
+      "id": "8a8dccfbbb0f2a32f7c4809bcbceddea2c15ad6b0c2e35e067ed14dd4ee5cafe",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/plan-tree"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "f80bf5acdd5d1c388125a225ba7d2b2008848d48d075d24f4901579955d1d94c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/mobile-manual-real-20260627171823/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "7f1de911ac40f73168799a98e0eb66baef4ed3e77b9137b562528fbe7b6f8fd8",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/mobile-manual-real-20260627171823/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "agent-roles-spec",
+      "health": "healthy",
+      "id": "9fd0d20038d0346c1835fa358d320dde16cc2b415579ea2f29af963f7a25d7f7",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/agent-roles-spec"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "architec",
+      "health": "healthy",
+      "id": "4dfe1cded48690eccd7a2e626d3ccf69e5312d339483852b883b528f74c1066c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/architec"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "DeePoly_git",
+      "health": "healthy",
+      "id": "bf729d5621393d89991f5923b4d1770e8b9808411c9ac522d6df755db826e03c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/computeforcfd/\u6df7\u5408\u7f51\u7edc/DeePoly_git"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u670d\u52a1\u5668",
+      "health": "healthy",
+      "id": "3b5430a43921eb5c90cfe36cfed6b148eb36198806c600eceb9bc7e7b5932b23",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/\u5de5\u4f5c\u5ba4/\u670d\u52a1\u5668"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_source",
+      "health": "healthy",
+      "id": "dc1e9324ab3fb8155100f3e002689f793cdad8df6e97370ea4f16054815d890c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_source"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_mobile",
+      "health": "healthy",
+      "id": "1b12981c7405fedcdc19d0fb37da5025f6089e22312f261b26293db25a0a76aa",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_mobile"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "eos_multimat",
+      "health": "healthy",
+      "id": "8749098108301cdc76a1ff1bf22da4af6639ab3020f2ea9a91553d7e25d8f761",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/ML/eos_multimat"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_visual",
+      "health": "healthy",
+      "id": "d3b67a788dd31349098908ddf81440f323afdd0d25c9a02c50e7f7f4ad276bae",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_visual"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u4f1a\u8bae\u6574\u7406",
+      "health": "healthy",
+      "id": "cf4e533b622589b1499f46bfe16e6d10ebe4f15025d6d677f503fb7672c2650c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/\u4f1a\u8bae\u6574\u7406"
+    }
+  ],
+  "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629072842",
+  "source_ccb": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb",
+  "source_dirty": false,
+  "source_head": "7e436f7e",
+  "started_projects": [
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629072842/test_ccb2_alpha",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629072842/test_ccb2_alpha",
+        "project_id": "d4a87fcdc2924b39c4af87311b8a26459dc4d907eae419f7255235ccdf4497b4",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-d4a87fcdc292.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-d4a87fcdc292.sock owned=%1,%2,%3 active=%1,%2,%3 orphaned=- killed=-"
+      }
+    },
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629072842/test_ccb2_beta",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629072842/test_ccb2_beta",
+        "project_id": "d85e367c1f6223cb3cc15e2be26ce593aecbc8906e2a412d5e8b8a19cafcb510",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-d85e367c1f62.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-d85e367c1f62.sock owned=%1,%2,%3 active=%1,%2,%3 orphaned=- killed=-"
+      }
+    }
+  ],
+  "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260629072842",
+  "status": "ok"
+}

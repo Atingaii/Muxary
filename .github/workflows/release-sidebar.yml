@@ -1,0 +1,66 @@
+name: Release Sidebar Helper
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Exact release tag to build"
+        required: true
+        default: "v0.1.0"
+      publish:
+        description: "Attach the verified helper to the tagged release"
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  linux-x86_64:
+    name: Linux x86_64 sidebar helper
+    if: ${{ github.event_name == 'workflow_dispatch' && vars.MUXARY_ENABLE_SIDEBAR_RELEASE == 'true' }}
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Verify tag identity
+        shell: bash
+        env:
+          TAG_NAME: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          test "$TAG_NAME" = "v$(tr -d '[:space:]' < VERSION)"
+
+      - name: Test sidebar crate
+        run: cargo test --manifest-path tools/ccb-agent-sidebar/Cargo.toml
+
+      - name: Build release sidebar helper
+        run: bin/build-ccb-agent-sidebar
+
+      - name: Stage artifact
+        run: bin/package-ccb-agent-sidebar-release
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ccb-agent-sidebar-linux-x86_64
+          path: |
+            dist/ccb-agent-sidebar-linux-x86_64.tar.gz
+            dist/ccb-agent-sidebar-linux-x86_64.tar.gz.sha256
+
+      - name: Attach to GitHub Release
+        if: inputs.publish
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag }}
+          files: |
+            dist/ccb-agent-sidebar-linux-x86_64.tar.gz
+            dist/ccb-agent-sidebar-linux-x86_64.tar.gz.sha256

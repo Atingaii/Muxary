@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-29",
+  "status": "ok",
+  "mode": "desktop_origin_sync_scrolled_away",
+  "goal_gate": "scroll-away and new-output affordance",
+  "command": "source tools/mobile_toolchain_env.sh && python tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --force-config --provider codex --desktop-origin-sync-smoke --include-long-history-backfill --desktop-origin-idle-seconds 2 --gateway-listen 127.0.0.1:19304 --device-id emulator-5554 --flutter-timeout 1500",
+  "device": {
+    "device_id": "emulator-5554",
+    "boot_completed": true
+  },
+  "app": {
+    "head": "d540c66",
+    "dirty": true
+  },
+  "source": {
+    "ccb": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb",
+    "head": "7e436f7e",
+    "dirty": false
+  },
+  "gateway": {
+    "listen": "127.0.0.1:19304",
+    "url": "http://127.0.0.1:19304",
+    "route_provider": "lan"
+  },
+  "adb_reverse": {
+    "mapping": "tcp:19304 tcp:19304",
+    "cleanup_removed": true
+  },
+  "project": {
+    "id": "2dbe451d4b701fe588c6b596cbfe42520639f3d64586c15cfe009f8d8bd23810",
+    "display_name": "test_ccb2_alpha",
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629063112/test_ccb2_alpha",
+    "agent": "mobile_probe"
+  },
+  "fixture": {
+    "provider": "codex",
+    "backfill_turns": 56,
+    "latest_text": "Native backfill answer backfill-20260629063112-3733825-55",
+    "oldest_text": "Native backfill answer backfill-20260629063112-3733825-00",
+    "older_pages": 2
+  },
+  "integration": {
+    "target": "integration_test/native_pane_desktop_sync_smoke_test.dart",
+    "returncode": 0,
+    "idle_before_refresh_seconds": 2,
+    "scrolled_away_drag_count": 22,
+    "desktop_marker": "DESKTOP_ORIGIN_SYNC_MARKER_20260629063112",
+    "desktop_injected": true,
+    "assertions": [
+      "timeline was dragged away from end before host injection",
+      "marker was absent during idle window before explicit refresh",
+      "explicit refresh produced agent-new-messages-jump instead of auto-jumping",
+      "tap on agent-new-messages-jump returned to latest and rendered marker",
+      "CCB_REQ_ID, mobile_gateway, and completion_snapshot were absent"
+    ]
+  },
+  "source_evidence": {
+    "jobs_matches": [],
+    "prompt_contains_ccb_req_id": false,
+    "prompt_contains_mobile_gateway": false,
+    "user_match_count": 1,
+    "target": {
+      "pane_id": "%2",
+      "socket_path": "/run/user/1000/ccb-runtime/tmux-2dbe451d4b70.sock"
+    }
+  },
+  "remaining_gaps_after_this_evidence": [
+    "long-running provider output as one live/final turn",
+    "streaming output visibility beyond immediate Working/status markers",
+    "idle 180-second zero conversation/history request proof for this goal packet",
+    "gateway/reverse recovery timing in this goal packet",
+    "device mem/cpu/gfx/wakelock and logcat stability packet"
+  ]
+}

@@ -1,0 +1,93 @@
+%% CCB Agentic Loop Workflow — lifecycle, feedback, and recovery
+%% This is a protocol view. Solid arrows are requests or evidence; the Controller remains program authority.
+sequenceDiagram
+    autonumber
+    actor User as 用户
+    participant FD as Frontdesk
+    participant P as Planner
+    participant C as 程序控制脊柱<br/>Controller / Loop Runner
+    participant O as Orchestrator
+    participant D as Task Detailer
+    participant T as Topology
+    participant W as Worker
+    participant R as Reviewer
+    participant G as Git + Root Verification
+    participant RR as Round Reviewer
+
+    User->>FD: 项目请求
+    FD->>P: ask --silence：完整 Intake / Blocked Evidence
+    P->>C: 导入 task 或 task-set；写入 revision-fenced authority
+    C->>O: 激活 Orchestrator triage，提供 Planner macro packet
+
+    alt direct_execution
+        O->>C: direct_execution route；进入确定性 physical dispatch
+    else needs_detail（仅此时激活 Detailer）
+        O->>D: needs_detail；提供 refinement request 与 Planner refs
+        alt local_detail_ready
+            D->>O: 返回局部 detail packet
+        else macro impact / planner_replan_required
+            D->>P: 受限 silent ask：replan envelope
+            P->>C: 接受修订；旧 bundle 作废、阻止 Worker dispatch
+            C->>O: 新鲜 activation，重新编排
+        else needs_clarification
+            D->>FD: 提供澄清请求证据
+            FD->>User: 转达澄清问题
+            User->>FD: 提供答复
+            FD->>D: 转达答复证据，继续局部细化
+        else blocked
+            D->>C: 可验证的阻塞证据
+            C->>FD: 保留权威状态；仅不可恢复时升级
+        end
+    else macro_adjustment_request
+        O->>P: macro artifact；请求 Planner-owned 更新
+        P->>C: 接受修订；旧 bundle 作废
+        C->>O: 新鲜 activation，重新 triage
+    else blocked
+        O->>C: blocker evidence
+        C->>FD: 保留权威状态；仅不可恢复时升级
+    end
+
+    opt 已取得可派发的 direct_execution 或 local detail
+        O->>C: 语义 bundle：nodes、依赖、logical roles、验收、rework policy
+    end
+    C->>T: 校验 schema / capacity / revision / digest，提交 mount intent
+    T-->>C: 具体绑定、已观察的就绪状态
+
+    loop 每个 DAG-ready workgroup（1–4 个槽位，可同时打开）
+        C->>W: 仅一次 root Worker ask；绑定 worktree digest
+        W->>R: restricted ask --chain 到指定 Reviewer
+        alt pass
+            R-->>W: status: pass
+        else rework_required（有界）
+            R-->>W: status: rework_required
+            W->>W: 修复后仅向同一 Reviewer 再次 chain
+            W->>R: restricted ask --chain
+            R-->>W: terminal verdict
+        else blocked / non_converged
+            R-->>W: non-pass terminal verdict
+        end
+        W-->>C: 最终 node result 与已绑定 tree 证据
+    end
+
+    C->>G: 确定性 Git integration + root verification
+    G->>RR: 轮次证据
+    RR-->>C: round gate 结果
+    C->>C: 导入 child authority；释放或 busy-retain，并记录 residue
+
+    alt task-set 达到稳定闭合条件
+        C->>C: aggregate child outcomes；生成 closure intent（exact-once）
+        C->>P: silent Planner backfill（revision-fenced closure envelope）
+        P->>C: Brief / Roadmap / TODO proposal
+        C->>FD: 校验并提交 Frontdesk status
+        FD->>User: 最终报告
+    else replan_required
+        C->>P: 一份聚合 replan 输入；不按 child 重复 ask
+    else partial / blocked
+        C->>P: 记录已落地范围、剩余工作或阻塞证据
+        P->>FD: 需要时给出用户可见状态
+    end
+
+    opt 重启 / submit-persist-start 故障恢复
+        C->>C: 从 transaction journal、intent、job lineage、digest 与 revision 恢复
+        Note over C: 同 identity + digest 复用；冲突复用 fail closed；不从 provider prose 推断成功
+    end

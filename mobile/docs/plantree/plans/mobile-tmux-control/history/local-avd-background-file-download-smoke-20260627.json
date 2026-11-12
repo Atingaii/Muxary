@@ -1,0 +1,1109 @@
+{
+  "adb_reverse": {
+    "device_id": "emulator-5554",
+    "mapping": "tcp:19069 tcp:19069"
+  },
+  "adb_reverse_cleanup": {
+    "removed": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  "app_dirty": false,
+  "app_head": "f598ee5",
+  "claimed_device_id": "avd_20260626162153",
+  "cleanup": {
+    "gateway_returncode": -15,
+    "keep_running": false,
+    "kills": [
+      {
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626162153/test_ccb2_alpha",
+        "returncode": 0,
+        "stderr": "",
+        "summary": {
+          "forced": "true",
+          "kill_status": "ok",
+          "project_id": "58a8d58e9a66134d9fc1fe9823ce6458247f276e2c87503f177fb70806c86997",
+          "socket_path": "/run/user/1000/ccb-runtime/ccbd-58a8d58e9a66.sock",
+          "state": "unmounted"
+        }
+      },
+      {
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626162153/test_ccb2_beta",
+        "returncode": 0,
+        "stderr": "",
+        "summary": {
+          "forced": "true",
+          "kill_status": "ok",
+          "project_id": "23d31b16ddf88e9642aeab5a9ba535cb4bd2dc674a09ec3075e6a169937b866e",
+          "socket_path": "/run/user/1000/ccb-runtime/ccbd-23d31b16ddf8.sock",
+          "state": "unmounted"
+        }
+      }
+    ]
+  },
+  "device": {
+    "boot_completed": true,
+    "device_id": "emulator-5554",
+    "devices": [
+      "List of devices attached",
+      "emulator-5554          device product:sdk_gphone64_x86_64 model:sdk_gphone64_x86_64 device:emu64xa transport_id:4"
+    ]
+  },
+  "device_id": "emulator-5554",
+  "gateway": {
+    "gateway_url": "http://127.0.0.1:19069",
+    "listen": "127.0.0.1:19069",
+    "local_gateway_url": "http://127.0.0.1:19069",
+    "pairing_claim_endpoint": "http://127.0.0.1:19069/v1/pairing/claim",
+    "pairing_code_seen": true,
+    "project_id": "host-018b1fe7c0efa86e",
+    "project_root": "",
+    "requested_public_url": null,
+    "route_provider": "lan",
+    "stderr": ""
+  },
+  "gateway_listen": "127.0.0.1:19069",
+  "integration_smoke": {
+    "agent": "mobile_probe",
+    "app_data_clear_returncode": 1,
+    "artifact_file_name": "native-artifact-20260626162153-3775658.txt",
+    "artifact_file_size_bytes": 8388608,
+    "background_events": [
+      {
+        "marker": "CCB_BACKGROUND_FILE_DOWNLOAD_READY native-artifact-20260626162153-3775658.txt",
+        "returncode": 0,
+        "stderr_tail": [],
+        "stdout_tail": []
+      }
+    ],
+    "background_seconds": 10,
+    "download_hashes": [
+      {
+        "file_name": "native-artifact-20260626162153-3775658.txt",
+        "path": "/data/user/0/io.ccb.mobile.ccb_mobile/app_flutter/native-artifact-20260626162153-3775658.txt",
+        "sha256": "eecfa42d3fd9f01ff02adea842a88f5ffb7234bb72040a80df42aec56db7d3f2",
+        "size_bytes": 8388608
+      }
+    ],
+    "project_id": "58a8d58e9a66134d9fc1fe9823ce6458247f276e2c87503f177fb70806c86997",
+    "project_name": "test_ccb2_alpha",
+    "resume_events": [
+      {
+        "component": "io.ccb.mobile.ccb_mobile/.MainActivity",
+        "marker": "CCB_BACKGROUND_FILE_DOWNLOAD_READY native-artifact-20260626162153-3775658.txt",
+        "returncode": 0,
+        "stderr_tail": [
+          "Warning: Activity not started, its current task has been brought to the front"
+        ],
+        "stdout_tail": [
+          "Starting: Intent { cmp=io.ccb.mobile.ccb_mobile/.MainActivity }"
+        ]
+      }
+    ],
+    "returncode": 0,
+    "stdout_tail": [
+      "Resolving dependencies...",
+      "Downloading packages...",
+      "  _fe_analyzer_shared 99.0.0 (104.0.0 available)",
+      "  analyzer 12.1.0 (14.0.0 available)",
+      "  flutter_secure_storage_darwin 0.3.2 (0.4.0 available)",
+      "  flutter_secure_storage_windows 4.1.0 (4.2.2 available)",
+      "  matcher 0.12.19 (0.12.20 available)",
+      "  meta 1.18.0 (1.18.3 available)",
+      "  package_config 2.2.0 (3.0.0 available)",
+      "  path_provider_linux 2.2.1 (2.2.2 available)",
+      "  test 1.31.0 (1.31.1 available)",
+      "  test_api 0.7.11 (0.7.12 available)",
+      "  test_core 0.6.17 (0.6.18 available)",
+      "  vector_math 2.2.0 (2.4.0 available)",
+      "  win32 5.15.0 (6.3.0 available)",
+      "  xml 6.6.1 (7.0.1 available)",
+      "Got dependencies!",
+      "14 packages have newer versions incompatible with dependency constraints.",
+      "Try `flutter pub outdated` for more information.",
+      "00:00 +0: loading /home/bfly/yunwei/ccb_mobile/app/integration_test/server_wide_background_file_download_smoke_test.dart",
+      "Running Gradle task 'assembleDebug'...",
+      "WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): file_picker, mobile_scanner",
+      "Future versions of Flutter will fail to build if your app uses plugins that apply KGP.",
+      "",
+      "Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.",
+      "If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing",
+      "an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors",
+      "",
+      "If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors",
+      "Running Gradle task 'assembleDebug'...                             13.4s",
+      "\u2713 Built build/app/outputs/flutter-apk/app-debug.apk",
+      "Installing build/app/outputs/flutter-apk/app-debug.apk...          635ms",
+      "00:00 +0: artifact download survives Android background and resume",
+      "CCB_BACKGROUND_FILE_DOWNLOAD_READY native-artifact-20260626162153-3775658.txt",
+      "CCB_DOWNLOAD_SHA256 {\"file_name\":\"native-artifact-20260626162153-3775658.txt\",\"path\":\"/data/user/0/io.ccb.mobile.ccb_mobile/app_flutter/native-artifact-20260626162153-3775658.txt\",\"size_bytes\":8388608,\"sha256\":\"eecfa42d3fd9f01ff02adea842a88f5ffb7234bb72040a80df42aec56db7d3f2\"}",
+      "CCB_BACKGROUND_FILE_DOWNLOAD_DONE native-artifact-20260626162153-3775658.txt",
+      "00:18 +1: (tearDownAll)",
+      "00:18 +1: All tests passed!"
+    ]
+  },
+  "long_history_backfill": null,
+  "native_artifact": {
+    "image_file_id": "mobile-file-native-image-20260626162153-3775658",
+    "image_file_name": "native-image-20260626162153-3775658.png",
+    "image_sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378",
+    "image_size_bytes": 67,
+    "marker": "Native artifact bundle 20260626162153-3775658",
+    "text_file_id": "mobile-file-native-text-20260626162153-3775658",
+    "text_file_name": "native-artifact-20260626162153-3775658.txt",
+    "text_sha256": "eecfa42d3fd9f01ff02adea842a88f5ffb7234bb72040a80df42aec56db7d3f2",
+    "text_size_bytes": 8388608
+  },
+  "native_pane_evidence": {
+    "agent": "mobile_probe",
+    "artifact_file_name": "native-artifact-20260626162153-3775658.txt",
+    "artifact_file_size_bytes": 8388608,
+    "background_events": [
+      {
+        "marker": "CCB_BACKGROUND_FILE_DOWNLOAD_READY native-artifact-20260626162153-3775658.txt",
+        "returncode": 0,
+        "stderr_tail": [],
+        "stdout_tail": []
+      }
+    ],
+    "background_seconds": 10,
+    "download_hashes": [
+      {
+        "file_name": "native-artifact-20260626162153-3775658.txt",
+        "path": "/data/user/0/io.ccb.mobile.ccb_mobile/app_flutter/native-artifact-20260626162153-3775658.txt",
+        "sha256": "eecfa42d3fd9f01ff02adea842a88f5ffb7234bb72040a80df42aec56db7d3f2",
+        "size_bytes": 8388608
+      }
+    ],
+    "mode": "background_file_download",
+    "project_id": "58a8d58e9a66134d9fc1fe9823ce6458247f276e2c87503f177fb70806c86997",
+    "project_name": "test_ccb2_alpha",
+    "resume_events": [
+      {
+        "component": "io.ccb.mobile.ccb_mobile/.MainActivity",
+        "marker": "CCB_BACKGROUND_FILE_DOWNLOAD_READY native-artifact-20260626162153-3775658.txt",
+        "returncode": 0,
+        "stderr_tail": [
+          "Warning: Activity not started, its current task has been brought to the front"
+        ],
+        "stdout_tail": [
+          "Starting: Intent { cmp=io.ccb.mobile.ccb_mobile/.MainActivity }"
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "23d31b16ddf88e9642aeab5a9ba535cb4bd2dc674a09ec3075e6a169937b866e",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626162153/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "58a8d58e9a66134d9fc1fe9823ce6458247f276e2c87503f177fb70806c86997",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626162153/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "Liuhuaiyu",
+      "health": "healthy",
+      "id": "d71ce204e5054a8cf244a717999c4be729f09d3dc408d39916103a3fce96ea87",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/Liuhuaiyu"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb-mobile-emulator-ui-smoke-20260623123749",
+      "health": "healthy",
+      "id": "11e5d20bbdf7335a86e54488c081cb7edb860ab07e47bbede922e84468365e03",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623123749"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_mobile",
+      "health": "healthy",
+      "id": "1b12981c7405fedcdc19d0fb37da5025f6089e22312f261b26293db25a0a76aa",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_mobile"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u57fa\u672c\u95ee\u9898",
+      "health": "healthy",
+      "id": "6759b921654b26d55b40c7ca3d9e0b424368d5b0617cb290aa42c377c189ba28",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/\u57fa\u672c\u95ee\u9898"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "c70706f35eca40ed815ff53f8b3f1714eaf617ef5391fe6b20cea1f10a284d7d",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624122116/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "1bc236efde30d487295c9744c8986b4e47ed780c7b6ccc2aa935519a29a36105",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624122116/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb-mobile-emulator-ui-smoke-20260626025344",
+      "health": "healthy",
+      "id": "e38a41b270f2e087c78cfbb77d4a85449c411af5ba92351b97a071d99ee2a96c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260626025344"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb-mobile-manual-real-backend",
+      "health": "healthy",
+      "id": "30552c94b081ef8446c10ffb88241be378cfbca62730c1352ea985fad0826730",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-manual-real-backend"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "80bfb8dda1bddbe3811561c42420cc9ad915234bf7de51df7be3b99dd7c22551",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-manual-20260624152458/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "cda84574d2fe58d5bcf86b529ba7dd358713d5f2ffae059deae0f4f97f763f63",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-manual-20260624152458/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "system_optimal",
+      "health": "healthy",
+      "id": "a3872a3027328db9eddc13dccd94e8378f199ef852b8060967a6e9f10aaa760a",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/system_optimal"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_source",
+      "health": "healthy",
+      "id": "dc1e9324ab3fb8155100f3e002689f793cdad8df6e97370ea4f16054815d890c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_source"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "plan-tree",
+      "health": "healthy",
+      "id": "8a8dccfbbb0f2a32f7c4809bcbceddea2c15ad6b0c2e35e067ed14dd4ee5cafe",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/plan-tree"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "agent-roles-spec",
+      "health": "healthy",
+      "id": "9fd0d20038d0346c1835fa358d320dde16cc2b415579ea2f29af963f7a25d7f7",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/agent-roles-spec"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "architec",
+      "health": "healthy",
+      "id": "4dfe1cded48690eccd7a2e626d3ccf69e5312d339483852b883b528f74c1066c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/architec"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb-mobile-emulator-ui-smoke-20260626031359",
+      "health": "healthy",
+      "id": "b87fa4758090dc3dba1199d0a54afb40d07f68de52992cd6b50bb4834d547be9",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260626031359"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "a9e74f157b8e7b338c8d08a3f7fd5690c52a9721f7af02ad48028bc8f4993708",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-manual-20260625115506/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "callback-continuation-codex-claude",
+      "health": "healthy",
+      "id": "2448ec1a74ee5486fb8defd36f4579d8ed9509df7b4bf1a940ff35b175941602",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/callback-continuation-codex-claude"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "61123cfc88105e5eaeef5bd50a984326f30e86b35009ee7552a05ba86ce1067b",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-manual-20260625115506/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "e75724f275177f7a6eb5e1ec213b5d0e1266b8d18514cefece9d3b8dfc630baf",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-manual-20260625115912/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "37d7a5d1d3ebd415dbddd4681df095c944711934b0bf66e73744420bc3c73b70",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-manual-20260625115912/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb-mobile-emulator-ui-smoke-20260623114526",
+      "health": "healthy",
+      "id": "10f61c9572fea0ec399680df7ae3287fd26709bd0a928acfd04109420d16fea2",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623114526"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "DeePoly_git",
+      "health": "healthy",
+      "id": "bf729d5621393d89991f5923b4d1770e8b9808411c9ac522d6df755db826e03c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/computeforcfd/\u6df7\u5408\u7f51\u7edc/DeePoly_git"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "924b6e7eb3fe8c54c3cda3b0a7b7ab0d6c5a7a2fbf6823d8750f4becfbee1e7b",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260625013036/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "ff42fac7f1e4108152344d499fd14d4c7a685ee5da3c22b124adce0806365a02",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260625013036/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "8614e6a46501cd6f5cfb1fc11fed31717ca0a5289a8a7c91eb8632615eb184ed",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-20260624112607/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "33989eca04eca16d61e4ea3101beb3a2399feb1b13de628fc22fad761543bf03",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-20260624112607/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "2892857ad38f766096368cea104fb6cf1e699edc5ac5c3c62dcf787e63b4bf47",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-manual-20260625230137/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "cb99e5c42eb2fa51982626b9d01dd277332900e3f1d092246378d54451fce750",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-manual-20260625230137/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "f3e9bcfc39446cc84667eaf4bae1a2d05c08f28dc60ea1e5e96edcf1de024757",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-manual-20260625231010/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "c451b7311727d3220d6f2e6b4d98da1fdb4d7b13f2e45bcd74769a89fd05fc87",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-manual-20260625231010/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb-mobile-emulator-ui-smoke-20260626020730",
+      "health": "healthy",
+      "id": "18a277ed018117c64da76a7bb9953c64f7be64d96cadba378c659c19318b8688",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260626020730"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "eos_multimat",
+      "health": "healthy",
+      "id": "8749098108301cdc76a1ff1bf22da4af6639ab3020f2ea9a91553d7e25d8f761",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/ML/eos_multimat"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "repo-subprocess",
+      "health": "healthy",
+      "id": "ceda111c88a1f232f8cd781d9a43fc03430bc0c9de1ee67b76196c897e8882f5",
+      "mount_state": "mounted",
+      "root": "/tmp/pytest-of-bfly/pytest-3459/test_phase2_reports_subprocess0/repo-subprocess"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_visual",
+      "health": "healthy",
+      "id": "d3b67a788dd31349098908ddf81440f323afdd0d25c9a02c50e7f7f4ad276bae",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_visual"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "ffa339b6c9c719eef789e3f817a375fb9fb8bfe15b19df1e047e39091b45b1a2",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-perf-20260626150307/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "5762da4c643c512c59eaf84d11f1e96d8a624fa808474ba212c1d0ba603999c1",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-perf-20260626150307/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u4f1a\u8bae\u6574\u7406",
+      "health": "healthy",
+      "id": "cf4e533b622589b1499f46bfe16e6d10ebe4f15025d6d677f503fb7672c2650c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/\u4f1a\u8bae\u6574\u7406"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u670d\u52a1\u5668",
+      "health": "healthy",
+      "id": "3b5430a43921eb5c90cfe36cfed6b148eb36198806c600eceb9bc7e7b5932b23",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/\u5de5\u4f5c\u5ba4/\u670d\u52a1\u5668"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb-mobile-emulator-ui-smoke-20260623135358",
+      "health": "healthy",
+      "id": "a10d221cebe4d2ab9d80f149295198731735e8cc21ecbe26be0e0f3ab02b06ca",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623135358"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "d638f17f97c6f3c732c495ea2b5169db8b351bea399edacef8493c3796f28fef",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626085413/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "0c324f769d908bacde798a219d739e47d1a140601d2d93d660ac7c78b09f341d",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626085413/test_ccb2_beta"
+    }
+  ],
+  "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626162153",
+  "source_ccb": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb",
+  "source_dirty": false,
+  "source_head": "7fece763",
+  "started_projects": [
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626162153/test_ccb2_alpha",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626162153/test_ccb2_alpha",
+        "project_id": "58a8d58e9a66134d9fc1fe9823ce6458247f276e2c87503f177fb70806c86997",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-58a8d58e9a66.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-58a8d58e9a66.sock owned=%1,%2,%3 active=%1,%2,%3 orphaned=- killed=-"
+      }
+    },
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626162153/test_ccb2_beta",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626162153/test_ccb2_beta",
+        "project_id": "23d31b16ddf88e9642aeab5a9ba535cb4bd2dc674a09ec3075e6a169937b866e",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-23d31b16ddf8.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-23d31b16ddf8.sock owned=%1,%2,%3 active=%1,%2,%3 orphaned=- killed=-"
+      }
+    }
+  ],
+  "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260626162153",
+  "status": "ok"
+}

@@ -1,0 +1,13 @@
+# Copy this file to app/android/release-signing.properties for local release builds.
+# Do not commit release-signing.properties or the keystore file.
+#
+# Environment variable equivalents:
+# - CCB_MOBILE_RELEASE_STORE_FILE
+# - CCB_MOBILE_RELEASE_STORE_PASSWORD
+# - CCB_MOBILE_RELEASE_KEY_ALIAS
+# - CCB_MOBILE_RELEASE_KEY_PASSWORD
+
+storeFile=/absolute/path/to/ccb-mobile-release.jks
+storePassword=replace-with-local-secret
+keyAlias=ccb-mobile-release
+keyPassword=replace-with-local-secret

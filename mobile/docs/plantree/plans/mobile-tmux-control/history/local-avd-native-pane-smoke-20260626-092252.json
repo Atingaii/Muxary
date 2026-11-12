@@ -1,0 +1,65 @@
+{
+  "date": "2026-06-26",
+  "status": "ok",
+  "scope": "casebook C3.1 phone send is pane input and C3.2 provider reply round trip",
+  "raw_log": "/tmp/ccb-mobile-native-pane-smoke-20260626092300.log",
+  "environment": {
+    "app_commit": "e00d5e4",
+    "app_dirty": "",
+    "source_root": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "source_commit": "6042b813",
+    "device_id": "emulator-5554",
+    "gateway_url": "http://127.0.0.1:19023",
+    "adb_reverse": "tcp:19023 tcp:19023",
+    "provider": "codex",
+    "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626092252",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260626092252"
+  },
+  "projects": {
+    "alpha": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626092252/test_ccb2_alpha",
+      "id": "9a709078e2d02198b5f5a62ce20020ebe8afe02172d202d4cc7b8db049816a64"
+    },
+    "beta": {
+      "name": "test_ccb2_beta",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626092252/test_ccb2_beta",
+      "id": "ebb4e160fa0794dce582e4655fbf40b18197fa2403d93e16c5cb1b91b647bfb1"
+    }
+  },
+  "integration_smoke": {
+    "test": "app/integration_test/native_pane_gateway_smoke_test.dart",
+    "returncode": 0,
+    "stdout_tail": [
+      "00:00 +0: paired mobile chat sends native pane input",
+      "00:10 +1: (tearDownAll)",
+      "00:11 +1: All tests passed!"
+    ],
+    "stderr_tail": [
+      "Kotlin Gradle Plugin warning for file_picker and mobile_scanner remains non-blocking for this smoke."
+    ]
+  },
+  "native_pane_evidence": {
+    "agent": "mobile_probe",
+    "prompt": "Please reply with exactly CCB_MOBILE_NATIVE_OK_20260626092252 and no other text.",
+    "expected_reply": "CCB_MOBILE_NATIVE_OK_20260626092252",
+    "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626092252/test_ccb2_alpha",
+    "codex_event_files": [
+      "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626092252/test_ccb2_alpha/.ccb/agents/mobile_probe/provider-state/codex/home/sessions/2026/06/26/rollout-2026-06-26T17-23-00-019f033d-59e6-74b0-a0ce-38ca7999573c.jsonl"
+    ],
+    "user_match_count": 1,
+    "reply_match_count": 1,
+    "jobs_matches": [],
+    "prompt_contains_ccb_req_id": false,
+    "prompt_contains_mobile_gateway": false
+  },
+  "cleanup": {
+    "adb_reverse_removed": true,
+    "gateway_returncode": -15,
+    "projects_unmounted": true
+  },
+  "limitations": [
+    "This smoke covers one real provider agent in alpha. It does not yet cover two agents, desktop-origin sync, older-history pagination, file/image transfer, backend artifact download, disconnect/recovery, or soak.",
+    "The run installs and drives the app through Flutter integration test; it is stronger than fake/widget evidence but still narrower than the full casebook matrix."
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "fixture_root": "/tmp/ccb-phase6-jsonl-store-92bkpxrz",
+  "generated_at": "2026-06-15T13:30:36.870575+00:00",
+  "helper_bin": "/home/bfly/yunwei/ccb_source/tools/ccb-rs-helper/target/release/ccb-rs-helper",
+  "helper_build": {
+    "elapsed_ms": 62.224,
+    "status": "built"
+  },
+  "helper_used": true,
+  "integration_gate": {
+    "default_enabled": false,
+    "meets_1_5x_speedup": false,
+    "meets_20pct_p95_reduction": false,
+    "production_path_wired": true,
+    "python_fallback_removed_when_required": true
+  },
+  "metrics": {
+    "python_jobstore_batch_tail": {
+      "agent_count": 10,
+      "iterations": 10,
+      "job_count": 1280,
+      "max_ms": 18.955,
+      "min_ms": 11.553,
+      "p50_ms": 12.653,
+      "p95_ms": 18.955,
+      "status": "measured"
+    },
+    "rust_helper_jobstore_batch_tail": {
+      "agent_count": 10,
+      "iterations": 10,
+      "job_count": 1280,
+      "max_ms": 52.964,
+      "min_ms": 26.431,
+      "p50_ms": 34.693,
+      "p95_ms": 52.964,
+      "status": "measured"
+    }
+  },
+  "p95_reduction": -1.7941967818517544,
+  "parameters": {
+    "agents": 10,
+    "iterations": 10,
+    "rows_per_agent": 2000,
+    "tail": 128
+  },
+  "parity": {
+    "matches_python": true,
+    "reason": "matched"
+  },
+  "phase": "phase6_jsonl_store_strict_helper",
+  "plan": "python-rust-hybrid-performance",
+  "platform": {
+    "machine": "x86_64",
+    "release": "6.8.0-90-generic",
+    "system": "Linux"
+  },
+  "python": {
+    "executable": "/home/bfly/anaconda3/bin/python",
+    "version": "3.11.4"
+  },
+  "repo_root": "/home/bfly/yunwei/ccb_source",
+  "result_path": "/home/bfly/yunwei/ccb_source/dev_tools/perf_results/python_rust_phase6_jsonl_store_strict_helper.json",
+  "schema_version": 1,
+  "speedup_p50": 0.3647133427492578
+}

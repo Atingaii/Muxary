@@ -1,0 +1,139 @@
+{
+  "app_commit": "b132f37",
+  "budgeted_steps": [
+    "agent_reply_marker",
+    "backend_artifact_route",
+    "file_download_route",
+    "file_upload_route",
+    "message_submit",
+    "pairing_claim",
+    "project_view"
+  ],
+  "generated_at": "2026-06-23T15:34:19.288485Z",
+  "min_runs": 5,
+  "raw_run_dir": "/tmp/ccb-mobile-local-backend-latency-runs",
+  "run_count": 5,
+  "run_statuses": [
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok"
+  ],
+  "schema_version": 1,
+  "source_commit": "50bf589f",
+  "status": "ok",
+  "steps": {
+    "agent_reply_marker": {
+      "budget_status": "pass",
+      "hard_cap_ms": 15000.0,
+      "max_ms": 1515.304,
+      "p50_ms": 1513.836,
+      "p50_target_ms": 3000.0,
+      "p95_ms": 1515.126,
+      "pass_samples": 5,
+      "samples": 5,
+      "statuses": {
+        "pass": 5
+      }
+    },
+    "backend_artifact_route": {
+      "budget_status": "pass",
+      "hard_cap_ms": 8000.0,
+      "max_ms": 1523.959,
+      "p50_ms": 1520.988,
+      "p50_target_ms": 2000.0,
+      "p95_ms": 1523.777,
+      "pass_samples": 5,
+      "samples": 5,
+      "statuses": {
+        "pass": 5
+      }
+    },
+    "file_download_route": {
+      "budget_status": "pass",
+      "hard_cap_ms": 8000.0,
+      "max_ms": 1.006,
+      "p50_ms": 0.915,
+      "p50_target_ms": 2000.0,
+      "p95_ms": 0.994,
+      "pass_samples": 5,
+      "samples": 5,
+      "statuses": {
+        "pass": 5
+      }
+    },
+    "file_upload_route": {
+      "budget_status": "pass",
+      "hard_cap_ms": 8000.0,
+      "max_ms": 1.871,
+      "p50_ms": 1.638,
+      "p50_target_ms": 2000.0,
+      "p95_ms": 1.843,
+      "pass_samples": 5,
+      "samples": 5,
+      "statuses": {
+        "pass": 5
+      }
+    },
+    "health": {
+      "max_ms": 4.196,
+      "p50_ms": 3.959,
+      "p95_ms": 4.152,
+      "pass_samples": 5,
+      "samples": 5,
+      "statuses": {
+        "pass": 5
+      }
+    },
+    "message_submit": {
+      "budget_status": "pass",
+      "hard_cap_ms": 5000.0,
+      "max_ms": 3.195,
+      "p50_ms": 2.809,
+      "p50_target_ms": 1000.0,
+      "p95_ms": 3.189,
+      "pass_samples": 5,
+      "samples": 5,
+      "statuses": {
+        "pass": 5
+      }
+    },
+    "pairing_claim": {
+      "budget_status": "pass",
+      "hard_cap_ms": 5000.0,
+      "max_ms": 1.292,
+      "p50_ms": 1.215,
+      "p50_target_ms": 1500.0,
+      "p95_ms": 1.281,
+      "pass_samples": 5,
+      "samples": 5,
+      "statuses": {
+        "pass": 5
+      }
+    },
+    "project_view": {
+      "budget_status": "pass",
+      "hard_cap_ms": 2000.0,
+      "max_ms": 10.121,
+      "p50_ms": 9.061,
+      "p50_target_ms": 500.0,
+      "p95_ms": 10.058,
+      "pass_samples": 5,
+      "samples": 5,
+      "statuses": {
+        "pass": 5
+      }
+    },
+    "revoke_fail_closed": {
+      "max_ms": 4.644,
+      "p50_ms": 4.35,
+      "p95_ms": 4.594,
+      "pass_samples": 5,
+      "samples": 5,
+      "statuses": {
+        "pass": 5
+      }
+    }
+  }
+}

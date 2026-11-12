@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350" role="img" aria-labelledby="title desc">
+  <title id="title">CCB Agentic Loop Workflow</title>
+  <desc id="desc">深色 16:9 CCB 工作流架构图。图面前台只保留 Frontdesk 和按需 Task Detailer；后台依次展示 Planner、Orchestrator，以及可并行打开的一到四个 Worker 加 Reviewer 工作组、Git 根验证和 Round Reviewer。Orchestrator 的 direct execution semantic bundle 先进入程序控制脊柱，再经校验、绑定和就绪检查物理派发到工作组。needs detail 以短虚线激活 Detailer，Detailer 的 local ready 回 Orchestrator、macro 回 Planner。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A1116"/>
+      <stop offset="0.55" stop-color="#0D171E"/>
+      <stop offset="1" stop-color="#14212B"/>
+    </linearGradient>
+    <linearGradient id="spine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F5CB78"/>
+      <stop offset="0.5" stop-color="#D99A2B"/>
+      <stop offset="1" stop-color="#A85422"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5F8ED7" stop-opacity="0"/>
+      <stop offset="0.45" stop-color="#6BA4FF"/>
+      <stop offset="1" stop-color="#84D7C4" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="semanticToProgram" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#79ACFF"/>
+      <stop offset="1" stop-color="#D99A2B"/>
+    </linearGradient>
+    <linearGradient id="programToWork" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#D99A2B"/>
+      <stop offset="1" stop-color="#79D7BF"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000000" flood-opacity="0.24"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="14" markerHeight="10" refX="12" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,5 L0,10 Z" fill="#79ACFF"/>
+    </marker>
+    <marker id="arrowMint" markerWidth="14" markerHeight="10" refX="12" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,5 L0,10 Z" fill="#79D7BF"/>
+    </marker>
+    <marker id="arrowAmber" markerWidth="14" markerHeight="10" refX="12" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,5 L0,10 Z" fill="#D7A64C"/>
+    </marker>
+    <style>
+      text { font-family: "Noto Sans CJK SC", "Microsoft YaHei", "WenQuanYi Zen Hei", sans-serif; }
+      .eyebrow { font-size: 23px; font-weight: 700; letter-spacing: 4px; fill: #83B2FF; }
+      .title { font-size: 76px; font-weight: 800; letter-spacing: -1px; fill: #F4F7FB; }
+      .subtitle { font-size: 35px; font-weight: 500; fill: #C8D4DE; }
+      .left-lead { font-size: 47px; font-weight: 750; fill: #F4F7FB; }
+      .left-body { font-size: 26px; font-weight: 400; fill: #A9BBC8; }
+      .micro { font-size: 20px; font-weight: 650; letter-spacing: 1.5px; fill: #8FA4B5; }
+      .pill { font-size: 25px; font-weight: 700; fill: #DCE8F2; }
+      .layer-kicker { font-size: 20px; font-weight: 800; letter-spacing: 2px; fill: #8BA9C5; }
+      .layer-title { font-size: 24px; font-weight: 800; letter-spacing: 0.4px; fill: #EAF0F7; }
+      .card-title { font-size: 29px; font-weight: 800; fill: #F0F5FB; }
+      .card-en { font-size: 19px; font-weight: 700; letter-spacing: 1.5px; fill: #86B6FF; }
+      .card-body { font-size: 21px; font-weight: 450; fill: #B5C4D0; }
+      .flow-label { font-size: 18px; font-weight: 800; fill: #B9D4FF; }
+      .semantic-label { font-size: 18px; font-weight: 800; fill: #C5D5FA; }
+      .dispatch-label { font-size: 18px; font-weight: 800; fill: #A9E5D5; }
+      .workgroup-mini { font-size: 17px; font-weight: 800; fill: #D8F6EC; }
+      .spine-title { font-size: 17px; font-weight: 800; letter-spacing: 1.2px; fill: #FFF3D7; }
+      .spine-body { font-size: 16px; font-weight: 650; fill: #FFF1D3; }
+      .foot-strong { font-size: 29px; font-weight: 800; fill: #EAF5F0; }
+      .foot { font-size: 21px; font-weight: 550; fill: #9AB4BF; }
+      .status { font-size: 20px; font-weight: 800; letter-spacing: 1.4px; fill: #F5C56F; }
+    </style>
+  </defs>
+
+  <rect width="2400" height="1350" fill="url(#bg)"/>
+  <path d="M-80 1080 C400 820, 690 1300, 1220 1060 S2020 730, 2510 950" fill="none" stroke="#25414D" stroke-width="2" opacity="0.55"/>
+  <path d="M-20 1134 C470 860, 720 1350, 1310 1105 S2090 770, 2440 1030" fill="none" stroke="#1D333D" stroke-width="2" opacity="0.65"/>
+  <circle cx="2160" cy="156" r="230" fill="#315878" opacity="0.11"/>
+  <circle cx="2082" cy="86" r="125" fill="#D29F4B" opacity="0.08"/>
+
+  <g transform="translate(120 113)">
+    <text class="eyebrow">CCB / ARCHITECTURE BRIEF</text>
+    <text y="82" class="title">CCB Agentic Loop Workflow</text>
+    <text y="137" class="subtitle">让角色专注语义，让程序守住权威</text>
+  </g>
+  <line x1="120" y1="300" x2="2280" y2="300" stroke="#365363" stroke-width="2"/>
+
+  <!-- Left narrative panel -->
+  <g filter="url(#softShadow)">
+    <rect x="120" y="362" width="594" height="717" rx="30" fill="#101D25" stroke="#2B4655" stroke-width="2"/>
+    <rect x="120" y="362" width="8" height="717" rx="4" fill="#78A8FF"/>
+  </g>
+  <text x="166" y="435" class="micro">ONE VISIBLE, AUDITABLE LOOP</text>
+  <text x="166" y="510" class="left-lead">语义归角色</text>
+  <text x="166" y="570" class="left-lead">权威归程序</text>
+  <text x="166" y="637" class="left-body">图面前台只保留 Frontdesk 与 Detailer，</text>
+  <text x="166" y="677" class="left-body">后台承担计划、编排与多工作组验证。</text>
+  <text x="166" y="733" class="left-body">控制器校验并持久化：状态、拓扑、集成、</text>
+  <text x="166" y="773" class="left-body">恢复与交付都可回看、可复核。</text>
+
+  <g transform="translate(166 846)">
+    <rect width="141" height="54" rx="27" fill="#16374A" stroke="#3E78A4"/>
+    <text x="32" y="35" class="pill">可见</text>
+    <rect x="157" width="141" height="54" rx="27" fill="#173C37" stroke="#438B79"/>
+    <text x="189" y="35" class="pill">可审查</text>
+    <rect x="314" width="141" height="54" rx="27" fill="#3B2E1B" stroke="#A06E29"/>
+    <text x="346" y="35" class="pill">可恢复</text>
+  </g>
+  <line x1="166" y1="952" x2="665" y2="952" stroke="#38515F" stroke-width="2"/>
+  <text x="166" y="1002" class="status">当前验收中  ·  G6C / P5 DIRECT ACCEPTANCE</text>
+  <text x="166" y="1040" class="foot">不是 production-ready、发布或默认启用的声明</text>
+
+  <!-- Right architecture canvas -->
+  <rect x="762" y="362" width="1518" height="717" rx="30" fill="#0C181F" stroke="#2A4654" stroke-width="2"/>
+
+  <!-- Layer rails -->
+  <g opacity="0.95">
+    <rect x="802" y="402" width="1152" height="174" rx="22" fill="#102534" stroke="#315A70"/>
+    <rect x="802" y="604" width="1152" height="174" rx="22" fill="#122936" stroke="#3A6574"/>
+    <rect x="802" y="806" width="1152" height="226" rx="22" fill="#102B29" stroke="#347369"/>
+  </g>
+  <text x="835" y="438" class="layer-kicker">01 / 前台交互层</text>
+  <text x="835" y="472" class="layer-title">FRONT STAGE</text>
+  <text x="835" y="640" class="layer-kicker">02 / 后台计划与编排</text>
+  <text x="835" y="674" class="layer-title">BACKEND PLAN</text>
+  <text x="835" y="842" class="layer-kicker">03 / 后台多工作组</text>
+  <text x="835" y="876" class="layer-title">PARALLEL WORK</text>
+
+  <!-- Mainline and conditional triage loops: Frontdesk -> Planner -> Orchestrator -->
+  <path d="M1170 544 C1170 578 1180 606 1180 634" fill="none" stroke="#79ACFF" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <path d="M1310 690 H1340" stroke="#79ACFF" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <path d="M1760 690 C1840 690 1910 652 1992 652" fill="none" stroke="url(#semanticToProgram)" stroke-width="3" marker-end="url(#arrowAmber)"/>
+  <text x="1778" y="660" class="semantic-label">direct_execution</text>
+  <text x="1778" y="682" class="semantic-label">semantic bundle</text>
+  <!-- Conditional Detailer loop: needs_detail to Detailer, then local ready to Orchestrator -->
+  <path d="M1700 648 C1785 615 1782 550 1720 506" fill="none" stroke="#79ACFF" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arrowBlue)"/>
+  <text x="1762" y="586" class="flow-label">needs_detail</text>
+  <path d="M1400 544 C1350 580 1352 617 1420 648" fill="none" stroke="#79D7BF" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arrowMint)"/>
+  <text x="1320" y="590" class="flow-label">local ready</text>
+  <!-- Conditional Detailer macro return to Planner -->
+  <path d="M1320 510 C1280 545 1260 600 1290 664" fill="none" stroke="#D7A64C" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arrowAmber)"/>
+  <text x="1320" y="564" class="flow-label" fill="#F1C36B">macro</text>
+
+  <!-- Role cards row 1 -->
+  <g filter="url(#softShadow)">
+    <rect x="1050" y="432" width="240" height="112" rx="18" fill="#173047" stroke="#5E91CD" stroke-width="2"/>
+    <rect x="1320" y="432" width="400" height="112" rx="18" fill="#173047" stroke="#5E91CD" stroke-width="2"/>
+  </g>
+  <text x="1072" y="466" class="card-en">FRONTDESK</text>
+  <text x="1072" y="502" class="card-title">用户入口</text>
+  <text x="1072" y="528" class="card-body">澄清转达 · 最终报告</text>
+  <text x="1343" y="466" class="card-en">TASK DETAILER</text>
+  <text x="1343" y="502" class="card-title">局部细化</text>
+  <text x="1343" y="528" class="card-body">仅由 needs_detail 按需激活</text>
+
+  <!-- Role cards row 2 -->
+  <g filter="url(#softShadow)">
+    <rect x="1050" y="634" width="260" height="112" rx="18" fill="#183346" stroke="#5B92A9" stroke-width="2"/>
+    <rect x="1340" y="634" width="420" height="112" rx="18" fill="#183346" stroke="#5B92A9" stroke-width="2"/>
+  </g>
+  <text x="1072" y="668" class="card-en">PLANNER</text>
+  <text x="1072" y="704" class="card-title">全局计划</text>
+  <text x="1072" y="730" class="card-body">Brief · Roadmap</text>
+  <text x="1363" y="668" class="card-en">ORCHESTRATOR</text>
+  <text x="1363" y="704" class="card-title">语义 bundle / triage</text>
+  <text x="1363" y="730" class="card-body">依赖 · logical roles · workgroups</text>
+
+  <!-- Role cards row 3 -->
+  <g filter="url(#softShadow)">
+    <rect x="1010" y="882" width="430" height="144" rx="18" fill="#123A37" stroke="#4B9C8B" stroke-width="2"/>
+    <rect x="1470" y="882" width="230" height="144" rx="18" fill="#123A37" stroke="#4B9C8B" stroke-width="2"/>
+    <rect x="1730" y="882" width="205" height="144" rx="18" fill="#123A37" stroke="#4B9C8B" stroke-width="2"/>
+  </g>
+  <text x="1034" y="918" class="card-en">PARALLEL WORKGROUPS ×1–4</text>
+  <text x="1034" y="944" class="card-body">每组 Worker + 指定 Reviewer</text>
+  <rect x="1028" y="958" width="88" height="48" rx="10" fill="#185047" stroke="#5DB59E"/>
+  <rect x="1126" y="958" width="88" height="48" rx="10" fill="#185047" stroke="#5DB59E"/>
+  <rect x="1224" y="958" width="88" height="48" rx="10" fill="#185047" stroke="#5DB59E"/>
+  <rect x="1322" y="958" width="88" height="48" rx="10" fill="#185047" stroke="#5DB59E"/>
+  <text x="1042" y="989" class="workgroup-mini">W1 + R1</text>
+  <text x="1140" y="989" class="workgroup-mini">W2 + R2</text>
+  <text x="1238" y="989" class="workgroup-mini">W3 + R3</text>
+  <text x="1336" y="989" class="workgroup-mini">W4 + R4</text>
+  <text x="1492" y="920" class="card-en">GIT + ROOT</text>
+  <text x="1492" y="958" class="card-title">集成 / 根验证</text>
+  <text x="1492" y="990" class="card-body">隔离 worktree</text>
+  <text x="1752" y="920" class="card-en">ROUND REVIEWER</text>
+  <text x="1752" y="958" class="card-title">轮次 gate</text>
+  <text x="1752" y="990" class="card-body">独立 round gate</text>
+
+  <path d="M1440 954 H1470" stroke="#79D7BF" stroke-width="3" marker-end="url(#arrowMint)"/>
+  <path d="M1700 954 H1730" stroke="#79D7BF" stroke-width="3" marker-end="url(#arrowMint)"/>
+
+  <!-- Control spine -->
+  <g filter="url(#glow)">
+    <rect x="1970" y="402" width="310" height="630" rx="28" fill="#4F3210" opacity="0.82" stroke="#DDA145" stroke-width="2"/>
+    <rect x="2208" y="474" width="14" height="470" rx="7" fill="url(#spine)"/>
+  </g>
+  <text x="1995" y="434" class="spine-title">CONTROL SPINE</text>
+  <text x="1995" y="456" class="spine-title">程序控制脊柱（程序，不是角色）</text>
+
+  <g>
+    <rect x="1992" y="482" width="184" height="64" rx="12" fill="#684817"/><circle cx="2215" cy="514" r="26" fill="#F5CB78"/><text x="2008" y="507" class="spine-body">受限协作</text><text x="2008" y="529" class="spine-body">silent / chain</text>
+    <rect x="1992" y="620" width="184" height="64" rx="12" fill="#684817"/><circle cx="2215" cy="652" r="26" fill="#F0B952"/><text x="2008" y="645" class="spine-body">Loop Runner</text><text x="2008" y="667" class="spine-body">Controller</text>
+    <rect x="1992" y="758" width="184" height="64" rx="12" fill="#684817"/><circle cx="2215" cy="790" r="26" fill="#E6A23C"/><text x="2008" y="783" class="spine-body">PlanTask</text><text x="2008" y="805" class="spine-body">Task-Set Authority</text>
+    <rect x="1992" y="896" width="184" height="64" rx="12" fill="#684817"/><circle cx="2215" cy="928" r="26" fill="#D9882E"/><text x="2008" y="921" class="spine-body">Topology</text><text x="2008" y="943" class="spine-body">Lifecycle / release</text>
+  </g>
+  <path d="M1954 514 H1992" stroke="#D99A2B" stroke-width="2" stroke-dasharray="5 7"/>
+  <path d="M1954 652 H1992" stroke="#D99A2B" stroke-width="2" stroke-dasharray="5 7"/>
+  <path d="M1954 790 H1992" stroke="#D99A2B" stroke-width="2" stroke-dasharray="5 7"/>
+  <path d="M1954 928 H1992" stroke="#D99A2B" stroke-width="2" stroke-dasharray="5 7"/>
+  <path d="M1992 928 C1910 850 1570 850 1246 882" fill="none" stroke="url(#programToWork)" stroke-width="3" marker-end="url(#arrowMint)"/>
+  <text x="1570" y="840" class="dispatch-label">validated · bound · ready</text>
+
+  <!-- Closure loop -->
+  <g transform="translate(790 1116)">
+    <rect width="1490" height="90" rx="20" fill="#0E2227" stroke="#326461" stroke-width="2"/>
+    <path d="M44 45 H115" stroke="url(#line)" stroke-width="3" marker-end="url(#arrowMint)"/>
+    <text x="145" y="36" class="foot-strong">child outcome aggregate</text>
+    <text x="145" y="65" class="foot">程序聚合稳定 child outcome</text>
+    <path d="M570 45 H642" stroke="url(#line)" stroke-width="3" marker-end="url(#arrowMint)"/>
+    <text x="674" y="36" class="foot-strong">Planner backfill</text>
+    <text x="674" y="65" class="foot">revision-fenced Brief / Roadmap / TODO</text>
+    <path d="M1110 45 H1182" stroke="url(#line)" stroke-width="3" marker-end="url(#arrowMint)"/>
+    <text x="1210" y="36" class="foot-strong">Frontdesk status</text>
+    <text x="1210" y="65" class="foot">向用户报告已导入的权威结果</text>
+  </g>
+
+  <g transform="translate(120 1250)">
+    <circle cx="9" cy="-7" r="7" fill="#79ACFF"/>
+    <text x="28" y="0" class="foot">角色产出语义</text>
+    <circle cx="260" cy="-7" r="7" fill="#D99A2B"/>
+    <text x="279" y="0" class="foot">程序验证并提交权威</text>
+    <circle cx="610" cy="-7" r="7" fill="#79D7BF"/>
+    <text x="629" y="0" class="foot">证据驱动的闭环与交付</text>
+    <text x="2160" y="0" text-anchor="end" class="micro">CCB AGENTIC LOOP / ARCHITECTURE MATERIAL</text>
+  </g>
+</svg>

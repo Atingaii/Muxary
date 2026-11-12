@@ -1,0 +1,74 @@
+{
+  "name": "@atingaii/muxary",
+  "version": "0.1.0",
+  "description": "Muxary local web workbench",
+  "license": "AGPL-3.0-only",
+  "homepage": "https://github.com/Atingaii/Muxary#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atingaii/Muxary.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Atingaii/Muxary/issues"
+  },
+  "keywords": [
+    "muxary",
+    "ccb",
+    "multi-agent",
+    "codex",
+    "claude",
+    "gemini",
+    "grok",
+    "kimi",
+    "deepseek",
+    "mimo",
+    "qwen",
+    "cursor",
+    "copilot",
+    "crush",
+    "kiro",
+    "pi",
+    "zai",
+    "opencode",
+    "tmux",
+    "cli"
+  ],
+  "bin": {
+    "muxary": "bin/muxary.js",
+    "ccb": "bin/ccb.js",
+    "ask": "bin/ask.js",
+    "autonew": "bin/autonew.js",
+    "ctx-transfer": "bin/ctx-transfer.js"
+  },
+  "files": [
+    "bin/muxary.js",
+    "bin/ccb.js",
+    "bin/ask.js",
+    "bin/autonew.js",
+    "bin/ctx-transfer.js",
+    "bin/ccb-npm-install.js",
+    "bin/ccb-npm-runner.js",
+    "README.md",
+    "README/*.md",
+    "LICENSE",
+    "VERSION"
+  ],
+  "scripts": {
+    "postinstall": "node bin/ccb-npm-install.js",
+    "pack:check": "npm pack --dry-run"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "os": [
+    "linux",
+    "darwin"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

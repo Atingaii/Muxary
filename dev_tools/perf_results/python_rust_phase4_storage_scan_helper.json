@@ -1,0 +1,60 @@
+{
+  "fixture_root": "/tmp/ccb-phase4-storage-rbyqc6o5",
+  "generated_at": "2026-06-15T15:09:41.193032+00:00",
+  "helper_bin": "tools/ccb-rs-helper/target/release/ccb-rs-helper",
+  "helper_build": {
+    "status": "skipped"
+  },
+  "helper_used": true,
+  "integration_gate": {
+    "default_enabled": true,
+    "meets_1_5x_speedup": true,
+    "production_path_wired": true
+  },
+  "metrics": {
+    "python_storage_summary": {
+      "iterations": 6,
+      "max_ms": 17.182,
+      "min_ms": 12.489,
+      "p50_ms": 13.309,
+      "p95_ms": 17.182,
+      "status": "measured",
+      "total_bytes": 27736,
+      "total_count": 451
+    },
+    "rust_helper_storage_summary": {
+      "iterations": 6,
+      "max_ms": 11.209,
+      "min_ms": 7.083,
+      "p50_ms": 8.649,
+      "p95_ms": 11.209,
+      "status": "measured",
+      "total_bytes": 27736,
+      "total_count": 451
+    }
+  },
+  "parameters": {
+    "agents": 12,
+    "files": 400,
+    "iterations": 6
+  },
+  "parity": {
+    "matches_python": true,
+    "reason": "matched"
+  },
+  "phase": "phase4_storage_scan_helper",
+  "plan": "python-rust-hybrid-performance",
+  "platform": {
+    "machine": "x86_64",
+    "release": "6.8.0-90-generic",
+    "system": "Linux"
+  },
+  "python": {
+    "executable": "/home/bfly/anaconda3/bin/python",
+    "version": "3.11.4"
+  },
+  "repo_root": "/home/bfly/yunwei/ccb_source",
+  "result_path": "/home/bfly/yunwei/ccb_source/dev_tools/perf_results/python_rust_phase4_storage_scan_helper.json",
+  "schema_version": 1,
+  "speedup_p50": 1.5387906116314025
+}

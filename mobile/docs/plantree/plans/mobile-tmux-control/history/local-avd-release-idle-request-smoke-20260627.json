@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-27",
+  "scope": "Release APK selected-agent idle request-rate and device power smoke on a real Android Emulator using ADB UIAutomator instead of Flutter Driver.",
+  "status": "ok",
+  "raw_log": "/tmp/ccb-mobile-release-idle-request-smoke-20260627-clean.log",
+  "mobile_app": {
+    "head": "6c3eb16",
+    "dirty": false,
+    "commit": "test: add release idle avd smoke"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "7e436f7e",
+    "dirty": false,
+    "commit": "fix: order mobile native transcript pages by record time"
+  },
+  "emulator": {
+    "device_id": "emulator-5554",
+    "adb_reverse": "tcp:19195 tcp:19195",
+    "screenshot": "/tmp/ccb-mobile-release-idle-request-1782516242.png"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19194",
+    "request_proxy": "http://127.0.0.1:19195",
+    "route_provider": "lan"
+  },
+  "project_fixture": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626232025",
+    "started_projects": [
+      {
+        "name": "test_ccb2_alpha",
+        "id": "745e863b90efbc014a7cb5eef7bd62beece974eeafd4863b5403a0bb67f8e173"
+      },
+      {
+        "name": "test_ccb2_beta",
+        "id": "47b2380130b7cef74d9ee8c481c87e98fb2efa89e02df2b9aa3f25d0c41cde56"
+      }
+    ],
+    "opened_project": "test_ccb2_alpha",
+    "opened_project_id": "745e863b90efbc014a7cb5eef7bd62beece974eeafd4863b5403a0bb67f8e173",
+    "agent": "mobile_probe"
+  },
+  "release_apk": {
+    "path": "/home/bfly/yunwei/ccb_mobile/app/build/app/outputs/flutter-apk/app-release.apk",
+    "size_label": "71.7MB",
+    "build_stdout_summary": "Built build/app/outputs/flutter-apk/app-release.apk (71.7MB)",
+    "build_warning": "file_picker and mobile_scanner still use plugin-applied Kotlin Gradle Plugin; Flutter reports this as a future deprecation warning."
+  },
+  "idle_window": {
+    "seconds": 180,
+    "request_counts": {
+      "total_requests": 0,
+      "conversation_requests": 0,
+      "terminal_history_requests": 0,
+      "conversation_terminal_requests": 0,
+      "conversation_terminal_requests_per_minute": 0.0,
+      "requests_per_minute": 0.0
+    }
+  },
+  "device_metrics": {
+    "sample_count": 7,
+    "sample_labels": [
+      "start",
+      "interval",
+      "interval",
+      "interval",
+      "interval",
+      "interval",
+      "end"
+    ],
+    "memory": {
+      "pss_kb_min": 92305,
+      "pss_kb_max": 93405,
+      "pss_kb_delta": -1100,
+      "pss_growth_ratio": -0.0118
+    },
+    "power": {
+      "wake_locks": "Wake Locks: size=0",
+      "wake_lock_summary": "mWakeLockSummary=0x0",
+      "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+      "wakefulness": "mWakefulness=Awake"
+    },
+    "gfxinfo": {
+      "total_frames_rendered": "Total frames rendered: 4",
+      "janky_frames": "Janky frames (legacy): 2 (50.00%)"
+    },
+    "logcat": {
+      "fatal_anr_oom": false,
+      "skipped_frames_count": 0
+    },
+    "warnings": [],
+    "errors": []
+  },
+  "ui_smoke": {
+    "runner": "tools/mobile_server_wide_emulator_smoke.py --release-idle-request-smoke",
+    "automation": "ADB UIAutomator XML plus adb input tap; no Flutter Driver.",
+    "opened_project_text_found": true,
+    "opened_project_visible": [
+      "test_ccb2_alpha",
+      "mobile_probe",
+      "mobile_peer",
+      "Refresh conversation",
+      "Attach file",
+      "Send message"
+    ]
+  },
+  "acceptance_notes": [
+    "The run started two disposable real /home/bfly/yunwei/test_ccb2 projects and a loopback-only server-wide gateway.",
+    "The release APK was seeded with the paired profile, installed, and launched without Flutter Driver.",
+    "The release app opened test_ccb2_alpha/mobile_probe from the real server-wide project list before the idle audit window.",
+    "A request-counting proxy observed zero gateway requests during the 180-second untouched selected-agent idle window.",
+    "Device metrics showed no PSS growth, no app wake locks, no FATAL/ANR/OOM logcat marker, and no skipped-frame logcat marker."
+  ],
+  "residual_risks": [
+    "This closes a focused 180-second release idle request-rate and power smoke only.",
+    "The release 30-minute soak, release long-history frame/memory pressure, release file performance, and recovery pressure gates remain separate work."
+  ]
+}

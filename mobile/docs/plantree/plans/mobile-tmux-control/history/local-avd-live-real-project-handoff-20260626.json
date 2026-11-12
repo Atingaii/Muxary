@@ -1,0 +1,290 @@
+{
+  "adb_reverse": {
+    "device_id": "emulator-5554",
+    "mapping": "tcp:19022 tcp:19022"
+  },
+  "compass_after_gateway_restart": {
+    "artifact_dir": "/tmp/ccb-mobile-compass-20260626085822",
+    "healthy_projects_count": 40,
+    "memory": {
+      "pss_growth_ratio": -0.0001,
+      "pss_kb_delta": -36,
+      "pss_kb_max": 281967,
+      "pss_kb_min": 281931,
+      "samples": 3
+    },
+    "note": "compass expected_project_visible was false because it sampled before manual/cold-start recovery to the project list; subsequent screenshot proves real project list and project page visible.",
+    "power": {
+      "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+      "wake_lock_summary": "mWakeLockSummary=0x0",
+      "wake_locks": "Wake Locks: size=0",
+      "wakefulness": "mWakefulness=Awake"
+    },
+    "projects_api": {
+      "fail_count": 0,
+      "max_ms": 510.8,
+      "ok_count": 3,
+      "p50_ms": 482.5,
+      "samples": [
+        {
+          "duration_ms": 76.4,
+          "ok": true,
+          "status": 200
+        },
+        {
+          "duration_ms": 482.5,
+          "ok": true,
+          "status": 200
+        },
+        {
+          "duration_ms": 510.8,
+          "ok": true,
+          "status": 200
+        }
+      ]
+    },
+    "projects_count": 40,
+    "status": "blocked",
+    "summary": "/tmp/ccb-mobile-compass-20260626085822/summary.json"
+  },
+  "current_screen": {
+    "contains_mobile_peer": true,
+    "contains_mobile_probe": true,
+    "contains_test_ccb2_beta": true,
+    "forbidden_labels_seen": false,
+    "screenshot": "/tmp/ccb-mobile-open-real-project-20260626170340/screen.png",
+    "ui_dump": "/tmp/ccb-mobile-open-real-project-20260626170340/ui.xml"
+  },
+  "gateway": {
+    "gateway_url": "http://127.0.0.1:19022",
+    "listen": "127.0.0.1:19022",
+    "local_gateway_url": "http://127.0.0.1:19022",
+    "pairing_claim_endpoint": "http://127.0.0.1:19022/v1/pairing/claim",
+    "pairing_code_seen": true,
+    "project_id": "host-12b185c6fc84d879",
+    "project_root": "",
+    "requested_public_url": null,
+    "route_provider": "lan",
+    "stderr": ""
+  },
+  "live_gateway_log": "/tmp/ccb_mobile_gateway_live_19022.log",
+  "manual_app": {
+    "app_data_clear_returncode": 1,
+    "build_stderr_tail": [
+      "WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): file_picker, mobile_scanner",
+      "Future versions of Flutter will fail to build if your app uses plugins that apply KGP.",
+      "",
+      "Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.",
+      "If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing ",
+      "an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors",
+      "",
+      "If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors"
+    ],
+    "build_stdout_tail": [
+      "Running Gradle task 'assembleDebug'...                          ",
+      "Running Gradle task 'assembleDebug'...                             20.6s",
+      "✓ Built build/app/outputs/flutter-apk/app-debug.apk"
+    ],
+    "install_stdout_tail": [
+      "Performing Streamed Install",
+      "Success"
+    ],
+    "launch_stdout_tail": [
+      "Starting: Intent { cmp=io.ccb.mobile.ccb_mobile/.MainActivity }"
+    ]
+  },
+  "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626085413",
+  "projects_sample": [
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "0c324f769d908bacde798a219d739e47d1a140601d2d93d660ac7c78b09f341d",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626085413/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "d638f17f97c6f3c732c495ea2b5169db8b351bea399edacef8493c3796f28fef",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626085413/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "Liuhuaiyu",
+      "health": "healthy",
+      "id": "d71ce204e5054a8cf244a717999c4be729f09d3dc408d39916103a3fce96ea87",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/Liuhuaiyu"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb-mobile-emulator-ui-smoke-20260623123749",
+      "health": "healthy",
+      "id": "11e5d20bbdf7335a86e54488c081cb7edb860ab07e47bbede922e84468365e03",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623123749"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_mobile",
+      "health": "healthy",
+      "id": "1b12981c7405fedcdc19d0fb37da5025f6089e22312f261b26293db25a0a76aa",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_mobile"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "c70706f35eca40ed815ff53f8b3f1714eaf617ef5391fe6b20cea1f10a284d7d",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624122116/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "1bc236efde30d487295c9744c8986b4e47ed780c7b6ccc2aa935519a29a36105",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624122116/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb-mobile-emulator-ui-smoke-20260626025344",
+      "health": "healthy",
+      "id": "e38a41b270f2e087c78cfbb77d4a85449c411af5ba92351b97a071d99ee2a96c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260626025344"
+    }
+  ],
+  "raw_live_setup_log": "/tmp/ccb-mobile-live-real-project-20260626165413.log",
+  "reason": "live emulator environment is available and real project opens, but full stress matrix is not complete",
+  "source_ccb": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb",
+  "source_head": "6042b813",
+  "started_projects": [
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626085413/test_ccb2_alpha",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626085413/test_ccb2_alpha",
+        "project_id": "d638f17f97c6f3c732c495ea2b5169db8b351bea399edacef8493c3796f28fef",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-d638f17f97c6.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-d638f17f97c6.sock owned=%1,%2,%3 active=%1,%2,%3 orphaned=- killed=-"
+      }
+    },
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626085413/test_ccb2_beta",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626085413/test_ccb2_beta",
+        "project_id": "0c324f769d908bacde798a219d739e47d1a140601d2d93d660ac7c78b09f341d",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-0c324f769d90.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-0c324f769d90.sock owned=%1,%2,%3 active=%1,%2,%3 orphaned=- killed=-"
+      }
+    }
+  ],
+  "status": "warn"
+}

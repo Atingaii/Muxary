@@ -1,0 +1,143 @@
+\chapter{诊断、维护和恢复}
+
+\section{doctor}
+
+常规诊断：
+
+\begin{lstlisting}
+ccb doctor
+\end{lstlisting}
+
+生成 bundle：
+
+\begin{lstlisting}
+ccb doctor --output
+ccb doctor --output /tmp/ccb-doctor
+\end{lstlisting}
+
+\cmd{doctor --bundle} 已不支持，使用 \cmd{doctor --output}。
+
+\section{runtime 诊断}
+
+\begin{lstlisting}
+ccb doctor ps
+ccb doctor --runtime
+ccb ps
+\end{lstlisting}
+
+用于查看 backend、agent runtime、health 和相关状态。
+
+\section{日志诊断}
+
+\begin{lstlisting}
+ccb doctor logs
+ccb doctor --logs
+ccb logs <agent>
+\end{lstlisting}
+
+日志适合排查 provider 启动、pane、runtime 和 completion 问题。
+
+\section{存储诊断}
+
+\begin{lstlisting}
+ccb doctor storage
+ccb doctor storage --json
+\end{lstlisting}
+
+当 queue/inbox 显示 summary missing 或 summary error 时，优先运行 storage diagnostics。
+
+\section{maintenance}
+
+\begin{lstlisting}
+ccb maintenance
+ccb maintenance status
+ccb maintenance tick
+ccb maintenance tick --force
+ccb maintenance tick --no-dispatch
+ccb maintenance schedule --after 5m --reason "follow up"
+\end{lstlisting}
+
+maintenance heartbeat 可用于周期性检查 agent health。默认 assessor 是 \cfg{ccb_self}，默认 policy 是 \cfg{report_only}。
+
+\cmd{ccb maintenance schedule} 不是只读查看命令；它必须带 \cmd{--after <duration>}，并会写入下一次 heartbeat follow-up。当前 \cmd{ccb maintenance enable} 和 \cmd{ccb maintenance disable} 只返回 config-authority 提示；要启停 heartbeat，请编辑 \cfg{[maintenance.heartbeat].enabled}。这里的 config-authority 说明不改变 \src{.ccb/ccb.config} 必须使用 \cfg{version = 2} 的规则。
+
+\section{reload}
+
+修改配置后先验证：
+
+\begin{lstlisting}
+ccb config validate
+\end{lstlisting}
+
+预览 reload：
+
+\begin{lstlisting}
+ccb reload --dry-run
+\end{lstlisting}
+
+执行 reload：
+
+\begin{lstlisting}
+ccb reload
+\end{lstlisting}
+
+\section{restart}
+
+重启单个 agent：
+
+\begin{lstlisting}
+ccb restart archi
+\end{lstlisting}
+
+\cmd{restart all} 不支持。restart 只接受单个 agent，并由 ccbd busy gate 保护；如果 agent 正在执行、排队、投递回复或等待 callback continuation，会被拒绝。需要全项目处理时使用 reload、kill 或重新启动 CCB。
+
+\section{kill}
+
+普通停止：
+
+\begin{lstlisting}
+ccb kill
+\end{lstlisting}
+
+强制：
+
+\begin{lstlisting}
+ccb kill --force
+ccb kill -f
+\end{lstlisting}
+
+不要手动删除项目 \src{.ccb/agents/*} 或 \src{.ccb/ccbd/*} 来代替 kill。
+
+\section{cleanup}
+
+\begin{lstlisting}
+ccb cleanup
+ccb cleanup --legacy-provider-caches
+\end{lstlisting}
+
+用于在当前 ccbd 已停止且没有待处理 ask 时清理可重建缓存和运行残留。普通命令只处理当前项目；增加
+\cmd{--legacy-provider-caches} 后，还会删除 manifest 校验通过、且记录的项目根目录已经不存在的旧版
+Claude/Gemini 项目级缓存。该选项不会删除仍存在项目的缓存，也不会删除 provider session、auth、mailbox
+或 runtime authority。cleanup 不应被当作常规启动步骤。
+
+新版本安装成功后，\cmd{ccb update} 会自动执行同一安全边界的迁移：
+已删除项目中逐 Provider manifest 校验通过的缓存会清理；活跃项目不被
+停止，其缓存会推迟到该项目下一次成功 \cmd{ccb kill}。普通
+\cmd{ccb kill} 也会清理当前项目的旧缓存。无法验证的路径保持不动，
+\cmd{ccb update --no-cache-cleanup} 可跳过单次更新迁移。
+
+清理前可运行 \cmd{ccb doctor storage}。输出会列出旧项目级 Provider 缓存的路径、存在状态和字节数，
+并列出新的用户级 Provider 缓存路径和存在状态。用户级缓存由多个项目共享，常规项目诊断不会递归统计
+它的大小；这些外部缓存不混入项目 \src{.ccb} 的 \cmd{storage_total_bytes}。
+
+\section{fault injection}
+
+高级测试：
+
+\begin{lstlisting}
+ccb fault list
+ccb fault arm archi --task-id task1 --reason api_error --count 1 --error "drill"
+ccb fault clear all
+\end{lstlisting}
+
+fault injection 适合测试失败路径，不适合普通用户日常使用。

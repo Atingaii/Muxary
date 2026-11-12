@@ -1,0 +1,56 @@
+{
+  "fixture_root": "/tmp/ccb-phase3-native-output-wa6bcrud",
+  "generated_at": "2026-06-15T14:36:26.568973+00:00",
+  "helper_bin": "tools/ccb-rs-helper/target/release/ccb-rs-helper",
+  "helper_build": {
+    "status": "skipped"
+  },
+  "helper_used": true,
+  "integration_gate": {
+    "default_enabled": true,
+    "meets_2x_speedup": true,
+    "production_path_wired": true,
+    "python_fallback_removed_when_required": true
+  },
+  "metrics": {
+    "python_native_output_observe": {
+      "finished": true,
+      "iterations": 8,
+      "max_ms": 652.365,
+      "min_ms": 602.011,
+      "p50_ms": 634.495,
+      "p95_ms": 652.365,
+      "reply_chars": 580064,
+      "status": "measured"
+    },
+    "rust_helper_native_output_observe": {
+      "finished": true,
+      "iterations": 8,
+      "max_ms": 151.77,
+      "min_ms": 130.558,
+      "p50_ms": 140.237,
+      "p95_ms": 151.77,
+      "reply_chars": 580064,
+      "status": "measured"
+    }
+  },
+  "parameters": {
+    "iterations": 8,
+    "rows": 50000
+  },
+  "phase": "phase3_native_output_helper",
+  "plan": "python-rust-hybrid-performance",
+  "platform": {
+    "machine": "x86_64",
+    "release": "6.8.0-90-generic",
+    "system": "Linux"
+  },
+  "python": {
+    "executable": "/home/bfly/anaconda3/bin/python",
+    "version": "3.11.4"
+  },
+  "repo_root": "/home/bfly/yunwei/ccb_source",
+  "result_path": "/home/bfly/yunwei/ccb_source/dev_tools/perf_results/python_rust_phase3_native_output_helper.json",
+  "schema_version": 1,
+  "speedup_p50": 4.524447898913982
+}

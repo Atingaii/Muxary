@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-27",
+  "scope": "Release APK native artifact download performance on a real Android Emulator using ADB UIAutomator and a request-counting gateway proxy.",
+  "status": "ok",
+  "raw_log": "/tmp/ccb-mobile-release-file-download-smoke-20260627-clean.log",
+  "mobile_app": {
+    "head": "6a1cfa1",
+    "dirty": false,
+    "commit": "test: add release file download avd smoke"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "7e436f7e",
+    "dirty": false,
+    "commit": "fix: order mobile native transcript pages by record time"
+  },
+  "emulator": {
+    "device_id": "emulator-5554",
+    "adb_reverse": "tcp:19215 tcp:19215",
+    "screenshot": "/tmp/ccb-mobile-release-file-download-1782521878.png"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19214",
+    "request_proxy": "http://127.0.0.1:19215",
+    "route_provider": "lan"
+  },
+  "project_fixture": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627005656",
+    "started_projects": [
+      {
+        "name": "test_ccb2_alpha",
+        "id": "841356d11b415762c434d539c60fa2dd000620909bf7eb58988132cce8e96d6c"
+      },
+      {
+        "name": "test_ccb2_beta",
+        "id": "1ac6352153a19ceb81ad79a8338544cbacf1ad0bacfebc635ac210e34de13ada"
+      }
+    ],
+    "opened_project": "test_ccb2_alpha",
+    "opened_project_id": "841356d11b415762c434d539c60fa2dd000620909bf7eb58988132cce8e96d6c",
+    "agent": "mobile_probe"
+  },
+  "release_apk": {
+    "path": "/home/bfly/yunwei/ccb_mobile/app/build/app/outputs/flutter-apk/app-release.apk",
+    "size_label": "71.7MB",
+    "build_stdout_summary": "Built build/app/outputs/flutter-apk/app-release.apk (71.7MB)",
+    "build_warning": "file_picker and mobile_scanner still use plugin-applied Kotlin Gradle Plugin; Flutter reports this as a future deprecation warning."
+  },
+  "artifact": {
+    "marker": "Native artifact bundle 20260627005656-1404768",
+    "file_id": "mobile-file-native-text-20260627005656-1404768",
+    "file_name": "native-artifact-20260627005656-1404768.txt",
+    "download_chip_label": "native-artifact-20260627005656-1404768.txt (8.0 MB)",
+    "size_bytes": 8388608,
+    "sha256": "5d72871e199c9519efb0e2df7654e0e615be3fcbac712a1be25446f38976ee0a"
+  },
+  "download_metrics": {
+    "saved_visible_ms": 4380.914,
+    "post_save_settle_seconds": 5,
+    "download_route_elapsed_ms": 22.012,
+    "response_bytes": 8388608,
+    "response_sha256": "5d72871e199c9519efb0e2df7654e0e615be3fcbac712a1be25446f38976ee0a"
+  },
+  "request_counts": {
+    "total_requests": 1,
+    "files_requests": 1,
+    "route": "/v1/projects/{project}/agents/{agent}/files/{id}",
+    "status": 200
+  },
+  "device_metrics": {
+    "sample_count": 3,
+    "memory": {
+      "pss_kb_min": 91009,
+      "pss_kb_max": 102550,
+      "pss_kb_delta": 11485,
+      "pss_growth_ratio": 0.1262
+    },
+    "power": {
+      "wake_locks": "Wake Locks: size=0",
+      "wake_lock_summary": "mWakeLockSummary=0x0",
+      "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+      "wakefulness": "mWakefulness=Awake"
+    },
+    "gfxinfo": {
+      "total_frames_rendered": "Total frames rendered: 16",
+      "janky_frames": "Janky frames (legacy): 1 (6.25%)"
+    },
+    "logcat": {
+      "fatal_anr_oom": false,
+      "skipped_frames_count": 0
+    },
+    "warnings": [],
+    "errors": []
+  },
+  "ui_smoke": {
+    "runner": "tools/mobile_server_wide_emulator_smoke.py --release-file-download-smoke --background-file-download-bytes 8388608",
+    "automation": "ADB UIAutomator XML plus adb input tap; no Flutter Driver.",
+    "saved_text": "Saved native-artifact-20260627005656-1404768.txt"
+  },
+  "acceptance_notes": [
+    "The run started two disposable real /home/bfly/yunwei/test_ccb2 projects and a loopback-only server-wide gateway.",
+    "The release APK was seeded with the paired profile, installed, and launched without Flutter Driver.",
+    "ADB UIAutomator opened test_ccb2_alpha/mobile_probe from the real server-wide project list, tapped the requested agent chip, and explicitly refreshed the selected-agent conversation.",
+    "The app rendered the 8.0 MB downloadable artifact chip from a provider-native transcript fixture and showed the Saved snackbar after tap.",
+    "The gateway proxy observed exactly one file download request, returned 8,388,608 bytes, and the response SHA256 matched the seeded artifact.",
+    "Device metrics after a 5-second post-save settle showed no app wake locks, no FATAL/ANR/OOM logcat marker, and no skipped-frame logcat marker."
+  ],
+  "residual_risks": [
+    "This closes release 8 MiB native artifact download performance for the real server-wide Android Emulator path.",
+    "Recovery pressure remains separate work."
+  ]
+}

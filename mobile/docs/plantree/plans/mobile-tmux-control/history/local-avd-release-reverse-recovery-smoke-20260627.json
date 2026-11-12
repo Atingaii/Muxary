@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-27",
+  "scope": "Release APK adb reverse loss and explicit-refresh recovery on a real Android Emulator using ADB UIAutomator and disposable server-wide CCB projects.",
+  "status": "ok",
+  "raw_log": "/tmp/ccb-mobile-release-reverse-recovery-smoke-20260627-clean.log",
+  "mobile_app": {
+    "head": "89274a0",
+    "dirty": false,
+    "commit": "test: add release reverse recovery avd smoke"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "7e436f7e",
+    "dirty": false,
+    "commit": "fix: order mobile native transcript pages by record time"
+  },
+  "emulator": {
+    "device_id": "emulator-5554",
+    "adb_reverse": "tcp:19220 tcp:19220",
+    "screenshot": "/tmp/ccb-mobile-release-reverse-recovery-1782522969.png"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19220",
+    "route_provider": "lan"
+  },
+  "project_fixture": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627011507",
+    "started_projects": [
+      {
+        "name": "test_ccb2_alpha",
+        "id": "be8ce4cde2f51da077b01d0cce8e10bf2cab5aac15d1686504ff2c3bbb4b0854"
+      },
+      {
+        "name": "test_ccb2_beta",
+        "id": "63835e892c95770f305d33468b479711cef0c33b2cdc63e288cae29e66ba6836"
+      }
+    ],
+    "opened_project": "test_ccb2_alpha",
+    "opened_project_id": "be8ce4cde2f51da077b01d0cce8e10bf2cab5aac15d1686504ff2c3bbb4b0854",
+    "agent": "mobile_probe"
+  },
+  "release_apk": {
+    "path": "/home/bfly/yunwei/ccb_mobile/app/build/app/outputs/flutter-apk/app-release.apk",
+    "size_label": "71.7MB",
+    "build_stdout_summary": "Built build/app/outputs/flutter-apk/app-release.apk (71.7MB)",
+    "build_warning": "file_picker and mobile_scanner still use plugin-applied Kotlin Gradle Plugin; Flutter reports this as a future deprecation warning."
+  },
+  "recovery_flow": {
+    "initial_marker": "Native artifact bundle 20260627011507-2269562",
+    "failure_text": "SocketException: Connection refused",
+    "recovery_marker": "Native reverse recovery restored 1782522959",
+    "reverse_removed": {
+      "removed": true,
+      "returncode": 0,
+      "stderr": ""
+    },
+    "reverse_restored": {
+      "device_id": "emulator-5554",
+      "mapping": "tcp:19220 tcp:19220"
+    },
+    "recovery_seed": {
+      "thread_id": "ccb-mobile-reverse-recovery-1782522959",
+      "source": "ccb-mobile-avd-reverse-recovery-fixture",
+      "rollout_path": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627011507/test_ccb2_alpha/.ccb/agents/mobile_probe/provider-state/codex/home/sessions/2026/06/27/rollout-ccb-mobile-reverse-recovery-1782522959.jsonl"
+    },
+    "elapsed_ms": 14043.311,
+    "post_recovery_settle_seconds": 5
+  },
+  "device_metrics": {
+    "sample_count": 4,
+    "memory": {
+      "pss_kb_min": 94299,
+      "pss_kb_max": 98463,
+      "pss_kb_delta": 408,
+      "pss_growth_ratio": 0.0043
+    },
+    "power": {
+      "wake_locks": "Wake Locks: size=0",
+      "wake_lock_summary": "mWakeLockSummary=0x0",
+      "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+      "wakefulness": "mWakefulness=Awake"
+    },
+    "gfxinfo": {
+      "total_frames_rendered": "Total frames rendered: 16",
+      "janky_frames": "Janky frames (legacy): 2 (12.50%)"
+    },
+    "logcat": {
+      "fatal_anr_oom": false,
+      "skipped_frames_count": 0
+    },
+    "warnings": [],
+    "errors": []
+  },
+  "ui_smoke": {
+    "runner": "tools/mobile_server_wide_emulator_smoke.py --release-reverse-recovery-smoke",
+    "automation": "ADB UIAutomator XML plus adb input tap; no Flutter Driver.",
+    "failure_action": "Removed adb reverse, tapped Refresh conversation, and observed Connection refused in the selected-agent UI.",
+    "recovery_action": "Seeded a new provider-native agent reply while disconnected, restored adb reverse, tapped Refresh conversation, and observed the new recovery marker in the selected-agent UI."
+  },
+  "acceptance_notes": [
+    "The run started two disposable real /home/bfly/yunwei/test_ccb2 projects and a loopback-only server-wide gateway.",
+    "The release APK was seeded with the paired profile, installed, and launched without Flutter Driver.",
+    "ADB UIAutomator opened test_ccb2_alpha/mobile_probe from the real server-wide project list and tapped the requested agent chip.",
+    "After adb reverse was removed, an explicit Refresh conversation action showed a visible connection failure instead of silently spinning or mutating local state.",
+    "After adb reverse was restored, a second explicit Refresh conversation action fetched a newly seeded provider-native agent reply, proving the recovery path reached the backend instead of reusing stale UI content.",
+    "Device metrics after a 5-second post-recovery settle showed no app wake locks, no FATAL/ANR/OOM logcat marker, and no skipped-frame logcat marker."
+  ],
+  "residual_risks": [
+    "This closes release-mode adb reverse loss and selected-agent explicit-refresh recovery for the real server-wide Android Emulator path.",
+    "Physical device and Tailnet/VPN recovery still need separate validation outside the local ADB reverse emulator path."
+  ]
+}

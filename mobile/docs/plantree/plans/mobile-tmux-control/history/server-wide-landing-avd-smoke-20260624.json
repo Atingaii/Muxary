@@ -1,0 +1,161 @@
+{
+  "adb_reverse": {
+    "device_id": "emulator-5554",
+    "mapping": "tcp:18894 tcp:18894"
+  },
+  "adb_reverse_cleanup": {
+    "removed": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  "claimed_device_id": "avd_20260624123550",
+  "cleanup": {
+    "gateway_returncode": -15,
+    "keep_running": false,
+    "kills": [
+      {
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624123550/test_ccb2_alpha",
+        "returncode": 0,
+        "stderr": "",
+        "summary": {
+          "forced": "true",
+          "kill_status": "ok",
+          "project_id": "3428bddf8c9ca09ea35dd20dd5461980b63a4a491f2afcb262f5110b07a71f67",
+          "socket_path": "/run/user/1000/ccb-runtime/ccbd-3428bddf8c9c.sock",
+          "state": "unmounted"
+        }
+      },
+      {
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624123550/test_ccb2_beta",
+        "returncode": 0,
+        "stderr": "",
+        "summary": {
+          "forced": "true",
+          "kill_status": "ok",
+          "project_id": "b0b3c6466a93454f758497c62b8359725ecb16319e63c6d284338fd44d3eda15",
+          "socket_path": "/run/user/1000/ccb-runtime/ccbd-b0b3c6466a93.sock",
+          "state": "unmounted"
+        }
+      }
+    ]
+  },
+  "device": {
+    "boot_completed": true,
+    "device_id": "emulator-5554",
+    "devices": [
+      "List of devices attached",
+      "emulator-5554          device product:sdk_gphone64_x86_64 model:sdk_gphone64_x86_64 device:emu64xa transport_id:4"
+    ]
+  },
+  "device_id": "emulator-5554",
+  "gateway": {
+    "gateway_url": "http://127.0.0.1:18894",
+    "listen": "127.0.0.1:18894",
+    "local_gateway_url": "http://127.0.0.1:18894",
+    "pairing_claim_endpoint": "http://127.0.0.1:18894/v1/pairing/claim",
+    "pairing_code_seen": true,
+    "project_id": "host-fdb7c02a8abd5cc4",
+    "project_root": "",
+    "requested_public_url": null,
+    "route_provider": "lan",
+    "stderr": ""
+  },
+  "gateway_listen": "127.0.0.1:18894",
+  "integration_smoke": {
+    "app_data_clear_returncode": 1,
+    "returncode": 0,
+    "stderr_tail": [
+      "WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): file_picker, mobile_scanner",
+      "Future versions of Flutter will fail to build if your app uses plugins that apply KGP.",
+      "",
+      "Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.",
+      "If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing ",
+      "an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors",
+      "",
+      "If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors"
+    ],
+    "stdout_tail": [
+      "00:00 +0: loading /home/bfly/yunwei/ccb_mobile/app/integration_test/server_wide_gateway_smoke_test.dart",
+      "Running Gradle task 'assembleDebug'...                          ",
+      "Running Gradle task 'assembleDebug'...                             12.0s",
+      "\u2713 Built build/app/outputs/flutter-apk/app-debug.apk",
+      "Installing build/app/outputs/flutter-apk/app-debug.apk...          552ms",
+      "00:00 +0: server-wide local gateway lists projects and exercises chat files artifacts",
+      "01:53 +1: (tearDownAll)",
+      "01:53 +1: All tests passed!"
+    ]
+  },
+  "projects": [
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "3428bddf8c9ca09ea35dd20dd5461980b63a4a491f2afcb262f5110b07a71f67",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624123550/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "b0b3c6466a93454f758497c62b8359725ecb16319e63c6d284338fd44d3eda15",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624123550/test_ccb2_beta"
+    }
+  ],
+  "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624123550",
+  "source_ccb": "/home/bfly/yunwei/ccb_source_mobile_server_wide_landing/ccb",
+  "source_head": "adb18294",
+  "started_projects": [
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624123550/test_ccb2_alpha",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624123550/test_ccb2_alpha",
+        "project_id": "3428bddf8c9ca09ea35dd20dd5461980b63a4a491f2afcb262f5110b07a71f67",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-3428bddf8c9c.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-3428bddf8c9c.sock owned=%1,%2,%3 active=%1 orphaned=%2,%3 killed=%2,%3"
+      }
+    },
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624123550/test_ccb2_beta",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624123550/test_ccb2_beta",
+        "project_id": "b0b3c6466a93454f758497c62b8359725ecb16319e63c6d284338fd44d3eda15",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-b0b3c6466a93.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-b0b3c6466a93.sock owned=%1,%2,%3 active=%1 orphaned=%2,%3 killed=%2,%3"
+      }
+    }
+  ],
+  "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260624123550",
+  "status": "ok"
+}

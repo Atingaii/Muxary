@@ -1,0 +1,120 @@
+{
+  "date": "2026-06-29",
+  "status": "ok",
+  "purpose": "Strict Android Emulator timing evidence for repeated native-pane send/reply after active-send follow-loop optimization.",
+  "command": "source tools/mobile_toolchain_env.sh && python tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --force-config --provider codex --native-pane-smoke --native-pane-repeat 2 --gateway-listen 127.0.0.1:19302 --device-id emulator-5554 --flutter-timeout 1500",
+  "app": {
+    "head": "d540c66",
+    "dirty": true,
+    "apk": "app/build/app/outputs/flutter-apk/app-debug.apk",
+    "apk_sha256": "34915a1825c9024a7089044fbabbb32bf4dd831182893d5cd0e359848063af2c"
+  },
+  "source": {
+    "path": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "7e436f7e",
+    "dirty": false
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "gateway": {
+    "listen": "127.0.0.1:19302",
+    "url": "http://127.0.0.1:19302",
+    "adb_reverse": "tcp:19302 tcp:19302",
+    "route_provider": "lan"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629060344",
+    "opened_project": "test_ccb2_alpha",
+    "agent": "mobile_probe"
+  },
+  "timing_summary": {
+    "case_count": 2,
+    "timing_payload_count": 2,
+    "working_captured_count": 2,
+    "first_feedback_kinds": {
+      "working": 2
+    },
+    "fields": {
+      "send_to_local_bubble_ms": {
+        "count": 2,
+        "missing": 0,
+        "min_ms": 133.0,
+        "p50_ms": 133.0,
+        "p95_ms": 186.0,
+        "max_ms": 186.0
+      },
+      "send_to_working_ms": {
+        "count": 2,
+        "missing": 0,
+        "min_ms": 138.0,
+        "p50_ms": 138.0,
+        "p95_ms": 188.0,
+        "max_ms": 188.0
+      },
+      "send_to_first_feedback_ms": {
+        "count": 2,
+        "missing": 0,
+        "min_ms": 138.0,
+        "p50_ms": 138.0,
+        "p95_ms": 188.0,
+        "max_ms": 188.0
+      },
+      "send_to_expected_reply_ms": {
+        "count": 2,
+        "missing": 0,
+        "min_ms": 3206.0,
+        "p50_ms": 3206.0,
+        "p95_ms": 3224.0,
+        "max_ms": 3224.0
+      }
+    }
+  },
+  "cases": [
+    {
+      "index": 1,
+      "prompt": "Please reply with exactly CCB_MOBILE_NATIVE_OK_20260629060344_01 and no other text.",
+      "expected_reply": "CCB_MOBILE_NATIVE_OK_20260629060344_01",
+      "timing": {
+        "send_to_local_bubble_ms": 186,
+        "send_to_working_ms": 188,
+        "send_to_first_feedback_ms": 188,
+        "first_feedback_kind": "working",
+        "send_to_expected_reply_ms": 3206
+      },
+      "source_evidence": {
+        "prompt_contains_ccb_req_id": false,
+        "prompt_contains_mobile_gateway": false,
+        "jobs_matches": [],
+        "user_match_count": 1,
+        "reply_match_count": 1
+      }
+    },
+    {
+      "index": 2,
+      "prompt": "Please reply with exactly CCB_MOBILE_NATIVE_OK_20260629060344_02 and no other text.",
+      "expected_reply": "CCB_MOBILE_NATIVE_OK_20260629060344_02",
+      "timing": {
+        "send_to_local_bubble_ms": 133,
+        "send_to_working_ms": 138,
+        "send_to_first_feedback_ms": 138,
+        "first_feedback_kind": "working",
+        "send_to_expected_reply_ms": 3224
+      },
+      "source_evidence": {
+        "prompt_contains_ccb_req_id": false,
+        "prompt_contains_mobile_gateway": false,
+        "jobs_matches": [],
+        "user_match_count": 1,
+        "reply_match_count": 1
+      }
+    }
+  ],
+  "interpretation": {
+    "passes_native_pane_contract": true,
+    "passes_repeat_timing_collection": true,
+    "passes_working_visibility_gate": true,
+    "notes": "Both cases showed a visible Working frame before the final provider reply while preserving the native pane contract: no CCB_REQ_ID, no mobile_gateway tag, no job matches, and exactly one native user and reply match per case. This closes the Package A real-path Working visibility gate; the broader strict packet still needs /status, long-output, idle, recovery, and device-metrics coverage."
+  }
+}

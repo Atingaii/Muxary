@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-27",
+  "scope": "Release APK real Android system picker 24 MiB user-origin attachment upload/download loopback through a server-wide gateway.",
+  "status": "ok",
+  "raw_log": "/tmp/ccb-mobile-release-upload-24m-stream-smoke-20260627.log",
+  "mobile_app": {
+    "head": "f7e889c",
+    "dirty": false,
+    "commits": [
+      {
+        "head": "0829656",
+        "message": "test: add release upload system picker smoke"
+      },
+      {
+        "head": "3740071",
+        "message": "test: reverse gateway port for proxied release smokes"
+      },
+      {
+        "head": "f7e889c",
+        "message": "fix: stream gateway attachment uploads"
+      }
+    ]
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "7e436f7e",
+    "dirty": false,
+    "commit": "fix: order mobile native transcript pages by record time"
+  },
+  "emulator": {
+    "device_id": "emulator-5554",
+    "adb_reverse": "tcp:19231 tcp:19231",
+    "adb_reverse_extra": [
+      "tcp:19230 tcp:19230"
+    ],
+    "screenshot": "/tmp/ccb-mobile-release-upload-1782526203.png",
+    "screenshot_bytes": 209342
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19230",
+    "request_proxy": "http://127.0.0.1:19231",
+    "route_provider": "lan",
+    "proxy_target": "http://127.0.0.1:19230"
+  },
+  "project_fixture": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627020845",
+    "started_projects": [
+      {
+        "name": "test_ccb2_alpha",
+        "id": "c62532598c800ad70b766cf078cc459a6c5a75ebace6cce57991f6a2ef031925"
+      },
+      {
+        "name": "test_ccb2_beta",
+        "id": "034169b52d8a868ba825d6029d725fa99ea352de32224b51e79804715797a27f"
+      }
+    ],
+    "opened_project": "test_ccb2_alpha",
+    "opened_project_id": "c62532598c800ad70b766cf078cc459a6c5a75ebace6cce57991f6a2ef031925",
+    "agent": "mobile_probe"
+  },
+  "release_apk": {
+    "path": "/home/bfly/yunwei/ccb_mobile/app/build/app/outputs/flutter-apk/app-release.apk",
+    "size_label": "71.7MB",
+    "build_stdout_summary": "✓ Built build/app/outputs/flutter-apk/app-release.apk (71.7MB)",
+    "build_warning": "file_picker and mobile_scanner still use plugin-applied Kotlin Gradle Plugin; Flutter reports this as a future deprecation warning."
+  },
+  "upload": {
+    "file_name": "ccb-mobile-release-upload-20260627020845-409688.txt",
+    "device_path": "/sdcard/Download/ccb-mobile-release-upload-20260627020845-409688.txt",
+    "size_bytes": 25165824,
+    "sha256": "f8ae4cfc47823f8e88523935ea6d79ed4ea0e20ee1dc4adafe7e3d07a3dc9d3e",
+    "documents_ui_label": "ccb-mobile-release-upload-20260627020845-409688.txt",
+    "conversation_chip_label": "ccb-mobile-release-upload-20260627020845-409688.txt (24.0 MB)"
+  },
+  "upload_download_metrics": {
+    "send_to_save_ms": 22932.324,
+    "download_saved_visible_ms": 10210.963,
+    "post_save_settle_seconds": 5,
+    "download_route_elapsed_ms": 50.534,
+    "response_bytes": 25165824,
+    "response_sha256": "f8ae4cfc47823f8e88523935ea6d79ed4ea0e20ee1dc4adafe7e3d07a3dc9d3e"
+  },
+  "download_record": {
+    "route": "/v1/projects/{project}/agents/{agent}/files/{id}",
+    "status": 200,
+    "response_bytes": 25165824,
+    "response_sha256": "f8ae4cfc47823f8e88523935ea6d79ed4ea0e20ee1dc4adafe7e3d07a3dc9d3e",
+    "elapsed_ms": 50.534
+  },
+  "request_counts": {
+    "total_requests": 8,
+    "counts_by_method_route": {
+      "GET /v1/projects/{project}/agents/{agent}/conversation": 5,
+      "GET /v1/projects/{project}/agents/{agent}/files/{id}": 1,
+      "POST /v1/projects/{project}/agents/{agent}/files": 1,
+      "POST /v1/projects/{project}/terminals": 1
+    }
+  },
+  "device_metrics": {
+    "sample_count": 6,
+    "memory": {
+      "pss_growth_ratio": 0.1744,
+      "pss_kb_delta": 14860,
+      "pss_kb_max": 122191,
+      "pss_kb_min": 85208,
+      "samples": 6
+    },
+    "power": {
+      "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+      "wake_lock_summary": "mWakeLockSummary=0x0",
+      "wake_locks": "Wake Locks: size=0",
+      "wakefulness": "mWakefulness=Awake"
+    },
+    "gfxinfo": {
+      "janky_frames": "Janky frames (legacy): 3 (11.54%)",
+      "total_frames_rendered": "Total frames rendered: 26"
+    },
+    "logcat": {
+      "fatal_anr_oom": false,
+      "skipped_frames_count": 0
+    },
+    "warnings": [],
+    "errors": []
+  },
+  "ui_smoke": {
+    "runner": "tools/mobile_server_wide_emulator_smoke.py --release-upload-smoke --upload-stress-bytes 25165824",
+    "automation": "ADB UIAutomator XML plus adb input tap; real Android DocumentsUI system picker; no Flutter Driver.",
+    "saved_text": "Saved ccb-mobile-release-upload-20260627020845-409688.txt"
+  },
+  "acceptance_notes": [
+    "The run started two disposable real /home/bfly/yunwei/test_ccb2 projects and a loopback-only server-wide gateway.",
+    "The release APK was seeded with the paired profile, installed, and launched without Flutter Driver.",
+    "ADB UIAutomator opened test_ccb2_alpha/mobile_probe from the real server-wide project list, tapped the attachment button, selected File, and picked the 24 MiB text document from Android DocumentsUI Recent files.",
+    "The app uploaded the user-origin file through the selected-agent composer, rendered the resulting conversation attachment chip, tapped it, and showed the Saved snackbar after downloading it back.",
+    "The request-counting proxy observed one POST file upload and one GET file download; the downloaded 25,165,824 bytes matched the uploaded SHA256.",
+    "The harness installed adb reverse for both the request proxy port and the underlying gateway port, so terminal/session routes did not produce connection-refused noise.",
+    "Device metrics after a 5-second post-save settle stayed below the PSS growth gate and had no app wake locks, no FATAL/ANR/OOM, and no skipped-frame markers."
+  ],
+  "residual_risks": [
+    "This closes release-mode user-origin upload with the real Android system picker for the local real server-wide Android Emulator path.",
+    "Physical-device/Tailnet transfer pressure remains a separate validation path before broader external release.",
+    "The Flutter build still reports future Kotlin Gradle Plugin deprecation warnings for file_picker and mobile_scanner."
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/shadcn-ui/ui",
+  "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+  "retrieved_on": "2026-11-11",
+  "prototypes": [
+    {
+      "url": "https://21st.dev/@shadcn/components/command",
+      "author": "shadcn"
+    },
+    {
+      "url": "https://21st.dev/@sean0205/components/resizable",
+      "author": "sean0205"
+    }
+  ],
+  "source_boundary": "Selected from public 21st listings. Account-gated listing sources were not retrieved; byte equivalence with the fixed public shadcn upstream is unverified.",
+  "license": {
+    "spdx": "MIT",
+    "path": "LICENSE",
+    "upstream_url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/LICENSE.md",
+    "sha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
+  },
+  "files": {
+    "command.tsx": {
+      "upstream_source_url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/command.tsx",
+      "upstream_sha256": "319e9264567dd46f04d705028bc345470663ca5919f31292c4ec43ea5ceb9336",
+      "vendored_sha256": "64cd98cb1422fba2e7bd70df92776cd80e3c1f8a1d1e34d3d15277b4fd95a3bf",
+      "local_modifications": [
+        "Replace cn import with existing agent-elements utility; use existing Tabler search icon.",
+        "Omit unused upstream CommandDialog and its Dialog dependency; the application uses the platform native dialog for focus containment and restoration."
+      ]
+    },
+    "resizable.tsx": {
+      "upstream_source_url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/resizable.tsx",
+      "upstream_sha256": "aaf3ea20e8060c75dd86e06fedfca053d49f81071123ba647b5699efcbc010ea",
+      "vendored_sha256": "69a24727adef6fed350edce0b2df489337d1473044b71cc0486ddebd0b75b6ac",
+      "local_modifications": [
+        "Replace cn import with existing agent-elements utility and use existing Tabler grip icon.",
+        "Retain the upstream thin Group/Panel/Separator wrappers and react-resizable-panels v4 sizing/keyboard semantics."
+      ]
+    }
+  }
+}

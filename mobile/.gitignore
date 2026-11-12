@@ -1,0 +1,39 @@
+# Local/runtime state
+.ccb/
+.ccb/agents/
+.ccb/ccbd/
+.ccb/*.log
+
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+coverage/
+dist/
+pubspec.lock
+!app/pubspec.lock
+
+# Python generated files
+__pycache__/
+*.py[cod]
+
+# Android/iOS generated/local files
+android/.gradle/
+android/local.properties
+app/android/.gradle/
+app/android/local.properties
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/ephemeral/
+app/ios/Pods/
+app/ios/.symlinks/
+app/ios/Flutter/ephemeral/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store

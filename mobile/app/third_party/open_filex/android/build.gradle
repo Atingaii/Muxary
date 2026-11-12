@@ -1,0 +1,23 @@
+plugins {
+    id 'com.android.library'
+}
+
+group 'com.crazecoder.openfile'
+version '1.0-SNAPSHOT'
+
+android {
+    namespace "com.crazecoder.openfile"
+
+    compileSdkVersion 34
+
+    defaultConfig {
+        minSdkVersion 16
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    lint {
+        disable 'InvalidPackage'
+    }
+}
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}

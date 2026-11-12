@@ -1,0 +1,55 @@
+{
+  "fixture_root": "/tmp/ccb-phase2-jsonl-hla_d9py",
+  "generated_at": "2026-06-15T11:34:40.947863+00:00",
+  "helper_bin": "/home/bfly/yunwei/ccb_source/tools/ccb-rs-helper/target/release/ccb-rs-helper",
+  "helper_build": {
+    "elapsed_ms": 51.176,
+    "status": "built"
+  },
+  "helper_used": true,
+  "integration_gate": {
+    "meets_2x_speedup": true,
+    "production_path_wired": false
+  },
+  "metrics": {
+    "python_fallback_batch_tail": {
+      "iterations": 8,
+      "max_ms": 345.447,
+      "min_ms": 229.153,
+      "p50_ms": 294.142,
+      "p95_ms": 345.447,
+      "rows_returned": 512,
+      "status": "measured"
+    },
+    "rust_helper_batch_tail": {
+      "iterations": 8,
+      "max_ms": 84.146,
+      "min_ms": 65.761,
+      "p50_ms": 71.855,
+      "p95_ms": 84.146,
+      "rows_returned": 512,
+      "status": "measured"
+    }
+  },
+  "parameters": {
+    "files": 4,
+    "iterations": 8,
+    "rows_per_file": 50000,
+    "tail": 128
+  },
+  "phase": "phase2_jsonl_helper",
+  "plan": "python-rust-hybrid-performance",
+  "platform": {
+    "machine": "x86_64",
+    "release": "6.8.0-90-generic",
+    "system": "Linux"
+  },
+  "python": {
+    "executable": "/home/bfly/anaconda3/bin/python",
+    "version": "3.11.4"
+  },
+  "repo_root": "/home/bfly/yunwei/ccb_source",
+  "result_path": "/home/bfly/yunwei/ccb_source/dev_tools/perf_results/python_rust_phase2_jsonl_helper.json",
+  "schema_version": 1,
+  "speedup_p50": 4.09354950942871
+}

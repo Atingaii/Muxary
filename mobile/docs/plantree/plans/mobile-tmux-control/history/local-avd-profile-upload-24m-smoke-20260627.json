@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-27",
+  "scope": "Profile-mode real Android Emulator user-origin 24 MiB attachment upload/download loopback through the server-wide gateway.",
+  "status": "ok",
+  "raw_log": "/tmp/ccb-mobile-profile-upload-24m-smoke-20260627.log",
+  "mobile_app": {
+    "head": "a507698",
+    "dirty": false,
+    "commit": "test: add user upload stress avd hook"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "7e436f7e",
+    "dirty": false,
+    "commit": "fix: order mobile native transcript pages by record time"
+  },
+  "emulator": {
+    "device_id": "emulator-5554",
+    "adb_reverse": "tcp:19224 tcp:19224"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19224",
+    "route_provider": "lan"
+  },
+  "project_fixture": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627014028",
+    "started_projects": [
+      {
+        "name": "test_ccb2_alpha",
+        "id": "2c4cf0a0f05c268ced4501ef4023adc0d02f8d79047a3aa6444092aa74e48d4f"
+      },
+      {
+        "name": "test_ccb2_beta",
+        "id": "f9c76edda9ebc987f8b1d7ea6c4ec3e0e0138e571b76cef5e5426a2c1aa765f8"
+      }
+    ],
+    "upload_project": "test_ccb2_beta",
+    "upload_project_id": "f9c76edda9ebc987f8b1d7ea6c4ec3e0e0138e571b76cef5e5426a2c1aa765f8",
+    "agent": "mobile_probe"
+  },
+  "upload_stress": {
+    "file_name": "beta-mobile_probe-upload-stress-1782524465097.txt",
+    "size_bytes": 25165824,
+    "sha256": "8777fe43ae7b36771cb810d28af83f727ffae8595625f0b024cdd4b290ed7151",
+    "send_to_save_ms": 6650,
+    "download_saved_visible_ms": 1066,
+    "downloaded": {
+      "path": "/data/user/0/io.ccb.mobile.ccb_mobile/app_flutter/beta-mobile_probe-upload-stress-1782524465097.txt",
+      "size_bytes": 25165824,
+      "sha256": "8777fe43ae7b36771cb810d28af83f727ffae8595625f0b024cdd4b290ed7151"
+    }
+  },
+  "integration_smoke": {
+    "build_mode": "profile",
+    "returncode": 0,
+    "tests": "01:32 +3: All tests passed!",
+    "download_hash_count": 9,
+    "stderr_warning": "file_picker and mobile_scanner still use plugin-applied Kotlin Gradle Plugin; Flutter reports this as a future deprecation warning."
+  },
+  "acceptance_notes": [
+    "The run started two disposable real /home/bfly/yunwei/test_ccb2 projects and a loopback-only server-wide gateway.",
+    "The profile integration test opened real server-wide projects, exercised the existing small file/image/artifact matrix, then uploaded a 24 MiB user-origin text attachment on test_ccb2_beta/mobile_probe.",
+    "The app sent the attachment through the selected-agent composer, downloaded the resulting conversation attachment chip back into Android app documents, and verified matching SHA256.",
+    "The 24 MiB upload/download loop reported send-to-save latency of 6650 ms and post-chip download saved-visible latency of 1066 ms.",
+    "The raw log contains no FATAL, ANR, OutOfMemory, or skipped-frame markers."
+  ],
+  "residual_risks": [
+    "This closes the local real AVD 24 MiB user-origin upload/download loopback hardening lane in profile integration mode.",
+    "Release-mode user-origin upload with the real Android system picker and physical-device/Tailnet transfer pressure remain separate P2 hardening lanes."
+  ]
+}

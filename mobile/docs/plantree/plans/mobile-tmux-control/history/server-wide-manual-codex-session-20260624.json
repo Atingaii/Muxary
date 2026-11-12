@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-24",
+  "status": "active_manual_session_observed",
+  "purpose": "Open Android Emulator session for manual server-wide local backend testing with a real Codex provider instead of deterministic fake-provider replies.",
+  "mobile_repo": {
+    "path": "/home/bfly/yunwei/ccb_mobile",
+    "branch": "main",
+    "head": "52a0ab0 test: support manual server-wide emulator session"
+  },
+  "source_worktree": {
+    "path": "/home/bfly/yunwei/ccb_source_mobile_server_wide_full",
+    "branch": "mobile/server-wide-local-backend",
+    "head": "227e2963 fix: resolve mobile artifacts from gateway file store"
+  },
+  "gateway": {
+    "listen": "127.0.0.1:18893",
+    "route_provider": "lan",
+    "mode": "loopback_server_registry",
+    "provider": "codex",
+    "health_status": "ok",
+    "gateway_project_id": "host-4956bfcb147c0faf",
+    "default_project_id": "1bc236efde30d487295c9744c8986b4e47ed780c7b6ccc2aa935519a29a36105"
+  },
+  "android_emulator": {
+    "device_id": "emulator-5554",
+    "adb_reverse": "tcp:18893 tcp:18893",
+    "app_profile": "debug paired gateway profile seeded by tools/mobile_server_wide_emulator_smoke.py"
+  },
+  "projects": [
+    {
+      "display_name": "test_ccb2_beta",
+      "id": "1bc236efde30d487295c9744c8986b4e47ed780c7b6ccc2aa935519a29a36105",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624122116/test_ccb2_beta",
+      "health": "healthy",
+      "mount_state": "mounted"
+    },
+    {
+      "display_name": "test_ccb2_alpha",
+      "id": "c70706f35eca40ed815ff53f8b3f1714eaf617ef5391fe6b20cea1f10a284d7d",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624122116/test_ccb2_alpha",
+      "health": "healthy",
+      "mount_state": "mounted"
+    }
+  ],
+  "observed_commands": [
+    "curl -s http://127.0.0.1:18893/v1/health",
+    "curl -s http://127.0.0.1:18893/v1/projects",
+    "/home/bfly/.local/share/android-sdk/platform-tools/adb -s emulator-5554 reverse --list"
+  ],
+  "manual_test_instructions": [
+    "In the open emulator, select either test_ccb2_beta or test_ccb2_alpha on the first page.",
+    "Select mobile_probe or mobile_peer.",
+    "Type a question and tap the green send button.",
+    "Wait for the Codex-provider reply; this lane is intentionally not the deterministic fake-provider smoke."
+  ],
+  "cleanup_commands": [
+    "pkill -f 'mobile_server_wide_emulator_smoke.py.*18893'",
+    "/home/bfly/.local/share/android-sdk/platform-tools/adb -s emulator-5554 reverse --remove tcp:18893",
+    "/home/bfly/yunwei/ccb_source_mobile_server_wide_full/ccb --project /home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624122116/test_ccb2_alpha kill -f",
+    "/home/bfly/yunwei/ccb_source_mobile_server_wide_full/ccb --project /home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260624122116/test_ccb2_beta kill -f"
+  ],
+  "remaining_risks": [
+    "The source worktree still needs review/merge before this is product-landed.",
+    "Physical Tailnet/relay smoke is still separate from the local emulator lane.",
+    "Live Codex-provider latency is not deterministic; automated acceptance uses deterministic provider assertions while this manual lane proves the non-fake provider path is available."
+  ]
+}

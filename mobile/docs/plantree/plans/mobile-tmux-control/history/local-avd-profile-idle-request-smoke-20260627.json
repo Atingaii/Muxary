@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-27",
+  "scope": "Profile APK selected-agent idle request-rate and device-metrics smoke on a real Android Emulator and server-wide CCB mobile gateway.",
+  "status": "ok",
+  "raw_log": "/tmp/ccb-mobile-profile-idle-request-smoke-20260627-clean.log",
+  "mobile_app": {
+    "head": "d84ae67",
+    "dirty": false,
+    "commit": "test: enable profile idle request smoke"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "ac2626ac",
+    "dirty": false
+  },
+  "emulator": {
+    "device_id": "emulator-5554",
+    "adb_reverse": "tcp:19167 tcp:19167"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19166",
+    "request_proxy": "127.0.0.1:19167"
+  },
+  "project_fixture": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626212102",
+    "project_name": "test_ccb2_alpha",
+    "project_id": "4077626f849dad45ddca70ab0e005d802411a53805b3332373c2467e6685e9a1",
+    "agent": "mobile_probe"
+  },
+  "flutter": {
+    "build_mode": "profile",
+    "test_target": "integration_test/server_wide_idle_request_smoke_test.dart",
+    "summary": "03:10 +2: All tests passed!"
+  },
+  "request_rate": {
+    "idle_seconds": 180,
+    "idle_window": {
+      "total_requests": 0,
+      "conversation_requests": 0,
+      "terminal_history_requests": 0,
+      "conversation_terminal_requests": 0,
+      "requests_per_minute": 0.0
+    },
+    "final_proxy_counts": {
+      "total_requests": 1,
+      "counts_by_route": {
+        "/v1/projects/{project}/agents/{agent}/conversation": 1
+      }
+    }
+  },
+  "device_metrics": {
+    "samples": 7,
+    "memory": {
+      "pss_kb_min": 148579,
+      "pss_kb_max": 152975,
+      "pss_kb_delta": -3548,
+      "pss_growth_ratio": -0.0232
+    },
+    "power": {
+      "wake_locks": "Wake Locks: size=0",
+      "wake_lock_summary": "mWakeLockSummary=0x0",
+      "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+      "wakefulness": "mWakefulness=Awake"
+    },
+    "logcat": {
+      "fatal_anr_oom": false,
+      "skipped_frames_count": 0
+    },
+    "warnings": []
+  },
+  "acceptance_notes": [
+    "The profile APK opened a real server-wide selected-agent page.",
+    "The app did not issue blind conversation or terminal-history polling requests during the untouched 180-second idle audit window.",
+    "The final single conversation request happened after the audit window as the explicit manual refresh/checkpoint step.",
+    "Device metrics showed no PSS growth, no wakelock, and no FATAL/ANR/OOM markers."
+  ]
+}

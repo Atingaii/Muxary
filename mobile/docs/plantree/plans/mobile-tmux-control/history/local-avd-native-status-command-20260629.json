@@ -1,0 +1,46 @@
+{
+  "date": "2026-06-29",
+  "status": "ok",
+  "purpose": "Strict Android Emulator evidence that a provider UI command sent from CCB Mobile is visible in the selected-agent conversation surface.",
+  "command": "source tools/mobile_toolchain_env.sh && python tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --force-config --provider codex --native-command-smoke --native-command /status --native-command-marker 'Weekly limit:' --gateway-listen 127.0.0.1:19303 --device-id emulator-5554 --flutter-timeout 1500",
+  "app": {
+    "head": "d540c66",
+    "dirty": true,
+    "apk": "app/build/app/outputs/flutter-apk/app-debug.apk",
+    "apk_sha256": "cade2504cb5e8951395dd6e60061087b2037639b9e84f2853c59664022cda169"
+  },
+  "source": {
+    "path": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "7e436f7e",
+    "dirty": false
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "gateway": {
+    "listen": "127.0.0.1:19303",
+    "url": "http://127.0.0.1:19303",
+    "adb_reverse": "tcp:19303 tcp:19303",
+    "route_provider": "lan"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629061541",
+    "opened_project": "test_ccb2_alpha",
+    "agent": "mobile_probe"
+  },
+  "command_case": {
+    "command": "/status",
+    "expected_marker": "Weekly limit:",
+    "expected_mode": "any_non_local",
+    "send_to_local_bubble_ms": 250,
+    "send_to_working_ms": null,
+    "send_to_first_feedback_ms": 262,
+    "first_feedback_kind": "expected_reply",
+    "send_to_expected_marker_ms": 562
+  },
+  "interpretation": {
+    "passes_provider_command_visibility": true,
+    "notes": "The phone sent /status into the real selected Codex pane through the server-wide gateway. The app rendered the non-local provider UI marker 'Weekly limit:' in the selected-agent timeline within 562 ms. This proves the provider-command visibility gate for the local AVD path; it does not close long-output, scroll-away, idle, recovery, or device-metrics gates."
+  }
+}

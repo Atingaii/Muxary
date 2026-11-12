@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "status": "ok",
+  "date": "2026-06-27",
+  "case_ids": ["T2", "E5"],
+  "scope": "Real Android Emulator mixed provider-native long-history upward pagination smoke",
+  "app": {
+    "worktree": "/tmp/ccb-mobile-avd-b611e8a",
+    "head": "b611e8a",
+    "dirty": false
+  },
+  "source": {
+    "worktree": "/tmp/ccb-source-agent-native-7fece763",
+    "head": "7fece763",
+    "dirty": false,
+    "ccb": "/tmp/ccb-source-agent-native-7fece763/ccb"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19133",
+    "listen": "127.0.0.1:19133",
+    "route_provider": "lan",
+    "adb_reverse": "tcp:19133 tcp:19133",
+    "host_project_id": "host-911d793c47ec1224"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626173557",
+    "selected": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626173557/test_ccb2_alpha",
+      "project_id": "adfeedff9478d85328fdd2ed223c3b48f8ce0a8e3876ad85db450ed064c2605c"
+    },
+    "secondary": {
+      "name": "test_ccb2_beta",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626173557/test_ccb2_beta",
+      "project_id": "fe36e264ea0b9859df27e26f94a78e29b3f330c1a05a40d94b75189333f5fab4"
+    }
+  },
+  "fixture": {
+    "provider": "codex",
+    "agent": "mobile_probe",
+    "seed_mode": "codex_native_rollout_fixture",
+    "turns": 200,
+    "dataset": "mixed_markdown_attachments_artifacts",
+    "dataset_features": [
+      "markdown_heading",
+      "markdown_table",
+      "code_block",
+      "duplicate_short_prompts",
+      "document_artifact_link",
+      "image_artifact_link"
+    ],
+    "rollout_path": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626173557/test_ccb2_alpha/.ccb/agents/mobile_probe/provider-state/codex/home/sessions/2026/06/26/rollout-ccb-mobile-long-history-20260626173557-2923215.jsonl",
+    "latest_text": "Native backfill answer backfill-20260626173557-2923215-199",
+    "oldest_text": "Native backfill answer backfill-20260626173557-2923215-00",
+    "artifact_files": [
+      {
+        "file_id": "mobile-long-history-doc-20260626173557-2923215",
+        "file_name": "mobile-long-history-20260626173557-2923215.md",
+        "mime_type": "text/markdown",
+        "size_bytes": 213,
+        "sha256": "600aa7efa26c4463e471bc5193c527c84a9259fdaa425f10875898c08b4e3f5d"
+      },
+      {
+        "file_id": "mobile-long-history-image-20260626173557-2923215",
+        "file_name": "mobile-long-history-20260626173557-2923215.png",
+        "mime_type": "image/png",
+        "size_bytes": 67,
+        "sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378"
+      }
+    ]
+  },
+  "source_side_metrics": {
+    "view_ms": 28.341,
+    "latest_page_ms": 11.03,
+    "older_page_ms_total": 50.695,
+    "older_pages": 7,
+    "oldest_page_ms": 7.999,
+    "latest_message_polls": 1,
+    "seed_ms": 72.819,
+    "next_cursor": "351"
+  },
+  "app_integration": {
+    "test": "app/integration_test/server_wide_gateway_smoke_test.dart",
+    "returncode": 0,
+    "app_data_clear_returncode": 1,
+    "stdout_result": "00:50 +2: All tests passed!",
+    "backfill_metrics": {
+      "latest_visible_ms": 119,
+      "older_visible_ms": 47146,
+      "post_backfill_settle_ms": 116,
+      "total_ms": 50545,
+      "drag_count": 92
+    }
+  },
+  "command": "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /tmp/ccb-source-agent-native-7fece763/ccb --device-id emulator-5554 --gateway-listen 127.0.0.1:19133 --provider codex --include-long-history-backfill --backfill-turns 200 --flutter-timeout 900",
+  "failed_attempts_before_pass": [
+    {
+      "gateway": "http://127.0.0.1:19131",
+      "reason": "ran fixture with harness default provider=fake, while seeded rollout was Codex-native"
+    },
+    {
+      "gateway": "http://127.0.0.1:19132",
+      "reason": "used ccb_source_mobile_server_wide_full, whose mobile gateway conversation path does not read Codex native rollout history"
+    }
+  ],
+  "closed_gates": [
+    "server-wide gateway listed mounted projects",
+    "real Android Emulator opened a disposable test_ccb2 project",
+    "200 mixed Codex-native turns were visible through gateway conversation",
+    "app loaded oldest marker through upward scroll",
+    "Markdown tables/code blocks and document/image artifact links were present in the seeded native transcript",
+    "app and source worktrees used for the passing run were clean"
+  ],
+  "remaining_gates": [
+    "profile/release frame and memory pressure for the same 200+ dataset",
+    "scroll-position preservation metrics beyond older marker visibility",
+    "live provider-generated artifact creation and download",
+    "file error/retry/restart persistence",
+    "30-minute power/performance soak"
+  ]
+}

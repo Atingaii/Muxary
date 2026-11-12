@@ -1,0 +1,80 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "scope": "real Android Emulator live provider-created artifact download",
+  "mode": "live_provider_artifact",
+  "app": {
+    "head": "0ab8956",
+    "dirty": false,
+    "worktree": "/tmp/ccb-mobile-live-artifact-0ab8956-3740234"
+  },
+  "source": {
+    "head": "ac2626ac",
+    "dirty": false,
+    "worktree": "/tmp/ccb-source-live-artifact-ac2626ac-4084005",
+    "command": "/tmp/ccb-source-live-artifact-ac2626ac-4084005/ccb"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64",
+    "adb_reverse": "tcp:19136 tcp:19136"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19136",
+    "listen": "127.0.0.1:19136",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260626180758"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626180758",
+    "selected": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626180758/test_ccb2_alpha",
+      "id": "9585eb9ddb1123186c7611c0b56d00e8c902f33f051f10fe1b9403ca9308af62",
+      "agent": "mobile_probe"
+    },
+    "also_started": [
+      {
+        "name": "test_ccb2_beta",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626180758/test_ccb2_beta",
+        "id": "f9d5d5c830882d6fe7875141cba3c5e82ee7b306abc2088afc3ebc45ffa9f7e4"
+      }
+    ]
+  },
+  "artifact": {
+    "file_name": "mobile-live-artifact-20260626180758-134252.txt",
+    "content_sha256": "c57f55752e52f9af4f7b29aeb9b4f9f7763f69f9234f6227c3a93fe6fd87d8d0",
+    "size_bytes": 42,
+    "project_file_path": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626180758/test_ccb2_alpha/mobile-live-artifact-20260626180758-134252.txt",
+    "gateway_metadata_path": "/tmp/ccb-mobile-server-wide-avd-state-20260626180758/files/9585eb9ddb1123186c7611c0b56d00e8c902f33f051f10fe1b9403ca9308af62/mobile_probe/mobile-file-f14dc5b0831c07028df8d0a9/metadata.json",
+    "gateway_file_id": "mobile-file-f14dc5b0831c07028df8d0a9"
+  },
+  "mobile_download": {
+    "file_name": "mobile-live-artifact-20260626180758-134252.txt",
+    "sha256": "c57f55752e52f9af4f7b29aeb9b4f9f7763f69f9234f6227c3a93fe6fd87d8d0",
+    "expected_sha256": "c57f55752e52f9af4f7b29aeb9b4f9f7763f69f9234f6227c3a93fe6fd87d8d0",
+    "size_bytes": 42
+  },
+  "hygiene": {
+    "jobs_matches": [],
+    "prompt_contains_ccb_req_id": false,
+    "prompt_contains_mobile_gateway": false,
+    "user_match_count": 1,
+    "reply_match_count": 1
+  },
+  "verification": {
+    "command": "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /tmp/ccb-source-live-artifact-ac2626ac-4084005/ccb --device-id emulator-5554 --gateway-listen 127.0.0.1:19136 --provider codex --live-artifact-smoke --flutter-timeout 1200",
+    "raw_log": "/tmp/ccb-mobile-live-artifact-smoke-20260627020758.log",
+    "flutter_result": "01:05 +1: All tests passed!",
+    "host_checks": [
+      "project-root artifact SHA256 matched expected content",
+      "gateway file metadata SHA256 matched expected content",
+      "Android integration download SHA256 matched expected content",
+      "source-side native transcript had no CCB jobs match",
+      "source-side prompt had no CCB_REQ_ID or mobile_gateway marker"
+    ]
+  },
+  "residual_risk": [
+    "This closes the live provider-created text artifact smoke only.",
+    "Oversized/unsupported errors, retry, app restart persistence, profile/release file performance, and long soak remain open."
+  ]
+}

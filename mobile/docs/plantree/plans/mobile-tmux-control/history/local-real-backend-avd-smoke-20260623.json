@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-23",
+  "status": "partial_ok",
+  "scope": "Android Emulator real-local backend AVD lanes through loopback gateway and adb reverse",
+  "source_worktree": "/home/bfly/yunwei/ccb_source_mobile_local_backend_matrix",
+  "source_commits": [
+    {
+      "hash": "99fa0544",
+      "message": "feat: add mobile gateway file routes"
+    },
+    {
+      "hash": "7156431f",
+      "message": "fix: preserve mobile attachment metadata in conversation"
+    },
+    {
+      "hash": "9a6cd505",
+      "message": "test: add deterministic mobile markdown fake reply"
+    }
+  ],
+  "mobile_commits": [
+    {
+      "hash": "eea9cac",
+      "message": "test: add local backend capability probe"
+    },
+    {
+      "hash": "f1670db",
+      "message": "test: accept source pairing claim shape in mobile probe"
+    },
+    {
+      "hash": "ac654ee",
+      "message": "test: cover emulator attachment upload download"
+    },
+    {
+      "hash": "7f9aeb7",
+      "message": "test: cover emulator markdown reply smoke"
+    },
+    {
+      "hash": "12cfa53",
+      "message": "test: cover emulator image attachment smoke"
+    }
+  ],
+  "artifacts": {
+    "source_capability_probe": "/tmp/ccb-mobile-local-probe-source-file-route.json",
+    "avd_terminal_lane": "/tmp/ccb-mobile-avd-terminal-smoke-source-worktree.json",
+    "avd_attachment_lane": "/tmp/ccb-mobile-avd-real-local-attachment-smoke.json",
+    "avd_attachment_markdown_lane": "/tmp/ccb-mobile-avd-real-local-attachment-markdown-smoke.json",
+    "avd_media_markdown_lane": "/tmp/ccb-mobile-avd-real-local-media-markdown-smoke.json"
+  },
+  "lanes": {
+    "terminal_lane": {
+      "status": "ok",
+      "provider": "codex",
+      "purpose": "route diagnostics, paired profile activation, selected-agent focus, terminal WebSocket open/control, post-smoke terminal target",
+      "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623140053",
+      "gateway": {
+        "gateway_url": "http://127.0.0.1:18896",
+        "listen": "127.0.0.1:18896",
+        "local_gateway_url": "http://127.0.0.1:18896",
+        "pairing_claim_endpoint": "http://127.0.0.1:18896/v1/pairing/claim",
+        "pairing_code_seen": true,
+        "project_id": "633071e9cde065c09b0cecb28bf336e0434e4918205e32bee1a22edb718ccd60",
+        "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623140053",
+        "requested_public_url": "",
+        "route_provider": "lan",
+        "stderr": ""
+      },
+      "adb_reverse": {
+        "device_id": "emulator-5554",
+        "mapping": "tcp:18896 tcp:18896"
+      },
+      "integration": {
+        "app_data_clear_returncode": 1,
+        "include_attachment_route": false,
+        "include_lifecycle_stop": false,
+        "include_terminal_route": true,
+        "returncode": 0
+      },
+      "post_harness": {
+        "mobile_terminal_target_ok": true,
+        "namespace_epoch": 1,
+        "project_id": "633071e9cde065c09b0cecb28bf336e0434e4918205e32bee1a22edb718ccd60",
+        "selected_agent": "mobile_probe",
+        "selected_pane_id": "%3",
+        "selected_window": "main",
+        "tmux_session_name": "ccb-ccb-mobile-emulator-ui-smoke-20260623140053-633071e9",
+        "tmux_socket_path": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623140053/.ccb/ccbd/tmux.sock"
+      }
+    },
+    "attachment_lane": {
+      "status": "ok",
+      "provider": "fake",
+      "purpose": "deterministic selected-agent reply plus real gateway file upload/download UI path",
+      "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623135908",
+      "gateway": {
+        "gateway_url": "http://127.0.0.1:18897",
+        "listen": "127.0.0.1:18897",
+        "local_gateway_url": "http://127.0.0.1:18897",
+        "pairing_claim_endpoint": "http://127.0.0.1:18897/v1/pairing/claim",
+        "pairing_code_seen": true,
+        "project_id": "2066222f8c203f11a634fe6256174d42ada4f99308f9794db828b472520d3809",
+        "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623135908",
+        "requested_public_url": "",
+        "route_provider": "lan",
+        "stderr": ""
+      },
+      "adb_reverse": {
+        "device_id": "emulator-5554",
+        "mapping": "tcp:18897 tcp:18897"
+      },
+      "integration": {
+        "app_data_clear_returncode": 1,
+        "include_attachment_route": true,
+        "include_lifecycle_stop": false,
+        "include_terminal_route": false,
+        "returncode": 0
+      },
+      "post_harness": {
+        "reason": "terminal route smoke was skipped",
+        "skipped": true
+      }
+    },
+    "attachment_markdown_lane": {
+      "status": "ok",
+      "provider": "fake",
+      "purpose": "deterministic Markdown reply rendering plus real gateway file route through Android Emulator UI",
+      "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623141241",
+      "gateway": {
+        "gateway_url": "http://127.0.0.1:18897",
+        "listen": "127.0.0.1:18897",
+        "local_gateway_url": "http://127.0.0.1:18897",
+        "pairing_claim_endpoint": "http://127.0.0.1:18897/v1/pairing/claim",
+        "pairing_code_seen": true,
+        "project_id": "95d33ca340062d65416e08aa8cc1581d1f2aa91877a1fcd97ddab585dbfaaa6c",
+        "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623141241",
+        "requested_public_url": "",
+        "route_provider": "lan",
+        "stderr": ""
+      },
+      "adb_reverse": {
+        "device_id": "emulator-5554",
+        "mapping": "tcp:18897 tcp:18897"
+      },
+      "integration": {
+        "app_data_clear_returncode": 1,
+        "include_attachment_route": true,
+        "include_lifecycle_stop": false,
+        "include_markdown_route": true,
+        "include_terminal_route": false,
+        "returncode": 0
+      },
+      "post_harness": {
+        "reason": "terminal route smoke was skipped",
+        "skipped": true
+      }
+    },
+    "media_markdown_lane": {
+      "status": "ok",
+      "provider": "fake",
+      "purpose": "document upload/download, image upload/download, and deterministic Markdown reply through real gateway UI",
+      "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623142034",
+      "gateway": {
+        "gateway_url": "http://127.0.0.1:18897",
+        "listen": "127.0.0.1:18897",
+        "local_gateway_url": "http://127.0.0.1:18897",
+        "pairing_claim_endpoint": "http://127.0.0.1:18897/v1/pairing/claim",
+        "pairing_code_seen": true,
+        "project_id": "590cdc05fec70813049650ed9a9d01b07c8ac0a13ba2864c4502a6f474800afb",
+        "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260623142034",
+        "requested_public_url": "",
+        "route_provider": "lan",
+        "stderr": ""
+      },
+      "adb_reverse": {
+        "device_id": "emulator-5554",
+        "mapping": "tcp:18897 tcp:18897"
+      },
+      "integration": {
+        "app_data_clear_returncode": 1,
+        "include_attachment_route": true,
+        "include_image_route": true,
+        "include_lifecycle_stop": false,
+        "include_markdown_route": true,
+        "include_terminal_route": false,
+        "returncode": 0
+      },
+      "post_harness": {
+        "reason": "terminal route smoke was skipped",
+        "skipped": true
+      }
+    }
+  },
+  "passed_gates": [
+    "current APK installed by Flutter integration test on emulator-5554",
+    "loopback-only gateway used through adb reverse",
+    "real source gateway pairing and paired gateway mode",
+    "route diagnostics UI path in terminal lane",
+    "selected-agent message route accepted and deterministic agent reply visible in attachment lane",
+    "document upload persisted through source file route",
+    "ProjectView/comms and conversation preserve attachment metadata without leaking local_path",
+    "conversation attachment chip can be tapped and download/save feedback appears",
+    "terminal WebSocket open/control and post-smoke terminal target in terminal lane",
+    "deterministic Markdown reply title/list/code/link text rendered in real-local AVD lane",
+    "source fake provider can emit ccb-local-md deterministic Markdown fixture through real dispatcher",
+    "image upload/download lane passed through real gateway and Android Emulator UI",
+    "document, image, and Markdown deterministic lanes pass together in one real-local AVD run"
+  ],
+  "remaining_gaps": [
+    "revoke fail-closed across project/view/message/file/terminal routes in AVD",
+    "gateway loss/adb reverse removal/reconnect recovery lane",
+    "five-iteration p50/p95 response-speed table for all budgeted operations",
+    "fresh install/app focus screenshots/UI dumps/logcat bundle for this specific real-local matrix"
+  ]
+}

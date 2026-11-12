@@ -1,0 +1,88 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "scope": "real Android Emulator backend artifact download persistence after app force-stop/restart",
+  "mode": "file_restart_persistence",
+  "app": {
+    "head": "57907ba",
+    "dirty": false
+  },
+  "source": {
+    "head": "ac2626ac",
+    "dirty": false,
+    "command": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64",
+    "adb_reverse": "tcp:19142 tcp:19142"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19142",
+    "listen": "127.0.0.1:19142",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260626191141"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626191141",
+    "selected": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626191141/test_ccb2_alpha",
+      "id": "27464deeb926520fed59ebeacdd24ec41b5162763f0aa5411fefb2a538d951b8",
+      "agent": "mobile_probe"
+    },
+    "also_started": [
+      {
+        "name": "test_ccb2_beta",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626191141/test_ccb2_beta",
+        "id": "f98dee15f6391e50e3c9026c2ddf327ca8d2a91c63df09ad62a7399d4d7e6423"
+      }
+    ]
+  },
+  "artifact": {
+    "file_name": "native-artifact-20260626191141-2937442.txt",
+    "size_bytes": 58,
+    "sha256": "bb6eff9d9703242eeeddf8fae1867f8a0688f88bc93e36861cc9f011bcb37fb5",
+    "android_path": "/data/user/0/io.ccb.mobile.ccb_mobile/app_flutter/native-artifact-20260626191141-2937442.txt",
+    "gateway_metadata_path": "/tmp/ccb-mobile-server-wide-avd-state-20260626191141/files/27464deeb926520fed59ebeacdd24ec41b5162763f0aa5411fefb2a538d951b8/mobile_probe/mobile-file-native-text-20260626191141-2937442/metadata.json"
+  },
+  "lifecycle": {
+    "background_seconds": 5,
+    "background_event_seen": true,
+    "resume_event_seen": true,
+    "force_stop_returncode": 0,
+    "restart_returncode": 0,
+    "restart_stdout_tail": [
+      "Starting: Intent { cmp=io.ccb.mobile.ccb_mobile/.MainActivity }",
+      "Status: timeout",
+      "LaunchState: UNKNOWN (-1)",
+      "Activity: io.ccb.mobile.ccb_mobile/.MainActivity",
+      "WaitTime: 10268",
+      "Complete"
+    ]
+  },
+  "restart_download_check": {
+    "file_name": "native-artifact-20260626191141-2937442.txt",
+    "path": "/data/user/0/io.ccb.mobile.ccb_mobile/app_flutter/native-artifact-20260626191141-2937442.txt",
+    "size_bytes": 58,
+    "sha256": "bb6eff9d9703242eeeddf8fae1867f8a0688f88bc93e36861cc9f011bcb37fb5",
+    "expected_sha256": "bb6eff9d9703242eeeddf8fae1867f8a0688f88bc93e36861cc9f011bcb37fb5"
+  },
+  "verification": {
+    "command": "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --device-id emulator-5554 --gateway-listen 127.0.0.1:19142 --provider codex --file-restart-smoke --background-resume-seconds 5 --background-file-download-bytes 1048576 --flutter-timeout 900",
+    "raw_log": "/tmp/ccb-mobile-file-restart-smoke-20260627031141.log",
+    "flutter_result": "00:12 +1: All tests passed!",
+    "host_checks": [
+      "Flutter downloaded backend artifact and emitted CCB_DOWNLOAD_SHA256",
+      "Flutter test used --no-uninstall so app data remained available to host",
+      "host force-stopped io.ccb.mobile.ccb_mobile",
+      "host restarted MainActivity",
+      "host read the saved file from app sandbox with run-as after restart",
+      "post-restart SHA256 matched the original download SHA256"
+    ]
+  },
+  "residual_risk": [
+    "This proves downloaded artifact file persistence across app process restart.",
+    "Unsupported/oversized file errors and failed-send draft persistence across app restart remain open.",
+    "Profile/release file pressure remains open."
+  ]
+}

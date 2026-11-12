@@ -1,0 +1,215 @@
+{
+  "generated_at": "2026-06-27T03:52:35.146830Z",
+  "local_avd_matrix": {
+    "evidence_count": 38,
+    "invalid_json": [],
+    "missing": [],
+    "path": "/home/bfly/yunwei/ccb_mobile/docs/plantree/plans/mobile-tmux-control/topics/app-local-avd-full-acceptance-matrix.md",
+    "row_count": 11,
+    "rows": [
+      {
+        "evidence_count": 3,
+        "invalid_json": [],
+        "missing": [],
+        "name": "0. Safe baseline",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 2,
+        "invalid_json": [],
+        "missing": [],
+        "name": "1. Server-wide project list",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 3,
+        "invalid_json": [],
+        "missing": [],
+        "name": "2. Selected-agent pane identity",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 3,
+        "invalid_json": [],
+        "missing": [],
+        "name": "3. Pane-equivalent send",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 2,
+        "invalid_json": [],
+        "missing": [],
+        "name": "4. Desktop-origin sync",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 2,
+        "invalid_json": [],
+        "missing": [],
+        "name": "5. Older history/rendering",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 3,
+        "invalid_json": [],
+        "missing": [],
+        "name": "6. Image/document upload",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 5,
+        "invalid_json": [],
+        "missing": [],
+        "name": "7. Backend artifact download",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 2,
+        "invalid_json": [],
+        "missing": [],
+        "name": "8. Multi-project isolation",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 6,
+        "invalid_json": [],
+        "missing": [],
+        "name": "9. Recovery/reconnect/revoke",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 7,
+        "invalid_json": [],
+        "missing": [],
+        "name": "10. Performance/power/soak",
+        "semantic_issues": [],
+        "status": "Accepted"
+      }
+    ],
+    "semantic_issues": [],
+    "status": "ok"
+  },
+  "physical_tailnet": {
+    "missing": [],
+    "preflight": "/home/bfly/yunwei/ccb_mobile/docs/plantree/plans/mobile-tmux-control/history/physical-tailnet-preflight-blocked-20260627.json",
+    "preflight_missing": [
+      "No online Android device is attached.",
+      "tailscale status failed: [Errno 2] No such file or directory: 'tailscale'"
+    ],
+    "preflight_status": "blocked",
+    "runbook": "/home/bfly/yunwei/ccb_mobile/docs/plantree/plans/mobile-tmux-control/topics/physical-tailnet-device-validation-runbook.md",
+    "status": "blocked"
+  },
+  "plan_root": "/home/bfly/yunwei/ccb_mobile/docs/plantree/plans/mobile-tmux-control",
+  "real_avd_casebook": {
+    "evidence_count": 44,
+    "invalid_json": [],
+    "missing": [],
+    "path": "/home/bfly/yunwei/ccb_mobile/docs/plantree/plans/mobile-tmux-control/topics/app-real-avd-stress-casebook.md",
+    "row_count": 11,
+    "rows": [
+      {
+        "evidence_count": 3,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C0.1 Environment/Gateway Identity",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 2,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C1.1 Server-Wide Project Refresh",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 3,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C2.1 Selected-Agent Pane Identity",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 3,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C3.1/C3.2 Phone Send And Provider Reply",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 4,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C4.1/C4.2/C4.3 Dynamic Sync And No Idle Polling",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 2,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C5.1 Older History Pagination",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 5,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C6.1-C6.4 Image/Document Upload And Rejection",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 5,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C7.1/C7.2 Backend Artifact Download",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 2,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C8.1 Multi-Project Isolation",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 7,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C9.1-C9.4 Recovery/Revoke/Replay Guard",
+        "semantic_issues": [],
+        "status": "Accepted"
+      },
+      {
+        "evidence_count": 8,
+        "invalid_json": [],
+        "missing": [],
+        "name": "C10.1/C10.2 Idle/Frame/Memory Pressure",
+        "semantic_issues": [],
+        "status": "Accepted"
+      }
+    ],
+    "semantic_issues": [],
+    "status": "ok"
+  },
+  "schema_version": 1,
+  "status": "blocked"
+}

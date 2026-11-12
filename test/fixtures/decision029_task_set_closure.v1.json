@@ -1,0 +1,20 @@
+{
+  "schema": "ccb.decision029.fake_closure_scenarios.v2",
+  "evidence_scope": "source_fake_protocol_only_not_acceptance",
+  "generator": "cli.services.task_set_closure.evaluate_task_set_closure",
+  "closure_representation": "worker2-frozen-digest-string",
+  "transport_contract": "exact-production-envelope-with-script-owned-closure_ref",
+  "retry_authority_contract": {
+    "transport_fields": ["source_job_id", "effective_job_id", "retry_lineage"],
+    "retry_edge_fields": ["message_id", "source_attempt_id", "successor_attempt_id", "retry_source_job_id", "retry_successor_job_id", "retry_index"],
+    "authority": "message-store-and-attempt-store-only-not-provider-options"
+  },
+  "scenarios": [
+    {"case_id": "all-pass", "child_results": ["pass", "pass"], "aggregate_result": "pass"},
+    {"case_id": "pass-blocked-partial", "child_results": ["pass", "blocked"], "aggregate_result": "partial"},
+    {"case_id": "pass-partial", "child_results": ["pass", "partial"], "aggregate_result": "partial"},
+    {"case_id": "multiple-replan-one-aggregate", "child_results": ["replan_required", "replan_required"], "aggregate_result": "replan_required"},
+    {"case_id": "all-blocked", "child_results": ["blocked", "blocked"], "aggregate_result": "blocked"},
+    {"case_id": "partial-notification-not-required", "child_results": ["pass", "blocked"], "aggregate_result": "partial", "fake_provider_semantics": "notification_not_required"}
+  ]
+}

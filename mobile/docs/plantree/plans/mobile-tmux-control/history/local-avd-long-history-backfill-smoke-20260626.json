@@ -1,0 +1,75 @@
+{
+  "date": "2026-06-26",
+  "status": "ok",
+  "case_ids": ["C5.1", "C10.2-smoke"],
+  "scope": "Android Emulator server-wide gateway long-history selected-agent backfill smoke",
+  "raw_log": "/tmp/ccb-mobile-long-history-backfill-smoke-20260626183230.log",
+  "app": {
+    "head": "70e9af0",
+    "commit": "70e9af0 test: seed long-history native transcript smoke",
+    "dirty_status_at_run_start": "clean"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "6042b813",
+    "commit": "6042b813 fix: prefer native mobile conversation transcript"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "adb_reverse": "tcp:19036 tcp:19036"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19036",
+    "listen": "127.0.0.1:19036",
+    "route_provider": "lan",
+    "host_id": "host-33de3480b04d6be3"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626103241",
+    "server_wide_count": 43,
+    "selected_project_id": "1220932c962c5e954cc873b35fef830d5b498470329832a556d6e6862253d1c9",
+    "alpha_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626103241/test_ccb2_alpha",
+    "beta_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626103241/test_ccb2_beta",
+    "agent": "mobile_probe"
+  },
+  "dataset": {
+    "turns": 56,
+    "seed_mode": "codex_native_rollout_fixture",
+    "seed_ms": 29.909,
+    "latest_text": "Native backfill answer backfill-20260626103241-206260-55",
+    "oldest_text": "Native backfill answer backfill-20260626103241-206260-00",
+    "notes": "The fixture writes Codex provider-native rollout records and state_5.sqlite thread metadata directly into the disposable real project. It does not use ccb ask, does not create jobs, and is not a live 56-turn model throughput test."
+  },
+  "gateway_api_metrics_ms": {
+    "project_view": 24.287,
+    "latest_page": 4.81,
+    "older_pages_total": 12.556,
+    "oldest_page": 5.684,
+    "older_pages": 2,
+    "latest_message_polls": 1
+  },
+  "app_ui_metrics_ms": {
+    "latest_visible": 118,
+    "older_visible": 10049,
+    "post_backfill_settle": 117,
+    "total": 14355,
+    "drag_count": 18
+  },
+  "flutter_integration": {
+    "test": "app/integration_test/server_wide_gateway_smoke_test.dart",
+    "tests_passed": 2,
+    "returncode": 0,
+    "stdout_tail": [
+      "00:00 +0: server-wide local gateway lists projects and exercises chat files artifacts",
+      "00:00 +1: server-wide gateway dynamically backfills older chat on upward scroll",
+      "CCB_BACKFILL_METRICS {\"project_id\":\"1220932c962c5e954cc873b35fef830d5b498470329832a556d6e6862253d1c9\",\"agent\":\"mobile_probe\",\"latest_visible_ms\":118,\"older_visible_ms\":10049,\"post_backfill_settle_ms\":117,\"total_ms\":14355,\"drag_count\":18}",
+      "00:14 +2: All tests passed!"
+    ]
+  },
+  "limitations": [
+    "Does not close the full 200+ mixed Markdown/image/document/artifact history case.",
+    "Does not measure profile/release frame timings, CPU, memory, or power.",
+    "Does not validate live provider generation latency for 56 turns.",
+    "File/image upload and backend artifact download still need native selected-agent path revalidation."
+  ]
+}

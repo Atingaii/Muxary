@@ -1,0 +1,189 @@
+{
+  "app_commit": "b132f37",
+  "cleanup": {
+    "gateway_returncode": -15,
+    "keep_running": false,
+    "kill_returncode": 0,
+    "kill_summary": {
+      "forced": "true",
+      "kill_status": "ok",
+      "project_id": "1dfbd378be35a33bf9580255b3bbd2b7bb0a2a9bbaec0e31ffa767b5c5d43823",
+      "socket_path": "/home/bfly/yunwei/test_ccb2/ccb-mobile-direct-fake-capability-debug4/.ccb/ccbd/ccbd.sock",
+      "state": "unmounted"
+    }
+  },
+  "gateway": {
+    "gateway_url": "http://127.0.0.1:18905",
+    "listen": "127.0.0.1:18905",
+    "local_gateway_url": "http://127.0.0.1:18905",
+    "pairing_claim_endpoint": "http://127.0.0.1:18905/v1/pairing/claim",
+    "pairing_code_seen": true,
+    "project_id": "1dfbd378be35a33bf9580255b3bbd2b7bb0a2a9bbaec0e31ffa767b5c5d43823",
+    "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-direct-fake-capability-debug4",
+    "requested_public_url": "",
+    "route_provider": "lan",
+    "stderr": ""
+  },
+  "probe": {
+    "agent": "mobile_probe",
+    "gateway_url": "http://127.0.0.1:18905",
+    "generated_at": "2026-06-23T15:24:37.223930Z",
+    "next_actions": [],
+    "project_id": "1dfbd378be35a33bf9580255b3bbd2b7bb0a2a9bbaec0e31ffa767b5c5d43823",
+    "reply_marker": "ccb-local-reply:381eae05e8",
+    "schema_version": 1,
+    "send_body": "ccb-local-md:381eae05e8",
+    "status": "ok",
+    "steps": [
+      {
+        "details": {
+          "capabilities": [
+            "http_json",
+            "project_view",
+            "pairing",
+            "device_tokens",
+            "lifecycle",
+            "focus",
+            "terminal_open",
+            "websocket_terminal",
+            "terminal_history",
+            "file_upload",
+            "file_download"
+          ],
+          "gateway_status": "ok"
+        },
+        "duration_ms": 3.697,
+        "name": "health",
+        "status": "pass"
+      },
+      {
+        "details": {
+          "device_id": "dev_b8e22c1cded0ebd3",
+          "device_token": "zOaIOkJmwtl7HRmykTU-edBZ1KRpldvTCpXLOy8BApI",
+          "project_id": "1dfbd378be35a33bf9580255b3bbd2b7bb0a2a9bbaec0e31ffa767b5c5d43823",
+          "scopes": [
+            "ask",
+            "content",
+            "file_download",
+            "file_upload",
+            "focus",
+            "lifecycle",
+            "message_submit",
+            "terminal_input",
+            "view"
+          ]
+        },
+        "duration_ms": 1.318,
+        "name": "pairing_claim",
+        "status": "pass"
+      },
+      {
+        "details": {
+          "agents": [
+            "mobile_probe",
+            "mobile_peer"
+          ],
+          "namespace_epoch": 1,
+          "project_id": "1dfbd378be35a33bf9580255b3bbd2b7bb0a2a9bbaec0e31ffa767b5c5d43823"
+        },
+        "duration_ms": 10.7,
+        "name": "project_view",
+        "status": "pass"
+      },
+      {
+        "details": {
+          "job_id": "job_35469ff1e8bf",
+          "message_id": "job_35469ff1e8bf",
+          "state": "accepted"
+        },
+        "duration_ms": 3.557,
+        "name": "message_submit",
+        "status": "pass"
+      },
+      {
+        "details": {
+          "marker": "ccb-local-reply:381eae05e8",
+          "polls": 4
+        },
+        "duration_ms": 1512.7,
+        "name": "agent_reply_marker",
+        "status": "pass"
+      },
+      {
+        "details": {
+          "file_id": "mobile-file-2af9edc44945409e",
+          "file_name": "local-backend-probe.txt",
+          "size_bytes": 36
+        },
+        "duration_ms": 1.451,
+        "name": "file_upload_route",
+        "status": "pass"
+      },
+      {
+        "details": {
+          "file_id": "mobile-file-2af9edc44945409e",
+          "size_bytes": 36
+        },
+        "duration_ms": 0.754,
+        "name": "file_download_route",
+        "status": "pass"
+      },
+      {
+        "details": {
+          "file_id": "mobile-file-8449905d03b348ec",
+          "polls": 4,
+          "size_bytes": 38
+        },
+        "duration_ms": 1524.56,
+        "name": "backend_artifact_route",
+        "status": "pass"
+      },
+      {
+        "details": {
+          "denied_routes": [
+            {
+              "method": "GET",
+              "path": "/v1/devices/me",
+              "status": 401
+            },
+            {
+              "method": "GET",
+              "path": "/v1/projects/1dfbd378be35a33bf9580255b3bbd2b7bb0a2a9bbaec0e31ffa767b5c5d43823/view",
+              "status": 401
+            },
+            {
+              "method": "POST",
+              "path": "/v1/projects/1dfbd378be35a33bf9580255b3bbd2b7bb0a2a9bbaec0e31ffa767b5c5d43823/agents/mobile_probe/messages",
+              "status": 401
+            },
+            {
+              "method": "POST",
+              "path": "/v1/projects/1dfbd378be35a33bf9580255b3bbd2b7bb0a2a9bbaec0e31ffa767b5c5d43823/terminals",
+              "status": 401
+            },
+            {
+              "method": "GET",
+              "path": "/v1/projects/1dfbd378be35a33bf9580255b3bbd2b7bb0a2a9bbaec0e31ffa767b5c5d43823/agents/mobile_probe/files/mobile-file-2af9edc44945409e",
+              "status": 401
+            }
+          ],
+          "device_id": "dev_b8e22c1cded0ebd3",
+          "revoked": true
+        },
+        "duration_ms": 4.908,
+        "name": "revoke_fail_closed",
+        "status": "pass"
+      }
+    ],
+    "timing": {
+      "max_ms": 1524.56,
+      "p50_ms": 3.697,
+      "p95_ms": 1519.816,
+      "samples": 9
+    }
+  },
+  "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-direct-fake-capability-debug4",
+  "schema_version": 1,
+  "source_ccb": "/home/bfly/yunwei/ccb_source_mobile_local_backend_matrix/ccb",
+  "source_commit": "50bf589f"
+}

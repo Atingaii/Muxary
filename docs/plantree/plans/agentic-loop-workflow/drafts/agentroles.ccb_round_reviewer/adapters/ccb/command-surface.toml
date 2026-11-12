@@ -1,0 +1,30 @@
+schema = "ccb-command-surface/v1"
+mode = "deny_all_except"
+enforcement = "required"
+if_unsupported = "fail_mount"
+generic_shell = false
+generic_ccb = false
+supported_providers = ["codex", "claude"]
+allowed_effects = [
+  "semantic_round_review_reply",
+]
+forbidden_effects = [
+  "shell_exec",
+  "file_search",
+  "file_read",
+  "file_write",
+  "test_exec",
+  "implementation",
+  "generic_ccb",
+  "wait",
+  "watch",
+  "ask",
+  "arbitrary_target",
+  "authority_mutation",
+  "task_create",
+  "artifact_import",
+  "status_write",
+  "runner_start",
+  "worker_dispatch",
+  "notification_send",
+]

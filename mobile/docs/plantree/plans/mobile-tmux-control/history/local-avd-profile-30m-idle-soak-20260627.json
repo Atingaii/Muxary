@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-27",
+  "scope": "Profile APK 30-minute idle soak on a real server-wide selected-agent page, covering request counts, memory, wake locks, gfxinfo, and logcat stability.",
+  "status": "ok",
+  "raw_log": "/tmp/ccb-mobile-profile-30m-idle-soak-20260627.log",
+  "mobile_app": {
+    "head": "7898851",
+    "dirty": false,
+    "commit": "docs: record profile scrolled desktop sync smoke"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "7e436f7e",
+    "dirty": false,
+    "commit": "fix: order mobile native transcript pages by record time"
+  },
+  "emulator": {
+    "device_id": "emulator-5554",
+    "adb_reverse": "tcp:19188 tcp:19188"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19187",
+    "proxy_url": "http://127.0.0.1:19188",
+    "route_provider": "lan"
+  },
+  "project_fixture": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626222109",
+    "started_projects": [
+      "test_ccb2_alpha",
+      "test_ccb2_beta"
+    ],
+    "selected_agent": "mobile_probe"
+  },
+  "flutter": {
+    "build_mode": "profile",
+    "test_target": "integration_test/server_wide_idle_request_smoke_test.dart",
+    "summary": "30:11 +2: All tests passed!"
+  },
+  "idle_window": {
+    "seconds": 1800,
+    "total_requests": 0,
+    "requests_per_minute": 0.0,
+    "conversation_requests": 0,
+    "terminal_history_requests": 0,
+    "conversation_terminal_requests": 0,
+    "conversation_terminal_requests_per_minute": 0.0
+  },
+  "post_window_check": {
+    "request_proxy_final_total": 1,
+    "request_proxy_final_routes": {
+      "GET /v1/projects/{project}/agents/{agent}/conversation": 1
+    }
+  },
+  "device_metrics": {
+    "sample_count": 31,
+    "pss_kb_min": 146203,
+    "pss_kb_max": 147130,
+    "pss_kb_delta": 767,
+    "pss_growth_ratio": 0.0052,
+    "wake_locks": "Wake Locks: size=0",
+    "wake_lock_summary": "mWakeLockSummary=0x0",
+    "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+    "gfxinfo_total_frames_rendered": "Total frames rendered: 1",
+    "gfxinfo_janky_frames": "Janky frames (legacy): 1 (100.00%)",
+    "logcat_fatal_anr_oom": false,
+    "logcat_skipped_frames_count": 0,
+    "errors": [],
+    "warnings": []
+  },
+  "acceptance_notes": [
+    "The app was opened on a real server-wide selected-agent page backed by disposable test_ccb2 projects.",
+    "During the 1800-second untouched idle audit window, the request proxy observed zero total requests and zero conversation or terminal-history requests.",
+    "After the audit window, the test performed exactly one explicit selected-agent refresh, visible in the final proxy count.",
+    "Device metrics showed stable memory, no app fatal/ANR/OOM markers, no skipped-frame logcat markers, and no wake locks.",
+    "This closes the profile-mode 30-minute idle request-rate/power soak smoke, but not release-mode power or release harness acceptance."
+  ]
+}

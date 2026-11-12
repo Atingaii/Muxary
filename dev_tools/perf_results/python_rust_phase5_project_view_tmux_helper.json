@@ -1,0 +1,63 @@
+{
+  "fixture_root": "/tmp/ccb-phase5-project-view-xf2qqvs5",
+  "generated_at": "2026-06-15T13:02:21.761607+00:00",
+  "helper_bin": "/home/bfly/yunwei/ccb_source/tools/ccb-rs-helper/target/release/ccb-rs-helper",
+  "helper_build": {
+    "elapsed_ms": 19.968,
+    "status": "built"
+  },
+  "helper_used": true,
+  "integration_gate": {
+    "default_enabled": false,
+    "meets_1_5x_speedup": false,
+    "meets_20pct_p95_reduction": false,
+    "production_path_wired": true
+  },
+  "metrics": {
+    "python_tmux_parser": {
+      "iterations": 10,
+      "max_ms": 0.218,
+      "min_ms": 0.143,
+      "p50_ms": 0.155,
+      "p95_ms": 0.218,
+      "sidebar_count": 51,
+      "status": "measured",
+      "window_count": 96
+    },
+    "rust_helper_tmux_parser": {
+      "iterations": 10,
+      "max_ms": 2.014,
+      "min_ms": 0.869,
+      "p50_ms": 1.089,
+      "p95_ms": 2.014,
+      "sidebar_count": 51,
+      "status": "measured",
+      "window_count": 96
+    }
+  },
+  "p95_reduction": -8.238532110091743,
+  "parameters": {
+    "iterations": 10,
+    "panes": 96,
+    "windows": 96
+  },
+  "parity": {
+    "matches_python": true,
+    "reason": "matched"
+  },
+  "phase": "phase5_project_view_tmux_helper",
+  "plan": "python-rust-hybrid-performance",
+  "platform": {
+    "machine": "x86_64",
+    "release": "6.8.0-90-generic",
+    "system": "Linux"
+  },
+  "python": {
+    "executable": "/home/bfly/anaconda3/bin/python",
+    "version": "3.11.4"
+  },
+  "repo_root": "/home/bfly/yunwei/ccb_source",
+  "result_path": "/home/bfly/yunwei/ccb_source/dev_tools/perf_results/python_rust_phase5_project_view_tmux_helper.json",
+  "schema_version": 1,
+  "speedup_p50": 0.1423324150596878
+}

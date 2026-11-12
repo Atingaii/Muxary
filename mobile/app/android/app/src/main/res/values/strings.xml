@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_notification_channel_id" translatable="false">ccb_task_completion</string>
+    <string name="background_connection_channel_name">CCB background connection</string>
+    <string name="background_connection_notification_title">CCB Mobile is connected</string>
+    <string name="background_connection_notification_body">Listening for project updates in the background</string>
+</resources>

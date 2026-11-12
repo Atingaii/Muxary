@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "version": "8.0.16",
+  "android": {
+    "asset_name": "ccb-mobile-v8.0.16.apk",
+    "application_id": "io.ccb.mobile.ccb_mobile",
+    "label": "CCB Mobile",
+    "version_code": 8000016,
+    "version_name": "8.0.16",
+    "min_sdk": 24,
+    "target_sdk": 36,
+    "download_url": "https://github.com/SeemSeam/claude_codex_bridge/releases/download/v8.0.16/ccb-mobile-v8.0.16.apk",
+    "sha256": "94f3f077602208e727f055d5c9541550db92f8d635756d9a019ee213e96d8b9f",
+    "size_bytes": 73558696
+  },
+  "setup": {
+    "desktop_command": "ccb update mobile",
+    "route_provider": "tailnet",
+    "gateway_binding": "loopback-only",
+    "tailscale_funnel": false
+  }
+}

@@ -1,0 +1,9 @@
+schema = "agent-role-adapter/ccb-preview-0.1"
+host = "ccb"
+default_agent_name = "ccb_task_detailer"
+supported_providers = ["codex", "claude"]
+memory = ["adapters/ccb/memory.md"]
+skills = []
+command_surface = "adapters/ccb/command-surface.toml"
+permission_default = "ask"
+recommended_workspace_mode = "inplace"

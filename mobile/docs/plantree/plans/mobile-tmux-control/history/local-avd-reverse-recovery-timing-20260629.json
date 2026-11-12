@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-29",
+  "status": "ok",
+  "case": "selected-agent adb reverse recovery timing",
+  "command": "source tools/mobile_toolchain_env.sh && python tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --force-config --provider codex --reverse-recovery-smoke --gateway-listen 127.0.0.1:19309 --device-id emulator-5554 --flutter-timeout 900 | tee /tmp/ccb-mobile-recovery-19309.json",
+  "raw_result_path": "/tmp/ccb-mobile-recovery-19309.json",
+  "app": {
+    "head": "d540c66",
+    "dirty": true
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb",
+    "head": "7e436f7e",
+    "dirty": false
+  },
+  "device": {
+    "id": "emulator-5554",
+    "claimed_device_id": "avd_20260629070215"
+  },
+  "gateway": {
+    "listen": "127.0.0.1:19309",
+    "url": "http://127.0.0.1:19309",
+    "route_provider": "lan"
+  },
+  "fixture": {
+    "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629070215",
+    "opened_project_name": "test_ccb2_alpha",
+    "opened_project_id": "a1671c2d5802f59187be31853f1396849ee5361535a291954e7fc9aa02f2da27",
+    "opened_agent": "mobile_probe",
+    "started_project_roots": [
+      "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629070215/test_ccb2_alpha",
+      "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629070215/test_ccb2_beta"
+    ],
+    "server_wide_project_count": 19
+  },
+  "reverse_events": {
+    "removed": [
+      "CCB_RECOVERY_READY_REMOVE_REVERSE project-list",
+      "CCB_RECOVERY_READY_REMOVE_REVERSE"
+    ],
+    "restored": [
+      "CCB_RECOVERY_READY_RESTORE_REVERSE project-list",
+      "CCB_RECOVERY_READY_RESTORE_REVERSE"
+    ],
+    "adb_reverse_restored_mapping": "tcp:19309 tcp:19309",
+    "cleanup_removed": true
+  },
+  "timing": {
+    "project_list_refresh_to_error_ms": 533,
+    "project_list_retry_to_recovered_ms": 1234,
+    "conversation_refresh_to_error_ms": 1068,
+    "conversation_retry_to_recovered_ms": 1099
+  },
+  "assertions": {
+    "project_list_error_visible_when_reverse_removed": true,
+    "project_list_recovers_after_reverse_restore": true,
+    "opened_conversation_error_visible_when_reverse_removed": true,
+    "opened_conversation_recovers_after_reverse_restore": true,
+    "composer_still_present_after_recovery": true,
+    "no_ccb_req_id_visible": true,
+    "no_mobile_gateway_label_visible": true,
+    "no_completion_snapshot_label_visible": true
+  },
+  "verification": {
+    "flutter_integration_stdout_tail": [
+      "00:00 +0: explicit refresh recovers after adb reverse is restored",
+      "CCB_RECOVERY_READY_REMOVE_REVERSE project-list",
+      "CCB_RECOVERY_READY_RESTORE_REVERSE project-list",
+      "CCB_RECOVERY_READY_REMOVE_REVERSE",
+      "CCB_RECOVERY_READY_RESTORE_REVERSE",
+      "CCB_RECOVERY_TIMING_JSON {\"project_list_refresh_to_error_ms\":533,\"project_list_retry_to_recovered_ms\":1234,\"conversation_refresh_to_error_ms\":1068,\"conversation_retry_to_recovered_ms\":1099}",
+      "00:17 +1: All tests passed!"
+    ],
+    "harness_parser_test": "python tools/mobile_server_wide_emulator_smoke_test.py: 43 passed",
+    "py_compile": "python -m py_compile tools/mobile_server_wide_emulator_smoke.py tools/mobile_server_wide_emulator_smoke_test.py: passed",
+    "adb_reverse_cleanup": "ok",
+    "gateway_cleanup": "ok"
+  },
+  "remaining_risk": "This recovery timing smoke does not include a full device mem/cpu/gfx/wakelock packet; keep broader recovery/long-output device-health metrics open."
+}

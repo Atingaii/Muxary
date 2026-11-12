@@ -1,0 +1,120 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "scope": "real Android Emulator failed selected-agent send with attachment survives gateway process stop/restart plus app force-stop/restart and retries once",
+  "mode": "replay_gateway_restart",
+  "app": {
+    "head": "d6b4790",
+    "dirty": false
+  },
+  "source": {
+    "head": "ac2626ac",
+    "dirty": false,
+    "command": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64",
+    "adb_reverse": "tcp:19147 tcp:19147"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19147",
+    "listen": "127.0.0.1:19147",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260626195641",
+    "stop_events": [
+      {
+        "already_exited": false,
+        "killed": false,
+        "marker": "CCB_REPLAY_GUARD_STOP_GATEWAY_READY",
+        "pid": 708043,
+        "returncode": -15,
+        "stopped": true
+      }
+    ],
+    "start_events": [
+      {
+        "gateway": {
+          "gateway_url": "http://127.0.0.1:19147",
+          "listen": "127.0.0.1:19147",
+          "local_gateway_url": "http://127.0.0.1:19147",
+          "pairing_claim_endpoint": "http://127.0.0.1:19147/v1/pairing/claim",
+          "pairing_code_seen": true,
+          "project_id": "host-29ca1d828f5d4351",
+          "project_root": "",
+          "requested_public_url": null,
+          "route_provider": "lan",
+          "stderr": ""
+        }
+      }
+    ]
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626195641",
+    "selected": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626195641/test_ccb2_alpha",
+      "id": "f9973de1c87be9f3f799919ed73fe3faeb005162a74157076516781ba42bf848",
+      "agent": "mobile_probe"
+    },
+    "also_started": [
+      {
+        "name": "test_ccb2_beta",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626195641/test_ccb2_beta",
+        "id": "f7a276501d63d8de96321638f9e363edc417c559528f5f80df42b219000c4755"
+      }
+    ]
+  },
+  "message": {
+    "prompt": "Please reply with exactly CCB_MOBILE_REPLAY_OK_20260626195641 and no other text.",
+    "expected_reply": "CCB_MOBILE_REPLAY_OK_20260626195641",
+    "attachment_name": "replay-guard-attachment.txt"
+  },
+  "failure_and_restart": {
+    "gateway_stopped": true,
+    "failed_persist_ready": true,
+    "force_stop_returncode": 0,
+    "gateway_restarted": true,
+    "retry_done": true,
+    "failed_stage_result": "00:10 +1: All tests passed!",
+    "retry_stage_result": "00:09 +1: All tests passed!"
+  },
+  "source_side_evidence": {
+    "mode": "replay_gateway_restart",
+    "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626195641/test_ccb2_alpha",
+    "codex_event_files": [
+      "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626195641/test_ccb2_alpha/.ccb/agents/mobile_probe/provider-state/codex/home/sessions/2026/06/26/rollout-ccb-mobile-native-artifact-20260626195641-698995.jsonl",
+      "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626195641/test_ccb2_alpha/.ccb/agents/mobile_probe/provider-state/codex/home/sessions/2026/06/27/rollout-2026-06-27T03-56-48-019f0581-9f2e-7802-8eb2-9e09f09a1ddf.jsonl"
+    ],
+    "jobs_matches": [],
+    "user_match_count": 1,
+    "reply_match_count": 1,
+    "prompt_contains_ccb_req_id": false,
+    "prompt_contains_mobile_gateway": false
+  },
+  "verification": {
+    "command": "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --device-id emulator-5554 --gateway-listen 127.0.0.1:19147 --provider codex --replay-gateway-restart-smoke --flutter-timeout 900",
+    "raw_log": "/tmp/ccb-mobile-replay-gateway-restart-smoke-20260627-clean.log",
+    "precommit_checks": [
+      "python3 tools/mobile_server_wide_emulator_smoke_test.py: 16 passed",
+      "python3 -m py_compile tools/mobile_server_wide_emulator_smoke.py tools/mobile_server_wide_emulator_smoke_test.py: passed",
+      "flutter test: 390 passed",
+      "flutter analyze: No issues found",
+      "git diff --check: passed"
+    ],
+    "host_checks": [
+      "cleared app data before first stage",
+      "failed stage stopped the server-wide gateway before send",
+      "failed draft and attachment stayed visible and reached persistence marker",
+      "host force-stopped io.ccb.mobile.ccb_mobile before retry stage",
+      "host restarted the gateway on the same loopback port and state directory before retry stage",
+      "retry stage restored failed draft from app storage and tapped Retry",
+      "source-side native transcript saw the exact user prompt once and expected reply once",
+      "source-side native transcript had no CCB_REQ_ID/mobile_gateway pollution and no jobs matches"
+    ]
+  },
+  "residual_risk": [
+    "This proves failed selected-agent send with one text attachment persists across app and gateway process restart and retries once on a real server-wide Android Emulator path.",
+    "Oversized/unsupported local file rejection remains open.",
+    "Profile/release file pressure remains open."
+  ]
+}

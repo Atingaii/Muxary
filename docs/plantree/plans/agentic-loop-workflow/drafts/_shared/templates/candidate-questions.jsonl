@@ -1,0 +1,1 @@
+{"id":"q1","stage":"planning","question":"<question for the current phase>","why_blocking":"<why this blocks readiness>","default_if_unanswered":"<safe default or empty>","defer_allowed":true}

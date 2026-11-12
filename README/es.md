@@ -1,0 +1,547 @@
+<div align="center">
+
+# CCB - ¡La app móvil ya llegó!
+
+**Un TUI multiagente ligero con una capa estable de colaboración entre proveedores**<br>
+**Coordina Codex, Claude, Gemini y otros agentes CLI en flujos visibles y controlables que puedes tomar directamente**
+
+<p>
+  <img src="https://img.shields.io/badge/version-8.7.22-orange.svg" alt="version">
+  <img src="https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20WSL-lightgrey.svg" alt="platform">
+  <img src="https://img.shields.io/badge/providers-16%20CLI%20families-0B7285.svg" alt="providers">
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/Codex-111111?style=flat-square&logo=openai&logoColor=white" alt="Codex">
+  <img src="https://img.shields.io/badge/Claude-D97757?style=flat-square&logo=anthropic&logoColor=white" alt="Claude">
+  <img src="https://img.shields.io/badge/Pi-111111?style=flat-square" alt="Pi">
+  <img src="https://img.shields.io/badge/OMP-111111?style=flat-square" alt="OMP">
+  <img src="https://img.shields.io/badge/Kimi-111111?style=flat-square&logo=moonshotai&logoColor=white" alt="Kimi">
+  <img src="https://img.shields.io/badge/OpenCode-111111?style=flat-square" alt="OpenCode">
+  <img src="https://img.shields.io/badge/Gemini-4285F4?style=flat-square&logo=googlegemini&logoColor=white" alt="Gemini">
+  <img src="https://img.shields.io/badge/Grok-000000?style=flat-square&logo=x&logoColor=white" alt="Grok CLI">
+  <img src="https://img.shields.io/badge/MiMo-FF6900?style=flat-square&logo=xiaomi&logoColor=white" alt="MiMo">
+  <img src="https://img.shields.io/badge/Qwen-6A5CFF?style=flat-square" alt="Qwen">
+  <img src="https://img.shields.io/badge/Cursor-111111?style=flat-square" alt="Cursor">
+  <img src="https://img.shields.io/badge/Copilot-111111?style=flat-square&logo=githubcopilot&logoColor=white" alt="GitHub Copilot">
+  <img src="https://img.shields.io/badge/Crush-FF5A5F?style=flat-square" alt="Crush">
+  <img src="https://img.shields.io/badge/Kiro-6D5EF6?style=flat-square" alt="Kiro">
+  <img src="https://img.shields.io/badge/Antigravity-6D5EF6?style=flat-square&logo=google&logoColor=white" alt="Antigravity">
+  <img src="https://img.shields.io/badge/Droid-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Droid">
+</p>
+
+[中文](zh.md) | [English](../README.md) | [日本語](ja.md) | [Français](fr.md) | [Deutsch](de.md) | [العربية](ar.md) | **Español** | [Português](pt.md) | [한국어](ko.md) | [Русский](ru.md)
+
+[Inicio rápido](#quick-start) · [Mobile App](#mobile-app) · [Modo Rich](#rich-mode) · [Configurar agentes](#configure-agents) · [Guía de usuario](../docs/manuals/user-guide/) · [Guía de desarrollo](../docs/manuals/developer-guide/)
+
+<p align="center">
+  <img src="../assets/readme_v7/ccb-hero-en-light.png" alt="Espacio de trabajo CLI multiagente visible de CCB" width="960">
+</p>
+
+</div>
+
+<a id="why-ccb"></a>
+
+## ¿Por qué CCB?
+
+- Comunicación estable entre agentes para grafos complejos como `A -> B -> C`, `A,B -> C` y `A -> B,C`.
+- Cada agente es una terminal nativa completa, con control visible del diseño y toma directa.
+- El daemon en segundo plano conserva el estado del proyecto aunque se cierre la interfaz frontal.
+- Capacidad Hub: ejecutar varios CLI providers en paralelo desde un solo comando.
+- Controlador móvil remoto: control por voz entre providers, transferencia de archivos y acceso a terminal remoto.
+
+<a id="how-to-install"></a>
+
+## New in 8.7.19: OMP native questions and runtime status / OMP 原生交互与运行状态
+
+Native select/editor cards use fenced replies over HTTP or encrypted Relay. Mobile shows native elapsed time, current step and Todo progress. Update gateway and app together; restart only idle OMP agents.
+
+[Full bilingual notes](../docs/releases/v8.7.19.md).
+
+## New in 8.7.18: Stable OMP Mobile History / 稳定长历史
+
+OMP Mobile now paginates stable long history through bounded native parent-chain pages. History-query errors preserve a healthy WebSocket and already-loaded content. Oversized replies keep a structured latest-content bubble capped at 24 KiB, 8 entries and 24 blocks; complete originals remain available as a secondary reader. Upgrade both the server and app, then restart existing OMP processes normally when idle; do not interrupt busy agents or discard history.
+
+OMP Mobile 通过有界原生父链分页稳定读取长历史；历史查询失败不再重置健康的 WebSocket 或清除已加载内容。超长回复在气泡中保留结构化最新内容，最多 24 KiB、8 条记录、24 个块；完整原文仍可通过次级阅读入口查看。请同时升级服务端与 App，已有 OMP 进程在空闲时正常重启加载；不要中断忙碌 Agent 或清空历史。
+
+[Full bilingual notes](../docs/releases/v8.7.18.md).
+
+## New in 8.7.17: OMP Reply Receipts / OMP 回复收据
+
+OMP replies use bounded, owner-bound native `reply_deliver` / `reply_status` delivery. A `ccb-reply` is received as an aside at a safe step boundary; only a persisted native `custom_message` counts as a receipt and releases the mailbox. Receipt does not mean subsequent business processing is finished. Drafts and active ask anchors remain intact, no concurrent turn is started, and ambiguous sends are queried rather than replayed.
+
+OMP 回复通过有界、绑定归属的原生 `reply_deliver` / `reply_status` 投递；`ccb-reply` 在安全步骤边界作为 aside 接收。只有已持久化的原生 `custom_message` 才算收据并释放邮箱，不代表后续业务处理完成。保留草稿与活跃 ask 锚点，不启动并发回合；发送结果不明时查询状态，不重放。
+
+[Full bilingual notes](../docs/releases/v8.7.17.md).
+
+## Cómo instalar
+
+Instala o actualiza una instalación administrada por npm con npm:
+
+```bash
+npm install -g @seemseam/ccb@latest
+```
+
+Para instalaciones desde GitHub release o fuente, usa el updater transaccional de CCB:
+
+```bash
+ccb update
+```
+
+En una instalación administrada por npm, `ccb update` muestra el comando npm equivalente sin modificar el payload incluido.
+
+<details>
+<summary><b>Paquete de GitHub release e instalación desde fuente como respaldo</b></summary>
+
+Si npm no es conveniente en tu entorno, descarga el paquete adecuado desde [Releases](https://github.com/SeemSeam/claude_codex_bridge/releases), descomprímelo e instálalo:
+
+```bash
+tar -xzf ccb-*.tar.gz
+cd ccb-*
+./install.sh install
+```
+
+La instalación desde fuente está pensada solo para desarrollo o respaldo temporal:
+
+```bash
+git clone https://github.com/SeemSeam/claude_codex_bridge.git
+cd claude_codex_bridge
+./install.sh install
+```
+
+La instalación desde fuente enlaza los comandos globales `ccb` / `ask` al checkout actual. Los usuarios normales deberían preferir el paquete npm.
+
+</details>
+
+<a id="quick-start"></a>
+
+## Inicio rápido
+
+### 1. Iniciar
+
+Ejecuta esto desde tu directorio de trabajo:
+
+```bash
+ccb
+```
+
+Si el arranque indica que `.ccb` no puede crearse automáticamente o que falta el ancla del proyecto, créala manualmente:
+
+```bash
+mkdir -p .ccb
+```
+
+<a id="configure-agents"></a>
+
+### 2. Crear la configuración del proyecto
+
+Un proyecto vacío arranca de forma ligera: CCB abre una sola window `main` con un agente llamado `demo` y selecciona el primer CLI compatible disponible en el equipo. Ya no monta un equipo multiagente por defecto.
+
+Haz clic en **⚙ Configuración** en la esquina superior izquierda de la sidebar de CCB para abrir el panel de configuración local. También puedes ejecutar `ccb config ui`.
+
+<p align="center">
+  <img src="../assets/readme_v7/config-control-panel.png" alt="Panel de configuración de CCB para el agente demo predeterminado" width="960">
+</p>
+
+El panel configura windows, divisiones de panes, providers, modelos, niveles de thinking, API overrides, workspaces, modo Rich y sidebar. Valida antes de guardar y admite reload dry-run y hot reload protegido.
+
+Para una topología multiagente avanzada, añade agentes visualmente o crea `.ccb/ccb.config` manualmente. `,` y `;` controlan el apilamiento vertical y las divisiones horizontales; `A,B;C,D` se aproxima a cuatro panes.
+
+```toml
+version = 2
+
+[windows]
+main = "main:codex"
+work = "worker1:codex(worktree), worker2:claude(worktree)"
+review = "reviewer:claude, qa:gemini"
+
+[ui.sidebar]
+mode = "every_window"
+width = "15%"
+bottom_height = 20
+agents_height = "50%"
+comms_height = "15%"
+tips_height = "35%"
+comms_limit = 3
+```
+
+Valida la configuración e inicia el espacio de trabajo:
+
+```bash
+ccb config validate
+ccb
+```
+
+### 3. Colaborar
+
+Puedes escribir directamente en cualquier agent pane o hacer que los agentes colaboren:
+
+```text
+/ask reviewer review the latest parser changes and list blocking issues.
+```
+
+Los agentes también pueden llamar a `/ask` durante la orquestación de workflows para delegar y entregar trabajo. Usa la memoria de agente o el archivo compartido del proyecto `.ccb/ccb_memory.md` para coordinación duradera.
+
+<a id="mobile-app"></a>
+
+## Control remoto móvil (Android)
+
+La forma recomendada de controlar CCB desde un teléfono puede conectarse a todos los proyectos CCB, controlar cada agente, aceptar entrada de voz y transferir archivos.
+
+```bash
+ccb update mobile
+```
+
+Este comando guía la instalación y configuración.
+
+<p align="center">
+  <img src="../assets/readme_v7/mobile-control-chat.jpg" alt="Chat de agente en CCB Mobile" width="180">
+  <img src="../assets/readme_v7/mobile-control-terminal.jpg" alt="Control de terminal en CCB Mobile" width="180">
+  <img src="../assets/readme_v7/mobile-control-files.jpg" alt="Transferencia de archivos en CCB Mobile" width="180">
+  <img src="../assets/readme_v7/mobile-control-pairing.jpg" alt="Emparejamiento y conexión en CCB Mobile" width="180">
+</p>
+
+<details>
+<summary><b>Detalles de Mobile App, límite de seguridad y fuente</b></summary>
+
+CCB 8.6.6 incluye el código Flutter de CCB Mobile en [`mobile/`](../mobile/) y publica el APK Android mediante GitHub Releases:
+
+- [Descargar CCB Mobile v8.7.22 APK](https://github.com/SeemSeam/claude_codex_bridge/releases/download/v8.7.22/ccb-mobile-v8.7.22.apk)
+- Fuente de la app: [`mobile/app`](../mobile/app)
+- Fuente del gateway del servidor: [`lib/mobile_gateway`](../lib/mobile_gateway)
+
+La app del teléfono es un controlador remoto para proyectos CCB reales que corren en un servidor. Puede descubrir proyectos montados desde el mobile gateway server-wide, cambiar windows y agents, renderizar contexto de conversación, enviar texto por entrada pane-native, abrir vista terminal y subir/descargar imágenes y documentos por el gateway autenticado.
+
+Límite de seguridad:
+
+- El gateway CCB solo se enlaza a loopback, por ejemplo `127.0.0.1:8787`.
+- El acceso remoto usa Tailscale Serve, no Tailscale Funnel.
+- CCB no guarda contraseñas de Tailscale, OAuth tokens, admin API tokens, ni modifica automáticamente ACLs/grants del tailnet.
+- El teléfono recibe solo los scopes autorizados por el pairing profile, como view, content, terminal, file upload y file download.
+
+</details>
+
+<a id="rich-mode"></a>
+
+## Terminal multimedia Rich
+
+Explora árboles de archivos, abre archivos, edita documentos y previsualiza medios dentro de la terminal.
+
+<p align="center">
+  <img src="../assets/readme_v7/rich-workbench.png" alt="Workbench multimedia Rich de CCB con vista previa Yazi en WezTerm" width="860">
+</p>
+
+```bash
+ccb update rich
+```
+
+Después de activar rich mode, `ccb` abre automáticamente el rich WezTerm launcher salvo que ya esté dentro de una sesión rich WezTerm gestionada por CCB. Ejecuta `ccb uninstall rich` para volver al inicio normal de terminal.
+
+<a id="agent-roles"></a>
+
+## Agent Roles Spec y catálogo de roles
+
+CCB admite [Agent Roles Spec](https://github.com/SeemSeam/agent-roles-spec), una especificación host-neutral para empaquetar agentes especialistas. Puede agrupar skills, memoria y dependencias de herramientas en Role Packs instalables, montables y removibles. Ese repositorio también funciona como catálogo público de roles.
+
+| Role | Propósito |
+| :--- | :--- |
+| `agentroles.ccb_self` | Automantenimiento de CCB, ayuda de configuración, diagnóstico runtime, recuperación protegida y orquestación de workflows. |
+| `agentroles.archi` | Revisión de arquitectura, verificación de límites, análisis de acoplamiento, riesgos de mantenibilidad y recomendaciones de gates. |
+| `agentroles.frontend_engineer` | Diseño e implementación frontend, design systems, accesibilidad, QA de navegador y delegación AGY revisada. |
+| `agentroles.mobile_app_engineer` | Diseño e implementación móvil para iOS, Android, React Native, Expo, Flutter, SwiftUI, Jetpack Compose y más. |
+| `agentroles.mother` | Creación de roles, auditoría de role source, investigación de roles, diseño de blueprints y controles de cumplimiento de Agent Roles. |
+| `agentroles.su_ccb` | Operaciones workflow SU-CCB para análisis de requisitos, planificación, dispatch, review gates, archivado y recuperación. |
+
+<a id="config-memory"></a>
+
+## Configuración y memoria compartida
+
+Para la configuración normal del proyecto, usa el panel **⚙ Configuración**. Si quieres configuración asistida por un agente y diagnóstico runtime, `ccb_self` sigue disponible como Role Pack opcional y se añade con `ccb roles add agentroles.ccb_self:codex`.
+
+`.ccb/ccb_memory.md` es el documento de memoria compartida de todo el proyecto. Úsalo para reglas de colaboración del equipo, restricciones del proyecto, contexto duradero y convenciones de entrega entre agentes. La información estable entre agentes debe vivir ahí en vez de copiarse en varias memorias privadas de providers.
+
+<a id="contact"></a>
+
+## Contacto
+
+- Email: `bfly123@126.com`
+- [Telegram group & contact / TG 群与联系](https://t.me/+BKn03v8I_ehmYzRk)
+- WeChat: `seemseam-com`
+
+<p align="center">
+  <img src="../assets/weixin.png?v=4bf9928e" alt="Grupo WeChat" width="240">
+</p>
+
+<a id="community"></a>
+
+## Comunidad y créditos
+
+Gracias a la [comunidad Linux.do](https://linux.do) por pruebas, comentarios y discusión.
+
+Gracias a [tmux-agent-sidebar](https://github.com/hiroppy/tmux-agent-sidebar) por las ideas e inspiración de la sidebar.
+
+<a id="release-notes"></a>
+
+## Notas de versión
+
+<details>
+<summary><b>v8.7.22</b> - Pi session rotation and OpenCode recovery / Pi 会话切换与 OpenCode 恢复</summary>
+
+Pi completion follows validated main-session replacements; OpenCode excludes volatile runtime snapshots and recovers missed reads. Claude polling and hooks share one envelope parser. Pi 主会话切换后保持完成追踪，OpenCode 防止运行数据递归快照并恢复漏读，Claude 轮询与 hook 统一解析。[Release notes / 版本说明](../docs/releases/v8.7.22.md).
+
+</details>
+
+<details>
+<summary><b>v8.7.21</b> - OpenCode v2 native support / OpenCode v2 原生适配</summary>
+
+Native OpenCode 2.2.x task ingress and idle completion; private legacy database snapshots; OMP native task delivery. OpenCode 2.2.x 原生入队与 idle 完成判定、旧版数据库私有快照和 OMP 原生投递。 [Release notes / 版本说明](../docs/releases/v8.7.21.md).
+
+</details>
+
+<details open>
+<summary><b>v8.7.18</b> - Stable OMP Mobile history / 稳定长历史</summary>
+
+OMP Mobile now paginates stable long history through bounded native parent-chain pages. History-query errors preserve a healthy WebSocket and already-loaded content. Oversized replies keep a structured latest-content bubble capped at 24 KiB, 8 entries and 24 blocks; complete originals remain available as a secondary reader. Upgrade both the server and app, then restart existing OMP processes normally when idle; do not interrupt busy agents or discard history.
+
+OMP Mobile 通过有界原生父链分页稳定读取长历史；历史查询失败不再重置健康的 WebSocket 或清除已加载内容。超长回复在气泡中保留结构化最新内容，最多 24 KiB、8 条记录、24 个块；完整原文仍可通过次级阅读入口查看。请同时升级服务端与 App，已有 OMP 进程在空闲时正常重启加载；不要中断忙碌 Agent 或清空历史。
+
+[Full bilingual notes](../docs/releases/v8.7.18.md).
+</details>
+
+<details open>
+<summary><b>v8.7.17</b> - OMP reply receipts / OMP 回复收据</summary>
+
+OMP replies use bounded, owner-bound native `reply_deliver` / `reply_status` delivery. A `ccb-reply` is received as an aside at a safe step boundary; only a persisted native `custom_message` counts as a receipt and releases the mailbox. Receipt does not mean subsequent business processing is finished. Drafts and active ask anchors remain intact, no concurrent turn is started, and ambiguous sends are queried rather than replayed.
+
+OMP 回复通过有界、绑定归属的原生 `reply_deliver` / `reply_status` 投递；`ccb-reply` 在安全步骤边界作为 aside 接收。只有已持久化的原生 `custom_message` 才算收据并释放邮箱，不代表后续业务处理完成。保留草稿与活跃 ask 锚点，不启动并发回合；发送结果不明时查询状态，不重放。
+
+[Full bilingual notes](../docs/releases/v8.7.17.md).
+</details>
+
+<details open>
+<summary><b>v8.7.16</b> - OMP Python ask sender identity recovery</summary>
+
+Recover the OMP Python `ask` sender identity from the exact configured managed `PI_CODING_AGENT_DIR` when CCB environment variables are filtered, while preserving existing identity precedence and without replaying historical jobs. Refresh the WeChat group 2 QR code, valid until October 29.
+
+[Full bilingual notes](../docs/releases/v8.7.16.md).
+</details>
+
+<details>
+<summary><b>v8.7.15</b> - Incremental turn history and persisted FIFO delivery</summary>
+
+Preserve the complete historical body of same-session incremental turns while collapsing tool reasoning. Sends made while an agent is running now enter a persisted FIFO and execute serially: queued items stay visible without steering the active turn, while items with unknown delivery after a disconnect are held instead of blindly replayed. This release also includes v8.7.14's Relay large-history fixes. The changes are Linux-only; macOS keeps its legacy route unchanged.
+
+[Full bilingual notes](../docs/releases/v8.7.15.md).
+</details>
+
+<details>
+<summary><b>v8.7.14</b> - Incomplete prerelease; Android release canceled</summary>
+
+Fix Relay delivery for very large Linux OMP histories with byte-based pagination and lossless paging of oversized raw messages, repair Relay agent fields, and classify errors accurately. macOS keeps its legacy route unchanged.
+
+[Full bilingual notes](../docs/releases/v8.7.14.md).
+</details>
+
+<details>
+<summary><b>v8.7.13</b> - Linux OMP Collab-native Mobile chat and model selection</summary>
+
+Connect Mobile to Linux OMP's native Collab chat with user-anchored reply bubbles and same-host, same-session model selection. macOS keeps its legacy route, and other providers remain unchanged.
+
+[Full bilingual notes](../docs/releases/v8.7.13.md).
+</details>
+
+<details>
+<summary><b>v8.7.12</b> - Reply queue recovery and composer compatibility</summary>
+
+Recover stale reply delivery, correct communication status, and preserve drafts and valid lease ownership.
+
+[Full bilingual notes](../docs/releases/v8.7.12.md).
+</details>
+
+<details>
+<summary><b>v8.7.11</b> - V2 workflow compatibility and Pi completion repair</summary>
+
+Isolate V3 workflow policies, repair Pi transformed-input attribution and active-request cancellation, and refresh the WeChat QR image.
+
+[Full bilingual notes](../docs/releases/v8.7.11.md).
+</details>
+
+<details>
+<summary><b>v8.7.10</b> - Pi plugin snapshot and startup repair</summary>
+
+Reuse verified snapshots, deduplicate shared dependencies, recover interrupted staging and forward startup timeout settings.
+
+[Full bilingual notes](../docs/releases/v8.7.10.md).
+
+</details>
+
+<details>
+<summary><b>v8.7.9</b> - Codex ask caller identity repair</summary>
+
+Preserve Codex caller identity in native tool shells so bare `ask` results return to the correct Agent. Verified with actual Codex/OMP and Claude Sonnet 4.6 roundtrips.
+
+[Full bilingual notes](../docs/releases/v8.7.9.md).
+
+</details>
+
+<details>
+<summary><b>v8.7.8</b> - Delivery and native installation fixes</summary>
+
+Complete the Codex fullscreen delivery update and repair installed native `ccb.exe`/`ccb.cmd` entrypoints. Supersedes the interrupted v8.7.7 publication.
+
+[Full bilingual notes](../docs/releases/v8.7.8.md).
+
+</details>
+
+<details>
+<summary><b>v8.7.7</b> - Codex fullscreen delivery fixes</summary>
+
+Fix accepted jobs waiting behind native Codex fullscreen status/shortcut rows and ordinary replies mentioning `esc to interrupt`, while preserving human drafts, busy/menu guards and FIFO.
+
+[Full bilingual notes](../docs/releases/v8.7.7.md).
+
+</details>
+
+<details>
+<summary><b>v8.7.6</b> - Claude/Codex delivery reliability</summary>
+
+Recognize native Claude pasted envelopes and empty Codex composers with newer status bars; preserve draft protection.
+
+[Full bilingual notes](../docs/releases/v8.7.6.md).
+
+</details>
+
+<details>
+<summary><b>v8.7.5</b> - Safe OMP/Pi model selection</summary>
+
+[Full bilingual notes](../docs/releases/v8.7.5.md).
+
+</details>
+
+<details>
+<summary><b>v8.7.4</b> - Conversation continuity first</summary>
+
+[Full bilingual notes](../docs/releases/v8.7.4.md).
+
+</details>
+
+<details>
+<summary><b>v8.7.3</b></summary>
+
+[English / 简体中文 — v8.7.3](../docs/releases/v8.7.3.md)
+
+</details>
+
+<details>
+<summary><b>v8.7.2</b></summary>
+
+[English / 简体中文 — v8.7.2](../docs/releases/v8.7.2.md)
+
+</details>
+
+<details>
+<summary><b>v8.7.1</b></summary>
+
+[English / 简体中文 — v8.7.1](../docs/releases/v8.7.1.md)
+
+[v8.7.0](../docs/releases/v8.7.0.md) · [v8.6.19](../docs/releases/v8.6.19.md)
+
+</details>
+
+<details>
+<summary><b>v8.4.0</b> - Relay móvil cifrado, emparejamiento simple, identidad estable y reconexión Codex</summary>
+
+- Añade Relay móvil cifrado de extremo a extremo, invitaciones de un solo uso, streams multiplexados y modos oficial o autohospedado.
+- Traslada la selección de Tailscale, LAN privada o Relay a `ccb update mobile`; el teléfono solo escanea un QR o introduce un código.
+- Verifica metadatos oficiales de GitHub, tamaño y SHA-256 antes de entregar una actualización APK firmada a Android.
+- Conserva la identidad al mover proyectos, sigue el tema del sistema e integra la reconexión opcional de Codex con límites estrictos.
+
+</details>
+
+<details>
+<summary><b>v8.3.1</b> - Actualizaciones unificadas de providers, retiro seguro de cachés y acceso persistente a Config UI</summary>
+
+- Centraliza las actualizaciones compatibles de providers en `ccb update`, con comprobación exacta de versión, rechazo y omisión por versión, sin reiniciar panes activos.
+- Retira las cachés de software Claude/Gemini por proyecto y limpia solo datos heredados cuya propiedad está verificada; conserva proyectos activos, sesiones y autenticación.
+- Permite un puerto loopback estable y una fuente de token protegida para Config UI sin mostrar el valor del token.
+- Conserva los finalizadores de shutdown mientras se detiene el servidor y adopta un diseño Yazi compacto de dos columnas en Rich mode.
+- Sincroniza CLI, npm, Linux, macOS, Android y todos los artefactos de release con 8.3.1.
+
+</details>
+
+<details>
+<summary><b>v8.3.0</b> - Turnos exactos de providers, integridad de jobs y terminal Mobile dentro del proyecto</summary>
+
+- Vincula Kimi, Claude y Qoder a sus contratos nativos de turno, activación, sesión y finalización.
+- Añade follow-ups para el job activo exacto, fases de ejecución correlacionadas, diagnóstico de inbounds huérfanos y cancelación terminal.
+- Hereda extensiones de providers y plugins de Copilot con protección explícita de ownership para los assets proyectados.
+- Delega las actualizaciones gestionadas por npm a npm y retira de forma conservadora los worktrees que solo contienen marcadores.
+- Mantiene el chat y el terminal Mobile dentro del workspace del proyecto seleccionado y sincroniza todas las superficies de release con 8.3.0.
+
+</details>
+
+<details>
+<summary><b>v8.2.1</b> - Inicio determinista, recuperación de autenticación accionable y conexión Android en segundo plano</summary>
+
+- Añade cercas de generación de inicio, prueba acotada de disponibilidad y diagnósticos de operaciones y cronología.
+- Detiene los reinicios sin salida por autenticación del provider y muestra la acción de inicio de sesión necesaria.
+- Añade conexión Android en segundo plano opcional y un único estado de respuesta activa por Agent.
+- Sincroniza los artefactos Linux, macOS, npm y Android firmado con 8.2.1.
+
+</details>
+
+<details>
+<summary><b>v8.2.0</b> - Inicio más rápido, correcciones de providers y Mobile fiable</summary>
+
+- Reduce trabajo repetido durante el inicio de ccbd sin debilitar las comprobaciones de lifecycle y ownership.
+- Corrige el inicio fullscreen de Grok, conserva el tipo de credencial de Claude, estabiliza la selección de model/thinking y refuerza la entrega ask/reply de Codex.
+- Mejora recovery, chat, terminal, adjuntos, descargas y FCM en Mobile; sincroniza los artefactos Linux, macOS, npm y Android firmado con 8.2.0.
+
+</details>
+
+<details open>
+<summary><b>v8.0.14</b> - Limpieza del directorio README y superficie mobile</summary>
+
+- El `README.md` raíz vuelve a ser la portada GitHub en inglés.
+- Los README localizados ahora viven en [`README/`](./), con chino en [`zh.md`](zh.md).
+- Los enlaces de Mobile App, package metadata y release notes apuntan al APK 8.0.14.
+
+</details>
+
+<details>
+<summary><b>v8.0.12</b> - Portabilidad de Release CI y localización del README</summary>
+
+- Las pruebas mobile host registry ahora colocan sockets Unix temporales bajo una ruta corta `/tmp/ccb-sock-*`, evitando fallos `AF_UNIX path too long` en macOS CI.
+- `ccb update mobile`, los enlaces del README, los metadatos del paquete y el mobile release manifest ahora apuntan al APK 8.0.12.
+- v8.0.12 introdujo los README multilingues con una estructura de secciones compartida; los archivos localizados actuales viven en el directorio `README/`.
+
+</details>
+
+<details>
+<summary><b>v8.0.0</b> - Publicación de CCB Mobile Monorepo</summary>
+
+- El código Flutter de CCB Mobile entró oficialmente en este repositorio, con el APK Android publicado mediante GitHub Releases.
+- Se agregó descubrimiento server-wide de proyectos móviles, pairing, rutas gateway autenticadas, entrada pane-native, renderizado de contexto de conversación, acceso terminal y subida/descarga de imágenes y documentos.
+- `ccb update mobile` pasó a ser el punto de entrada unificado de onboarding de Tailscale Tailnet, manteniendo el gateway solo en loopback, sin Funnel, sin guardar tokens y sin modificar ACLs/grants automáticamente.
+
+</details>
+
+<details>
+<summary><b>v7.7.0</b> - Endurecimiento de publicación de Runtime Accelerator</summary>
+
+- Los release artifacts ahora incluyen el Rust `ccb-runtime-accelerator` opcional; los agentes Codex instalados ya no caen silenciosamente al Python hot path cuando se espera el sidecar.
+- Cuando la ruta del proyecto hace demasiado larga la ruta Unix socket, el accelerator socket se mueve automáticamente a una raíz runtime corta por usuario.
+- Se reforzó callback repair y la invalidación de cache de binding Codex, con evidencia de regresión, long-idle Codex soak, callback Claude e integración mixed-provider.
+
+</details>
+
+<details>
+<summary><b>v7.6.19</b> - Política de espera predeterminada para ask largos</summary>
+
+- Los `ask` largos normales siguen esperando resultados reales de provider/completion en vez de terminar como `incomplete/heartbeat_timeout` solo por diagnósticos heartbeat.
+- Los no-terminal timeouts pane-backed de Codex, Claude y Gemini ahora son opt-in explícito por defecto, manteniendo disponibles las políticas explícitas de reliability timeout.
+- Un smoke source-runtime ask de 32 minutos confirmó que una tarea puede permanecer running más de 30 minutos y luego completar con `result_message`, sin evidencia de `heartbeat_timeout` ni `incomplete`.
+
+</details>
+
+Consulta el historial completo en [CHANGELOG.md](../CHANGELOG.md).

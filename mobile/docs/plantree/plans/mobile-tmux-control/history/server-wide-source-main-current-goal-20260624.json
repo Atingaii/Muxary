@@ -1,0 +1,114 @@
+{
+  "date": "2026-06-24",
+  "objective": "ccb install mobile installation test plus Android Emulator verification that the app fetches all running CCB projects from the real local server-wide gateway",
+  "source_main": {
+    "repo": "/home/bfly/yunwei/ccb_source",
+    "branch": "main",
+    "head": "59f1c07b merge: land server-wide mobile backend",
+    "dirty_state": [
+      "M docs/plantree/README.md",
+      "?? docs/plantree/plans/agentic-loop-workflow/"
+    ],
+    "dirty_state_note": "Unrelated source documentation changes were left untouched."
+  },
+  "existing_registry_install_probe": {
+    "command": "/home/bfly/yunwei/ccb_source/ccb_test install mobile --listen 127.0.0.1:18898 --route-provider lan",
+    "cwd": "/home/bfly/yunwei/test_ccb2",
+    "result": "serving",
+    "gateway_url": "http://127.0.0.1:18898",
+    "mode": "loopback_server_registry",
+    "project_count": 5,
+    "projects_api": {
+      "healthy": 2,
+      "unreachable_degraded": 3,
+      "behavior": "/v1/projects returned both healthy projects and degraded stale entries instead of failing the whole list"
+    },
+    "notes": [
+      "This proved source-main install and mixed-registry listing, but the registry included older fake-provider projects, so it was not used as the final app-side all-features smoke."
+    ]
+  },
+  "fresh_source_main_avd_smoke": {
+    "command": "source tools/mobile_toolchain_env.sh && python tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source/ccb_test --gateway-listen 127.0.0.1:18899 --force-config",
+    "source_head": "59f1c07b",
+    "status": "ok",
+    "gateway_url": "http://127.0.0.1:18899",
+    "adb_reverse": "tcp:18899 tcp:18899",
+    "projects": [
+      {
+        "display_name": "test_ccb2_alpha",
+        "health": "healthy",
+        "mount_state": "mounted",
+        "agents": [
+          "mobile_probe",
+          "mobile_peer"
+        ]
+      },
+      {
+        "display_name": "test_ccb2_beta",
+        "health": "healthy",
+        "mount_state": "mounted",
+        "agents": [
+          "mobile_probe",
+          "mobile_peer"
+        ]
+      }
+    ],
+    "integration_smoke": {
+      "test": "app/integration_test/server_wide_gateway_smoke_test.dart",
+      "device_id": "emulator-5554",
+      "result": "All tests passed",
+      "duration": "01:52",
+      "coverage": [
+        "server-wide project list on the app first page",
+        "open two real CCB projects from the server-wide gateway",
+        "switch between two agents",
+        "multiple Markdown message turns and backend replies",
+        "image upload and download",
+        "document upload and download",
+        "backend-generated text and PNG artifact download"
+      ]
+    }
+  },
+  "manual_emulator_session": {
+    "status": "running at evidence time",
+    "source_head": "59f1c07b",
+    "gateway_url": "http://127.0.0.1:18903",
+    "gateway_tmux_socket": "/tmp/ccb_mobile_gateway_18903.tmux.sock",
+    "gateway_tmux_session": "ccb_mobile_gateway_18903",
+    "adb_reverse": "tcp:18903 tcp:18903",
+    "device_id": "emulator-5554",
+    "profile": "debug paired host injected into the installed debug APK",
+    "projects_api": [
+      {
+        "display_name": "test_ccb2_alpha",
+        "health": "healthy",
+        "mount_state": "mounted",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-manual-20260624152458/test_ccb2_alpha"
+      },
+      {
+        "display_name": "test_ccb2_beta",
+        "health": "healthy",
+        "mount_state": "mounted",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-manual-20260624152458/test_ccb2_beta"
+      }
+    ],
+    "emulator_ui_dump_excerpt": [
+      "test_ccb2_alpha\\n/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-manual-20260624152458/test_ccb2_alpha\\nhealthy",
+      "test_ccb2_beta\\n/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-manual-20260624152458/test_ccb2_beta\\nhealthy"
+    ],
+    "local_evidence_paths": {
+      "ui_dump": "/tmp/ccb_mobile_window_18903.xml",
+      "screenshot": "/tmp/ccb_mobile_serverwide_18903.png",
+      "profile": "/tmp/ccb_mobile_manual_18903_profile.b64",
+      "session_info": "/tmp/ccb_mobile_manual_18903.env"
+    }
+  },
+  "tooling_fix": {
+    "file": "tools/mobile_server_wide_emulator_smoke.py",
+    "reason": "Run source-main ccb_test from external project directories instead of the source checkout so source runtime guards are respected."
+  },
+  "remaining_risks": [
+    "The manual 18903 session is a local emulator lane; physical Tailnet/relay smoke remains a later route-provider gate.",
+    "Kotlin Gradle Plugin warnings remain from file_picker/mobile_scanner and are unrelated to the server-wide gateway behavior."
+  ]
+}

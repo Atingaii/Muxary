@@ -1,0 +1,15 @@
+{
+  "schema": "ccb.planner.frontdesk_status.v1",
+  "notification_identity": "stable-id",
+  "aggregate_result": "pass|partial|replan_required|blocked",
+  "accepted_scope": [],
+  "unresolved_scope": [],
+  "blockers": [],
+  "next_milestone": {
+    "kind": "selected|workflow_terminal|blocked_none",
+    "ref": "stable-milestone-ref",
+    "rationale": "semantic reason"
+  },
+  "evidence_refs": [],
+  "user_report_body": "factual user-facing report"
+}

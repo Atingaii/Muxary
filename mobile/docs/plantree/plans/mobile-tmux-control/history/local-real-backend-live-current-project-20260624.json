@@ -1,0 +1,85 @@
+{
+  "date": "2026-06-24",
+  "scope": "Android Emulator connected to the live local CCB Mobile project through a real loopback mobile gateway",
+  "app_commit": "b189c90 fix: keep polling for slow backend replies",
+  "source_ccb": "/home/bfly/yunwei/ccb_source_mobile_local_backend_matrix/ccb",
+  "real_project": {
+    "project_root": "/home/bfly/yunwei/ccb_mobile",
+    "project_id": "1b12981c7405fedcdc19d0fb37da5025f6089e22312f261b26293db25a0a76aa",
+    "gateway_url": "http://127.0.0.1:18931",
+    "adb_reverse": "tcp:18931 tcp:18931",
+    "route_provider": "lan",
+    "agent": "lead",
+    "namespace_epoch": 8
+  },
+  "chat_evidence": {
+    "messages": [
+      {
+        "request_id": "job_72db513b7057",
+        "user_body": "mobile_real_backend_ping_143105",
+        "agent_reply": "mobile_real_backend_reply_143105_ok"
+      },
+      {
+        "request_id": "job_3ef58fd48a44",
+        "user_body": "mobile_real_backend_ping_fixed_143612",
+        "agent_reply": "mobile_real_backend_reply_fixed_143612_ok"
+      }
+    ],
+    "gateway_conversation_checked": true,
+    "emulator_ui_checked": true,
+    "ui_dump": "/tmp/ccb_mobile_final_lead.xml",
+    "screenshot": "/tmp/ccb_mobile_final_lead.png",
+    "no_fake_marker_visible": true
+  },
+  "file_api_evidence": {
+    "result_file": "/tmp/ccb_mobile_real_backend_file_api_results.json",
+    "results": [
+      {
+        "file_name": "ccb_mobile_real_backend_file_probe.txt",
+        "mime_type": "text/plain",
+        "file_id": "mobile-file-1fb8dc2905e44e6d",
+        "bytes": 35,
+        "sha256": "297a7ec9d98dd7170bcee6723b249f6e5432070a5f84e47d9c16668bf2a7b330",
+        "download_contract": "application/json content_base64",
+        "decoded_download_matches_upload": true
+      },
+      {
+        "file_name": "ccb_mobile_real_backend_image_probe.png",
+        "mime_type": "image/png",
+        "file_id": "mobile-file-7ba5267bfcda49b4",
+        "bytes": 68,
+        "sha256": "4b5c5c92cec3b23e6a294fc0eea43234ef5126c5a64f4c6c531ac8430ab0b844",
+        "download_contract": "application/json content_base64",
+        "decoded_download_matches_upload": true
+      }
+    ]
+  },
+  "emulator_smoke": {
+    "command": "python3 tools/mobile_emulator_ui_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_local_backend_matrix/ccb --provider fake --gateway-listen 127.0.0.1:18942 --include-attachment-route --include-image-route --include-backend-artifact-route --include-multi-agent-route --skip-terminal-test --harness-timeout 360 --flutter-timeout 360",
+    "status": "ok",
+    "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-emulator-ui-smoke-20260624065332",
+    "gateway_url": "http://127.0.0.1:18942",
+    "adb_reverse": "tcp:18942 tcp:18942",
+    "covered": [
+      "selected-agent route diagnostics",
+      "selected-agent gateway terminal route construction",
+      "gateway attachment upload and download",
+      "gateway image upload and download",
+      "deterministic local Markdown reply",
+      "backend generated artifact downloads",
+      "multi-agent images and turns"
+    ],
+    "flutter_integration_result": "7 passed"
+  },
+  "verification": {
+    "focused_tests": "flutter test test/conversation_refresh_scheduler_test.dart test/agent_message_submit_coordinator_test.dart: 12 passed",
+    "full_flutter_test": "flutter test: 358 passed",
+    "git_diff_check": "passed",
+    "flutter_analyze": "No issues found, but exited nonzero due known analysis server Too many open files"
+  },
+  "notes": [
+    "The app was rebuilt with CCB_MOBILE_DEBUG_PAIRED_HOST_BASE64 from the real 18931 gateway profile and CCB_MOBILE_DEBUG_AUTO_ACTIVATE=true.",
+    "The stale 18925 fake/manual gateway and adb reverse were removed after verification so the open emulator points at the real current project gateway.",
+    "The post-send conversation refresh schedule now continues through 300 seconds so slow real backend replies are pulled into the visible timeline."
+  ]
+}

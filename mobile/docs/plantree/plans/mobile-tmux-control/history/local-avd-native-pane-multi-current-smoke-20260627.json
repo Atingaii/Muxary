@@ -1,0 +1,76 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "scope": "current app/source real Android Emulator multi-project pane-equivalent send and reply",
+  "mode": "native_pane_multi_current_head",
+  "app": {
+    "head": "ba445c2",
+    "dirty": false,
+    "worktree": "/home/bfly/yunwei/ccb_mobile"
+  },
+  "source": {
+    "head": "7e436f7e",
+    "dirty": false,
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "command": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64",
+    "adb_reverse": "tcp:19242 tcp:19242"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19242",
+    "listen": "127.0.0.1:19242",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260627022830",
+    "route_provider": "lan",
+    "host_id": "host-35604510e2aefcc6"
+  },
+  "projects": {
+    "listed_count": 45,
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627022830",
+    "cases": [
+      {
+        "name": "test_ccb2_alpha",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627022830/test_ccb2_alpha",
+        "id": "4b7a990eaa6f7d032bd1fde3bcced232a9a14539b47e286d7c8370bcec67e974",
+        "agent": "mobile_probe",
+        "expected_reply": "CCB_MOBILE_NATIVE_ALPHA_OK_20260627022830",
+        "jobs_matches": [],
+        "prompt_contains_ccb_req_id": false,
+        "prompt_contains_mobile_gateway": false,
+        "user_match_count": 1,
+        "reply_match_count": 1
+      },
+      {
+        "name": "test_ccb2_beta",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627022830/test_ccb2_beta",
+        "id": "c24759b1015f093988613325108fac0ed6112edc7aa7fac6259f34b6ab31d69f",
+        "agent": "mobile_peer",
+        "expected_reply": "CCB_MOBILE_NATIVE_BETA_OK_20260627022830",
+        "jobs_matches": [],
+        "prompt_contains_ccb_req_id": false,
+        "prompt_contains_mobile_gateway": false,
+        "user_match_count": 1,
+        "reply_match_count": 1
+      }
+    ]
+  },
+  "verification": {
+    "command": "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --force-config --provider codex --native-pane-multi-smoke --gateway-listen 127.0.0.1:19242 --device-id emulator-5554 --flutter-timeout 1500",
+    "raw_log": "/tmp/ccb-mobile-native-pane-multi-current-20260627.log",
+    "flutter_result": "00:19 +1: All tests passed!",
+    "host_checks": [
+      "server-wide project list returned 45 mounted projects",
+      "selected projects were fresh disposable test_ccb2_alpha and test_ccb2_beta projects",
+      "mobile send to alpha/mobile_probe produced the exact provider reply",
+      "mobile send to beta/mobile_peer produced the exact provider reply",
+      "both source-side transcripts had no CCB jobs match",
+      "both source-side prompts had no CCB_REQ_ID or mobile_gateway marker"
+    ]
+  },
+  "residual_risk": [
+    "This is a local AVD LAN/adb-reverse validation, not a physical-device Tailnet/VPN run.",
+    "This validates text send/reply semantics; file and artifact transfer are covered by separate evidence."
+  ]
+}

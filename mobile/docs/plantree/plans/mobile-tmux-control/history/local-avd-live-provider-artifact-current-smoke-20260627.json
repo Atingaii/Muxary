@@ -1,0 +1,91 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "scope": "current app/source real Android Emulator live provider-created artifact download",
+  "mode": "live_provider_artifact_current_head",
+  "app": {
+    "head": "bca7bfe",
+    "dirty": false,
+    "worktree": "/home/bfly/yunwei/ccb_mobile"
+  },
+  "source": {
+    "head": "7e436f7e",
+    "dirty": false,
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "command": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64",
+    "adb_reverse": "tcp:19240 tcp:19240"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19240",
+    "listen": "127.0.0.1:19240",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260627022247",
+    "route_provider": "lan",
+    "host_id": "host-343e9459215820d1"
+  },
+  "projects": {
+    "listed_count": 45,
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627022247",
+    "selected": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627022247/test_ccb2_alpha",
+      "id": "e99f998084bbb05e88eb5d56715f79d0357cbae1872fed685bf45e12f55b2a53",
+      "agent": "mobile_probe",
+      "target_pane": "%2"
+    },
+    "also_started": [
+      {
+        "name": "test_ccb2_beta",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627022247/test_ccb2_beta",
+        "id": "15f49a12f0b495c192a8e275b44cfd8dfe54b1f46fda9ee482c12da015667f93"
+      }
+    ]
+  },
+  "artifact": {
+    "file_name": "mobile-live-artifact-20260627022247-1021026.txt",
+    "content_sha256": "c4538a11f377f669126e215a74baef6a9f207d9a76e254349571aedf8d5a4ad8",
+    "size_bytes": 43,
+    "project_file_path": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627022247/test_ccb2_alpha/mobile-live-artifact-20260627022247-1021026.txt",
+    "gateway_file_id": "mobile-file-6f2628893d8b31f31d6dc6d6",
+    "gateway_metadata_path": "/tmp/ccb-mobile-server-wide-avd-state-20260627022247/files/e99f998084bbb05e88eb5d56715f79d0357cbae1872fed685bf45e12f55b2a53/mobile_probe/mobile-file-6f2628893d8b31f31d6dc6d6/metadata.json"
+  },
+  "mobile_download": {
+    "file_name": "mobile-live-artifact-20260627022247-1021026.txt",
+    "sha256": "c4538a11f377f669126e215a74baef6a9f207d9a76e254349571aedf8d5a4ad8",
+    "expected_sha256": "c4538a11f377f669126e215a74baef6a9f207d9a76e254349571aedf8d5a4ad8",
+    "size_bytes": 43
+  },
+  "hygiene": {
+    "jobs_matches": [],
+    "prompt_contains_ccb_req_id": false,
+    "prompt_contains_mobile_gateway": false,
+    "app_asserted_no_ccb_req_id_visible": true,
+    "app_asserted_no_mobile_gateway_visible": true,
+    "app_asserted_no_completion_snapshot_visible": true,
+    "user_match_count": 2,
+    "reply_match_count": 1
+  },
+  "verification": {
+    "command": "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --force-config --provider codex --live-artifact-smoke --gateway-listen 127.0.0.1:19240 --device-id emulator-5554 --flutter-timeout 1500",
+    "raw_log": "/tmp/ccb-mobile-live-artifact-current-20260627.log",
+    "flutter_result": "00:45 +1: All tests passed!",
+    "view_ms": 13.57,
+    "host_checks": [
+      "server-wide project list returned 45 mounted projects",
+      "selected project was a fresh disposable test_ccb2_alpha project",
+      "provider-created project-root artifact SHA256 matched expected content",
+      "gateway file metadata SHA256 matched expected content",
+      "Android integration download SHA256 matched expected content",
+      "source-side native transcript had no CCB jobs match",
+      "source-side prompt had no CCB_REQ_ID or mobile_gateway marker",
+      "app integration asserted CCB_REQ_ID, mobile_gateway, and completion_snapshot were not visible"
+    ]
+  },
+  "residual_risk": [
+    "This is a local AVD LAN/adb-reverse validation, not a physical-device Tailnet/VPN run.",
+    "This validates live provider-created text artifact download at current app/source heads; larger artifact performance is covered by separate release/profile evidence."
+  ]
+}

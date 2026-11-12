@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# ccb — bash launcher: resolve symlink, locate _ccb-python (source layout has it
+# under bin/, installed layout has it side-by-side), exec ccb.py.
+src="${BASH_SOURCE[0]}"
+while [[ -L "$src" ]]; do
+  dir="$(cd -P "$(dirname "$src")" && pwd)"
+  src="$(readlink "$src")"
+  [[ "$src" != /* ]] && src="$dir/$src"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$src")" && pwd)"
+if [[ -x "$SCRIPT_DIR/bin/_ccb-python" ]]; then
+  launcher="$SCRIPT_DIR/bin/_ccb-python"
+  target="$SCRIPT_DIR/ccb.py"
+elif [[ -x "$SCRIPT_DIR/_ccb-python" ]]; then
+  launcher="$SCRIPT_DIR/_ccb-python"
+  target="$SCRIPT_DIR/ccb.py"
+else
+  echo "ccb: cannot locate _ccb-python launcher next to $src" >&2
+  exit 127
+fi
+exec "$launcher" "$target" "$@"

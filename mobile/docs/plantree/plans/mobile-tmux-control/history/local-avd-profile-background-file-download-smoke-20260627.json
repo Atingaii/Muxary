@@ -1,0 +1,83 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "scope": "profile Android Emulator 8 MiB artifact download across background/resume",
+  "mode": "profile_background_file_download",
+  "raw_log": "/tmp/ccb-mobile-profile-background-file-download-smoke-20260627-clean.log",
+  "app": {
+    "head": "98dd216",
+    "dirty": false,
+    "commit": "test: enable profile background file smoke"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "ac2626ac",
+    "dirty": false,
+    "command": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb"
+  },
+  "android": {
+    "device_id": "emulator-5554",
+    "build_mode": "profile",
+    "apk": "build/app/outputs/flutter-apk/app-profile.apk",
+    "background_seconds": 10
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19163",
+    "listen": "127.0.0.1:19163",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260626211010",
+    "route_provider": "lan",
+    "adb_reverse": "tcp:19163 tcp:19163"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626211010",
+    "selected": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626211010/test_ccb2_alpha",
+      "id": "95e1077c8ac69a8db0e8eb9a33113bdabada660d5e49d9b36b9765ec28adca26",
+      "agent": "mobile_probe"
+    },
+    "also_started": [
+      {
+        "name": "test_ccb2_beta",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626211010/test_ccb2_beta",
+        "id": "579dd8131f5f9720a7729096cfff62b92627adeafdadde7b6619283c3e3da106"
+      }
+    ],
+    "listed_project_count": 42
+  },
+  "artifact": {
+    "file_name": "native-artifact-20260626211010-3935582.txt",
+    "file_id": "mobile-file-native-text-20260626211010-3935582",
+    "size_bytes": 8388608,
+    "sha256": "729e50a8809539bdb9bb357a9eec0555fdb8bc955e8c307bf9e7a07691ea8f84"
+  },
+  "mobile_download": {
+    "file_name": "native-artifact-20260626211010-3935582.txt",
+    "path": "/data/user/0/io.ccb.mobile.ccb_mobile/app_flutter/native-artifact-20260626211010-3935582.txt",
+    "size_bytes": 8388608,
+    "sha256": "729e50a8809539bdb9bb357a9eec0555fdb8bc955e8c307bf9e7a07691ea8f84"
+  },
+  "lifecycle": {
+    "background_event_returncode": 0,
+    "resume_event_returncode": 0,
+    "resume_component": "io.ccb.mobile.ccb_mobile/.MainActivity"
+  },
+  "verification": {
+    "command": "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --device-id emulator-5554 --gateway-listen 127.0.0.1:19163 --provider codex --background-file-download-smoke --flutter-build-mode profile --flutter-timeout 1200",
+    "flutter_summary": "00:16 +2: All tests passed!",
+    "host_checks": [
+      "server-wide gateway listed mounted real projects",
+      "profile APK opened test_ccb2_alpha/mobile_probe",
+      "8 MiB backend artifact link rendered in the selected-agent timeline",
+      "Android HOME was sent after download request marker",
+      "MainActivity resumed successfully",
+      "downloaded file remained in Android app storage",
+      "download SHA256 matched the seeded artifact SHA256"
+    ]
+  },
+  "residual_risks": [
+    "This closes profile-mode 8 MiB background/resume download, not release-mode download performance.",
+    "This uses a seeded provider-native artifact fixture rather than a live provider-created file.",
+    "Flutter reported Kotlin Gradle Plugin deprecation warnings for file_picker and mobile_scanner."
+  ]
+}

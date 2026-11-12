@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-06-24T16:05:00Z",
+  "scope": "source-main server-wide mobile gateway discovers currently running CCB projects and Android Emulator communicates with a real CCB project",
+  "source_repo": "/home/bfly/yunwei/ccb_source",
+  "source_commit": "821b7f7f",
+  "mobile_repo": "/home/bfly/yunwei/ccb_mobile",
+  "mobile_commit": "1999637",
+  "gateway": {
+    "listen": "127.0.0.1:18905",
+    "route_provider": "lan",
+    "mode": "loopback_server_registry",
+    "tmux_socket": "/tmp/ccb_mobile_gateway_all_projects_18905.tmux.sock",
+    "adb_reverse": "tcp:18905 tcp:18905",
+    "project_count": 29
+  },
+  "source_change": {
+    "summary": "ccb install mobile now merges the persisted host project registry with currently running ccbd processes discovered from /proc, so the app first page can list real local CCB projects that were not started by the new mobile registry writer.",
+    "changed_files": [
+      "lib/cli/services/mobile.py",
+      "lib/mobile_gateway/__init__.py",
+      "lib/mobile_gateway/project_registry.py",
+      "test/test_mobile_cli_service.py"
+    ]
+  },
+  "visible_emulator_projects": [
+    {
+      "name": "ccb_source",
+      "root": "/home/bfly/yunwei/ccb_source",
+      "health": "healthy"
+    },
+    {
+      "name": "ccb_mobile",
+      "root": "/home/bfly/yunwei/ccb_mobile",
+      "health": "healthy"
+    },
+    {
+      "name": "system_optimal",
+      "root": "/home/bfly/yunwei/system_optimal",
+      "health": "healthy"
+    },
+    {
+      "name": "Liuhuaiyu",
+      "root": "/home/bfly/Documents/Liuhuaiyu",
+      "health": "healthy"
+    },
+    {
+      "name": "test_ccb2",
+      "root": "/home/bfly/yunwei/test_ccb2",
+      "health": "healthy"
+    }
+  ],
+  "real_backend_communication": {
+    "project": "ccb_mobile",
+    "project_id": "1b12981c7405fedcdc19d0fb37da5025f6089e22312f261b26293db25a0a76aa",
+    "agent": "talk1",
+    "message": "mobile_real_all_projects_talk1_000229_reply_exact_OK",
+    "conversation_api_result": "agent_reply body OK",
+    "emulator_ui_result": "message is Sent and reply text OK is visible; Communicating marker cleared"
+  },
+  "artifacts": {
+    "project_list_ui_xml": "/tmp/ccb_mobile_project_list_exact.xml",
+    "reply_ui_xml": "/tmp/ccb_mobile_after_talk1_reply_ui.xml",
+    "reply_screenshot": "/tmp/ccb_mobile_after_talk1_reply.png"
+  },
+  "verification": [
+    {
+      "repo": "ccb_source",
+      "command": "PYTHONPATH=lib python -m pytest test/test_mobile_cli_service.py -q",
+      "result": "14 passed"
+    },
+    {
+      "repo": "ccb_source",
+      "command": "PYTHONPATH=lib python -m pytest test/test_mobile_cli_service.py test/test_mobile_gateway_service.py test/test_cli_management_install.py test/test_cli_management_update.py test/test_v2_cli_router.py test/test_v2_cli_parser.py -q",
+      "result": "190 passed"
+    },
+    {
+      "repo": "ccb_source",
+      "command": "PYTHONPATH=lib python -m py_compile lib/mobile_gateway/project_registry.py lib/mobile_gateway/__init__.py lib/cli/services/mobile.py test/test_mobile_cli_service.py",
+      "result": "passed"
+    },
+    {
+      "repo": "ccb_source",
+      "command": "git diff --check -- lib/mobile_gateway/project_registry.py lib/mobile_gateway/__init__.py lib/cli/services/mobile.py test/test_mobile_cli_service.py",
+      "result": "passed"
+    }
+  ],
+  "remaining_risks": [
+    "The live gateway includes persisted stale/unreachable registry entries; the app lists them as unavailable, while currently running projects are healthy.",
+    "The source checkout still has unrelated dirty files outside the mobile discovery commit; they were not included in source commit 821b7f7f."
+  ]
+}

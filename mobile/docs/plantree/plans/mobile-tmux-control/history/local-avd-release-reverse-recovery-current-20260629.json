@@ -1,0 +1,880 @@
+{
+  "adb_reverse": {
+    "device_id": "emulator-5554",
+    "mapping": "tcp:19316 tcp:19316"
+  },
+  "adb_reverse_cleanup": {
+    "removed": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  "app_dirty": true,
+  "app_head": "d540c66",
+  "claimed_device_id": "avd_20260629075806",
+  "cleanup": {
+    "gateway_returncode": -15,
+    "keep_running": false,
+    "kills": [
+      {
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_alpha",
+        "returncode": 0,
+        "stderr": "",
+        "summary": {
+          "forced": "true",
+          "kill_status": "ok",
+          "project_id": "a0599b34379154c39a641f0102e3340ed668db059b99d0c5889c4af6153e2d15",
+          "socket_path": "/run/user/1000/ccb-runtime/ccbd-a0599b343791.sock",
+          "state": "unmounted"
+        }
+      },
+      {
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_beta",
+        "returncode": 0,
+        "stderr": "",
+        "summary": {
+          "forced": "true",
+          "kill_status": "ok",
+          "project_id": "db2b472ef409d4e11d77e947d5d8ce68af12280d3ed01d90a4621a0a28b5ae93",
+          "socket_path": "/run/user/1000/ccb-runtime/ccbd-db2b472ef409.sock",
+          "state": "unmounted"
+        }
+      }
+    ]
+  },
+  "device": {
+    "boot_completed": true,
+    "device_id": "emulator-5554",
+    "devices": [
+      "List of devices attached",
+      "emulator-5554          device product:sdk_gphone64_x86_64 model:sdk_gphone64_x86_64 device:emu64xa transport_id:3"
+    ]
+  },
+  "device_id": "emulator-5554",
+  "gateway": {
+    "gateway_url": "http://127.0.0.1:19316",
+    "listen": "127.0.0.1:19316",
+    "local_gateway_url": "http://127.0.0.1:19316",
+    "pairing_claim_endpoint": "http://127.0.0.1:19316/v1/pairing/claim",
+    "pairing_code_seen": true,
+    "project_id": "host-1efdd1c3a3f870e2",
+    "project_root": "",
+    "requested_public_url": null,
+    "route_provider": "lan",
+    "stderr": ""
+  },
+  "gateway_listen": "127.0.0.1:19316",
+  "integration_smoke": {
+    "agent": "mobile_probe",
+    "build_mode": "release",
+    "failure_tap": {
+      "tap": {
+        "bounds": [
+          21,
+          2075,
+          147,
+          2169
+        ],
+        "x": 84,
+        "y": 2122
+      },
+      "text": "Refresh conversation"
+    },
+    "failure_visible_texts": [
+      "Projects",
+      "test_ccb2_alpha",
+      "Open Terminal",
+      "Diagnostics",
+      "main",
+      "mobile_probe",
+      "mobile_peer",
+      "idle, restored, no queued items",
+      "Agent reply",
+      "Native artifact bundle 20260629075806-3085578",
+      "[native-artifact-20260629075806-3085578.txt](ccb-artifact://mobile-file-native-text-20260629075806-3085578)",
+      "[native-image-20260629075806-3085578.png](ccb-artifact://mobile-file-native-image-20260629075806-3085578)",
+      "Expand message",
+      "native-artifact-20260629075806-3085578.txt (58 B)",
+      "native-image-20260629075806-3085578.png (67 B)",
+      "SocketException: Connection refused (OS Error: Connection refused, errno = 111), address = 127.0.0.1, port = 41564",
+      "Refresh conversation",
+      "Attach file",
+      "Collapse message input",
+      "Send message"
+    ],
+    "mode": "release_reverse_recovery_smoke",
+    "opened": {
+      "agent_tap": {
+        "bounds": [
+          21,
+          401,
+          368,
+          506
+        ],
+        "x": 194,
+        "y": 453
+      },
+      "install": {
+        "apk_path": "/home/bfly/yunwei/ccb_mobile/app/build/app/outputs/flutter-apk/app-release.apk",
+        "app_data_clear_returncode": 1,
+        "build_mode": "release",
+        "build_stderr_tail": [
+          "WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): file_picker, mobile_scanner",
+          "Future versions of Flutter will fail to build if your app uses plugins that apply KGP.",
+          "",
+          "Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.",
+          "If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing ",
+          "an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors",
+          "",
+          "If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors"
+        ],
+        "build_stdout_tail": [
+          "Running Gradle task 'assembleRelease'...                        ",
+          "Font asset \"MaterialIcons-Regular.otf\" was tree-shaken, reducing it from 1645184 to 9236 bytes (99.4% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.",
+          "Running Gradle task 'assembleRelease'...                           28.2s",
+          "\u2713 Built build/app/outputs/flutter-apk/app-release.apk (71.7MB)"
+        ],
+        "install_stdout_tail": [
+          "Performing Streamed Install",
+          "Success"
+        ],
+        "launch_stdout_tail": [
+          "Starting: Intent { cmp=io.ccb.mobile.ccb_mobile/.MainActivity }"
+        ]
+      },
+      "mode": "release_project_list_smoke",
+      "opened_project_text_found": true,
+      "opened_project_texts": [
+        "Projects",
+        "test_ccb2_alpha",
+        "Open Terminal",
+        "Diagnostics",
+        "main",
+        "mobile_probe",
+        "mobile_peer",
+        "idle, restored, no queued items",
+        "Agent reply",
+        "Native artifact bundle 20260629075806-3085578",
+        "[native-artifact-20260629075806-3085578.txt](ccb-artifact://mobile-file-native-text-20260629075806-3085578)",
+        "[native-image-20260629075806-3085578.png](ccb-artifact://mobile-file-native-image-20260629075806-3085578)",
+        "Expand message",
+        "native-artifact-20260629075806-3085578.txt (58 B)",
+        "native-image-20260629075806-3085578.png (67 B)",
+        "Refresh conversation",
+        "Attach file",
+        "Collapse message input",
+        "Send message"
+      ],
+      "project_list_texts": [
+        "Refresh projects",
+        "test_ccb2_alpha",
+        "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_alpha",
+        "healthy",
+        "test_ccb2_beta",
+        "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_beta",
+        "healthy",
+        "Liuhuaiyu",
+        "/home/bfly/Documents/Liuhuaiyu",
+        "healthy",
+        "question-followthrough-e2e-smoke-1782532468",
+        "/home/bfly/yunwei/test_ccb2/question-followthrough-e2e-smoke-1782532468",
+        "healthy",
+        "question-e2e-capacity-probe-1782532575",
+        "/home/bfly/yunwei/test_ccb2/question-e2e-capacity-probe-1782532575",
+        "healthy",
+        "\u57fa\u672c\u95ee\u9898",
+        "/home/bfly/yunwei/\u57fa\u672c\u95ee\u9898",
+        "healthy",
+        "system_optimal",
+        "/home/bfly/yunwei/system_optimal",
+        "healthy",
+        "plan-tree",
+        "/home/bfly/workspace/plan-tree",
+        "healthy",
+        "test_ccb2_alpha",
+        "/home/bfly/yunwei/test_ccb2/mobile-manual-real-20260627171823/test_ccb2_alpha",
+        "healthy"
+      ],
+      "returncode": 0,
+      "screenshot_bytes": 182918,
+      "screenshot_path": "/tmp/ccb-mobile-release-project-list-1782719935.png",
+      "tap": {
+        "bounds": [
+          32,
+          265,
+          1049,
+          517
+        ],
+        "x": 540,
+        "y": 391
+      }
+    },
+    "project_id": "a0599b34379154c39a641f0102e3340ed668db059b99d0c5889c4af6153e2d15",
+    "project_name": "test_ccb2_alpha",
+    "recovered_visible_texts": [
+      "Projects",
+      "test_ccb2_alpha",
+      "Open Terminal",
+      "Diagnostics",
+      "main",
+      "mobile_probe",
+      "mobile_peer",
+      "idle, restored, no queued items",
+      "Agent reply",
+      "Native artifact bundle 20260629075806-3085578",
+      "[native-artifact-20260629075806-3085578.txt](ccb-artifact://mobile-file-native-text-20260629075806-3085578)",
+      "[native-image-20260629075806-3085578.png](ccb-artifact://mobile-file-native-image-20260629075806-3085578)",
+      "Expand message",
+      "native-artifact-20260629075806-3085578.txt (58 B)",
+      "native-image-20260629075806-3085578.png (67 B)",
+      "Native reverse recovery restored 1782719941",
+      "Refresh conversation",
+      "Attach file",
+      "Collapse message input",
+      "Send message"
+    ],
+    "recovery_device_metrics": {
+      "batterystats_excerpt": [
+        "Total full wakelock time: 53s 353ms",
+        "Total WiFi Multicast wakelock Count: 7",
+        "Total WiFi Multicast wakelock time: 20s 975ms",
+        "Estimated power use (mAh):",
+        "mobile_radio: 0.0168 [energy consumption] apps: 0 duration: 6h 17m 28s 844ms",
+        "sensors: 502 apps: 502",
+        "UID 1000: 497 ( cpu=9.32 audio=0.0661 (19m 46s 163ms) mobile_radio=0 (3h 37m 55s 344ms) sensors=488 (6d 18h 40m 0s 63ms) )",
+        "UID u0a179: 24.4 fg: 0.0944 fgs: 0.0906 cached: 0.00000400 ( screen=24.2 (2d 7h 24m 30s 991ms) cpu=0.185 cpu:fg=0.0944 cpu:fgs=0.0906 cpu:cached=0.00000400 )",
+        "UID u0a143: 14.7 fg: 0.00349 bg: 0.0221 fgs: 0.252 cached: 0.0000340 ( screen=0.146 (20m 5s 943ms) cpu=0.277 cpu:fg=0.00349 cpu:bg=0.0221 cpu:fgs=0.251 cpu:cached=0.0000340 mobile_radio=0 (16m 38s 609ms) sensors=14.2 (52m 5s 300ms) gnss=0.000914 (16s 708ms) gnss:bg=0.0000180 gnss:fgs=0.000432 wifi=0.0174 )",
+        "UID 0: 1.45 ( cpu=1.45 mobile_radio=0 (1m 43s 89ms) )",
+        "UID u0a262: 0.606 fg: 0.603 cached: 0.00000300 ( cpu=0.606 cpu:fg=0.603 cpu:cached=0.00000300 )",
+        "UID u0a343: 0.485 fg: 0.474 cached: 0.00148 ( cpu=0.485 cpu:fg=0.474 cpu:cached=0.00148 )",
+        "UID u0a259: 0.252 fg: 0.246 cached: 0.000295 ( cpu=0.252 cpu:fg=0.246 cpu:cached=0.000295 )",
+        "UID u0a181: 0.238 ( cpu=0.238 )",
+        "UID u0a258: 0.236 fg: 0.234 cached: 0.0000610 ( cpu=0.236 cpu:fg=0.234 cpu:cached=0.0000610 )",
+        "UID u0a248: 0.234 fg: 0.214 cached: 0.0000150 ( cpu=0.234 cpu:fg=0.214 cpu:cached=0.0000150 )",
+        "UID u0a263: 0.208 fg: 0.202 cached: 0.0000150 ( cpu=0.208 cpu:fg=0.202 cpu:cached=0.0000150 )",
+        "UID 2000: 0.198 cached: 0.00431 ( cpu=0.198 cpu:cached=0.00431 )",
+        "UID 1036: 0.187 ( cpu=0.187 )",
+        "UID u0a153: 0.136 bg: 0.102 fgs: 0.0336 cached: 0.0000220 ( cpu=0.136 cpu:bg=0.102 cpu:fgs=0.0336 cpu:cached=0.0000220 )",
+        "UID u0a210: 0.125 fg: 0.116 cached: 0.00299 ( cpu=0.125 cpu:fg=0.116 cpu:cached=0.00299 )",
+        "UID u0a268: 0.121 fg: 0.114 cached: 0.0000200 ( cpu=0.121 cpu:fg=0.114 cpu:cached=0.0000200 )",
+        "UID u0a355: 0.0910 fg: 0.0864 cached: 0.00369 ( cpu=0.0910 cpu:fg=0.0864 cpu:cached=0.00369 )",
+        "UID u0a144: 0.0884 fg: 0.0000160 bg: 0.00617 fgs: 0.0818 cached: 0.0000270 ( screen=0.000363 (2s 990ms) cpu=0.0880 cpu:fg=0.0000160 cpu:bg=0.00617 cpu:fgs=0.0818 cpu:cached=0.0000270 mobile_radio=0 (4m 22s 132ms) )",
+        "UID u0a340: 0.0742 fg: 0.0675 cached: 0.00000500 ( cpu=0.0742 cpu:fg=0.0675 cpu:cached=0.00000500 )",
+        "UID 1010: 0.0685 ( cpu=0.0211 wifi=0.0474 )",
+        "UID u0a96: 0.0662 fg: 0.000487 cached: 0.0109 ( screen=0.0545 (7m 29s 270ms) cpu=0.0117 cpu:fg=0.000487 cpu:cached=0.0109 )",
+        "UID u0a255: 0.0659 fg: 0.0649 cached: 0.000157 ( cpu=0.0659 cpu:fg=0.0649 cpu:cached=0.000157 )",
+        "UID 1041: 0.0634 ( cpu=0.0634 )",
+        "UID u0a245: 0.0530 fg: 0.0265 cached: 0.00000600 ( cpu=0.0530 cpu:fg=0.0265 cpu:cached=0.00000600 )",
+        "UID u0a142: 0.0523 bg: 0.000297 fgs: 0.000655 cached: 0.0503 ( cpu=0.0523 cpu:bg=0.000297 cpu:fgs=0.000655 cpu:cached=0.0503 )",
+        "UID u0a314: 0.0515 fg: 0.0180 cached: 0.0000860 ( cpu=0.0515 cpu:fg=0.0180 cpu:cached=0.0000860 )",
+        "UID u0a209: 0.0494 fg: 0.0451 cached: 0.000188 ( cpu=0.0494 cpu:fg=0.0451 cpu:cached=0.000188 )",
+        "UID u0a354: 0.0460 fg: 0.0456 cached: 0.00000300 ( cpu=0.0460 cpu:fg=0.0456 cpu:cached=0.00000300 )",
+        "UID u0a213: 0.0382 fg: 0.0164 cached: 0.00144 ( cpu=0.0382 cpu:fg=0.0164 cpu:cached=0.00144 )",
+        "UID 1073: 0.0380 fg: 0.0380 ( cpu=0.0380 cpu:fg=0.0380 mobile_radio=0 (47m 10s 95ms) )",
+        "UID u0a135: 0.0375 fgs: 0.0375 cached: 0.00000900 ( cpu=0.0375 cpu:fgs=0.0375 cpu:cached=0.00000900 mobile_radio=0 (4s 468ms) )",
+        "UID u0a211: 0.0357 fg: 0.0176 cached: 0.0000350 ( cpu=0.0357 cpu:fg=0.0176 cpu:cached=0.0000350 )",
+        "UID 1001: 0.0340 fg: 0.0340 ( cpu=0.0340 cpu:fg=0.0340 )",
+        "UID u0a242: 0.0339 fg: 0.0291 ( cpu=0.0339 cpu:fg=0.0291 )"
+      ],
+      "errors": [],
+      "gfxinfo": {
+        "janky_frames": "Janky frames (legacy): 3 (18.75%)",
+        "total_frames_rendered": "Total frames rendered: 16"
+      },
+      "logcat": {
+        "fatal_anr_oom": false,
+        "skipped_frames_count": 0,
+        "tail": [
+          "06-29 15:58:56.834 16083 16096 I bile.ccb_mobile: Explicit concurrent mark compact GC freed 3104KB AllocSpace bytes, 28(1264KB) LOS objects, 49% free, 2987KB/5975KB, paused 34us,318us total 6.563ms",
+          "06-29 15:58:56.850 16083 16092 W bile.ccb_mobile: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/talkback/talkback.apk' with 1 weak references",
+          "06-29 15:58:56.850 16083 16092 W bile.ccb_mobile: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/EmulatorTalkBackOverlay/EmulatorTalkBackOverlay.apk' with 1 weak references",
+          "06-29 15:58:59.225 16083 16095 I bile.ccb_mobile: Explicit concurrent mark compact GC freed 374KB AllocSpace bytes, 1(20KB) LOS objects, 49% free, 2967KB/5935KB, paused 70us,918us total 12.530ms",
+          "06-29 15:58:59.238 16083 16092 W bile.ccb_mobile: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/talkback/talkback.apk' with 1 weak references",
+          "06-29 15:58:59.239 16083 16092 W bile.ccb_mobile: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/EmulatorTalkBackOverlay/EmulatorTalkBackOverlay.apk' with 1 weak references",
+          "06-29 15:59:01.558  1758  1770 W gle.android.gms: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~N8zxlQWlwB6-9AzaICB97g==/io.ccb.mobile.ccb_mobile-BZz4dMsvf7WY3-KNWSvRgA==/base.apk' with 1 weak references",
+          "06-29 15:59:01.579 16083 16095 I bile.ccb_mobile: Explicit concurrent mark compact GC freed 288KB AllocSpace bytes, 1(20KB) LOS objects, 49% free, 2967KB/5935KB, paused 33us,212us total 4.844ms",
+          "06-29 15:59:03.945 16083 16095 I bile.ccb_mobile: Explicit concurrent mark compact GC freed 322KB AllocSpace bytes, 1(20KB) LOS objects, 49% free, 2967KB/5935KB, paused 32us,260us total 3.831ms",
+          "06-29 15:59:03.951 16083 16092 W bile.ccb_mobile: ApkAssets: Deleting an ApkAssets object '<empty> and /product/app/talkback/talkback.apk' with 1 weak references",
+          "06-29 15:59:03.951 16083 16092 W bile.ccb_mobile: ApkAssets: Deleting an ApkAssets object '/vendor/overlay/EmulatorTalkBackOverlay/EmulatorTalkBackOverlay.apk' with 1 weak references",
+          "06-29 15:59:06.277 16083 16095 I bile.ccb_mobile: Explicit concurrent mark compact GC freed 280KB AllocSpace bytes, 1(20KB) LOS objects, 49% free, 2943KB/5887KB, paused 31us,234us total 3.898ms",
+          "06-29 15:59:08.631 16083 16095 I bile.ccb_mobile: Explicit concurrent mark compact GC freed 128KB AllocSpace bytes, 1(20KB) LOS objects, 49% free, 2943KB/5887KB, paused 33us,242us total 3.953ms",
+          "06-29 15:59:10.398 16083 16095 I bile.ccb_mobile: Explicit concurrent mark compact GC freed 128KB AllocSpace bytes, 1(20KB) LOS objects, 49% free, 2943KB/5887KB, paused 44us,233us total 4.039ms"
+        ]
+      },
+      "memory": {
+        "pss_growth_ratio": -0.0352,
+        "pss_kb_delta": -3448,
+        "pss_kb_max": 102624,
+        "pss_kb_min": 94382,
+        "samples": 7
+      },
+      "monitor_samples": [
+        {
+          "elapsed_s": 0.0,
+          "label": "start",
+          "meminfo_returncode": 0,
+          "top_line": "16083 u0_a378      10 -10  84G 194M 126M S  0.0   7.8   0:01.78 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 97830,
+          "total_rss_kb": 5658
+        },
+        {
+          "elapsed_s": 2.391,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "16083 u0_a378      10 -10  83G 192M 118M S 61.5   7.7   0:01.83 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 102583,
+          "total_rss_kb": 5668
+        },
+        {
+          "elapsed_s": 4.78,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "16083 u0_a378      10 -10  83G 193M 118M S  0.0   7.8   0:02.21 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 95031,
+          "total_rss_kb": 5749
+        },
+        {
+          "elapsed_s": 7.124,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "16083 u0_a378      10 -10  83G 201M 127M S 11.5   8.1   0:02.54 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 102624,
+          "total_rss_kb": 5709
+        },
+        {
+          "elapsed_s": 9.491,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "16083 u0_a378      10 -10  83G 192M 118M S  0.0   7.7   0:02.60 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 94524,
+          "total_rss_kb": 5804
+        },
+        {
+          "elapsed_s": 11.823,
+          "label": "interval",
+          "meminfo_returncode": 0,
+          "top_line": "16083 u0_a378      10 -10  83G 192M 118M S  0.0   7.7   0:02.61 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 94382,
+          "total_rss_kb": 5810
+        },
+        {
+          "elapsed_s": 13.6,
+          "label": "end",
+          "meminfo_returncode": 0,
+          "top_line": "16083 u0_a378      10 -10  83G 192M 118M S  0.0   7.7   0:02.61 io.ccb.mobile.ccb_mobile",
+          "top_returncode": 0,
+          "total_pss_kb": 94382,
+          "total_rss_kb": 5810
+        }
+      ],
+      "power": {
+        "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+        "wake_lock_summary": "mWakeLockSummary=0x0",
+        "wake_locks": "Wake Locks: size=0",
+        "wakefulness": "mWakefulness=Awake"
+      },
+      "sample_count": 7,
+      "sample_labels": [
+        "start",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "interval",
+        "end"
+      ],
+      "schema_version": 1,
+      "warnings": []
+    },
+    "recovery_metrics": {
+      "elapsed_ms": 14230.173,
+      "initial_marker": "Native artifact bundle 20260629075806-3085578",
+      "post_recovery_settle_seconds": 5,
+      "recovery_marker": "Native reverse recovery restored 1782719941"
+    },
+    "recovery_screenshot_bytes": 203246,
+    "recovery_screenshot_path": "/tmp/ccb-mobile-release-reverse-recovery-1782719951.png",
+    "recovery_seed": {
+      "marker": "Native reverse recovery restored 1782719941",
+      "rollout_path": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_alpha/.ccb/agents/mobile_probe/provider-state/codex/home/sessions/2026/06/29/rollout-ccb-mobile-reverse-recovery-1782719941.jsonl",
+      "source": "ccb-mobile-avd-reverse-recovery-fixture",
+      "thread_id": "ccb-mobile-reverse-recovery-1782719941"
+    },
+    "recovery_tap": {
+      "tap": {
+        "bounds": [
+          21,
+          2075,
+          147,
+          2169
+        ],
+        "x": 84,
+        "y": 2122
+      },
+      "text": "Refresh conversation"
+    },
+    "returncode": 0,
+    "reverse_removed": {
+      "removed": true,
+      "returncode": 0,
+      "stderr": ""
+    },
+    "reverse_restored": {
+      "device_id": "emulator-5554",
+      "mapping": "tcp:19316 tcp:19316"
+    }
+  },
+  "long_history_backfill": null,
+  "native_artifact": {
+    "image_file_id": "mobile-file-native-image-20260629075806-3085578",
+    "image_file_name": "native-image-20260629075806-3085578.png",
+    "image_sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378",
+    "image_size_bytes": 67,
+    "marker": "Native artifact bundle 20260629075806-3085578",
+    "text_file_id": "mobile-file-native-text-20260629075806-3085578",
+    "text_file_name": "native-artifact-20260629075806-3085578.txt",
+    "text_sha256": "f1a9cdee492a865e59e9d135a53f6b2725f2ee9dbc0921d96ee31505071604b6",
+    "text_size_bytes": 58
+  },
+  "native_pane_evidence": {
+    "agent": "mobile_probe",
+    "mode": "release_reverse_recovery",
+    "project_id": "a0599b34379154c39a641f0102e3340ed668db059b99d0c5889c4af6153e2d15",
+    "project_name": "test_ccb2_alpha",
+    "recovery_metrics": {
+      "elapsed_ms": 14230.173,
+      "initial_marker": "Native artifact bundle 20260629075806-3085578",
+      "post_recovery_settle_seconds": 5,
+      "recovery_marker": "Native reverse recovery restored 1782719941"
+    },
+    "reverse_removed": {
+      "removed": true,
+      "returncode": 0,
+      "stderr": ""
+    },
+    "reverse_restored": {
+      "device_id": "emulator-5554",
+      "mapping": "tcp:19316 tcp:19316"
+    },
+    "screenshot_path": "/tmp/ccb-mobile-release-reverse-recovery-1782719951.png"
+  },
+  "projects": [
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "a0599b34379154c39a641f0102e3340ed668db059b99d0c5889c4af6153e2d15",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "db2b472ef409d4e11d77e947d5d8ce68af12280d3ed01d90a4621a0a28b5ae93",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "Liuhuaiyu",
+      "health": "healthy",
+      "id": "d71ce204e5054a8cf244a717999c4be729f09d3dc408d39916103a3fce96ea87",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/Liuhuaiyu"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "question-followthrough-e2e-smoke-1782532468",
+      "health": "healthy",
+      "id": "b6ab590d462b18a02c57c7f5a002bfe60d102184345f06b9aa78145607bce99a",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/question-followthrough-e2e-smoke-1782532468"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "question-e2e-capacity-probe-1782532575",
+      "health": "healthy",
+      "id": "5ff6ec62cd8e8614ab1ecfdc1568cd3f24c78bb813aa4554fb36eea8e9214d37",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/question-e2e-capacity-probe-1782532575"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u57fa\u672c\u95ee\u9898",
+      "health": "healthy",
+      "id": "6759b921654b26d55b40c7ca3d9e0b424368d5b0617cb290aa42c377c189ba28",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/\u57fa\u672c\u95ee\u9898"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "system_optimal",
+      "health": "healthy",
+      "id": "a3872a3027328db9eddc13dccd94e8378f199ef852b8060967a6e9f10aaa760a",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/system_optimal"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "plan-tree",
+      "health": "healthy",
+      "id": "8a8dccfbbb0f2a32f7c4809bcbceddea2c15ad6b0c2e35e067ed14dd4ee5cafe",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/plan-tree"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_alpha",
+      "health": "healthy",
+      "id": "f80bf5acdd5d1c388125a225ba7d2b2008848d48d075d24f4901579955d1d94c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/mobile-manual-real-20260627171823/test_ccb2_alpha"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "test_ccb2_beta",
+      "health": "healthy",
+      "id": "7f1de911ac40f73168799a98e0eb66baef4ed3e77b9137b562528fbe7b6f8fd8",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/test_ccb2/mobile-manual-real-20260627171823/test_ccb2_beta"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "agent-roles-spec",
+      "health": "healthy",
+      "id": "9fd0d20038d0346c1835fa358d320dde16cc2b415579ea2f29af963f7a25d7f7",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/agent-roles-spec"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "architec",
+      "health": "healthy",
+      "id": "4dfe1cded48690eccd7a2e626d3ccf69e5312d339483852b883b528f74c1066c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/architec"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "DeePoly_git",
+      "health": "healthy",
+      "id": "bf729d5621393d89991f5923b4d1770e8b9808411c9ac522d6df755db826e03c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/computeforcfd/\u6df7\u5408\u7f51\u7edc/DeePoly_git"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u670d\u52a1\u5668",
+      "health": "healthy",
+      "id": "3b5430a43921eb5c90cfe36cfed6b148eb36198806c600eceb9bc7e7b5932b23",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/\u5de5\u4f5c\u5ba4/\u670d\u52a1\u5668"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_source",
+      "health": "healthy",
+      "id": "dc1e9324ab3fb8155100f3e002689f793cdad8df6e97370ea4f16054815d890c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_source"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_mobile",
+      "health": "healthy",
+      "id": "1b12981c7405fedcdc19d0fb37da5025f6089e22312f261b26293db25a0a76aa",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_mobile"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "eos_multimat",
+      "health": "healthy",
+      "id": "8749098108301cdc76a1ff1bf22da4af6639ab3020f2ea9a91553d7e25d8f761",
+      "mount_state": "mounted",
+      "root": "/home/bfly/workspace/ML/eos_multimat"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "ccb_visual",
+      "health": "healthy",
+      "id": "d3b67a788dd31349098908ddf81440f323afdd0d25c9a02c50e7f7f4ad276bae",
+      "mount_state": "mounted",
+      "root": "/home/bfly/yunwei/ccb_visual"
+    },
+    {
+      "capabilities": [
+        "http_json",
+        "project_view",
+        "pairing",
+        "device_tokens",
+        "lifecycle",
+        "focus",
+        "terminal_open",
+        "websocket_terminal",
+        "terminal_history",
+        "file_upload",
+        "file_download"
+      ],
+      "display_name": "\u4f1a\u8bae\u6574\u7406",
+      "health": "healthy",
+      "id": "cf4e533b622589b1499f46bfe16e6d10ebe4f15025d6d677f503fb7672c2650c",
+      "mount_state": "mounted",
+      "root": "/home/bfly/Documents/\u4f1a\u8bae\u6574\u7406"
+    }
+  ],
+  "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806",
+  "source_ccb": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb",
+  "source_dirty": false,
+  "source_head": "7e436f7e",
+  "started_projects": [
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_alpha",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_alpha",
+        "project_id": "a0599b34379154c39a641f0102e3340ed668db059b99d0c5889c4af6153e2d15",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-a0599b343791.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-a0599b343791.sock owned=%1,%2,%3 active=%1,%2,%3 orphaned=- killed=-"
+      }
+    },
+    {
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_beta",
+      "start": {
+        "agents": "mobile_probe, mobile_peer",
+        "ccbd_started": "true",
+        "project": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629075806/test_ccb2_beta",
+        "project_id": "db2b472ef409d4e11d77e947d5d8ce68af12280d3ed01d90a4621a0a28b5ae93",
+        "socket_path": "/run/user/1000/ccb-runtime/ccbd-db2b472ef409.sock",
+        "start_status": "ok",
+        "tmux_cleanup": "socket=/run/user/1000/ccb-runtime/tmux-db2b472ef409.sock owned=%1,%2,%3 active=%1,%2,%3 orphaned=- killed=-"
+      }
+    }
+  ],
+  "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260629075806",
+  "status": "ok"
+}

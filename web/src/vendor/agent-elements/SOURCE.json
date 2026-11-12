@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/21st-dev/agent-elements",
+  "commit": "b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37",
+  "retrieved_on": "2026-11-11",
+  "license": {
+    "spdx": "MIT",
+    "path": "LICENSE",
+    "upstream_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/LICENSE",
+    "sha256": "8bc26817d6b5c323f8cb5e5da77182fe0db8a5ad0e0b563903f9382bba06dc9a"
+  },
+  "registry_items": {
+    "user-message": {
+      "url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/user-message.json",
+      "sha256": "d2b8276719846d00337c9a64ad08fda73960bb93263dcc2a4b43011a7220954d",
+      "dependencies": [
+        "@tabler/icons-react",
+        "ai",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registry_dependencies": [
+        "https://agent-elements.21st.dev/r/file-attachment.json"
+      ]
+    },
+    "file-attachment": {
+      "url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/file-attachment.json",
+      "sha256": "590d8053320b64397aa8370398cb0f9bb01f8ad69607a4148e21ef068e3247d3",
+      "dependencies": [
+        "@tabler/icons-react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registry_dependencies": []
+    },
+    "markdown": {
+      "url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/markdown.json",
+      "sha256": "ff64bec79145e0ee3c42bd6ff5bfbd9bb3c589b576b2b26dda586cb937877d3c",
+      "dependencies": [
+        "@streamdown/code",
+        "clsx",
+        "streamdown",
+        "tailwind-merge"
+      ],
+      "registry_dependencies": []
+    },
+    "input-bar": {
+      "url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/input-bar.json",
+      "sha256": "6a3df53d56b27ff67c2359006fd705afc7acf9cb8dc7411c62029dfceec7a74a",
+      "dependencies": [
+        "@tabler/icons-react",
+        "ai",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registry_dependencies": [
+        "https://agent-elements.21st.dev/r/attachment-button.json",
+        "https://agent-elements.21st.dev/r/file-attachment.json",
+        "https://agent-elements.21st.dev/r/send-button.json",
+        "https://agent-elements.21st.dev/r/suggestions.json"
+      ]
+    },
+    "attachment-button": {
+      "url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/attachment-button.json",
+      "sha256": "e52b82647501c2a9f556b519e87eda785cd57d3fd37e96f3c6b462696087a33d",
+      "dependencies": [
+        "@tabler/icons-react"
+      ],
+      "registry_dependencies": []
+    },
+    "send-button": {
+      "url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/send-button.json",
+      "sha256": "5c52157639d3a2cc56f59cd351fd25566820babd9345c4a419aeb5874efaafc9",
+      "dependencies": [
+        "@tabler/icons-react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registry_dependencies": []
+    },
+    "suggestions": {
+      "url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/suggestions.json",
+      "sha256": "67a9aa11a04a37a67bc7357cb2590442e205e4e45bae25e2fdd710a3bc4734aa",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registry_dependencies": []
+    }
+  },
+  "files": {
+    "agent-ui.css": {
+      "registry_path": "registry/agent-elements/agent-ui.css",
+      "registry_sha256": "20817c261c1ff7fca12a8ca93332a27bdcf5def6928fc7e19c2fed398b3ed5f5",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/user-message.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/agent-ui.css",
+      "vendored_sha256": "20817c261c1ff7fca12a8ca93332a27bdcf5def6928fc7e19c2fed398b3ed5f5",
+      "local_modifications": []
+    },
+    "image-lightbox.tsx": {
+      "registry_path": "registry/agent-elements/components/image-lightbox.tsx",
+      "registry_sha256": "1534dfbfb40d90c4fc6fbfdee53f94f2cf268bb005e7cd21857546cf7ff4028d",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/user-message.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/components/image-lightbox.tsx",
+      "vendored_sha256": "1534dfbfb40d90c4fc6fbfdee53f94f2cf268bb005e7cd21857546cf7ff4028d",
+      "local_modifications": []
+    },
+    "input-bar.tsx": {
+      "registry_path": "registry/agent-elements/components/input-bar.tsx",
+      "registry_sha256": "4a85f7da95071a456baaa0be3fe64bcb89f27c1f440d0724341fff96bc8a4ad2",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/input-bar.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/components/input-bar.tsx",
+      "vendored_sha256": "6863348a8c3950dc812b48626b95881c7a2334693d9fcb58236fb59487da0414",
+      "local_modifications": [
+        "Chinese default placeholder and textarea accessible label",
+        "Suppress Enter submission during native/composition-ref/Safari-229 IME composition",
+        "Native accessible send/stop button with disabled semantics",
+        "In controlled mode, preserve draft until host confirms acceptance; no immediate clear on send"
+      ]
+    },
+    "input/attachment-button.tsx": {
+      "registry_path": "registry/agent-elements/components/input/attachment-button.tsx",
+      "registry_sha256": "dd91d50da400e1881918be0b1a1382badf6e8a6853fa3d58245802a5bb7da47d",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/attachment-button.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/components/input/attachment-button.tsx",
+      "vendored_sha256": "dd91d50da400e1881918be0b1a1382badf6e8a6853fa3d58245802a5bb7da47d",
+      "local_modifications": []
+    },
+    "input/file-attachment.tsx": {
+      "registry_path": "registry/agent-elements/components/input/file-attachment.tsx",
+      "registry_sha256": "8619d5cd4b445d329e8ba706be317148bbae386788538832e610db763cd7a7bd",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/file-attachment.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/components/input/file-attachment.tsx",
+      "vendored_sha256": "8619d5cd4b445d329e8ba706be317148bbae386788538832e610db763cd7a7bd",
+      "local_modifications": []
+    },
+    "input/input-typing.tsx": {
+      "registry_path": "registry/agent-elements/components/input/input-typing.tsx",
+      "registry_sha256": "b80ebb92bed404d01e783c8a88d5b5dee5798dbe3a3b94bf6fad2793d28f9403",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/input-bar.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/components/input/input-typing.tsx",
+      "vendored_sha256": "b80ebb92bed404d01e783c8a88d5b5dee5798dbe3a3b94bf6fad2793d28f9403",
+      "local_modifications": []
+    },
+    "input/send-button.tsx": {
+      "registry_path": "registry/agent-elements/components/input/send-button.tsx",
+      "registry_sha256": "a3e59598834e3e854e5b96f1f665391b4a2c2eef4a0e77d5b2464ba1e87293cc",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/send-button.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/components/input/send-button.tsx",
+      "vendored_sha256": "21491431cc254c6226ec58ee56e416f74969cba9ef24312c2601d20b39687e99",
+      "local_modifications": [
+        "Presentational aria-hidden spans inside the semantic send/stop button"
+      ]
+    },
+    "input/suggestions.tsx": {
+      "registry_path": "registry/agent-elements/components/input/suggestions.tsx",
+      "registry_sha256": "7364fed98fe743c8b24c6b0a3d650ab08641d5b3e7e11d2b96e7c3fbd762a8eb",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/suggestions.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/components/input/suggestions.tsx",
+      "vendored_sha256": "7364fed98fe743c8b24c6b0a3d650ab08641d5b3e7e11d2b96e7c3fbd762a8eb",
+      "local_modifications": []
+    },
+    "markdown.tsx": {
+      "registry_path": "registry/agent-elements/components/markdown.tsx",
+      "registry_sha256": "5774a8ea60ff39ce635d0fff34ad47edf9655f6f6defa3f05942587f16db92ac",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/markdown.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/components/markdown.tsx",
+      "vendored_sha256": "18bd670316c7a6f85c231c928d58c34a6b0e9635e8138f33619a69d3b2c79562",
+      "local_modifications": [
+        "Remove optional @streamdown/code plugin; preserve Markdown/plain code blocks without all-language syntax highlighting"
+      ]
+    },
+    "question/question-prompt.tsx": {
+      "registry_path": "registry/agent-elements/components/question/question-prompt.tsx",
+      "registry_sha256": "0d5a337ff3f06c3ff2bfafea118f5d5d54b88bd51eeed605cac60b3525f46f37",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/input-bar.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/components/question/question-prompt.tsx",
+      "vendored_sha256": "0d5a337ff3f06c3ff2bfafea118f5d5d54b88bd51eeed605cac60b3525f46f37",
+      "local_modifications": []
+    },
+    "user-message.tsx": {
+      "registry_path": "registry/agent-elements/components/user-message.tsx",
+      "registry_sha256": "8d3a5fec29a7f6edbf3e6ed87adbcff22306ee8c6e930b8380e0c8b4e65ee471",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/user-message.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/components/user-message.tsx",
+      "vendored_sha256": "8d3a5fec29a7f6edbf3e6ed87adbcff22306ee8c6e930b8380e0c8b4e65ee471",
+      "local_modifications": []
+    },
+    "utils/cn.ts": {
+      "registry_path": "registry/agent-elements/utils/cn.ts",
+      "registry_sha256": "d1f1e0d62cb8d8d1e04c26e14de842d8a151f75812d81b046c65b5d1fe8e4b27",
+      "registry_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/public/r/user-message.json",
+      "upstream_source_url": "https://raw.githubusercontent.com/21st-dev/agent-elements/b04b36cb6381a1dd1a0e86cc7c90564ddcd56d37/lib/agent-ui/utils/cn.ts",
+      "vendored_sha256": "d1f1e0d62cb8d8d1e04c26e14de842d8a151f75812d81b046c65b5d1fe8e4b27",
+      "local_modifications": []
+    }
+  },
+  "initial_import_verification": {
+    "ime_keydown_callback_cases": 6,
+    "browser_or_react_mount_test": false,
+    "relative_imports_resolve": true,
+    "untouched_files_byte_equal_registry": true
+  },
+  "integration_verification": {
+    "report": "../../../../docs/research/muxary-validation.md",
+    "react_mount_tests": "web/src/App.test.tsx",
+    "browser_scope": "Independent Chrome; provider stub workbench and synthetic native Markdown. See report for limits."
+  }
+}

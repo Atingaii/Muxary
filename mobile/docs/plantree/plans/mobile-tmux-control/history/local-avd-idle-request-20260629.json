@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-29",
+  "status": "ok",
+  "case": "selected-agent idle request audit",
+  "command": "source tools/mobile_toolchain_env.sh && python tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --force-config --provider codex --idle-request-smoke --idle-request-seconds 180 --gateway-listen 127.0.0.1:19306 --device-id emulator-5554 --flutter-timeout 1500 | tee /tmp/ccb-mobile-idle-19306.json",
+  "raw_result_path": "/tmp/ccb-mobile-idle-19306.json",
+  "app": {
+    "head": "d540c66",
+    "dirty": true
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb",
+    "head": "7e436f7e",
+    "dirty": false
+  },
+  "device": {
+    "id": "emulator-5554",
+    "claimed_device_id": "avd_20260629064551"
+  },
+  "gateway": {
+    "listen": "127.0.0.1:19306",
+    "url": "http://127.0.0.1:19306",
+    "request_proxy": "127.0.0.1:19307",
+    "route_provider": "lan"
+  },
+  "fixture": {
+    "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629064551",
+    "opened_project_name": "test_ccb2_alpha",
+    "opened_project_id": "c11f7fa0e6b6e881bca2707f1bc1adcbc9f9802119e206c90c66b580f744bc87",
+    "opened_agent": "mobile_probe",
+    "started_project_roots": [
+      "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629064551/test_ccb2_alpha",
+      "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260629064551/test_ccb2_beta"
+    ],
+    "server_wide_project_count": 19
+  },
+  "idle_audit_window": {
+    "seconds": 180,
+    "markers": [
+      "CCB_IDLE_AUDIT_BEGIN selected-agent",
+      "CCB_IDLE_AUDIT_END selected-agent"
+    ],
+    "request_counts": {
+      "total_requests": 0,
+      "conversation_requests": 0,
+      "terminal_history_requests": 0,
+      "conversation_terminal_requests": 0,
+      "requests_per_minute": 0.0,
+      "conversation_terminal_requests_per_minute": 0.0
+    },
+    "counts_by_route": {},
+    "strict_result": "pass: zero conversation/history requests during the 180-second idle window"
+  },
+  "full_proxy_lifetime_note": {
+    "total_requests": 2,
+    "counts_by_route": {
+      "/v1/projects/{project}/agents/{agent}/conversation": 1,
+      "/v1/projects/{project}/terminal-history": 1
+    },
+    "interpretation": "setup/verification requests outside the reset idle audit window; not counted for the idle no-blind-polling gate"
+  },
+  "device_metrics": {
+    "sample_count": 7,
+    "sample_labels": [
+      "start",
+      "interval",
+      "interval",
+      "interval",
+      "interval",
+      "interval",
+      "end"
+    ],
+    "memory": {
+      "pss_kb_min": 326345,
+      "pss_kb_max": 327702,
+      "pss_kb_delta": -582,
+      "pss_growth_ratio": -0.0018,
+      "samples": 7
+    },
+    "power": {
+      "wake_locks": "Wake Locks: size=0",
+      "wake_lock_summary": "mWakeLockSummary=0x0",
+      "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false",
+      "wakefulness": "mWakefulness=Awake"
+    },
+    "gfxinfo": {
+      "total_frames_rendered": "Total frames rendered: 1",
+      "janky_frames": "Janky frames (legacy): 1 (100.00%)"
+    },
+    "logcat": {
+      "fatal_anr_oom": false,
+      "skipped_frames_count": 0
+    },
+    "warnings": []
+  },
+  "verification": {
+    "flutter_integration_stdout_tail": [
+      "00:00 +0: selected-agent idle does not poll conversation history",
+      "CCB_IDLE_AUDIT_BEGIN selected-agent",
+      "CCB_IDLE_AUDIT_END selected-agent",
+      "03:13 +1: All tests passed!"
+    ],
+    "adb_reverse_cleanup": "ok",
+    "gateway_cleanup": "ok"
+  }
+}

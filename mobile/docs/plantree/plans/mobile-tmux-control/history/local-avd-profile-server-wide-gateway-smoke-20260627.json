@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-27",
+  "scope": "Profile APK server-wide gateway smoke covering real project listing, selected-agent file/image sends, backend artifact downloads, and hash checks.",
+  "status": "ok",
+  "raw_log": "/tmp/ccb-mobile-profile-server-wide-gateway-smoke-20260627-clean.log",
+  "mobile_app": {
+    "head": "168db3d",
+    "dirty": false,
+    "commit": "test: stabilize profile gateway smoke text entry"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "ac2626ac",
+    "dirty": false
+  },
+  "emulator": {
+    "device_id": "emulator-5554",
+    "adb_reverse": "tcp:19174 tcp:19174"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19174"
+  },
+  "project_fixture": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626213707",
+    "started_projects": [
+      "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626213707/test_ccb2_alpha",
+      "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626213707/test_ccb2_beta"
+    ],
+    "agents": [
+      "mobile_probe",
+      "mobile_peer"
+    ]
+  },
+  "flutter": {
+    "build_mode": "profile",
+    "test_target": "integration_test/server_wide_gateway_smoke_test.dart",
+    "summary": "01:32 +3: All tests passed!"
+  },
+  "native_artifact_fixture": {
+    "text_file_id": "mobile-file-native-text-20260626213707-939091",
+    "text_file_name": "native-artifact-20260626213707-939091.txt",
+    "text_sha256": "df38132a0e61aae20df514a8e709cdd1ce501839caca17c544fbd96c2a093945",
+    "text_size_bytes": 57,
+    "image_file_id": "mobile-file-native-image-20260626213707-939091",
+    "image_file_name": "native-image-20260626213707-939091.png",
+    "image_sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378",
+    "image_size_bytes": 67
+  },
+  "download_hashes": [
+    {
+      "file_name": "native-artifact-20260626213707-939091.txt",
+      "sha256": "df38132a0e61aae20df514a8e709cdd1ce501839caca17c544fbd96c2a093945",
+      "size_bytes": 57
+    },
+    {
+      "file_name": "native-image-20260626213707-939091.png",
+      "sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378",
+      "size_bytes": 67
+    },
+    {
+      "file_name": "alpha-mobile_probe-turn-1-1782509864629.txt",
+      "sha256": "2fd7b5f3e72c67698d748553e9a7abcf61e95075413a29259e2300addc99f1af",
+      "size_bytes": 78
+    },
+    {
+      "file_name": "alpha-mobile_probe-turn-2-1782509864629.txt",
+      "sha256": "c0df25a163a2bb56fc3d8f0e03c98e34d38f23a2ea28a36d839eeefbaf6281b8",
+      "size_bytes": 78
+    },
+    {
+      "file_name": "alpha-mobile_probe-image-1782509864629.png",
+      "sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378",
+      "size_bytes": 67
+    },
+    {
+      "file_name": "alpha-mobile_peer-turn-1-1782509864629.txt",
+      "sha256": "5e70e0f64527404bcfec4e1749df4f878e5b28ca2490cff39cc47f80c1974dc1",
+      "size_bytes": 77
+    },
+    {
+      "file_name": "alpha-mobile_peer-image-1782509864629.png",
+      "sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378",
+      "size_bytes": 67
+    },
+    {
+      "file_name": "beta-mobile_probe-turn-1-1782509864629.txt",
+      "sha256": "5cff10b1eb5d502e01d6db15d488e0285b57a7d154a824e35c42820f71aa4854",
+      "size_bytes": 77
+    },
+    {
+      "file_name": "beta-mobile_probe-doc-1782509864629.txt",
+      "sha256": "305509e4b0c8e23c19136461911ae27c68d3c4a5f1b42b5589fef6a8a100f957",
+      "size_bytes": 74
+    }
+  ],
+  "acceptance_notes": [
+    "The profile APK listed real server-wide projects and opened disposable test_ccb2 projects.",
+    "The smoke sent text+document and image attachments across alpha/mobile_probe, alpha/mobile_peer, and beta/mobile_probe.",
+    "Backend native artifact links and sent attachments downloaded into Android app storage with matching SHA256 values.",
+    "The integration also ran the server-wide upward-scroll backfill smoke target in profile mode."
+  ]
+}

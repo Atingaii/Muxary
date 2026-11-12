@@ -1,0 +1,65 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "scope": "Real Android Emulator server-wide attachment rejection smoke",
+  "mode": "attachment_rejection",
+  "raw_log": "/tmp/ccb-mobile-attachment-rejection-smoke-20260627-clean.log",
+  "mobile_app": {
+    "head": "d01c322",
+    "dirty": false
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "ac2626ac",
+    "dirty": false,
+    "ccb": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "gateway": {
+    "listen": "127.0.0.1:19151",
+    "url": "http://127.0.0.1:19151",
+    "route_provider": "lan",
+    "adb_reverse": "tcp:19151 tcp:19151"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626201614",
+    "selected": {
+      "name": "test_ccb2_alpha",
+      "id": "2ee2e1d0bed18edfd169314549b995d44badab7ef9c0ae7d9ea8163ff6094498",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626201614/test_ccb2_alpha",
+      "agent": "mobile_probe"
+    },
+    "healthy_mounted_count": 39
+  },
+  "assertions": {
+    "opened_real_server_project": true,
+    "unsupported_file": "installer.exe",
+    "unsupported_rejected_before_draft": true,
+    "oversized_file": "too-large.pdf",
+    "oversized_limit_bytes": 26214400,
+    "oversized_rejected_before_draft": true,
+    "attachment_tray_created": false,
+    "forbidden_labels_absent": [
+      "CCB_REQ_ID",
+      "mobile_gateway",
+      "completion_snapshot"
+    ],
+    "done_marker": "CCB_ATTACHMENT_REJECTION_SMOKE_DONE",
+    "flutter_result": "00:12 +1: All tests passed!"
+  },
+  "commands": {
+    "smoke": ". tools/mobile_toolchain_env.sh && python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --device-id emulator-5554 --gateway-listen 127.0.0.1:19151 --provider codex --attachment-rejection-smoke --flutter-timeout 900",
+    "focused_widget": "cd app && . ../tools/mobile_toolchain_env.sh && flutter test test/agent_chat_composer_widget_test.dart --plain-name \"unsupported file rejection keeps attachment draft empty\"",
+    "full_flutter": "cd app && . ../tools/mobile_toolchain_env.sh && flutter test",
+    "analyze": "cd app && . ../tools/mobile_toolchain_env.sh && flutter analyze",
+    "script_tests": "python3 tools/mobile_server_wide_emulator_smoke_test.py && python3 -m py_compile tools/mobile_server_wide_emulator_smoke.py tools/mobile_server_wide_emulator_smoke_test.py",
+    "diff_check": "git diff --check"
+  },
+  "residual_risks": [
+    "Profile/release file and attachment pressure remains open.",
+    "The smoke proves rejection before local draft creation; it does not exercise successful file upload/download paths, which are covered by separate native file/artifact smokes."
+  ]
+}

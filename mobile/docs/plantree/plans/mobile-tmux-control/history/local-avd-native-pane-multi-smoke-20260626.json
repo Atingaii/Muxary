@@ -1,0 +1,91 @@
+{
+  "date": "2026-06-26",
+  "status": "ok",
+  "scope": "casebook C3.1/C3.2 multi-project multi-agent real native-pane send/reply smoke",
+  "raw_log": "/tmp/ccb-mobile-native-pane-multi-smoke-20260626093000.log",
+  "environment": {
+    "app_commit": "114c0c0",
+    "app_dirty": "",
+    "source_root": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "source_commit": "6042b813",
+    "source_dirty": "",
+    "device_id": "emulator-5554",
+    "gateway_url": "http://127.0.0.1:19024",
+    "adb_reverse": "tcp:19024 tcp:19024",
+    "provider": "codex",
+    "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626093156",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260626093156"
+  },
+  "projects": {
+    "alpha": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626093156/test_ccb2_alpha",
+      "id": "a73b4f935de8fa288f33637235774ea66d59b378b700417ca0e0a1ebb4d86f74",
+      "agent": "mobile_probe",
+      "expected_reply": "CCB_MOBILE_NATIVE_ALPHA_OK_20260626093156"
+    },
+    "beta": {
+      "name": "test_ccb2_beta",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626093156/test_ccb2_beta",
+      "id": "2a9324dcd54da240672796a3593c91478466e7d103f569cc24073aa4222ea027",
+      "agent": "mobile_peer",
+      "expected_reply": "CCB_MOBILE_NATIVE_BETA_OK_20260626093156"
+    }
+  },
+  "integration_smoke": {
+    "test": "app/integration_test/native_pane_multi_gateway_smoke_test.dart",
+    "returncode": 0,
+    "stdout_tail": [
+      "00:00 +0: paired mobile chat sends native pane input across projects",
+      "00:19 +1: (tearDownAll)",
+      "00:20 +1: All tests passed!"
+    ],
+    "stderr_tail": [
+      "Kotlin Gradle Plugin warning for file_picker and mobile_scanner remains non-blocking for this smoke."
+    ]
+  },
+  "native_pane_evidence": {
+    "mode": "multi_project_multi_agent",
+    "cases": [
+      {
+        "project": "alpha",
+        "agent": "mobile_probe",
+        "prompt": "Please reply with exactly CCB_MOBILE_NATIVE_ALPHA_OK_20260626093156 and no other text.",
+        "expected_reply": "CCB_MOBILE_NATIVE_ALPHA_OK_20260626093156",
+        "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626093156/test_ccb2_alpha",
+        "codex_event_files": [
+          "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626093156/test_ccb2_alpha/.ccb/agents/mobile_probe/provider-state/codex/home/sessions/2026/06/26/rollout-2026-06-26T17-32-03-019f0345-a270-70a0-817d-b811fefe946f.jsonl"
+        ],
+        "user_match_count": 1,
+        "reply_match_count": 1,
+        "jobs_matches": [],
+        "prompt_contains_ccb_req_id": false,
+        "prompt_contains_mobile_gateway": false
+      },
+      {
+        "project": "beta",
+        "agent": "mobile_peer",
+        "prompt": "Please reply with exactly CCB_MOBILE_NATIVE_BETA_OK_20260626093156 and no other text.",
+        "expected_reply": "CCB_MOBILE_NATIVE_BETA_OK_20260626093156",
+        "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626093156/test_ccb2_beta",
+        "codex_event_files": [
+          "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626093156/test_ccb2_beta/.ccb/agents/mobile_peer/provider-state/codex/home/sessions/2026/06/26/rollout-2026-06-26T17-32-09-019f0345-b9c0-7b73-9334-f3477dc88dbf.jsonl"
+        ],
+        "user_match_count": 1,
+        "reply_match_count": 1,
+        "jobs_matches": [],
+        "prompt_contains_ccb_req_id": false,
+        "prompt_contains_mobile_gateway": false
+      }
+    ]
+  },
+  "cleanup": {
+    "adb_reverse_removed": true,
+    "gateway_returncode": -15,
+    "projects_unmounted": true
+  },
+  "limitations": [
+    "This covers two projects and two agents, but still only one turn per agent.",
+    "Desktop-origin sync, older-history pagination, file/image upload, backend artifact download, disconnect/recovery, request-rate evidence, and soak remain open."
+  ]
+}

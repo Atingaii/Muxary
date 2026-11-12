@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-26",
+  "status": "warn",
+  "scope": "CCB Mobile compass baseline against a real server-wide local gateway and real test project",
+  "app": {
+    "repo": "/home/bfly/yunwei/ccb_mobile",
+    "head": "246ee9b",
+    "head_subject": "docs: checkpoint mobile native conversation plan",
+    "package": "io.ccb.mobile.ccb_mobile",
+    "build_mode": "debug"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "6042b813",
+    "head_subject": "fix: prefer native mobile conversation transcript"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "transport": "adb reverse",
+    "gateway_url": "http://127.0.0.1:19011"
+  },
+  "project": {
+    "display_name": "test_ccb2_beta",
+    "agents": [
+      "mobile_probe",
+      "mobile_peer"
+    ],
+    "fake_or_demo_marker_seen": false
+  },
+  "results": {
+    "projects_count": 38,
+    "healthy_projects_count": 38,
+    "projects_api_p50_ms": 80.9,
+    "projects_api_max_ms": 438.3,
+    "baseline_60s_pss_delta_kb": -74,
+    "idle_soak_180s_pss_delta_kb": -40,
+    "idle_wake_locks": "Wake Locks: size=0",
+    "idle_wake_lock_summary": "mWakeLockSummary=0x0",
+    "logcat_fatal_anr_oom": false,
+    "return_to_project_list_ms": 2041.3,
+    "reopen_test_project_ms": 2014.4,
+    "controlled_send_marker": "perf_probe_160154",
+    "controlled_send_own_message_visible_ms": 5369.9,
+    "controlled_send_marker_count_after_poll": 1
+  },
+  "blockers": [
+    {
+      "id": "native-send-reply-not-proven",
+      "severity": "p0-for-conversation-stress",
+      "detail": "Controlled send showed the user's marker locally but did not prove a new backend reply; screenshot showed Terminal output: open terminal failed: not a terminal."
+    }
+  ],
+  "artifacts": {
+    "baseline": "/tmp/ccb-mobile-stress-20260626155408/summary.json",
+    "light_ui": "/tmp/ccb-mobile-stress-ui-20260626155648/summary.json",
+    "idle_soak": "/tmp/ccb-mobile-soak-20260626155755/summary.json",
+    "controlled_send": "/tmp/ccb-mobile-send-20260626160154/summary.json",
+    "controlled_send_screenshot": "/tmp/ccb-mobile-send-20260626160154/after.png"
+  }
+}

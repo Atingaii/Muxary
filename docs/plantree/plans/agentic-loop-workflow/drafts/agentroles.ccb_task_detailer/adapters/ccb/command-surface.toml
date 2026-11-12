@@ -1,0 +1,33 @@
+schema = "ccb-command-surface/v1"
+mode = "deny_all_except"
+enforcement = "required"
+if_unsupported = "fail_mount"
+generic_shell = false
+generic_ccb = false
+supported_providers = ["codex", "claude"]
+allowed_effects = ["detailer_planner_replan_handoff"]
+forbidden_effects = [
+  "arbitrary_target",
+  "chain",
+  "wait",
+  "watch",
+  "authority_mutation",
+  "task_create",
+  "artifact_import",
+  "status_write",
+  "runner_start",
+  "worker_dispatch",
+  "file_write",
+  "shell_exec",
+]
+
+[provider_tools]
+codex = "ccb_task_detailer_replan_planner"
+
+[[allowed]]
+id = "detailer_planner_replan_handoff"
+argv_prefix = ["ask", "--silence", "--compact", "--inline-request", "--task-id"]
+required_args = ["detailer-replan-<request-identity-prefix>", "planner"]
+stdin_schema = "ccb.detailer.replan_request.v1"
+output_schema = "ccb.ask.submission_receipt.v1"
+idempotency_key = "task_id_revision_detail_digest"

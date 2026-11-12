@@ -1,0 +1,92 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "scope": "profile Android Emulator live provider-created artifact download through real pane",
+  "mode": "profile_live_provider_artifact",
+  "raw_log": "/tmp/ccb-mobile-profile-live-artifact-smoke-20260627-clean.log",
+  "app": {
+    "head": "46fe77c",
+    "dirty": false,
+    "commit": "test: drive live artifact smoke through real pane"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "ac2626ac",
+    "dirty": false,
+    "command": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb"
+  },
+  "android": {
+    "device_id": "emulator-5554",
+    "build_mode": "profile",
+    "apk": "build/app/outputs/flutter-apk/app-profile.apk"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19161",
+    "listen": "127.0.0.1:19161",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260626210228",
+    "route_provider": "lan",
+    "adb_reverse": "tcp:19161 tcp:19161"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626210228",
+    "selected": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626210228/test_ccb2_alpha",
+      "id": "022e67cfb78651145c1df1d969e7d5b78831daf5eaf400abc329188b616d2e97",
+      "agent": "mobile_probe",
+      "pane_id": "%2"
+    },
+    "also_started": [
+      {
+        "name": "test_ccb2_beta",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626210228/test_ccb2_beta",
+        "id": "8118c514928df765a5a99cab71e5f3844f2fcdf7c1d94dfde4ea085e468d5e52"
+      }
+    ],
+    "listed_project_count": 42
+  },
+  "artifact": {
+    "file_name": "mobile-live-artifact-20260626210228-3590796.txt",
+    "content_sha256": "49548f8b886e293c09dafbdf5b8f3e6db5dfd0637f0cf20d83a30acb1ab557c0",
+    "size_bytes": 43,
+    "project_file_path": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626210228/test_ccb2_alpha/mobile-live-artifact-20260626210228-3590796.txt",
+    "gateway_metadata_path": "/tmp/ccb-mobile-server-wide-avd-state-20260626210228/files/022e67cfb78651145c1df1d969e7d5b78831daf5eaf400abc329188b616d2e97/mobile_probe/mobile-file-58bf85e0c24959ad81b48f24/metadata.json",
+    "gateway_file_id": "mobile-file-58bf85e0c24959ad81b48f24"
+  },
+  "mobile_download": {
+    "file_name": "mobile-live-artifact-20260626210228-3590796.txt",
+    "sha256": "49548f8b886e293c09dafbdf5b8f3e6db5dfd0637f0cf20d83a30acb1ab557c0",
+    "expected_sha256": "49548f8b886e293c09dafbdf5b8f3e6db5dfd0637f0cf20d83a30acb1ab557c0",
+    "size_bytes": 43
+  },
+  "hygiene": {
+    "jobs_matches": [],
+    "prompt_contains_ccb_req_id": false,
+    "prompt_contains_mobile_gateway": false,
+    "user_match_count": 2,
+    "reply_match_count": 1
+  },
+  "performance": {
+    "project_view_ms": 17.681,
+    "flutter_summary": "00:44 +2: All tests passed!"
+  },
+  "verification": {
+    "command": "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --device-id emulator-5554 --gateway-listen 127.0.0.1:19161 --provider codex --live-artifact-smoke --flutter-build-mode profile --flutter-timeout 1200",
+    "host_checks": [
+      "server-wide gateway listed mounted real projects",
+      "profile APK opened test_ccb2_alpha/mobile_probe",
+      "harness pasted the artifact prompt into the real tmux pane after app ready marker",
+      "app explicit-refresh loop rendered the provider-created markdown artifact link",
+      "Android app downloaded the artifact and emitted matching SHA256",
+      "project-root artifact SHA256 matched expected content",
+      "gateway file metadata SHA256 matched expected content",
+      "source-side native transcript had no CCB jobs match",
+      "source-side prompt had no CCB_REQ_ID or mobile_gateway marker"
+    ]
+  },
+  "residual_risks": [
+    "This closes profile-mode live provider text artifact download, not release-mode file performance.",
+    "The profile smoke uses a host-side pane paste after an app ready marker because Flutter Driver profile mode did not reliably inject TextField text.",
+    "Flutter reported Kotlin Gradle Plugin deprecation warnings for file_picker and mobile_scanner."
+  ]
+}

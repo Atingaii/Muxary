@@ -1,0 +1,208 @@
+{
+  "fixture_root": "/tmp/ccb-phase0-perf-4phc5a7v",
+  "generated_at": "2026-06-15T07:22:24.685507Z",
+  "metrics": {
+    "cleanup_process_inspection": {
+      "details": {
+        "candidate_count": 20,
+        "proc_root": "/tmp/ccb-phase0-perf-4phc5a7v/proc"
+      },
+      "iterations": 10,
+      "max_ms": 0.561425,
+      "mean_ms": 0.539731,
+      "min_ms": 0.515131,
+      "p50_ms": 0.54272,
+      "p95_ms": 0.559516,
+      "samples_ms": [
+        0.557183,
+        0.542934,
+        0.546441,
+        0.515131,
+        0.541406,
+        0.561425,
+        0.542718,
+        0.529389,
+        0.542722,
+        0.517964
+      ],
+      "status": "measured"
+    },
+    "helper_subprocess_startup": {
+      "details": {
+        "command": [
+          "/home/bfly/anaconda3/bin/python",
+          "-c",
+          ""
+        ],
+        "command_kind": "python_empty_process"
+      },
+      "iterations": 10,
+      "max_ms": 31.611681,
+      "mean_ms": 28.346269,
+      "min_ms": 15.472096,
+      "p50_ms": 31.532643,
+      "p95_ms": 31.611106,
+      "samples_ms": [
+        31.565435,
+        31.520198,
+        15.472096,
+        31.611681,
+        31.610403,
+        15.541441,
+        31.545088,
+        31.567616,
+        31.510288,
+        31.518446
+      ],
+      "status": "measured"
+    },
+    "native_provider_output_parse": {
+      "details": {
+        "finish_reason": "end_turn",
+        "finished": true,
+        "path": "/tmp/ccb-phase0-perf-4phc5a7v/native-output.jsonl",
+        "reply_chars": 20895
+      },
+      "iterations": 10,
+      "max_ms": 16.105404,
+      "mean_ms": 15.012423,
+      "min_ms": 14.322828,
+      "p50_ms": 14.868364,
+      "p95_ms": 15.988011,
+      "samples_ms": [
+        15.358405,
+        14.978228,
+        14.758499,
+        14.994039,
+        15.844531,
+        16.105404,
+        14.322828,
+        14.589017,
+        14.616932,
+        14.556346
+      ],
+      "status": "measured"
+    },
+    "project_view_build": {
+      "details": {
+        "agent_count": 6,
+        "comms_count": 0,
+        "window_count": 1
+      },
+      "iterations": 10,
+      "max_ms": 1.215519,
+      "mean_ms": 1.088531,
+      "min_ms": 1.018279,
+      "p50_ms": 1.061101,
+      "p95_ms": 1.208625,
+      "samples_ms": [
+        1.2002,
+        1.215519,
+        1.110966,
+        1.085631,
+        1.045477,
+        1.048417,
+        1.072572,
+        1.018279,
+        1.03862,
+        1.049629
+      ],
+      "status": "measured"
+    },
+    "queue_watch_jsonl_tail": {
+      "details": {
+        "path": "/tmp/ccb-phase0-perf-4phc5a7v/queue-watch.jsonl",
+        "tail_limit": 200
+      },
+      "iterations": 10,
+      "max_ms": 0.635469,
+      "mean_ms": 0.472621,
+      "min_ms": 0.439604,
+      "p50_ms": 0.446905,
+      "p95_ms": 0.575786,
+      "samples_ms": [
+        0.635469,
+        0.502841,
+        0.460102,
+        0.463094,
+        0.443667,
+        0.443304,
+        0.439604,
+        0.444323,
+        0.445245,
+        0.448564
+      ],
+      "status": "measured"
+    },
+    "storage_classification_scan": {
+      "details": {
+        "project_root": "/tmp/ccb-phase0-perf-4phc5a7v/project",
+        "total_bytes": 367515,
+        "total_count": 27
+      },
+      "iterations": 10,
+      "max_ms": 2.170301,
+      "mean_ms": 1.304783,
+      "min_ms": 0.961551,
+      "p50_ms": 0.993189,
+      "p95_ms": 2.147013,
+      "samples_ms": [
+        2.170301,
+        2.118549,
+        1.788138,
+        0.96696,
+        0.990289,
+        0.988601,
+        0.992676,
+        0.993702,
+        1.077062,
+        0.961551
+      ],
+      "status": "measured"
+    }
+  },
+  "parameters": {
+    "agents": 6,
+    "iterations": 10,
+    "processes": 80,
+    "rows": 2000
+  },
+  "phase": "phase0_baseline",
+  "plan": "python-rust-hybrid-performance",
+  "platform": {
+    "machine": "x86_64",
+    "release": "6.8.0-90-generic",
+    "system": "Linux"
+  },
+  "python": {
+    "executable": "/home/bfly/anaconda3/bin/python",
+    "version": "3.11.4"
+  },
+  "repo_root": "/home/bfly/yunwei/ccb_source",
+  "result_path": "/home/bfly/yunwei/ccb_source/dev_tools/perf_results/python_rust_phase0_baseline.json",
+  "rust_toolchain": {
+    "cargo": {
+      "command": [
+        "cargo",
+        "version"
+      ],
+      "path": "/home/bfly/.cargo/bin/cargo",
+      "returncode": 0,
+      "status": "available",
+      "stderr": "",
+      "stdout": "cargo 1.95.0 (f2d3ce0bd 2026-03-21)"
+    },
+    "rustup": {
+      "command": [
+        "rustup",
+        "show"
+      ],
+      "path": "/home/bfly/.cargo/bin/rustup",
+      "returncode": 0,
+      "status": "available",
+      "stderr": "",
+      "stdout": "Default host: x86_64-unknown-linux-gnu\nrustup home:  /home/bfly/.rustup\n\ninstalled toolchains\n--------------------\nstable-x86_64-unknown-linux-gnu (active, default)\n\nactive toolchain\n----------------\nname: stable-x86_64-unknown-linux-gnu\nactive because: it's the default toolchain\ninstalled targets:\n  x86_64-unknown-linux-gnu"
+    }
+  },
+  "schema_version": 1
+}

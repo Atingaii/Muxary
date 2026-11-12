@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "version": "8.0.10",
+  "android": {
+    "asset_name": "ccb-mobile-v8.0.10.apk",
+    "application_id": "io.ccb.mobile.ccb_mobile",
+    "label": "CCB Mobile",
+    "version_code": 8000010,
+    "version_name": "8.0.10",
+    "min_sdk": 24,
+    "target_sdk": 36,
+    "download_url": "https://github.com/bfly123/claude_code_bridge/releases/download/v8.0.10/ccb-mobile-v8.0.10.apk",
+    "sha256": "c22c845a5dfcf4f2d6eb19280c429ef4db6668467b31a72151a44ebf2866e737",
+    "size_bytes": 73558416
+  },
+  "setup": {
+    "desktop_command": "ccb update mobile",
+    "route_provider": "tailnet",
+    "gateway_binding": "loopback-only",
+    "tailscale_funnel": false
+  }
+}

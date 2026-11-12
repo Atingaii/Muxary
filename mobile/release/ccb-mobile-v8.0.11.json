@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "version": "8.0.11",
+  "android": {
+    "asset_name": "ccb-mobile-v8.0.11.apk",
+    "application_id": "io.ccb.mobile.ccb_mobile",
+    "label": "CCB Mobile",
+    "version_code": 8000011,
+    "version_name": "8.0.11",
+    "min_sdk": 24,
+    "target_sdk": 36,
+    "download_url": "https://github.com/bfly123/claude_code_bridge/releases/download/v8.0.11/ccb-mobile-v8.0.11.apk",
+    "sha256": "b16e5255c69cbe4171eb3ef905a6887412aa9fc71c1411d5b63b00d182c3adc1",
+    "size_bytes": 73558416
+  },
+  "setup": {
+    "desktop_command": "ccb update mobile",
+    "route_provider": "tailnet",
+    "gateway_binding": "loopback-only",
+    "tailscale_funnel": false
+  }
+}

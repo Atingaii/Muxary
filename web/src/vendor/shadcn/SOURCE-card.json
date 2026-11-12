@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/shadcn-ui/ui",
+  "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+  "retrieved_on": "2026-11-11",
+  "prototype": {
+    "url": "https://21st.dev/@shadcn/components/card",
+    "author": "shadcn",
+    "public_license": "MIT",
+    "source_boundary": "Selected from the public 21st listing. Its account-gated component source was not retrieved; byte equivalence to this public fixed upstream is unverified."
+  },
+  "license": {
+    "spdx": "MIT",
+    "path": "LICENSE",
+    "upstream_url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/LICENSE.md",
+    "sha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
+  },
+  "files": {
+    "card.tsx": {
+      "upstream_source_url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/card.tsx",
+      "upstream_sha256": "ef8305b12c3112dab42a4708b41b1ebcc042fa5ab4c20f039da8d45b09ed5059",
+      "vendored_sha256": "0b3cab37288b2f0d706008f3298c2f0f18278adce62aae189617e6c274270160",
+      "local_modifications": [
+        "Replace upstream cn import with the existing equivalent agent-elements/utils/cn utility. Styling adaptation is isolated to canvas.css; original Card slots are otherwise unchanged."
+      ]
+    }
+  }
+}

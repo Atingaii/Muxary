@@ -1,0 +1,96 @@
+{
+  "date": "2026-06-26",
+  "status": "ok",
+  "scope": "C4.1 desktop-origin explicit-refresh sync smoke on a real server-wide Android Emulator setup",
+  "raw_log": "/tmp/ccb-mobile-desktop-origin-sync-smoke-20260626103100.log",
+  "environment": {
+    "app_worktree": "/home/bfly/yunwei/ccb_mobile",
+    "app_head": "46829fb61dacbeaed15af8f84f429d2cb8c0dfd9",
+    "app_status_short": "",
+    "source_worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "source_head": "6042b813e4bb75d5c883b6ae329669e5e016b925",
+    "source_status_short": "",
+    "device_id": "emulator-5554",
+    "gateway_url": "http://127.0.0.1:19031",
+    "adb_reverse": "tcp:19031 tcp:19031",
+    "route_provider": "lan",
+    "host_project_id": "host-9f2e41fa47740908",
+    "projects_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626100818"
+  },
+  "test_projects": [
+    {
+      "display_name": "test_ccb2_alpha",
+      "project_id": "8eb43bbbeefe6732d2fdce6eae0ca8614c8352d98915e451c437d1bd29f876d6",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626100818/test_ccb2_alpha",
+      "mount_state": "mounted",
+      "health": "healthy"
+    },
+    {
+      "display_name": "test_ccb2_beta",
+      "project_id": "7448ab421fcdce836409a225c04b0d6a4581bb633c3df7d6ea12e114db0fc371",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626100818/test_ccb2_beta",
+      "mount_state": "mounted",
+      "health": "healthy"
+    }
+  ],
+  "integration_smoke": {
+    "test": "app/integration_test/native_pane_desktop_sync_smoke_test.dart",
+    "returncode": 0,
+    "project_name": "test_ccb2_alpha",
+    "project_id": "8eb43bbbeefe6732d2fdce6eae0ca8614c8352d98915e451c437d1bd29f876d6",
+    "agent": "mobile_probe",
+    "marker": "DESKTOP_ORIGIN_SYNC_MARKER_20260626100818",
+    "desktop_injected": true,
+    "idle_before_refresh_seconds": 30,
+    "ready_line_seen": "CCB_DESKTOP_SYNC_READY DESKTOP_ORIGIN_SYNC_MARKER_20260626100818",
+    "stdout_tail": [
+      "00:00 +0: desktop pane input appears after explicit refresh",
+      "CCB_DESKTOP_SYNC_READY DESKTOP_ORIGIN_SYNC_MARKER_20260626100818",
+      "00:35 +1: All tests passed!"
+    ]
+  },
+  "desktop_origin_evidence": {
+    "mode": "desktop_origin_sync",
+    "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626100818/test_ccb2_alpha",
+    "agent": "mobile_probe",
+    "marker": "DESKTOP_ORIGIN_SYNC_MARKER_20260626100818",
+    "pane_id": "%2",
+    "tmux_socket_path": "/run/user/1000/ccb-runtime/tmux-8eb43bbbeefe.sock",
+    "codex_event_files": [
+      "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626100818/test_ccb2_alpha/.ccb/agents/mobile_probe/provider-state/codex/home/sessions/2026/06/26/rollout-2026-06-26T18-08-27-019f0366-f8d5-7c82-a4b2-b66177dcfff1.jsonl"
+    ],
+    "user_match_count": 1,
+    "jobs_matches": [],
+    "prompt_contains_ccb_req_id": false,
+    "prompt_contains_mobile_gateway": false,
+    "view_ms": 13.888
+  },
+  "refresh_model": {
+    "desktop_input_path": "host tmux send-keys into the selected agent pane after the app printed the ready marker",
+    "idle_before_refresh_seconds": 30,
+    "asserted_absent_before_refresh": true,
+    "asserted_visible_after_explicit_refresh": true,
+    "reopen_required": false,
+    "blind_polling_observed": false
+  },
+  "cleanup": {
+    "adb_reverse_removed": true,
+    "gateway_returncode": -15,
+    "projects_unmounted": [
+      "test_ccb2_alpha",
+      "test_ccb2_beta"
+    ]
+  },
+  "verification": [
+    "python3 -m py_compile tools/mobile_server_wide_emulator_smoke.py",
+    "flutter test test/agent_terminal_history_refresh_coordinator_test.dart test/agent_chat_composer_widget_test.dart test/conversation_refresh_scheduler_test.dart",
+    "flutter test",
+    "git diff --check",
+    "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --provider codex --force-config --gateway-listen 127.0.0.1:19031 --desktop-origin-sync-smoke --desktop-origin-idle-seconds 30 --flutter-timeout 1200 --start-timeout 120 --gateway-timeout 60"
+  ],
+  "limitations": [
+    "C4.1 is proven for one disposable test_ccb2 project and one selected agent.",
+    "Gateway request-rate instrumentation over the 30-second idle window still belongs to the refresh/power bundle.",
+    "Older-history pagination, file/image upload, backend artifact download, recovery, and release/profile soak remain open."
+  ]
+}

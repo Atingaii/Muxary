@@ -1,0 +1,92 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "scope": "current app/source release APK adb-reverse link-loss recovery",
+  "mode": "release_reverse_recovery_current_head",
+  "app": {
+    "head": "7666c69",
+    "dirty": false,
+    "worktree": "/home/bfly/yunwei/ccb_mobile",
+    "apk": "/home/bfly/yunwei/ccb_mobile/app/build/app/outputs/flutter-apk/app-release.apk"
+  },
+  "source": {
+    "head": "7e436f7e",
+    "dirty": false,
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "command": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64",
+    "adb_reverse_initial": "tcp:19244 tcp:19244",
+    "adb_reverse_restored": "tcp:19244 tcp:19244"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19244",
+    "listen": "127.0.0.1:19244",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260627023354",
+    "route_provider": "lan",
+    "host_id": "host-8d38a737bfc67ff7"
+  },
+  "projects": {
+    "listed_count": 45,
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627023354",
+    "selected": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260627023354/test_ccb2_alpha",
+      "id": "1b21f09618939221448094dbcad611196809ecbe33c26b6b9b3f4be54387a564",
+      "agent": "mobile_probe"
+    }
+  },
+  "recovery": {
+    "reverse_removed": {
+      "removed": true,
+      "returncode": 0,
+      "stderr": ""
+    },
+    "failure_visible": true,
+    "failure_text": "SocketException: Connection refused",
+    "recovery_marker": "Native reverse recovery restored 1782527686",
+    "recovery_marker_visible": true,
+    "elapsed_ms": 39104.647,
+    "post_recovery_settle_seconds": 30,
+    "screenshot_path": "/tmp/ccb-mobile-release-reverse-recovery-1782527720.png"
+  },
+  "device_metrics": {
+    "memory": {
+      "pss_growth_ratio": 0.017,
+      "pss_kb_delta": 1543,
+      "pss_kb_max": 95457,
+      "pss_kb_min": 90657,
+      "samples": 3
+    },
+    "power": {
+      "wake_locks": "Wake Locks: size=0",
+      "wake_lock_summary": "mWakeLockSummary=0x0",
+      "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false"
+    },
+    "gfxinfo": {
+      "total_frames_rendered": "Total frames rendered: 16",
+      "janky_frames": "Janky frames (legacy): 1 (6.25%)"
+    },
+    "logcat": {
+      "fatal_anr_oom": false,
+      "skipped_frames_count": 0
+    }
+  },
+  "verification": {
+    "command": "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --force-config --provider codex --release-reverse-recovery-smoke --gateway-listen 127.0.0.1:19244 --device-id emulator-5554 --flutter-timeout 1500",
+    "raw_log": "/tmp/ccb-mobile-release-reverse-recovery-current-20260627.log",
+    "host_checks": [
+      "release APK opened a disposable real test_ccb2_alpha project",
+      "adb reverse removal produced a visible connection refused refresh failure",
+      "adb reverse restoration allowed the same open selected-agent page to refresh",
+      "the restored marker appeared after recovery",
+      "device metrics showed no FATAL, ANR, OOM, skipped-frame markers, or wake lock leak"
+    ]
+  },
+  "residual_risk": [
+    "This validates local AVD LAN/adb-reverse recovery; physical-device Tailnet/VPN recovery still requires a host with tailscale and an attached phone.",
+    "The app data clear command returned 1 during release install, matching prior release smoke behavior; the smoke still opened the intended server-wide profile and passed recovery gates."
+  ]
+}

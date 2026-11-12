@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "date": "2026-06-27",
+  "scope": "Profile APK scrolled-away desktop-origin sync smoke covering real server-wide project discovery, long native history backfill, explicit refresh, and new-message jump behavior.",
+  "status": "ok",
+  "raw_log": "/tmp/ccb-mobile-profile-scrolled-desktop-sync-smoke-20260627-fixed-source.log",
+  "mobile_app": {
+    "head": "dc1e44e",
+    "dirty": false,
+    "commits": [
+      "da6b272 test: cover scrolled desktop sync refresh",
+      "dc1e44e test: clear stale new-message affordance in desktop sync smoke"
+    ]
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "7e436f7e",
+    "dirty": false,
+    "commit": "fix: order mobile native transcript pages by record time"
+  },
+  "emulator": {
+    "device_id": "emulator-5554",
+    "adb_reverse": "tcp:19186 tcp:19186"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19186",
+    "route_provider": "lan"
+  },
+  "project_fixture": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626221442",
+    "selected_project": "test_ccb2_alpha",
+    "selected_agent": "mobile_probe",
+    "started_projects": [
+      "test_ccb2_alpha",
+      "test_ccb2_beta"
+    ]
+  },
+  "flutter": {
+    "build_mode": "profile",
+    "test_target": "integration_test/native_pane_desktop_sync_smoke_test.dart",
+    "summary": "00:46 +2: All tests passed!"
+  },
+  "long_history_backfill": {
+    "turns": 56,
+    "older_pages": 2,
+    "latest_page_ms": 10.915,
+    "older_page_ms": 20.398,
+    "oldest_page_ms": 9.447,
+    "oldest_text": "Native backfill answer backfill-20260626221442-2605162-00",
+    "latest_text": "Native backfill answer backfill-20260626221442-2605162-55",
+    "dataset_features": [
+      "markdown_heading",
+      "markdown_table",
+      "code_block",
+      "duplicate_short_prompts",
+      "document_artifact_link",
+      "image_artifact_link"
+    ]
+  },
+  "desktop_origin_sync": {
+    "marker": "DESKTOP_ORIGIN_SYNC_MARKER_20260626221442",
+    "idle_before_refresh_seconds": 30,
+    "scrolled_away_drag_count": 22,
+    "new_message_affordance": "visible_after_explicit_refresh",
+    "jump_to_new_message": "passed"
+  },
+  "source_evidence": {
+    "jobs_matches": [],
+    "prompt_contains_ccb_req_id": false,
+    "prompt_contains_mobile_gateway": false,
+    "user_match_count": 1,
+    "target_pane_id": "%2",
+    "codex_event_files": [
+      "rollout-ccb-mobile-long-history-20260626221442-2605162.jsonl",
+      "rollout-2026-06-27T06-14-48-019f05ff-f73d-7c91-9ae4-a892b5c11dbf.jsonl"
+    ]
+  },
+  "acceptance_notes": [
+    "The profile APK listed server-wide real projects and opened disposable test_ccb2_alpha/mobile_probe.",
+    "The app loaded a mixed provider-native long-history fixture, scrolled away from the newest turn, and stayed away from bottom while desktop-origin pane input was injected.",
+    "After explicit refresh, the app showed the new-message affordance and jumped to the desktop-origin marker without reopening the project.",
+    "Source-side evidence confirms the injected desktop-origin input did not use CCB ask/jobs and did not include CCB_REQ_ID or mobile_gateway pollution.",
+    "The source fix 7e436f7e orders native transcript pages by rollout record timestamp so newer pane input is not hidden before older backfill thread records."
+  ]
+}

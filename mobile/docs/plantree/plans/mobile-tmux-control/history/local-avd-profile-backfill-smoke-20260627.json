@@ -1,0 +1,95 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "mode": "profile_backfill_smoke",
+  "raw_log": "/tmp/ccb-mobile-profile-backfill-smoke-20260627-clean.log",
+  "app": {
+    "head": "cec4f9c",
+    "dirty": false,
+    "commit": "test: enable profile mobile backfill smoke"
+  },
+  "source": {
+    "worktree": "/home/bfly/yunwei/ccb_source_mobile_agent_native",
+    "head": "ac2626ac",
+    "dirty": false
+  },
+  "android": {
+    "device_id": "emulator-5554",
+    "build_mode": "profile",
+    "apk": "build/app/outputs/flutter-apk/app-profile.apk"
+  },
+  "gateway": {
+    "listen": "127.0.0.1:19153",
+    "route_provider": "lan",
+    "adb_reverse": "tcp:19153 tcp:19153"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626203025",
+    "alpha": {
+      "name": "test_ccb2_alpha",
+      "id": "60ee7d175eee4c6b2fedb6423c1d478210895f9daf78f025d29626f64e54800b",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626203025/test_ccb2_alpha",
+      "agents": ["mobile_probe", "mobile_peer"]
+    },
+    "beta": {
+      "name": "test_ccb2_beta",
+      "id": "ee3ea142b8d16cd3a6b0ab7eac4be3cbfbca9ea4137dcb13b9d18e81a37994cc",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626203025/test_ccb2_beta",
+      "agents": ["mobile_probe", "mobile_peer"]
+    }
+  },
+  "dataset": {
+    "seed_mode": "codex_native_rollout_fixture",
+    "turns": 200,
+    "features": [
+      "markdown_heading",
+      "markdown_table",
+      "code_block",
+      "duplicate_short_prompts",
+      "document_artifact_link",
+      "image_artifact_link"
+    ],
+    "artifact_files": [
+      {
+        "file_name": "mobile-long-history-20260626203025-2168878.md",
+        "mime_type": "text/markdown",
+        "size_bytes": 213,
+        "sha256": "931a952369c6f6d13a82c15d3b36940d0ca0389b7f804d7a6ba7abc655ae337d"
+      },
+      {
+        "file_name": "mobile-long-history-20260626203025-2168878.png",
+        "mime_type": "image/png",
+        "size_bytes": 67,
+        "sha256": "b25531b22bf7592c18ddbb8fce2fc1538033750fadb220fc1d6a6e5bb40d0378"
+      }
+    ]
+  },
+  "gateway_backfill": {
+    "view_ms": 12.886,
+    "latest_page_ms": 27.344,
+    "older_page_ms": 144.704,
+    "oldest_page_ms": 19.763,
+    "older_pages": 7,
+    "latest_message_polls": 1,
+    "next_cursor": "351",
+    "latest_text": "Native backfill answer backfill-20260626203025-2168878-199",
+    "oldest_text": "Native backfill answer backfill-20260626203025-2168878-00"
+  },
+  "app_backfill_metrics": {
+    "latest_visible_ms": 116,
+    "older_visible_ms": 46405,
+    "post_backfill_settle_ms": 112,
+    "total_ms": 49405,
+    "drag_count": 92
+  },
+  "result": {
+    "flutter_returncode": 0,
+    "flutter_summary": "All tests passed.",
+    "status": "ok"
+  },
+  "residual_risks": [
+    "This closes profile-mode 200-turn backfill smoke, not release-mode memory/frame pressure.",
+    "Profile file upload/download pressure and profile recovery/soak remain separate gates.",
+    "Flutter reported Kotlin Gradle Plugin deprecation warnings for file_picker and mobile_scanner."
+  ]
+}

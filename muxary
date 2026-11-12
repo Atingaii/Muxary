@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Resolve symlinks for both source and installed layouts, like the ccb launcher.
+src="${BASH_SOURCE[0]}"
+while [[ -L "$src" ]]; do
+  dir="$(cd -P "$(dirname "$src")" && pwd)"
+  src="$(readlink "$src")"
+  [[ "$src" != /* ]] && src="$dir/$src"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$src")" && pwd)"
+if [[ -x "$SCRIPT_DIR/bin/_ccb-python" ]]; then
+  launcher="$SCRIPT_DIR/bin/_ccb-python"
+elif [[ -x "$SCRIPT_DIR/_ccb-python" ]]; then
+  launcher="$SCRIPT_DIR/_ccb-python"
+else
+  echo "muxary: cannot locate _ccb-python next to $src" >&2
+  exit 127
+fi
+exec "$launcher" "$SCRIPT_DIR/muxary.py" "$@"

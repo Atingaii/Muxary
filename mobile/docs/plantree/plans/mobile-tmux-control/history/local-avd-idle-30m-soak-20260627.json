@@ -1,0 +1,97 @@
+{
+  "date": "2026-06-27",
+  "status": "passed",
+  "scope": "real Android Emulator 30-minute selected-agent idle request and device-metrics soak",
+  "mode": "idle_request_audit",
+  "app": {
+    "head": "07513c2",
+    "dirty": false
+  },
+  "source": {
+    "head": "ac2626ac",
+    "dirty": false,
+    "command": "/home/bfly/yunwei/ccb_source_mobile_agent_native/ccb"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "model": "sdk_gphone64_x86_64",
+    "adb_reverse": "tcp:19140 tcp:19140"
+  },
+  "gateway": {
+    "url": "http://127.0.0.1:19139",
+    "listen": "127.0.0.1:19139",
+    "request_proxy": "127.0.0.1:19140",
+    "state_home": "/tmp/ccb-mobile-server-wide-avd-state-20260626183102"
+  },
+  "projects": {
+    "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626183102",
+    "selected": {
+      "name": "test_ccb2_alpha",
+      "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626183102/test_ccb2_alpha",
+      "id": "50080a0216a239b8841f1b917cb3baea64177d9866e083cb105c94373595a85a",
+      "agent": "mobile_probe"
+    },
+    "also_started": [
+      {
+        "name": "test_ccb2_beta",
+        "root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-server-wide-avd-20260626183102/test_ccb2_beta",
+        "id": "17655e0baab84b9c12e5fa5071b50c302c9aec1721e5adcaa6e8cd6b6a60cfac"
+      }
+    ]
+  },
+  "idle_window": {
+    "seconds": 1800,
+    "total_requests": 0,
+    "conversation_requests": 0,
+    "terminal_history_requests": 0,
+    "conversation_terminal_requests": 0,
+    "requests_per_minute": 0.0,
+    "conversation_terminal_requests_per_minute": 0.0
+  },
+  "manual_refresh_after_idle": {
+    "total_requests": 1,
+    "counts_by_route": {
+      "/v1/projects/{project}/agents/{agent}/conversation": 1
+    }
+  },
+  "device_metrics": {
+    "sample_count": 16,
+    "memory": {
+      "pss_kb_delta": -732,
+      "pss_growth_ratio": -0.0023,
+      "pss_kb_min": 319866,
+      "pss_kb_max": 321476
+    },
+    "power": {
+      "wake_locks": "Wake Locks: size=0",
+      "wake_lock_summary": "mWakeLockSummary=0x0",
+      "holding_wakelock_suspend_blocker": "mHoldingWakeLockSuspendBlocker=false"
+    },
+    "gfxinfo": {
+      "total_frames_rendered": "Total frames rendered: 1",
+      "janky_frames": "Janky frames (legacy): 1 (100.00%)"
+    },
+    "logcat": {
+      "fatal_anr_oom": false,
+      "skipped_frames_count": 0
+    },
+    "errors": [],
+    "warnings": []
+  },
+  "verification": {
+    "command": "python3 tools/mobile_server_wide_emulator_smoke.py --source-ccb /home/bfly/yunwei/ccb_source_mobile_agent_native/ccb --device-id emulator-5554 --gateway-listen 127.0.0.1:19139 --provider codex --idle-request-smoke --idle-request-seconds 1800 --idle-metrics-sample-interval 120 --flutter-timeout 2400",
+    "raw_log": "/tmp/ccb-mobile-idle-30m-soak-20260627023102.log",
+    "flutter_result": "30:12 +1: All tests passed!",
+    "host_checks": [
+      "request proxy saw zero conversation/terminal-history requests during the 1800-second idle window",
+      "manual refresh after the idle window generated exactly one conversation request",
+      "ADB meminfo/top sampling collected 16 samples",
+      "dumpsys power reported no wake locks",
+      "logcat had no FATAL, ANR, or OOM markers"
+    ]
+  },
+  "residual_risk": [
+    "This closes the debug-mode 30-minute idle/power soak.",
+    "Profile/release frame timing, profile/release recovery pressure, and file restart/error persistence remain open."
+  ]
+}

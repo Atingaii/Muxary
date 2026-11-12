@@ -1,0 +1,10 @@
+include: package:lints/recommended.yaml
+
+analyzer:
+  exclude:
+    - third_party/**
+
+linter:
+  rules:
+    avoid_print: true
+    prefer_final_locals: true

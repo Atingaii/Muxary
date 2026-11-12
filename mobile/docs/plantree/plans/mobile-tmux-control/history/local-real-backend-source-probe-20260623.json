@@ -1,0 +1,91 @@
+{
+  "date": "2026-06-23",
+  "status": "pass",
+  "scope": "source loopback mobile gateway capability probe; not AVD UI closure",
+  "source_worktree": "/home/bfly/yunwei/ccb_source_mobile_local_backend_matrix",
+  "source_head": "99fa0544",
+  "mobile_head": "f1670db",
+  "project_root": "/home/bfly/yunwei/test_ccb2/ccb-mobile-local-capability-20260623-213502-5328bc",
+  "gateway_url": "http://127.0.0.1:42927",
+  "probe_elapsed_ms": 1078,
+  "probe_status": "ok",
+  "steps": [
+    {
+      "name": "health",
+      "status": "pass",
+      "duration_ms": 2.61,
+      "message": null,
+      "details": {
+        "capabilities": [
+          "http_json",
+          "project_view",
+          "pairing",
+          "device_tokens",
+          "lifecycle",
+          "focus",
+          "terminal_open",
+          "websocket_terminal",
+          "terminal_history",
+          "file_upload",
+          "file_download"
+        ],
+        "gateway_status": "ok"
+      }
+    },
+    {
+      "name": "pairing_claim",
+      "status": "pass",
+      "duration_ms": 1.857,
+      "message": null,
+      "details": {
+        "project_id": "342dfdc21f2a82afd9bf5da25cc5f2c8b1f69e129cdf11e15d71765049237940"
+      }
+    },
+    {
+      "name": "project_view",
+      "status": "pass",
+      "duration_ms": 10.385,
+      "message": null,
+      "details": {
+        "namespace_epoch": 1,
+        "project_id": "342dfdc21f2a82afd9bf5da25cc5f2c8b1f69e129cdf11e15d71765049237940"
+      }
+    },
+    {
+      "name": "message_submit",
+      "status": "pass",
+      "duration_ms": 3.853,
+      "message": null,
+      "details": {
+        "job_id": "job_9b0bd437c828"
+      }
+    },
+    {
+      "name": "agent_reply_marker",
+      "status": "pass",
+      "duration_ms": 1013.499,
+      "message": null,
+      "details": {}
+    },
+    {
+      "name": "file_upload_route",
+      "status": "pass",
+      "duration_ms": 1.567,
+      "message": null,
+      "details": {
+        "file_id": "mobile-file-e5bcb82d31d947dd"
+      }
+    },
+    {
+      "name": "file_download_route",
+      "status": "pass",
+      "duration_ms": 0.88,
+      "message": null,
+      "details": {
+        "file_id": "mobile-file-e5bcb82d31d947dd"
+      }
+    }
+  ],
+  "next_actions": [],
+  "raw_artifact": "/tmp/ccb-mobile-local-probe-source-file-route.json"
+}

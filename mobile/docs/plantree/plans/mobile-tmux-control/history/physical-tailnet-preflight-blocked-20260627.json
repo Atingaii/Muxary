@@ -1,0 +1,46 @@
+{
+  "checks": {
+    "adb_device": {
+      "allow_emulator": false,
+      "devices": [],
+      "missing": [
+        "No online Android device is attached."
+      ],
+      "ok": false,
+      "returncode": 0,
+      "selected_is_emulator": null,
+      "selected_serial": null
+    },
+    "tailscale_status": {
+      "backend_state": null,
+      "missing": [
+        "tailscale status failed: [Errno 2] No such file or directory: 'tailscale'"
+      ],
+      "ok": false,
+      "returncode": 999,
+      "self_dns_name": null,
+      "tailnet": null
+    }
+  },
+  "commands": [
+    "adb devices -l",
+    "tailscale status --json",
+    "tailscale serve status"
+  ],
+  "manual_requirements": [
+    "Android phone is logged in to the same Tailnet and the Tailscale VPN is on.",
+    "CCB Mobile is installed and can be opened on the phone.",
+    "CCB mobile gateway is loopback-only and exposed through Tailscale Serve, not Funnel.",
+    "Use a disposable real CCB test project for message/file validation."
+  ],
+  "missing": [
+    "No online Android device is attached.",
+    "tailscale status failed: [Errno 2] No such file or directory: 'tailscale'"
+  ],
+  "schema_version": 1,
+  "started_at": "2026-06-27T03:35:56.412592Z",
+  "status": "blocked",
+  "warnings": [
+    "No --gateway-url supplied; Tailnet gateway health was not probed."
+  ]
+}
